@@ -1,0 +1,50 @@
+#
+# @(#)PlayPaus.btn	6.16 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Play / Pause Button
+
+Select this button to start audio playback.  When
+audio playback is already in progress, selecting
+this button causes the playback to pause.  If the
+button is selected during paused state, audio playback
+will resume.
+
+If Repeat mode is enabled, the CD will be played
+again after completion.
+
+If Shuffle mode is enabled, the CD tracks will be
+played in a non-repeating random order.  If both
+Shuffle and Repeat modes are enabled, then the
+shuffle sequence will be re-randomized before each
+repeat playback.
+
+If a Program sequence is defined, the CD tracks will
+be played in the defined order.  A Program sequence
+supercedes Shuffle mode.  If Repeat mode is enabled
+during program play, the program will be repeated
+after completion.
+
+If Segment Play mode is active, the currently defined
+segment will be played repeatedly.
+
+You can use this button only when a CD is loaded.

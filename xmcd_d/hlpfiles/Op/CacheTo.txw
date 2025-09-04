@@ -1,0 +1,47 @@
+#
+# @(#)CacheTo.txw	7.5 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Cache Timeout
+
+You can set the timeout value (in days) after
+which the local CDDB record of the CD information
+is expired.  Once expired, xmcd will perform a
+lookup from the CDDB server again.
+
+Setting the timeout to zero would force xmcd to
+always do lookups from the CDDB server.  If you
+don't want the local record to expire, set the
+timeout to a large value, such as 1800 (almost
+5 years).
+
+Note that for the Gracenote CDDB² service, even if
+a record is not expired, xmcd will still contact the
+CDDB server and perform a server lookup if an
+updated record is available.  If you want to force
+xmcd to use the local cache record (and not attempt
+any Internet connections), select the "Internet
+offline" button in the "CD Information / Program
+Editor" window.
+
+
+

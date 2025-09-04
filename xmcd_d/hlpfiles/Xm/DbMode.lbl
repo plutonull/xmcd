@@ -1,0 +1,65 @@
+#
+# @(#)DbMode.lbl	6.24 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+CD Information Indicator
+
+This indicator will show one of the following:
+
+    query (blinking)
+	Currently loading CD information.  This may
+	take some time if the remote CDDB service
+	is used and the network connection is slow.
+    CDDB²
+	The CD information for the currently loaded
+	CD was downloaded from the enhanced CDDB²
+	service.
+    CDDB
+	The CD information for the currently loaded
+	CD was downloaded from the "classic" CDDB
+	service.
+    CDtext
+	The CD information for the currently loaded
+	CD was obtained by reading the CD-TEXT data
+	from the CD itself.  Only some recent CDs
+	contain CD-TEXT data, and only some CD drives
+	supports reading this information.
+    local
+	The CD information for the currently loaded
+	CD was read from the local xmcd version
+	2.x compatible CD information directory.
+    err
+	An error occurred when attempting to load the
+	CD information.
+    (blank)
+	No CD information for the currently loaded
+	CD was found, or no CD loaded.
+
+To view or edit the CD informaton, select the CD
+Information/Program button on the Xmcd main window,
+and the CD Information/Program Editor window will appear.
+
+In addition, if you click on this indicator, a dialog
+box will appear that prompts whether xmcd should attempt
+to re-load the CD information.  If a CD information load
+is in progress (blinking "query"), then the dialog box
+asks whether the load should be stopped.

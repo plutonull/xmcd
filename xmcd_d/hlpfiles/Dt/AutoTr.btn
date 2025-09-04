@@ -1,0 +1,36 @@
+#
+# @(#)AutoTr.btn	6.11 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Auto-track Button (for Track Details and Credits)
+
+Selecting this button will enable the "Auto-track"
+feature.  When enabled, Auto-track causes the Track
+Details and Track Credits windows to follow the
+currently playing track (i.e., when the playback
+changes to a new track, the Track details and Track
+credits window will also change to match).
+
+If you will be editing the information in these windows
+and want to play a CD at the same time, be sure to disable
+the auto-track feature.  Otherwise, the window may change
+to another track in the midst of your edit session.

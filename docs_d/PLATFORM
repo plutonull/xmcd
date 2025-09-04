@@ -1,0 +1,545 @@
+@(#)PLATFORM	6.52 04/02/27
+
+SUPPORTED PLATFORMS
+-------------------
+
+The source code of this version of xmcd and cda supports the following
+operating system and hardware environments.
+
+Note: The enhanced CDDB²(R) service is enabled only on some platforms.
+      The "classic" CDDB(R) service is used on all the others.  See the
+      CDDB file for details.
+
+    1.  Apple A/UX (*)
+	- A/UX version 3.0 or later (on Apple Macintosh m68k,
+	  with devscsi module installed)
+
+    2.  BSDI / WindRiver BSD/OS
+	- BSD/OS version 2.x (on Intel x86 PC-compatible)
+	- BSD/OS version 3.x (on Intel x86 PC-compatible)
+	- BSD/OS version 4.x (on Intel x86 PC-compatible and Sun Sparc)
+
+    3.  Data General DG/UX (*)
+	- DG/UX version 5.4R3.00 or later (on DG AViiON m88k)
+
+    4.  Digital / Compaq / HP Tru64 UNIX, Digital UNIX or OSF1
+	- version 1.3 or later (on Alpha)
+
+    5.  Digital Ultrix (*)
+	- Ultrix version 4.3 or later (on DECStations, with
+	  SCSI CAM installed)
+
+    6.  Digital / Compaq / HP OpenVMS
+	(See notes in the INSTALL.VMS file)
+	- OpenVMS version 6.2 or later (on Alpha)
+	- OpenVMS version 6.2 or later (on VAX)
+
+    7.  FreeBSD
+	- FreeBSD 2.0.5 or later (on Intel x86 PC-compatible)
+	- FreeBSD 4.0 or later (on Alpha)
+
+    8.  Fujitsu/Siemens/Pyramid Reliant UNIX System V Release 4 (*)
+	- SINIX-N on RM200, RM400
+	- SINIX-P on RM600
+
+    9.  Hewlett Packard HP-UX
+	- HP-UX release 9.x (HP 9000 m68k Series 300, Series 400)
+	- HP-UX release 9.x (HP 9000 PA-RISC Series 700 WSIO)
+	- HP-UX release 10.x (HP 9000 PA-RISC Series 700 WSIO)
+	- HP-UX release 11.x (HP 9000 PA-RISC Series 700 WSIO)
+
+    10. IBM AIX
+	- AIX version 3.2.x (on IBM RS/6000 Power and compatibles)
+	- AIX version 4.x (on IBM RS/6000 Power/PowerPC and compatibles)
+	- AIX version 5.x (on IBM RS/6000 Power/PowerPC and compatibles)
+
+    11. Linux
+	- Linux 1.0 or later (on Intel x86 PC-compatible)
+	- AlphaLinux 2.1 or later (on Alpha)
+	- SparcLinux 2.0 or later (on Sun Sparc or compatibles)
+	- Linux-ppc 2.1 or later (on Apple Macintosh PowerPC or compatibles)
+
+    12. NetBSD
+	- NetBSD 1.0A or later (on Intel x86 PC-compatible, Sun Sparc
+	  and other platforms)
+
+    13. OpenBSD
+	- OpenBSD 2.x or later (on Intel x86 PC-compatible, Sun Sparc
+	  and other platforms)
+
+    14. QNX (*)
+	- QNX version 4.22 or later (on Intel x86 PC-compatible)
+
+    15. SCO UNIX System V Release 3.2 (on Intel x86 PC-compatible)
+	(UnixWare see below)
+	- SCO UNIX 3.2v4.x
+	- Open Desktop version 2.x
+	- Open Desktop version 3.x
+	- Open Server release 5.x
+
+    16. Silicon Graphics IRIX System V Release 4
+	- IRIX version 4.x (on SGI platforms)
+	- IRIX version 5.x (on SGI platforms)
+	- IRIX and IRIX64 version 6.x (on SGI platforms)
+
+    17. Sony NEWS-OS (*)
+	- NEWS-OS 4.1 or later (on Sony NEWS/m68k)
+
+    18. Stratus FTX System V Release 4 (*)
+	- FTX version 3.x (on Stratus Continuum PA-RISC)
+
+    19. SunOS
+	- SunOS 4.1.x / Solaris 1.x (on Sun Sparc and compatibles)
+
+    20. Sun Solaris System V Release 4
+	- SunOS 5.x / Solaris 2.x and later (on Sun Sparc and compatibles)
+	- SunOS 5.x / Solaris 2.x and later (on Intel x86 PC-compatibles)
+
+    21. UNIX System V Release 4.0 (on Intel x86 PC-compatible) (*)
+	(Note: 4.0.3 or later recommended)
+	- AT&T
+	- Consensys
+	- Dell
+	- ESIX
+	- ISC
+	- Microport
+	- Micro Station Technology
+	- UHC
+	- USL
+
+    22. UNIX System V Release 4.0 (on Motorola m88k) (*)
+	- Motorola
+
+    23. UNIX System V Release 4.2 (on Intel x86 PC-compatible)
+	- Consensys
+	- Information Foundation
+	- Univel / Novell UnixWare 1.x
+	- Onsite
+	- USL
+
+    24. UNIX System V Release 4.2MP (on Intel x86 PC-compatible)
+	- UnixWare 2.x
+
+    25. UNIX System V Release 5 (on Intel x86 PC-compatible)
+	- UnixWare 7.x
+	- Caldera Open UNIX 8
+
+
+For those platforms denoted with an asterisk (*), xmcd and cda have
+been known to work on these platforms in the past, and nothing has been
+explicitly done to prevent them from working now.  However, these are
+not actively maintained and tested platforms.
+
+
+PLATFORM-SPECIFIC NOTES
+-----------------------
+
+Please read this section as well as the RELNOTES file for important
+information about setting up and using xmcd and cda.
+
+AIX 4.x:
+
+    For IDE drive users: If you eject a CD with xmcd or cda, then load a
+    new CD, you may find that the time of the last track is incorrect.
+    This is caused by an apparent bug in the AIX IDE CD-ROM driver: It
+    does not purge its in-core lead-out location information when you
+    ejected the CD.  A workaround is to set xmcd's closeOnEject
+    parameter to True.  This forces xmcd and cda to close and re-open
+    the device when you eject the CD and clears up the problem.
+
+    For CDDA playback, the the xmcd and cda "outport" command (as well
+    as the outputPort common.cfg parameter) may be used to select the
+    output port.  In addition, xmcd has a "CDDA playback output port"
+    selector in the Options window, under the "Channel routing"
+    category.  See xmcd(1) and cda(1).
+
+    The port mapping is as follows:
+
+    Mask value			RS/6000 port
+    -----------------------	-----------------------
+    1 (Speaker)			Internal speaker
+    2 (Headphone)		External speaker
+    4 (Line-out)		Line-out 1
+
+BSDI/WindRiver BSD/OS:
+
+    On the BSD/OS 2.x platform, the xmcd and cda volume, balance and
+    channel routing controls will not work unless you apply a minor
+    patch to the disk device driver.
+
+    In the /sys/dev/scsi/sd.c file, find the sdopen() function, and
+    look for code similar to the following:
+
+	if ((sc->sc_type & TYPE_TYPE_MASK) == TYPE_ROM && flags & FWRITE)
+		return (EROFS);
+
+    Comment-out or remove these two lines of code.
+
+    This code was intended to prevent an application from opening a
+    CD drive for writing (since the CD-ROM media is read-only).
+    This restriction is not necessary, as a write operation to the
+    CD drive would fail anyway.  However, due to the design of the SCSI
+    pass-through mechanism in BSD/OS, xmcd/cda needs to "write" out
+    SCSI mode data in order to implement the volume, balance and
+    channel routing controls.  This patch allows xmcd/cda to open the
+    CD-ROM device with the write attribute enabled.
+
+    After applying this patch, you must then build a new kernel and
+    reboot.  You should also set the CD-ROM device node to enable
+    both read and write permissions.
+
+    If you decide not to patch the disk driver, then you should
+    set the following parameters to "False" in the
+    XMCDLIB/config/DEVICE configuration file:
+
+	volumeControlSupport:	False
+	balanceControlSupport:	False
+	channelRouteSupport:	False
+
+    The Hitachi SCSI-1 CD drive will not work on the BSD/OS 2.x
+    platform without some changes to the SCSI driver.  The specific
+    changes necessary are beyond the scope of these notes.  If you
+    must use the Hitachi SCSI-1 drives please e-mail xmcd@amb.org for
+    information.
+
+    IDE/ATAPI CD drives are supported only on BSD/OS 3.x and later.
+    See the DRIVES file for details.
+
+    If you encounter unexplained and random xmcd or cda crashes (or the
+    lame or faac encoders crashing), it is possible that the default
+    per-process limit of memory usage is too low.  To increase the
+    limits, edit your kernel configuration file and change (or add)
+    these lines as appropriate:
+
+	options  DFLDSIZ=67108864    # 64M default max data size (was 16)
+	options  MAXDSIZ=134217728   # 128M max data size (was 64)
+
+    This then requires a kernel rebuild and reboot.
+
+Digital UNIX (OSF1), Tru64 UNIX and Ultrix:
+
+    The minimum Ultrix and OSF1 OS version listed above should be
+    heeded.  Running xmcd and cda on earlier releases of either OS may
+    cause the system to crash, due to bugs in the OS.  You must create
+    the /dev/cam device before using xmcd/cda under Ultrix.  To do so,
+    type the following commands while logged in as root:
+
+	cd /dev
+	MAKEDEV cam
+
+Data General DG/UX:
+
+    For DG/UX, you must configure the CD-ROM device to be a user SCSI
+    device instead of a SCSI disk.  To do so, follow these steps:
+
+    1) Find the line in the file /var/Build/system.<hostname> which
+       represents your CD drive and change the prefix "sd" to "scsi".
+    2) Rebuild and reboot your kernel.
+
+FreeBSD:
+
+    You should set the CD-ROM device node to enable both read and
+    write permissions.
+
+    Release and snap versions of FreeBSD 2.0.5R needs a patch in the
+    SCSI driver in order to work with xmcd (otherwise, the kernel may
+    panic).  In /sys/scsi/scsi_ioctl.c, around line 323:
+
+    Original code:
+			/* if no data, no need to translate it.. */
+			bp->b_un.b_addr = 0;
+			bp->b_dev = dev;
+			bp->b_flags = 0;
+
+			scsistrategy(bp);
+			ret =  bp->b_error;
+
+    Fixed code:
+			/* if no data, no need to translate it.. */
+			bp->b_un.b_addr = 0;
+			bp->b_dev = dev;
+			bp->b_flags = B_BUSY;
+
+			scsistrategy(bp);
+			ret =  bp->b_error;
+
+    FreeBSD 2.x uses the SCIOCCOMMAND ioctl for SCSI pass-through support
+    whereas FreeBSD 3.x uses the CAM mechanism.  Moreover, FreeBSD 3.x has
+    changed to the ELF binary format.  Xmcd/cda executable binaries compiled 
+    for FreeBSD 2.x cannot be used on FreeBSD 3.x and vice versa.
+
+    In order to use SCSI CD drives with xmcd and cda on a FreeBSD 3.x
+    and later system, you must have the CAM pass-through driver configured
+    in your kernel:
+
+	device pass0
+
+    And you must have the CAM transport layer and pass-through devices
+    in /dev:
+
+	cd /dev
+	sh MAKEDEV xpt1
+	sh MAKEDEV pass8
+
+    Where the number at the end of the device name is the number of devices
+    to create.  You only need one transport layer device, but you will need
+    one pass-through device node for each SCSI device in your system.
+
+    If you have an IDE/ATAPI drive and run it under SCSI-emulation (i.e.,
+    via the "ATAPI-CAM" interface), then you should answer 'n' to the
+    following question when configuring xmcd/cda:
+
+	Does this drive use a SCSI interface?
+
+    Then, answer 'y' to the next question:
+
+	Are you using SCSI emulation (ATAPI-CAM) with this drive?
+
+    If you encounter any errors while running xmcd with a drive under
+    SCSI-emulation, you may need to tweak a parameter or two.  Please
+    refer to the Xmcd Configurtion Guide web page:
+
+	http://www.amb.org/xmcd/    (Click on "Configuration Guide")
+
+    FreeBSD 4.0 on Alpha platforms may requires a kernel patch to the
+    atapi-cd driver to prevent a kernel panic in the CDIOCSETVOL ioctl
+    function, caused by an unaligned memory access bug in the atapi-cd
+    driver.  Without a atapi-cd driver fix, you must set xmcd/cda's
+    volumeControlSupport, balanceControlSupport and channelRouteSupport
+    parameters to False in order to avoid the kernel panic.
+
+HP-UX:
+
+    On the m68k systems, you should set the CD-ROM device node to enable
+    both read and write permissions.
+
+    For PA-RISC platforms, only systems running the WSIO (Workstation I/O)
+    device driver subsystem are supported.  Xmcd and cda will not work
+    on systems running the SIO (Server I/O) device driver subsystem.
+
+    Due to a bug in the HP-UX Bourne Shell (/bin/sh), the install.sh script
+    will fail on some versions of HP-UX.  The Korn Shell (/bin/ksh) should
+    be used instead.  To install the pre-compiled xmcd binary distribution,
+    run the install.sh script like this:
+    
+	ksh ./install.sh
+
+    If you want xmcd/cda to play via the HP workstation's built-in
+    audio hardware, you should set the playback mode to "CDDA playback".
+
+    On some HP-UX 10.x systems, you may need to apply some HP software
+    patches ("Audio subsystem patch, et. al") in order for the Audio
+    Control utility to recognize the CD device as an input source or
+    otherwise function correctly.  Please inquire with HP customer support
+    for details.
+
+    For CDDA playback, the the xmcd and cda "outport" command (as well
+    as the outputPort common.cfg parameter) may be used to select the
+    output port.  In addition, xmcd has a "CDDA playback output port"
+    selector in the Options window, under the "Channel routing"
+    category.  See xmcd(1) and cda(1).
+
+Linux:
+
+    If you have an IDE/ATAPI drive and run it under SCSI-emulation (i.e.,
+    via the "ide-scsi" driver), then you should answer 'n' to the following
+    question when configuring xmcd/cda:
+
+	Does this drive use a SCSI interface?
+
+    Then, answer 'y' to the next question:
+
+	Are you using SCSI emulation (ide-scsi) with this drive?
+
+    If you encounter any errors while running xmcd with a drive under
+    SCSI-emulation, you may need to tweak a parameter or two.  Please
+    refer to the Xmcd Configurtion Guide web page:
+
+	http://www.amb.org/xmcd/    (Click on "Configuration Guide")
+
+    If you have a SCSI drive, then you must make sure your kernel is
+    configured for the SCSI CD-ROM device driver (sr or scd), either
+    statically or as a loadable module.  Moreover, the SCSI Generic (sg)
+    driver should also be configured.  See your Linux kernel documentation
+    for information.
+
+    If you are using the CDDA capabilities in xmcd and cda, your kernel
+    should be configured with SYSVIPC support.  See your Linux kernel
+    documentation for information.
+
+    If you are running the ALSA sound driver, if there is another
+    application using the sound PCM device, xmcd will block until that
+    application releases the device.  Thus, if xmcd appears to hang in
+    "CDDA playback" mode, quit or kill the other sound-related program.
+
+    If you're running the GNOME environment and would like to have
+    xmcd automatically start when you insert a CD (instead of the
+    default gtcd player), edit the file $HOME/.gnome/magicdev, and
+    locate the following line:
+
+	cd_play_command=gtcd --play --device %d
+
+    change it to:
+
+	cd_play_command=xmcd
+
+    In addition, after xmcd starts for the first time, click the
+    Options button (the one with the tools symbol) on the xmcd main
+    window, and in the popup, select "Automated functions", check
+    the "On load: auto play" and "On eject: auto exit" buttons, then
+    click "Save".
+
+    If you have a recent Linux distribution with glibc 2.2 or later,
+    you should set the charsetConvMode parameter in your common.cfg
+    file to 2 to take full advantage of the UTF-8 character set
+    conversion support in iconv(3).
+
+IRIX:
+
+    If you want xmcd/cda to play via the SGI workstation's built-in
+    audio hardware, you should set the playback mode to "CDDA playback".
+
+QNX:
+
+    Under QNX, xmcd must be configured to run under the "QNX ioctl method"
+    to operate all CD drive types.  The "SCSI pass-through" method is
+    not available.
+
+    You must have the Fsys driver to create /dev/cd0.  If the Audio
+    driver is installed, /dev/dsp will automatically be used.
+
+    Note: A stable, post-beta Audio driver is present only on QNX 4.23
+    and later.
+
+    Warning: The Iso9660fsys driver must NOT be running while you use
+    xmcd/cda, or else you risk filesystem corruption.
+
+SCO UNIX, Open Desktop and Open Server:
+ 
+    If you are using the CDDA capabilities in xmcd and cda, you must
+    tune your kernel to increase the shared memory tunable parameters.
+    The SHMMAX parameter should be at least 2000000.
+
+    Note that this is a minimum recommended value.  If you are also
+    running other applications that use shared memory, then you must
+    increase this value further.  If you have multiple CD drives on
+    your system and would like to run separate and simultaneous instances
+    of xmcd/cda on each drive, then the tunables must be scaled up
+    accordingly.
+
+    See the idtune(ADM) command about tuning kernel parameters.
+
+    If you are using the cda visual mode on an X display, it is better
+    to run it in an xterm(XC) window rather than a scoterm(XC) window.
+
+Sun SunOS 4.1.x:
+
+    The current SunOS 4.1.x run-time support is limited to systems
+    running the sun4c and sun4m kernels.  To find out which kernel you
+    have, use the "arch -k" command.
+
+    The Hitachi SCSI-1 CD drives will not work on the SunOS 4.1.x
+    platform as an audio CD player.  These drives were provided as
+    standard equipment with some Sparc-compatible workstations.
+    There is no way to make them work with xmcd and cda under SunOS
+    4.1.x.  The only solution is to upgrade to a SCSI-2, Sun-compatible
+    CD drive.
+
+    Xmcd and cda uses gethostbyname(3) to convert host names into
+    IP addresses for CDDB server access.  The gethostbyname() function
+    in the SunOS 4.1.x C library uses NIS to resolve host names.  NIS
+    is usually set up to resolv host names within an intranet, not the
+    Internet.  DNS (domain name service) is what's normally used for
+    Internet host name resolution.  You should explicitly link xmcd/cda
+    with the /usr/lib/libresolv.a library (which contains an alternative
+    gethostbyname() that uses DNS).  To do this, add -lresolv to the
+    final link command line of xmcd and cda's Makefiles.
+
+    Alternatively, you can modify the SunOS shared C library such that
+    it will support DNS.  This has the benefit of "fixing" the other
+    TCP/IP utilities such as telnet, ftp, etc. to use DNS too.  For
+    details on how to do that, try a web search with the keywords
+   "SunOS DNS".
+
+Sun Solaris 2.x and later:
+
+    On Solaris platforms, you should use the virtual CD-ROM device
+    (such as /vol/dev/aliases/cdrom0) if the Solaris Volume Manager
+    (/usr/sbin/vold) is also running. You should set xmcd's
+    "solaris2VolumeManager" common parameter and either the
+    "closeOnEject" or "exitOnEject" device-specific parameter to True
+    when operating under the Volume Manager.  If you want the Volume
+    Manager to automatically start xmcd when a CD is inserted, you can
+    specify the action_workman.so start-up program in the
+    /etc/rmmount.conf file:
+
+    action cdrom action_workman.so /usr/local/bin/X11/xmcd
+
+    Substitute /usr/local/bin/X11 with the actual path to your xmcd
+    program executable.  See rmmount(1M) and rmmount.conf(4) for more
+    information.
+
+    If the Solaris Volume Manager is running, you should only use the
+    Eject button on the xmcd main window to eject the CD.  Do not use
+    the eject button on the CD drive itself.
+
+    If you want xmcd/cda to play via the Sun workstation's built-in
+    audio hardware, you should set the playback mode to "CDDA playback".
+
+    If you are using any CDDA capabilities in xmcd and cda, you must
+    tune your kernel to increase the shared memory tunable parameters.
+    To do so, add the following to your /etc/system file and then reboot:
+
+    set shmsys:shminfo_shmmax = 2000000
+
+    Note that this is a minimum recommended value.  If you are also
+    running other applications that use shared memory, then you must
+    increase this value further.  If you have multiple CD drives on
+    your system and would like to run separate and simultaneous instances
+    of xmcd/cda on each drive, then the tunables must be scaled up
+    accordingly.
+
+    Also, in order for the CDDA playback feature to work on Solaris,
+    the audio device node /dev/audio (actually, the node that /dev/audio
+    symbolically links to) must be writable by you.  You should edit
+    the /etc/logindevperm file and change the /dev/sound/* entry to 0622,
+    then re-login.
+
+    For CDDA playback, the the xmcd and cda "outport" command (as well
+    as the outputPort common.cfg parameter) may be used to select the
+    output port.  In addition, xmcd has a "CDDA playback output port"
+    selector in the Options window, under the "Channel routing"
+    category.  See xmcd(1) and cda(1).
+
+    On Solaris Intel x86 platforms, CDDA playback may produce choppy
+    audio output on non-MMC Toshiba SCSI CD drives that use the SCSI-2
+    Read command for CDDA extraction.  There is no solution other than
+    to change to a CD drive that support a different CDDA read method
+    (SCSI-3 MMC, Sony or NEC style).
+
+UnixWare and Caldera Open UNIX (all versions):
+
+    Xmcd/cda only supports SCSI drives on the UnixWare and Caldera
+    Open UNIX 8 platform.  While IDE/ATAPI and other CD drives types
+    are supported by the OS for data discs, the device drivers for these
+    drives do not implement the services needed for CD audio playback.
+
+    If you encounter unexplained and random xmcd or cda crashes (or the
+    lame or faac encoders crashing), it is possible that some or all
+    of these kernel tunable parameters need to be increased:
+
+	HDATLIM, SDATLIM, HSTKLIM, SSTKLIM, HVMMLIM, SVMMLIM, SFNOLIM
+
+    Also, if you are using the CDDA capabilities in xmcd and cda, you
+    must tune your kernel to increase the shared memory tunable parameters.
+    The SHMMAX parameter should be at least 2000000.
+
+    Note that this is a minimum recommended value.  If you are also
+    running other applications that use shared memory, then you must
+    increase this value further.  If you have multiple CD drives on
+    your system and would like to run separate and simultaneous instances
+    of xmcd/cda on each drive, then the tunables must be scaled up
+    accordingly.
+
+    See the idtune(1M) command about tuning kernel parameters.
+

@@ -1,0 +1,51 @@
+#
+# @(#)Segment.lsw	7.8 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Segments List
+
+This is a list of segments pertaining to the album
+You may add items to it using the segment editor,
+or select an item and modify it, or delete an item.
+Optionally, you may add notes associated with
+a particular segment item.
+
+A segment is an arbitrary block of audio on the CD,
+where you define the start and end points.  It can
+span more than one track.
+
+If a segment has associated notes or credits, an
+asterisk (*) will be shown in the list entry.
+To view the notes, just select the item in the list.
+If there are credits, the Credits... button will
+show an asterisk (*) on its button label.  Click
+the Credits button to open the Credits window.
+
+To play the segment, select the segment in the list
+and then click the "Play / Pause" button, or you may
+simply double-click the segment list entry.  If you
+want the segment to play repeatedly, enable the
+"Repeat" button.
+
+To disable segment play mode, simply de-select the
+segment list entry, or click the A->B button on the
+main window once.

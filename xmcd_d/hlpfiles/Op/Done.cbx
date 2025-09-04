@@ -1,0 +1,53 @@
+#
+# @(#)Done.cbx	6.19 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+On Done options
+
+There are two toggle button in this box:
+
+- auto eject
+
+   With this option, the CD will eject when audio
+   playback is "done".  This option will work only
+   if the CD drive supports software-controlled
+   tray eject.
+
+   The default start-up setting of this options is
+   configured via the ejectOnDone parameter in the
+   device-specific configuration files.
+
+- auto exit
+
+   With this option, xmcd will exit when audio
+   playback is "done".
+
+   The default start-up setting of this options is
+   configured via the exitOnDone parameter in the
+   device-specific configuration files.
+
+Audio playback is "done" when a CD has played to
+the end, or if a shuffle sequence/play program
+has completed.  Pressing the Stop button during
+playback will stop the CD, but is not considered
+"done" for this purpose.  The playback will never
+be "done" as long as the Repeat mode is enabled.

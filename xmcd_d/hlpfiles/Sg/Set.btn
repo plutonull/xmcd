@@ -1,0 +1,75 @@
+#
+# @(#)Set.btn	7.9 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Play-set button
+
+This button has similar functionality as the A->B
+button on the xmcd main window.  It is used to define
+the start and end points of a segment.  The button label
+is presented differently than on the main window button
+to emphasize its function, and there are arrows that
+point to the start and end position text boxes during
+the definition process.
+
+During normal audio playback, click this button
+once to define the start of the segment (at this time
+the program mode indicator will flash "a->?").  Click
+it a second time to define the end of the segment
+(the indicator goes blank).  Audio playback will
+continue normally, and you may use the "Add" button to
+add the defined segment to the list.  Note that this is
+somewhat different than the behavior of the A->B button
+on the main window.
+
+You can define the Segment Play mode start and end
+points only if audio playback is in progress, and is
+not in paused state.  Also, you cannot enter Segment
+Play mode during shuffle playback or if a program
+sequence is defined.
+
+During the "a->?" phase, you may use the previous/next
+track, previous/next index, REW/FF, or the keypad to
+locate the end point quickly.  If you click the Stop
+button, a->? phase will be canceled and xmcd will go
+to normal playback mode.
+
+After adding the segment to the list, you may select
+the list entry, and then click the "Play / Pause"
+button to play the segment (or you may simply double-click
+the list entry).  If you want the segment to be 
+If you want the segment to play repeatedly, enable the
+"Repeat" button.
+
+When playing a segment, you may use the REW/FF or the
+keypad window's track warp slider to move around
+within the segment.  If you move to a location before
+the start of the segment, playback will start at the
+start of the segment.  If you move to a location
+after the end point, playback will stop.  Using the
+previous/next track, previous/next index, or the
+keypad to change tracks in Segment play mode will
+cancel the Segment Play mode.
+
+Changing discs (using the eject button, the
+previous/next disc button, or using the keypad in
+disc mode) will cancel the Segment Play mode.

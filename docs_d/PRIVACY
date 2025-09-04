@@ -1,0 +1,213 @@
+@(#)PRIVACY	7.3 01/05/11
+
+Gracenote CDDB Music Recognition Service Privacy Policy
+CDDB² version ("Classic" CDDB version see below)
+
+Introduction
+------------
+
+Gracenote believes in protecting consumer privacy. We have spent a great
+deal of time and effort designing the Gracenote CDDB² Music Recognition
+Service[SM] ("CDDB² Service") that you can use with trust and
+confidence. The purpose of this privacy statement is to let you know how
+we use information that you may share with us.
+
+Please note that this is our privacy policy for our Gracenote CDDB²
+Service. We have separate privacy policies for the Gracenote Web Site,
+and the Gracenote CDDB Service.  These are accessible from the Main
+Privacy Page.
+
+Gracenote CDDB² introduces many new exciting features requested by both
+developers and end users like you that allow personalization of the
+information delivered to you, while allowing you to remain anonymous,
+letting you control your level of participation and the information you
+provide, and adding security features to protect your information.
+
+Registration and Requested Information
+--------------------------------------
+
+When you register with the Gracenote CDDB² Service, we ask you for
+general information about yourself, such as zip or country code, email
+address, sex, and age range, that will be helpful in gathering aggregate
+statistics, and for delivering personalized content. For example, if you
+supply a zip code, we may use it to collect aggregate statistics about
+what music fans are playing in your part of the country, or to provide
+personalized tour information based on the city in which you live, but
+neither Gracenote CDDB nor anyone will use your zip code to try to send
+you mail at home or identify you personally. All information requested
+is optional, except for a "nickname" you choose, and a password to give
+you exclusive access to change or delete your information at any time.
+
+Identifying Information
+-----------------------
+
+The Gracenote CDDB² Service uses a unique identifier to track queries
+for statistical purposes (see Data Aggregation below) and to allow
+personalization features (see Personalized Content below). This is a
+number that Gracenote CDDB assigns to you at random when you register.
+(A numeric identifier is sometimes called a Globally Unique Identifier,
+or GUID. However, there are many different uses of GUIDs, some benign
+and some controversial, in the industry.) Gracenote CDDB does not
+generate this number from any hardware identifier (such as an IP
+address) or any other information that can be traced back to you or the
+computer you are using. The purpose of a randomly assigned numeric
+identifier is to allow the Gracenote CDDB to count queries without
+knowing anything about who you are other than the information you choose
+to provide when you register, and which you can delete at any time.
+
+Disclosure of Personal Information
+----------------------------------
+
+We do not disclose your individual information to any other company. You
+should be aware, however, that it is possible that we might be required
+to make disclosure, for example in response to court orders or in
+governmental investigations.
+
+Use of Email Address
+--------------------
+
+There are two reasons we might use an email address you provide during
+registration: administration, and our mailing list. Administrative email
+includes such things as emailing you a password hint if you forget your
+registration password, or diagnosing a problem if you submit a change to
+the data for a CD. In addition, with your permission we may occasionally
+use your email address to send you special offers and promotions.
+During registration, or at any time afterward, you can choose not to be
+on our mailing list, either by turning this feature off in your
+registration options, or by following a simple reply instruction in any
+email we send.
+
+Customized Content
+------------------
+When you look up an album, the Gracenote CDDB² Service uses information
+about the album to customize the content, advertisements, and other
+promotions displayed in applications that use the Gracenote CDDB²
+Service. Gracenote CDDB does this without referring to any personal
+information.
+
+Personalized Content
+--------------------
+Our technology can do personalized "targeting" of content,
+advertisements, and other promotions without disclosing any of your
+personal information to anyone outside Gracenote CDDB. With your
+permission we may use information you have provided to us, such as
+registration information or other albums you have looked up, to
+personalize the content you see or hear. During registration, or at any
+time afterward, you can choose to turn off this personalized service.
+
+Removal of Personal Data
+------------------------
+You can always change your mind about the information you choose to
+provide and the personalization options you select. By bringing up the
+"Gracenote Registration" command from any Gracenote CDDB²-enabled
+application, you can update or clear the registration information,
+including any email address, you have provided.
+
+Data Aggregation
+----------------
+Gracenote collects aggregate statistics on which music and artists are
+most commonly identified by users with the Gracenote CDDB² Service.
+("Aggregate statistics" means "group statistics" such as the Gracenote
+Digital Top Ten, not individual statistics about your personal use of
+the service.) Besides posting these statistics for you and other fans to
+enjoy, Gracenote CDDB may publish or share this aggregate information
+with other companies. This aggregate data, by its nature, will not
+reveal the identity of our users. We also use aggregate data to help us
+improve our servers and other components of the Gracenote CDDB²
+Service.
+
+Policy Changes
+--------------
+If we decide to make changes in our policies regarding consumer privacy,
+we will post them at this location on the Gracenote web site,
+www.Gracenote.com. If you have questions or comments about our policy,
+please email us at privacy@gracenote.com.
+
+This statement last updated on March 6 2001.
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Gracenote CDDB Music Recognition Service Privacy Policy
+"Classic" CDDB version (CDDB² version see above)
+
+Introduction
+------------
+
+Gracenote CDDB believes in protecting consumer privacy. We have spent a
+great deal of time and effort designing the Gracenote CDDB Music
+Recognition Service[SM] (the "Gracenote Service") that you can use with
+trust and confidence. The purpose of this privacy statement is to let
+you know how we use information that you may share with us.
+
+Identifying Information
+-----------------------
+
+The Gracenote CDDB Service uses a unique identifier to track queries for
+statistical purposes (see Data Aggregation below). Different players use
+different identifiers. Some players use a random number or string, and
+some use email addresses. The identifier choice was made by the author
+of the player program, not by Gracenote CDDB. In all cases Gracenote
+CDDB uses this identifier only to count queries by unique users.
+Gracenote CDDB does not use or share any personal information acquired
+as an identifier and discards the entire query record, by storing it in
+a circular log file that disappears over time, when it is no longer
+needed for counting.
+
+Disclosure of Personal Information
+----------------------------------
+
+We do not disclose your individual information to any other company. You
+should be aware, however, that it is possible that we might be required
+to make disclosure, for example in response to court orders or in
+governmental investigations.
+
+Use of Email Address
+--------------------
+
+Some player developers choose to use email addresses as the identifier
+the player uses to let Gracenote CDDB count unique queries.  Gracenote
+CDDB does not use an email address acquired in this way to send email.
+Any such email addresses, along with any other record of the query, is
+stored temporarily in a log file, but this log is circular and simply
+disappears over time.
+
+Some players allow you to submit new entries to Gracenote CDDB. If you
+do, an email address is required for submission because Gracenote CDDB
+submissions are transmitted to the master Gracenote CDDB site via email.
+A valid return address is required in case there is some sort of error
+and the server must return your rejected entry for correction. We do
+keep a record of the email address from which each Gracenote CDDB
+database entry was submitted, but we consider this private and neither
+use it for marketing purposes, nor do we distribute it for any purpose
+to any party outside Gracenote CDDB.
+
+In all cases, because Gracenote CDDB does not have a way to ask
+permission to do so, Gracenote CDDB has never used an email address
+acquired as part of a Gracenote CDDB transaction to send email for
+marketing purposes, and has never distributed email addresses for any
+purpose to any party outside Gracenote CDDB.
+
+Data Aggregation
+----------------
+
+Gracenote CDDB collects aggregate statistics on which music and artists
+are most commonly identified by users with the Gracenote CDDB Service.
+("Aggregate statistics" means "group statistics" such as the Gracenote
+Digital Top Ten, not individual statistics about your personal use of
+the service.) Besides posting these statistics for you and other fans to
+enjoy, Gracenote CDDB may publish or share this aggregate information
+with other companies. This aggregate data, by its nature, will not
+reveal the identity of our users. We also use aggregate data to help us
+improve our servers and other components of the Gracenote CDDB Service.
+
+Policy Changes
+--------------
+
+If we decide to make changes in our policies regarding consumer privacy,
+we will post them at this web site, which you can always access from
+www.Gracenote.com. If you have questions or comments about our policy,
+please email us at privacy@gracenote.com.
+
+This statement last updated on March 6 2001.
+
+

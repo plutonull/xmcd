@@ -1,0 +1,132 @@
+/*
+ * @(#)Imakefile	7.12 04/03/25
+ *
+ * Imakefile for LabelH
+ *
+ *   Written by Ti Kan
+ *   E-mail: xmcd@amb.org
+ *
+ *   See the COPYRIGHT file for information about the LabelH widget.
+ */
+
+
+/*
+ * If your local X configuration is broken, you may need to muck with
+ * the following RANLIB= lines.
+ * On most System V platforms RANLIB should be set to /bin/true.
+ * On BSD-derived systems RANLIB should be set to ranlib.
+ */
+#if defined(DoRanlibCmd) && (DoRanlibCmd == NO)
+RANLIB= /bin/true
+#endif
+
+/*
+ * C Source files
+ */
+SRCS=	LabelH.c
+
+/*
+ * Objects files
+ */
+OBJS=	LabelH.o
+
+/**** Optional defines:  Change as you see fit. *****************************
+ *
+ * -DNO_STDLIB_H
+ *	The system does not support <stdlib.h>
+ *
+ * -DNO_UNISTD_H
+ *	The system does not support <unistd.h>
+ *
+ * -DHAS_ICONV_H (Linux only)
+ *	The system has <iconv.h> and the iconv(3) library call.
+ *
+ * -DHAS_NCURSES_H (BSD/OS only)
+ *	The system has <ncurses.h> and the ncurses library.
+ *
+ * -D_IRIX6
+ *	This is a SGI IRIX 6.x system.
+ *
+ * -D_SCO5
+ *	This is a SCO Open Server Release 5 system.
+ *
+ * -DNO_LABELH
+ *	The use of the LabelH widget causes a crash on some X11R5 systems.
+ *	Add this to disable the use of the LabelH widget.
+ *
+ * All other platform-specific feature setup are in common_d/config.h
+ *
+ */
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific */
+ifeq "$(wildcard /usr/include/iconv.h)" "/usr/include/iconv.h"
+DEFINES= -DHAS_ICONV_H
+endif
+#else
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+.if exists(/usr/include/ncurses.h)
+DEFINES= -DHAS_NCURSES_H
+.endif
+#else
+#if defined(SGIArchitecture) && OSMajorVersion >= 6
+DEFINES= -D_IRIX6
+#else
+#if (defined(SCOArchitecture) || defined(i386ScoArchitecture)) && \
+    (defined(i386Sco325Architecture) || OSMajorVersion >= 5)
+DEFINES= -D_SCO5
+#else	/* all others */
+DEFINES=
+#endif	/* SCO5 */
+#endif	/* IRIX6 */
+#endif	/* BSD/OS */
+#endif	/* Linux */
+
+
+
+/*
+ * POSIX threads stuff
+ */
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+THREADS_CFLAGS= -pthread
+#endif
+
+#if defined(USLArchitecture) && defined(i386Architecture)
+/* UnixWare 7, Caldera Open UNIX 8 only.  UnixWare 2.x, UnixWare 1.x,
+ * SVR4.2/386 and SVR4.0/386 please comment out the following two lines.
+ */
+THREADS_CFLAGS= -Kpthread
+#endif
+
+#if defined(SunArchitecture) && OSMajorVersion >= 5
+/* Solaris 2.5 and later */
+THREADS_DEFINES= -D_REENTRANT
+#endif
+
+#if defined(AIXArchitecture) && \
+    ((OSMajorVersion == 4 && OSMinorVersion >= 1) || OSMajorVersion > 4)
+/* AIX 4.1 and later */
+THREADS_DEFINES= -D_THREAD_SAFE=1
+#endif
+
+#if defined(HPArchitecture) && OSMajorVersion >= 11
+/* HP-UX 11.0 and later */
+THREADS_DEFINES= -D_POSIX_C_SOURCE=199506
+#endif
+
+#if defined(LinuxArchitecture) && HasPosixThreads
+/* Linux with glibc 2.1 or later */
+THREADS_DEFINES= -D_REENTRANT
+#endif
+
+#if defined(FreeBSDArchitecture) && HasPosixThreads
+/* FreeBSD 4.x and later */
+THREADS_CFLAGS= -pthread
+#endif
+
+/*
+ * Build rule for the LabelH widget
+ */
+NormalLibraryTarget(LabelH,$(OBJS))
+DependTarget()
+
+

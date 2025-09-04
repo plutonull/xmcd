@@ -1,0 +1,113 @@
+@(#)ACKS	6.16 03/11/01
+
+ACKNOWLEDGEMENTS
+----------------
+
+Several portions of xmcd and cda were contributed by these dedicated
+individuals:
+
+    AIX port:
+	Kurt Brunton
+	Tom Crawley
+
+    Apple A/UX port:
+	Eric Rosen
+
+    BSD/OS 2.x port:
+	Danny Braniss
+
+    BSD/OS 3.x port:
+	Chris P. Ross
+
+    DG/UX port:
+	Karl Owen
+
+    FreeBSD/NetBSD/OpenBSD port:
+	Gennady B. Sorokopud
+	Kenneth D. Merry (CAM support for FreeBSD 3.x)
+
+    Fujitsu/Siemens/Pyramid Reliant UNIX (SINIX) port:
+	Eckhard Einert
+
+    HP-UX (m68k portion) port:
+	Avi Cohen Stuart
+
+    Motorola SVR4/88K port:
+	Mark Scott
+
+    OpenVMS port:
+	Rick Jones
+
+    QNX port:
+	D. J. Hawkey Jr.
+	(hints provided by W. A. Flowers)
+
+    Sony NEWS-OS port:
+	Joerg Anslik
+
+    Tru64 UNIX (OSF1) and Ultrix port:
+	Matt Thomas
+ 	Gary Field
+    	Anthony Baxter
+
+    The SunOS/Solaris/Linux ioctl method code to support non-SCSI
+    CD drives is based on code contributed by Peter Bauer.
+
+    The Sun Solaris CDDA support is based on code contributed by
+    Darragh O'Brien.  Also thanks to Brian Botton.
+
+    Several Sun Solaris enhancements were contributed by Lee Duncan.
+
+    The FreeBSD/NetBSD/OpenBSD ioctl method code to support
+    non-SCSI CD-ROM drives is contributed by Gennady B. Sorokopud.
+
+    The IBM AIX IDE ioctl method code to support IDE CD-ROM
+    drives is contributed by Cloyce D. Spradling.
+
+    The OpenVMS CDDA support is based on code contributed by
+    Hartmut Becker.
+
+    The visual mode support in cda is based on code contributed
+    by Philip Le Riche.
+
+    Lots of cleaning up and enhancements by Michael Monscheuer
+    for the OpenVMS platform.
+
+    The on-load, on-exit, on-done and on-eject commands in cda were
+    added with code contributed from Jacek Kopecky.
+
+    The util_text_reduce() functionality in xmcd/cda is by Steve Scherf.
+
+    Some xmcd CDDB/Program window resizing enhancements were contributed
+    by Thomas Thyberg.
+
+    The LabelHack widget is from John L. Cwikla.  See the
+    labelh_d/COPYRIGHT file for details.
+
+    The MP3 encoder software used by xmcd and cda is provided by the
+    LAME project (http://www.mp3dev.org).
+
+    The Ogg Vorbis encoder core is from the Xiph.org Foundation
+    (http://www.xiph.org).
+
+    The FLAC encoder core is from the FLAC (Free Lossless Audio CODEC)
+    project (http://flac.sourceforge.net), now a part of the Xiph.org
+    Foundation (http://www.xiph.org).
+
+    The AAC and MP4 encoder software is from the FAAC (Freeware Advanced
+    Audio Coder) project (http://www.audiocoding.com).
+
+    The ALSA sound driver support API is from the ALSA project
+    (http://www.alsa-project.org).
+
+Companies names and product names appearing in this file are each
+trademarks of the respective company.  The names are for identification
+purposes only.  This software and its author are not affiliated with
+these companies.
+
+I wish to express my appreciation for all the people who participated
+in the extensive xmcd beta test programs, who have contributed a great
+deal to the user-friendliness, robustness and device support.
+Many thanks also goes out to those that have contributed code,
+suggestions, ideas, criticisms and notes of encouragement!
+

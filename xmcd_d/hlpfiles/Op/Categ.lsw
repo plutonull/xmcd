@@ -1,0 +1,73 @@
+#
+# @(#)Categ.lsw	7.11 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Options Category Selection List
+
+The configurable options categories are shown in
+this list.  Select an entry to view or change
+the options in that category.
+
+The categories are:
+
+Playback mode:
+   This lets you change the playback mode, including
+   standard play and CDDA modes.
+
+Encoding parameters:
+   If the playback mode is set to "CDDA save to file"
+   or "CDDA pipe to program", and the output file or
+   stream selected is a compressed format, then this
+   section allows you to specify some related
+   encoding parameters.
+
+LAME MP3 options:
+   This lets you specify command line options that are
+   passed directly to the LAME MP3 encoder for the
+   "CDDA save to file" or "CDDA pipe to program" modes.
+
+CDDA Scheduling:
+   Set the scheduling priorities of the reader and
+   writer threads during CDDA operations.  Also, the
+   timeout value of the watchdog timer that monitors
+   the progress of the reader and writer threads can
+   be set here.
+
+Automated functions:
+   Allows you to make xmcd perform automatic functions
+   when loading, ejecting or done playing a CD, as well
+   as when exitting.
+
+CD changer:
+   Enable CD changer related playback functions.
+
+Channel routing:
+   Change the routing of the stereo channels during
+   playback.
+
+Volume / Balance:
+   Change the volume control taper characteristic and
+   set the balance control.
+
+CDDB / CD-Text:
+   Some CDDB and CD-Text related tunable parameters.
+

@@ -1,0 +1,48 @@
+#
+# @(#)Disc.lsw	6.10 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Disc List
+
+Depending on the Disc List type selected (see "Disc List
+Type Selector Menu"), this list shows the use history
+of CD titles, or a list of CD titles in each slot of a
+CD changer.
+
+You can choose an entry by clicking mouse button 1 on
+the desired disc, causing the disc entry to be shown
+in reverse-video.  Once chosen, you can get details about
+this disc (click the "Show" button).  In History mode,
+you can also delete an entry ("Delete" button) or delete
+all entries ("Delete all" button).  In CD Changer mode,
+you can go to the selected disc ("Change to" button).
+
+If you click mouse button 1 on an already chosen disc
+entry, it is un-chosen.
+
+Double-clicking a disc selection is the same as using
+the "Show" button.
+
+You can also use the arrow keys to traverse the list.
+Pressing the space bar is equivalent to clicking the
+mouse button 1, and pressing the Enter or Return key is
+equivalent to double-clicking the mouse button 1.

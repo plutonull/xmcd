@@ -1,0 +1,40 @@
+#
+# @(#)NextDisc.btn	6.15 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Next Disc Button
+
+Select this button to change to the next disc.
+This button is useful only on multi-disc changers.
+
+If you are already on the last disc, selecting
+this button will have no effect.
+
+If audio playback is in progress when you select
+this button, playback will automatically start
+when the disc change is complete.  If the player
+is currently paused, it will remain paused after
+the disc change.
+
+Program or Segment Play modes are canceled when
+changing discs.  However, shuffle mode, if enabled,
+remains active after a disc change.

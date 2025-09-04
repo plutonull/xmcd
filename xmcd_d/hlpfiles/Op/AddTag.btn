@@ -1,0 +1,54 @@
+#
+# @(#)AddTag.btn	7.15 04/04/21
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Add CD information tag
+
+When enabled, the information displayed in the xmcd
+"CD Information / Track Program" window (album, artist,
+title, year, genre, etc.) will be automatically added
+to the MP3, Ogg Vorbis or FLAC file.  The information is
+downloaded from the CDDB service, read from CD-TEXT on
+the disc, or manually typed-in.
+
+For MP3, You can choose either to add this information
+into the version 1, version 2 or both of the ID3 tag
+areas.  Some MP3 players support only one of these tag
+versions.
+
+For Ogg Vorbis, the information is added to the Comment
+field of the file.
+
+For FLAC, the information is added to the Vorbis comment
+metadata block of the file.
+
+For MP4, the information is added to the metadata area.
+Note that MP4 tagging is enabled only with FAAC 1.24.x
+and later.
+
+CD information tagging is currently not implemented
+for the other formats.
+
+If you change the setting of this item, it will take
+effect on the next "play" session (while running in
+"CDDA save-to-file" or "CDDA pipe-to-program" modes.
+

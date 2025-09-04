@@ -1,0 +1,42 @@
+#
+# @(#)Sel.btn	6.13 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Keypad Mode Selector
+
+This toggle button box allows you to configure the
+function of the keypad.
+
+When "track" is selected, the numeric keypad can be
+used to select the track, and the "Track warp" slider
+can be used to move to a desired location within a
+track.  The digital indicator in the keypad window
+display shows the track number and the elapsed time
+in this mode.
+
+When "disc" is selected, the numeric keypad can be
+used to select the disc.  This function is useful
+on a multi-disc changer only.  In this mode, the
+digital indicator shows the disc number, and the
+"Track warp" slider is disabled.
+
+

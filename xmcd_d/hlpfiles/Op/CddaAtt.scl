@@ -1,0 +1,71 @@
+#
+# @(#)CddaAtt.scl	7.5 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+CDDA level attenuator and fader
+
+This slider controls the gain characteristics of
+the CDDA mode outputs.  When set to 100, the output
+level is unchanged from that of the audio level as
+recorded on the CD.  When this control is set to a
+value less than 100, the output amplitude is
+attenuated to a percentage of the original signal
+as indicated by the slider scale.  A setting of 0
+will mute the outputs completely.
+
+Clicking on the arrow buttons on the sides of the
+slider causes an automatic CDDA fade-out or fade-in
+operation.  Additional clicks on the fader buttons
+will speed up the fade operation.
+
+If the CDDA output format is a compressed format,
+and the CDDA level attenuator is set to a value less
+than 100, the level is attenuated before being
+processed by the encoder.
+
+These controls works by scaling the amplitude of the
+CDDA audio samples.  This is in contrast to the
+volume control slider on the main window, which works
+by sending commands to the hardware (see the help
+information there for details).
+
+Hence, these controls affects all CDDA outputs (i.e.,
+"CDDA playback", "CDDA save to file" as well as
+"CDDA pipe to program").  Also, they have no effect
+when running in "Standard playback" mode.
+
+Normally, the attenuator should be set to 100.
+It is useful as a way to reduce the amplitude of a
+particular "loud" CD so that the saved files would
+be at about the same volume as other files.
+
+In some cases if the peak amplitudes of the CD
+audio is very close to the absolute maximum level
+(i.e., near "digital clipping"), the encoding
+process into certain lossy compressed formats could
+actually exceed the clipping threshold.  Reducing
+the amplitude slightly with the CDDA attenuator
+will prevent this from occurring.
+
+The setting of the CDDA attenuator is not saved, and
+will always reverts to 100 after xmcd is restarted.
+

@@ -1,0 +1,43 @@
+#
+# @(#)Ff.btn	6.16 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Fast Forward Search Button
+
+Select this button and hold it down to search forward
+while audio playback is in progress.  You will hear
+short samples of the audio during the search.  When you
+release the button, the search ends and normal playback
+resumes at the new location.
+
+If you hold the button down for longer than a certain
+amount of time, the search speed increases.
+
+During shuffle or program mode, you cannot search beyond
+the end of the current playing track.
+
+During segment play mode, you cannot search beyond the
+end of the segment.
+
+If the playback state is paused when the search operation
+is started, it will remain paused (at the new location)
+when the search ends.

@@ -1,0 +1,55 @@
+#
+# @(#)SubmURL.txw	7.6 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Submit URL text fields
+
+You can submit web-site URL links and information to
+CDDB using this form.
+
+CDDB, at their discretion, may make this information
+available to users either on the CDDB Music Browser(tm)
+page or as a link in the "Sites related to this album"
+entry in xmcd's wwwWarp menu or other CDDB-enabled
+applications with a similar feature.
+
+The following is a description of the text fields:
+
+Category: (required)
+    You should enter a very short description of the
+    nature of the site, such as "Fan site", "CD vendor
+    site", etc.
+
+Name: (required)
+    This should contain the display name of the site,
+    such as "The Pink Floyd Hyperbase".
+
+URL: (required)
+    This should be the actual URL to the site.
+
+Description: (optional)
+    A description of the site.
+
+After you have finished filling in the information, click
+the Submit button to submit the information to CDDB.
+When you are done, click the OK button to close the
+window.

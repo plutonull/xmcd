@@ -1,0 +1,330 @@
+@(#)DRIVES	6.43 04/01/10
+
+SUPPORTED DRIVES
+----------------
+
+This release of xmcd and cda should work with the following computer
+CD and DVD drives:
+
+    - Any MMC-compliant (MMC-1, MMC-2, MMC-3) SCSI or IDE/ATAPI
+      drive capable of audio playback and digital audio extraction
+      for CDDA functions.
+
+    - Any SCSI-2 or IDE/ATAPI drive capable of audio playback.
+      Some SCSI-2 drives using vendor-unique commands for digital
+      audio extraction are also supported for CDDA functions.
+
+    - Many older SCSI-1 drives using vendor-unique commands for
+      audio playback.
+
+    - SCSI and IDE/ATAPI multi-disc changers (see below for details).
+
+    - Drives with USB, IEEE-1394 Firewire, or proprietary interfaces,
+      if driver support is available and installed on your OS platform.
+
+For multi-disc changers, please refer to the MULTI-DISC CHANGERS
+section below.
+
+If you have a SCSI drive and your drive is not listed in xmcd's
+configuration menu, you should first try configuring xmcd for another
+drive model (of the same type) from the same manufacturer.  This would
+usually give you a higher chance that the configuration is correct for
+your drive, compared to selecting the "Other (SCSI)".
+
+Please refer to the online xmcd "Configuration Guide" for help on
+manually tuning configuration parameters.  This guide is available
+at the xmcd web site: http://www.amb.org/xmcd/
+
+See the "CD DRIVE NOTES" section below for information specific to
+some of the drives.
+
+
+DRIVE NOTES
+-----------
+
+The Chinon CDx-431 and CDx-435 drives do not support commands to
+implement audio pause and resume operations.  Thus, these features
+are non-functional when these drives are used with xmcd/cda.  The
+CDx-525, CDx-535 and CDx-545 units do not have this limitation.
+
+Pioneer DRM-604X units with revisions of the firmware prior to 2403
+must be configured to operate in the SCSI-1 mode (DRM-600 emulation,
+via back panel DIP switches), and xmcd/cda must be configured as if
+it's operating a DRM-600.  Newer DRM-604X units (firmware version 2403
+and later) can be set up to run in SCSI-2 mode, and xmcd/cda must be
+set up accordingly.
+
+The Plextor/Texel DM-x024 drive firmware should be version 1.10 or
+later to avoid system lockups.  The DM-x028 drives do not have these
+restrictions.
+
+Some of the Sun CD-ROM drives (Sony OEM CDU-8012) have a firmware
+problem that can lead to a temporary SCSI bus hang after ejecting
+a CD with xmcd.  The workaround is to increase xmcd's
+insertPollInterval configuration parameter to 4000 milliseconds or
+more.  See the XMCDLIB/config/common.cfg file.
+
+Due to a quirk with the drive, the Samsung SC-140B and SCR-3232
+will stop after playing a track.  The workaround is to define a
+play program of all tracks.
+
+To avoid possible SCSI bus lock-up, never eject the disc using the
+eject button on the front panel of the Hitachi SCSI-1 CD-ROM drives
+while the unit is playing audio.  Use the software eject function of
+xmcd/cda instead.  Also, you may wish to adjust the searchSkipBlocks
+and searchPauseInterval configuration parameters to achieve the best
+audio sampling effect during xmcd's REW and FF search operations.
+
+Note that even if a CD drive is marketed as SCSI-2 compliant, it
+still may not implement the full set of audio-related commands that
+xmcd/cda requires.
+
+SCSI drives must be connected to the system via a SCSI host adapter.
+Your computer may have an embedded SCSI host adapter on the main board.
+Otherwise a separate SCSI host adapter add-on board is required.  Be
+sure that the SCSI host adapter is supported by your operating system.
+Some x86 PC platforms use SCSI CD drives but they are connected to
+sound cards that use a proprietary interface.  These may work if
+xmcd/cda is configured to operate the unit as a non-SCSI drive (see
+below).
+
+Some older CD drives do not function well when the SCSI host adapter
+board is configured to "synchronous negotiation" mode.  Examples of
+these include certain NEC and Hitachi units.  If you experience
+malfunctions with xmcd/cda, check the host adapter board configuration
+and try disabling the synchronous mode.  On the Adaptec AHA-1542B, there
+is a single jumper that controls whether synchronous negotiation is
+enabled for all devices on the SCSI bus.  On more recent Adaptec SCSI
+adapters, synchronous negotiation is configurable via the SCSISelect
+setup program, and is settable on a per-ID basis.  Please consult your
+SCSI host adapter board owner's manual for information.
+
+Some CD drives take a long time to spin up.  If you encounter an error
+when starting playback of a CD, you may need to adjust the
+"spinUpInterval" parameter in your XMCDLIB/config/DEVICE file (where
+DEVICE is the basename of the CD-ROM special file).
+
+
+NON-SCSI DRIVES
+---------------
+
+Non-SCSI drives will work only on OS platforms that have appropriate
+driver support for them.
+
+Not all CD-ROM drivers are present in all versions of your OS.
+Older versions may lack some of these.  Also, the specific CD
+drives and features supported by these drivers are also version-
+dependent.
+
+See your OS documentation about configuring a kernel to use these
+drivers.
+
+Some CD drive/controller and OS driver combinations may not work
+reliably.  Please refer to your OS documentation for the currently
+supported list of drives and controllers.
+
+Although the SunOS/Solaris/Linux ioctl method will also work with
+many SCSI CD drives on the Linux, SunOS 4.1.x and Solaris platforms,
+it offers less features than the SCSI pass-through method and is thus
+not recommended for SCSI drives.  Likewise, the FreeBSD/NetBSD/OpenBSD
+ioctl method should only be used with non-SCSI drives.
+
+On QNX, the QNX ioctl method should be used for all CD drives
+(including SCSI drives) due to the lack of a SCSI pass-through
+mechanism.
+
+The AIX IDE ioctl method is normally disabled.  You must explicitly
+define -DAIX_IDE in the libdi_d directory when compiling xmcd/cda
+to enable it.
+
+
+MULTI-DISC CHANGERS
+-------------------
+
+Xmcd/cda supports the use of multi-disc changers and jukeboxes.
+Depending upon the type of disc changer you have, you must select
+one of the following methods to enable the disc change capability:
+
+1. SCSI LUN addressing method:
+
+    This is for SCSI changers that occupy one SCSI ID, but allows
+    software to select the disc via the LUN (logical unit number)
+    address.
+
+    This method is used only for SCSI disc changers that support
+    eight discs or less.
+
+    In order for this method to work, your OS platform must support
+    separate device nodes for each LUN of the device.  Thus, for
+    a 6-disc changer, there must be six separate device nodes for
+    the changer, one for each of the "slots".  Not all platforms
+    support this.  On platforms that don't have separate nodes for
+    each LUN, xmcd/cda will not be able to change discs.
+
+    Xmcd has been tested to work with this type of SCSI CD changers
+    on the following platforms:
+
+	FreeBSD 3.x and later
+	HP-UX 9.x and later
+	IRIX 5.x and later
+	Linux 2.x
+	SCO UNIX 3.2v4.x and Open Server 5.x
+	Solaris 2.x and later
+	UnixWare (all versions), Caldera Open UNIX 8
+
+    It may work on other platforms, but it is untested.  If you get
+    this method to work on a platform not listed here, please e-mail
+    the author at xmcd@amb.org.
+
+    On Linux, your kernel's SCSI configuration must be set to probe
+    all LUNs (i.e., CONFIG_SCSI_MULTI_LUN=y).  See the Linux kernel
+    configuration documentation for details.
+
+    On the HP-UX 9.x platforms, the minor device number should be
+    0x201xy0, where x is the SCSI ID and y is the LUN number.
+    This is documented incorrectly in some HP manuals.  Your device
+    nodes should look something like this (this example has SCSI ID 6,
+    6 discs):
+
+    /dev/rdsk:
+    crw-r--r--  root sys  7  0x201600   c201d6s0
+    crw-r--r--  root sys  7  0x201610   c201d6s1
+    crw-r--r--  root sys  7  0x201620   c201d6s2
+    crw-r--r--  root sys  7  0x201630   c201d6s3
+    crw-r--r--  root sys  7  0x201640   c201d6s4
+    crw-r--r--  root sys  7  0x201650   c201d6s5
+
+    On Solaris platforms, you must reconfigure the disk driver to
+    probe all LUNs.  Depending on whether your system uses the "sd"
+    or the "cmdk" disk driver, you must add lines to your
+    /kernel/drv/sd.conf or /kernel/drv/cmdk.conf file to describe
+    each of the LUNs of your CD changer.  Then, boot the system
+    and pass the "-rv" boot flag at the bootloader prompt to
+    regenerate the device tables (see boot(1M).  In addition, you
+    will need to create symbolic links from the /dev/rdsk directory
+    to the /devices hierarchy.  For example, on a Solaris 2.4 x86
+    platform with the Adaptec AHA-1542 SCSI host adapter card, and
+    a 6-disc CD changer at SCSI ID 6, LUNs 0 through 5, the links
+    would look similar the following:
+
+    /dev/rdsk:
+    lrwxr-xr-x  root sys  c0t6d0s2 -> /devices/isa/aha@330,0/cmdk@6,0:c,raw
+    lrwxr-xr-x  root sys  c0t6d1s2 -> /devices/isa/aha@330,0/cmdk@6,1:c,raw
+    lrwxr-xr-x  root sys  c0t6d2s2 -> /devices/isa/aha@330,0/cmdk@6,2:c,raw
+    lrwxr-xr-x  root sys  c0t6d3s2 -> /devices/isa/aha@330,0/cmdk@6,3:c,raw
+    lrwxr-xr-x  root sys  c0t6d4s2 -> /devices/isa/aha@330,0/cmdk@6,4:c,raw
+    lrwxr-xr-x  root sys  c0t6d5s2 -> /devices/isa/aha@330,0/cmdk@6,5:c,raw
+
+    The c# number is the controller number, the t# number is the SCSI ID,
+    the d# number is the LUN, and the s# is for the partition (slice),
+    which should always be 2 for a CD-ROM.
+
+    See your existing links for LUN 0 for guidance on how to create
+    the other links.
+
+    If you are running Solaris 2.4 or earlier, you must not use
+    vold(1M) (Solaris volume management daemon) with SCSI CD changers.
+    The vold on these older Solaris releases does not support non-zero
+    LUN devices.  Edit your /etc/vold.conf file to comment out all
+    lines pertaining to the CD-ROM device.  See the vold.conf(4) man
+    page for details.
+
+2. SCSI medium-changer method:
+
+    This is for SCSI changers that occupy one SCSI ID, with the
+    player on one LUN and a medium changer mechanism on another LUN.
+    Another variation of this is to have the player on one SCSI ID
+    and the medium changer mechanism on another SCSI ID.
+
+    This scheme is used on SCSI CD jukeboxes that support more than
+    eight discs.
+
+    In order for this method to work, your OS platform must support
+    a device node for the CD player as well as a separate device node
+    for the medium changer mechanism.  Not all systems support this.
+    On platforms that don't have a separate node for the medium changer,
+    xmcd/cda will not be able to change discs.
+    
+    Platforms that support this interface includes the following:
+
+	HP-UX 10.x and later
+	IRIX 5.x and later
+	Linux 2.x
+	UnixWare 2.x and later, Caldera Open UNIX 8
+
+    The medium changer device for each of these platforms are:
+
+    Linux:
+    /dev/sgX		where X is a letter or digit.  Typically X would
+			correspond to the order that the device appears
+			in the output of "cat /proc/scsi/scsi".
+
+    UnixWare, Caldera Open UNIX:
+    /dev/mc/mcX		where X is a digit corresponding to the medium
+			changer's instance number.  See mc01(7).
+
+    HP-UX:
+    /dev/rscsi/cXXtYdZ	where XX is a controller number, Y is the
+			SCSI ID and Z is the LUN number.  See
+			scsi_ctl(7).
+
+    This method currently is specifically coded for the Pioneer
+    DRM-1804X 18-disc changer.  It may also work with other changers
+    with a similar software interface.
+
+    On Linux, your kernel's SCSI configuration must be set to probe
+    all LUNs (i.e., CONFIG_SCSI_MULTI_LUN=y) if the drive and changer
+    mechanism occupy different LUNs.  See the Linux kernel configuration
+    documentation for details.
+
+    Note that in order to use xmcd on a Linux kernel older than 2.0.30
+    with the Pioneer DRM-1804X (or other CD changers with a medium changer
+    device), you need to make a modification to the SCSI command timeout
+    limit in your Linux SCSI driver.  Locate the following kernel source
+    file:
+
+        /usr/src/linux/drivers/scsi/scsi_ioctl.c
+
+    Change the MAX_TIMEOUT definition from 9 seconds to at least 120
+    seconds:
+
+    Was:
+    #define MAX_TIMEOUT  (9 * HZ)
+
+    Change to:
+    #define MAX_TIMEOUT  (120 * HZ)
+
+    You then need to rebuild the kernel, install it and reboot to have
+    it take effect.  See the /usr/src/linux/README file for details.
+
+3. Non-SCSI OS ioctl method:
+
+    This is for non-SCSI CD changers that have OS ioctl support in the
+    CD-ROM driver for disc change operations.
+
+    Currently, this method will work only on late versions of Linux
+    kernel 2.0.x and Linux 2.1.x and later.  Moreover, it works
+    only for IDE/ATAPI changers via the "ide-cd" driver.  See the
+    /usr/src/linux/Documentation/cdrom/ide-cd file for details about
+    which drives are supported.
+
+    Due to problems in some versions of the ide-cd driver xmcd/cda
+    may have problems changing discs when there are empty slots in
+    the CD changer.
+
+
+The changer control method is configured via the mediumChangeMethod,
+numDiscs and deviceList parameters.  These are set up for you when
+you install xmcd, or when you run the LIBDIR/xmcd/config/config.sh
+script.
+
+Note that if the "multi-play" option is enabled, xmcd/cda scans
+each changer slot in order, after a disc is ejected.  This is in
+support of changers that have individually eject-able discs.  On
+changers that use a magazine (where all discs are ejected at once),
+after the magazine is reinserted, xmcd may "land" on the first CD
+that it detects while scanning.  This is not necessarily the first
+disc in the magazine.  Also, on changers that have individually
+eject-able slots, the "auto-eject on done" feature will only eject
+the first disc when the "multi-play" mode is finished.
+

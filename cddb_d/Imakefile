@@ -1,0 +1,243 @@
+/*
+ * @(#)Imakefile	1.30 04/03/25
+ *
+ * Imakefile for libcddb and libcddbkey
+ *
+ *	libcddb, libcddbkey - CDDB interface library for xmcd/cda
+ *
+ *   Copyright (C) 1993-2004  Ti Kan
+ *   E-mail: xmcd@amb.org
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+
+CFLAGS+=-ansi
+/*
+ * If your local X configuration is broken, you may need to muck with
+ * the following RANLIB= lines.
+ * On most System V platforms RANLIB should be set to /bin/true.
+ * On BSD-derived systems RANLIB should be set to ranlib.
+ */
+#if defined(DoRanlibCmd) && (DoRanlibCmd == NO)
+RANLIB= /bin/true
+#endif
+
+
+/**** Optional defines:  Change as you see fit. *****************************
+ *
+ * -DNO_STDLIB_H
+ *	The system does not support <stdlib.h>
+ *
+ * -DNO_UNISTD_H
+ *	The system does not support <unistd.h>
+ *
+ * -DHAS_ICONV_H (Linux only)
+ *	The system has <iconv.h> and the iconv(3) library call.
+ *
+ * -DHAS_NCURSES_H (BSD/OS only)
+ *	The system has <ncurses.h> and the ncurses library.
+ *
+ * -D_IRIX6
+ *	This is a SGI IRIX 6.x system.
+ *
+ * -D_SCO5
+ *	This is a SCO Open Server Release 5 system.
+ *
+ * -DSOCKS
+ *	Define this if your network requires that clients such as
+ *	xmcd/cda to be SOCKSified in order to access an Internet server.
+ *	You will also have to change to link the application with the
+ *	socks library instead of the standard socket library.
+ *
+ * -DNOREMOTE
+ *	Define this if you don't have TCP/IP and socket support.
+ *	This causes libcddb to become a local-only datastore manager.
+ *	Submits to CDDB merely writes to the local cache.  CDDB queries
+ *	and reads are done only from this cache, and the cache will not
+ *	expire.
+ *
+ * All other platform-specific feature setup are in common_d/config.h
+ *
+ */
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific */
+ifeq "$(wildcard /usr/include/iconv.h)" "/usr/include/iconv.h"
+DEFINES= -DHAS_ICONV_H
+endif
+#else
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+.if exists(/usr/include/ncurses.h)
+DEFINES= -DHAS_NCURSES_H
+.endif
+#else
+#if defined(SGIArchitecture) && OSMajorVersion >= 6
+DEFINES= -D_IRIX6
+#else
+#if (defined(SCOArchitecture) || defined(i386ScoArchitecture)) && \
+    (defined(i386Sco325Architecture) || OSMajorVersion >= 5)
+DEFINES= -D_SCO5
+#else	/* all others */
+DEFINES=
+#endif	/* SCO5 */
+#endif	/* IRIX6 */
+#endif	/* BSD/OS */
+#endif	/* Linux */
+
+
+/*
+ * POSIX threads stuff
+ */
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+THREADS_CFLAGS= -pthread
+#endif
+
+#if defined(USLArchitecture) && defined(i386Architecture)
+/* UnixWare 7, Caldera Open UNIX 8 only.  UnixWare 2.x, UnixWare 1.x,
+ * SVR4.2/386 and SVR4.0/386 please comment out the following two lines.
+ */
+THREADS_CFLAGS= -Kpthread
+#endif
+
+#if defined(SunArchitecture) && OSMajorVersion >= 5
+/* Solaris 2.5 and later */
+THREADS_DEFINES= -D_REENTRANT
+#endif
+
+#if defined(AIXArchitecture) && \
+    ((OSMajorVersion == 4 && OSMinorVersion >= 1) || OSMajorVersion > 4)
+/* AIX 4.1 and later */
+THREADS_DEFINES= -D_THREAD_SAFE=1
+#endif
+
+#if defined(HPArchitecture) && OSMajorVersion >= 11
+/* HP-UX 11.0 and later */
+THREADS_DEFINES= -D_POSIX_C_SOURCE=199506
+#endif
+
+#if defined(LinuxArchitecture) && HasPosixThreads
+/* Linux with glibc 2.1 or later */
+THREADS_DEFINES= -D_REENTRANT
+#endif
+
+#if defined(FreeBSDArchitecture) && HasPosixThreads
+/* FreeBSD 4.x and later */
+THREADS_CFLAGS= -pthread
+#endif
+
+
+/*
+ * QNX specific stuff
+ */
+#if defined(__QNX__)
+LIBCDDBKEY=	cddbkey3r.lib
+LIBCDDBKEY1=	cddbkey13r.lib
+LIBCDDBKEY2=	cddbkey23r.lib
+#else
+LIBCDDBKEY=	libcddbkey.a
+LIBCDDBKEY1=	libcddbkey1.a
+LIBCDDBKEY2=	libcddbkey2.a
+#endif
+
+
+/*
+ * Add local include path
+ */
+INCLUDES=-I..
+
+
+/*
+ * C Source files
+ */
+SRCS=	control.c \
+	credit.c \
+	disc.c \
+	discs.c \
+	fcddb.c \
+	fullname.c \
+	gen.c \
+	genre.c \
+	genrelist.c \
+	genretree.c \
+	options.c \
+	region.c \
+	regionlist.c \
+	language.c \
+	langlist.c \
+	role.c \
+	rolelist.c \
+	roletree.c \
+	segment.c \
+	track.c \
+	url.c \
+	urllist.c \
+	urlmanager.c \
+	userinfo.c \
+	cddbkey1.c
+
+
+/*
+ * Objects files for libcddb
+ */
+OBJS=	control.o \
+	credit.o \
+	disc.o \
+	discs.o \
+	fcddb.o \
+	fullname.o \
+	gen.o \
+	genre.o \
+	genrelist.o \
+	genretree.o \
+	options.o \
+	region.o \
+	regionlist.o \
+	language.o \
+	langlist.o \
+	role.o \
+	rolelist.o \
+	roletree.o \
+	segment.o \
+	track.o \
+	url.o \
+	urllist.o \
+	urlmanager.o \
+	userinfo.o
+
+/*
+ * Objects file for libcddbkey1
+ */
+KOBJ=	cddbkey1.o
+
+
+/*
+ * Build rule for the CD Information Library
+ */
+NormalLibraryTarget(cddb,$(OBJS))
+NormalLibraryTarget(cddbkey1,$(KOBJ))
+DependTarget()
+
+$(LIBCDDBKEY2): cddbkey2.o
+	$(RM) $@
+	$(AR) $@ cddbkey2.o
+	$(RANLIB) $@
+
+all::
+	@$(RM) $(LIBCDDBKEY)
+	@if [ -f $(LIBCDDBKEY2) ]; \
+	then $(LN) $(LIBCDDBKEY2) $(LIBCDDBKEY); \
+	else $(LN) $(LIBCDDBKEY1) $(LIBCDDBKEY); \
+	fi
+

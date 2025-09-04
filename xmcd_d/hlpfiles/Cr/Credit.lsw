@@ -1,0 +1,42 @@
+#
+# @(#)Credit.lsw	7.8 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Credits List
+
+This is a list of credits pertaining to the album, track
+or segment (depending on the context where you invoked the
+Credits window).  You may add items to it using the credit
+editor, or select an item and modify it, or delete an item.
+
+A credit is a role/name pair (e.g., "Composer / Ludwig Van
+Beethoven").  Optionally, you may add notes associated with
+a particular credit item.
+
+If a credit has associated notes, an asterisk (*) will be
+shown in the list entry.  To view the notes, just select
+the item in the list.
+
+If you have added, modified or deleted a credit item while
+invoked from the Segments window, you must also select the
+Add or Modify button as appropriate in the Segments window,
+in order for the change to take effect.

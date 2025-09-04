@@ -1,0 +1,40 @@
+@(#)README	1.3 01/04/13
+
+CDDB "classic" library for xmcd
+---------------------------------------------------------------------
+
+This directory contains source files for libcddb, which is a partial
+implementation of the Gracenote CDDB² API for UNIX.  Internally this
+library uses the "classic" CDDB servers/protocol and therefore provides
+only a subset of the newer CDDB² features.
+
+This is the default CDDB library included with the xmcd/cda source
+code distribution.  For those OS and platforms that an official
+Gracenote CDDB² library is available, a CDDB² support kit can be
+downloaded from the official xmcd web site.  See the docs_d/INSTALL
+and docs_d/CDDB files for details.
+
+For the official xmcd/cda pre-compiled binary distributions, the
+Gracenote CDDB² library is used if it is available for your OS and
+platform.  Otherwise, the xmcd/cda executables are statically
+linked with this library.
+
+Note that this library is compiled in archive (.a) form, while the
+official Gracenote CDDB² library is likely to be a shared library (.so).
+This means that once an xmcd/cda executable is linked to use this
+library, it will not use the Gracenote CDDB² shared library unless it is
+re-linked to dynamically use the latter.
+
+This library only implements a subset of the CDDB² API, enough to
+support xmcd/cda, but not enough to be a general purpose substitute for
+Gracenote's CDDB² library.  This means that attempts at linking this
+library with other CDDB²-enabled applications would probably fail.
+
+Since xmcd/cda's use of the CDDB² API may change from version to
+version, this library is matched and supplied with each xmcd/cda
+release.
+
+The author of xmcd/cda <xmcd@amb.org> provides support for this library.
+However, please contact Gracenote <support@gracenote.com> for all issues
+with their official CDDB² library.
+

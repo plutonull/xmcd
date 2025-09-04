@@ -1,0 +1,286 @@
+/*
+ * @(#)Imakefile	7.74 04/04/08
+ *
+ * Imakefile for cdda
+ *
+ *	cdda - CD Digital Audio support
+ *
+ *   Copyright (C) 1993-2004  Ti Kan
+ *   E-mail: xmcd@amb.org
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+
+CFLAGS+=--std=c99 -Wno-incompatible-pointer-types
+/*
+ * If your local X configuration is broken, you may need to muck with
+ * the following RANLIB= lines.
+ * On most System V platforms RANLIB should be set to /bin/true.
+ * On BSD-derived systems RANLIB should be set to ranlib.
+ */
+#if defined(DoRanlibCmd) && (DoRanlibCmd == NO)
+RANLIB= /bin/true
+#endif
+
+
+/**** Optional defines:  Change as you see fit. *****************************
+ *
+ * -DNO_STDLIB_H
+ *	The system does not support <stdlib.h>
+ *
+ * -DNO_UNISTD_H
+ *	The system does not support <unistd.h>
+ *
+ * -DHAS_ICONV_H (Linux only)
+ *	The system has <iconv.h> and the iconv(3) library call.
+ *
+ * -DHAS_NCURSES_H (BSD/OS only)
+ *	The system has <ncurses.h> and the ncurses library.
+ *
+ * -D_IRIX6
+ *	This is a SGI IRIX 6.x system.
+ *
+ * -D_SCO5
+ *	This is a SCO Open Server Release 5 system.
+ *
+ * -DHAS_LAME
+ *	Enable CD ripping to MP3 format by using the LAME encoder.
+ *
+ * -DHAS_VORBIS
+ *	Enable CD ripping to Ogg Vorbis format by linking and using
+ *	the Ogg Vorbis encoder libraries.
+ *
+ * -DHAS_FLAC
+ *	Enable CD ripping to FLAC format by linking and using the
+ *	FLAC libraries.
+ *
+ * -DHAS_FAAC
+ *	Enable CD ripping to MPEG-2 and MPEG-4 formats by using the
+ *	FAAC encoder program.
+ *
+ * -DHAS_MME (OSF1/Digital UNIX/Tru64 UNIX/OpenVMS only)
+ *	Define this to enable the Multi-media Extension audio driver
+ *	support code.  This is needed for the CDDA playback functionality.
+ *	However, not all systems have the <mme/*.h> header files and
+ *	libmme.so library installed.  In this case HAS_MME must not be
+ *	defined in order to successfully compile xmcd.
+ *
+ * -DHAS_ALSA (Linux only)
+ *	The system has the ALSA sound driver.
+ *
+ * -DFREEBSD_CAM (FreeBSD only)
+ *	The system uses the CAM method for SCSI I/O.  This is supported
+ *	on FreeBSD 3.x and later only.
+ *
+ * All other platform-specific feature setup are in common_d/config.h
+ *
+ */
+
+ENCODERS= -DHAS_LAME -DHAS_VORBIS -DHAS_FLAC -DHAS_FAAC
+
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific */
+ifeq "$(wildcard /usr/include/iconv.h)" "/usr/include/iconv.h"
+DEFINES= $(ENCODERS) -DHAS_ICONV_H
+else
+DEFINES= $(ENCODERS)
+endif
+#else
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+.if exists(/usr/include/ncurses.h)
+DEFINES= $(ENCODERS) -DHAS_NCURSES_H
+.else
+DEFINES= $(ENCODERS)
+.endif
+#else
+#if defined(SGIArchitecture) && OSMajorVersion >= 6
+DEFINES= $(ENCODERS) -D_IRIX6
+#else
+#if (defined(SCOArchitecture) || defined(i386ScoArchitecture)) && \
+    (defined(i386Sco325Architecture) || OSMajorVersion >= 5)
+DEFINES= $(ENCODERS) -D_SCO5
+#else
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+DEFINES= $(ENCODERS) -DHAS_MME
+#else	/* all others */
+DEFINES= $(ENCODERS)
+#endif	/* OSF1 */
+#endif	/* SCO5 */
+#endif	/* IRIX6 */
+#endif	/* BSD/OS */
+#endif	/* Linux */
+
+
+#if defined(FreeBSDArchitecture)
+/* The following is BSD-make specific */
+.if exists(/usr/include/camlib.h)
+DEFINES+= -DFREEBSD_CAM
+.endif
+#endif
+
+
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific:
+ * Try to autodetect ALSA headers and library.
+ */
+alsalib_incl=	$(wildcard /usr/include/alsa/asoundlib.h)
+alsalib_incl+=	$(wildcard /usr/local/include/alsa/asoundlib.h)
+ifneq "$(strip $(alsalib_incl))" ""
+DEFINES+= -DHAS_ALSA
+endif
+#endif
+
+
+/*
+ * POSIX threads stuff
+ */
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+THREADS_CFLAGS= -pthread
+#endif
+
+#if defined(USLArchitecture) && defined(i386Architecture)
+/* UnixWare 7, Caldera Open UNIX 8 only.  UnixWare 2.x, UnixWare 1.x,
+ * SVR4.2/386 and SVR4.0/386 please comment out the following two lines.
+ */
+THREADS_CFLAGS= -Kpthread
+#endif
+
+#if defined(SunArchitecture) && OSMajorVersion >= 5
+/* Solaris 2.5 and later */
+THREADS_DEFINES= -D_REENTRANT
+#endif
+
+#if defined(AIXArchitecture)
+#if OSMajorVersion == 4 && OSMinorVersion < 2
+/* AIX 4.1 */
+THREADS_DEFINES= -D_THREAD_SAFE=1 -DNEED_PTHREAD_INIT -DUSE_SIGTHREADMASK
+#else
+#if OSMajorVersion >= 4
+/* AIX 4.2 and later */
+THREADS_DEFINES= -D_THREAD_SAFE=1
+#endif
+#endif
+#endif
+
+#if defined(HPArchitecture) && OSMajorVersion >= 11
+/* HP-UX 11.0 and later */
+THREADS_DEFINES= -D_POSIX_C_SOURCE=199506
+#endif
+
+#if defined(LinuxArchitecture) && HasPosixThreads
+/* Linux with glibc 2.1 or later */
+THREADS_DEFINES= -D_REENTRANT
+#endif
+
+#if defined(FreeBSDArchitecture) && HasPosixThreads
+/* FreeBSD 4.x and later */
+THREADS_CFLAGS= -pthread
+#endif
+
+
+/*
+ * Add local include path
+ */
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+INCLUDES=-I.. -I/sys -I/usr/local/include
+#else
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific */
+ifeq "$(wildcard /usr/include/scsi/scsi.h)" "/usr/include/scsi/scsi.h"
+INCLUDES=-I.. -I/usr/local/include
+else
+INCLUDES=-I.. -I/usr/src/linux/include -I/usr/local/include
+endif
+#else
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+INCLUDES=-I.. -I/usr/include/mme -I/usr/local/include
+#else
+INCLUDES=-I.. -I/usr/local/include -I/usr/freeware/include
+#endif	/* OSF1 */
+#endif  /* Linux */
+#endif  /* BSD/OS */
+
+
+/*
+ * C Source files
+ */
+SRCS=	cdda.c \
+	common.c \
+	sysvipc.c \
+	pthr.c \
+	rd_scsi.c \
+	rd_sol.c \
+	rd_linux.c \
+	rd_fbsd.c \
+	rd_aix.c \
+	wr_oss.c \
+	wr_sol.c \
+	wr_irix.c \
+	wr_hpux.c \
+	wr_aix.c \
+	wr_alsa.c \
+	wr_osf1.c \
+	wr_fp.c \
+	wr_gen.c \
+	if_lame.c \
+	if_vorb.c \
+	if_flac.c \
+	if_faac.c
+
+/*
+ * Object files
+ */
+OBJS=	cdda.o \
+	common.o \
+	sysvipc.o \
+	pthr.o \
+	rd_scsi.o \
+	rd_sol.o \
+	rd_linux.o \
+	rd_fbsd.o \
+	rd_aix.o \
+	wr_oss.o \
+	wr_sol.o \
+	wr_irix.o \
+	wr_hpux.o \
+	wr_aix.o \
+	wr_alsa.o \
+	wr_osf1.o \
+	wr_fp.o \
+	wr_gen.o \
+	if_lame.o \
+	if_vorb.o \
+	if_flac.o \
+	if_faac.o
+
+/*
+ * Build rules for cdda handling library
+ */
+#ifdef InstallProgram
+#undef InstallProgram
+#define InstallProgram(program, dest)
+#endif
+#ifdef InstallManPage
+#undef InstallManPage
+#define InstallManPage(program, dir)
+#endif
+
+NormalLibraryTarget(cdda,$(OBJS))
+DependTarget()
+
+AllTarget(has_alsa)
+SingleProgramTarget(has_alsa,has_alsa.o,,)
+

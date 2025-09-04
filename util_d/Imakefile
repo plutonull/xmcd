@@ -1,0 +1,132 @@
+/*
+ * @(#)Imakefile	6.28 04/03/05
+ *
+ * Imakefile for gobrowser
+ *
+ *	xmcd - Motif(R) CD Audio Player/Ripper
+ *
+ *   Copyright (C) 1993-2004  Ti Kan
+ *   E-mail: ti@amb.org
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+CFLAGS+=-ansi
+/*
+ * If your local X configuration supports Motif correctly, the
+ * following LOCAL_LIBRARIES= declaration should work just fine.
+ * If it fails, try uncommenting the #include lines below.  If that
+ * still fails, then substitute the LOCAL_LIBRARIES= line with
+ * one of the these:
+ *
+ * LOCAL_LIBRARIES= $(XMLIB) $(XTOOLLIB) $(EXTENSIONLIB) $(XLIB)
+ *
+ * or,
+ *
+ * LOCAL_LIBRARIES= -lXm -lXt -lXext -lX11
+ *
+ */
+
+
+#include "Motif.tmpl"
+#include "Motif.rules"
+
+LOCAL_LIBRARIES= XmClientLibs
+
+
+/**** Optional defines:  Change as you see fit. *****************************
+ *
+ * -DNO_STDLIB_H
+ *	The system does not support <stdlib.h>
+ *
+ * -DNO_UNISTD_H
+ *	The system does not support <unistd.h>
+ *
+ * -DHAS_ICONV_H (Linux only)
+ *	The system has <iconv.h> and the iconv(3) library call.
+ *
+ * -DHAS_NCURSES_H (BSD/OS only)
+ *	The system has <ncurses.h> and the ncurses library.
+ *
+ * -D_IRIX6
+ *	This is a SGI IRIX 6.x system.
+ *
+ * -D_SCO5
+ *	This is a SCO Open Server Release 5 system.
+ *
+ * -DDO_POPUP
+ *	Pop up a dialog box to indicate that a new browser instance is
+ *	being started.
+ *
+ * -DUSE_SGI_DESKTOP
+ *	Compile gobrowser for use with the SGI 4Dwm window manager.  This
+ *	has an effect only if DO_POPUP is also defined.
+ *
+ * All other platform-specific feature setup are in common_d/config.h
+ *
+ */
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific */
+ifeq "$(wildcard /usr/include/iconv.h)" "/usr/include/iconv.h"
+DEFINES= -DDO_POPUP -DHAS_ICONV_H
+else
+DEFINES= -DDO_POPUP
+endif
+#else
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+.if exists(/usr/include/ncurses.h)
+DEFINES= -DDO_POPUP -DHAS_NCURSES_H
+.else
+DEFINES= -DDO_POPUP
+.endif
+#else
+#if defined(SGIArchitecture) && OSMajorVersion >= 6
+DEFINES= -DDO_POPUP -D_IRIX6
+#else
+#if (defined(SCOArchitecture) || defined(i386ScoArchitecture)) && \
+    (defined(i386Sco325Architecture) || OSMajorVersion >= 5)
+DEFINES= -DDO_POPUP -D_SCO5
+#else	/* all others */
+DEFINES= -DDO_POPUP
+#endif	/* SCO5 */
+#endif	/* IRIX6 */
+#endif	/* BSD/OS */
+#endif	/* Linux */
+
+
+/*
+ * C Source files
+ */
+SRCS=	gobrowser.c
+
+/*
+ * Objects
+ */
+OBJS=	gobrowser.o
+
+/*
+ * Build rule for the main module
+ */
+#ifdef InstallProgram
+#undef InstallProgram
+#define InstallProgram(program, dest)
+#endif
+#ifdef InstallManPage
+#undef InstallManPage
+#define InstallManPage(program, dir)
+#endif
+ComplexProgramTarget(gobrowser)
+
+

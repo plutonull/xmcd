@@ -1,0 +1,38 @@
+#
+# @(#)Time.lbl	6.15 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Playback Time Indicator
+
+This indicator shows the elapsed or remaining time of the
+playback, as selected by the "Time Display Mode" button.
+If the playback is paused, this indicator will blink.
+
+If the disc is stopped, the indicator shows "--:--".  If
+no CD is loaded, then "no disc" is shown.  If a data CD
+is loaded and you attempt to play it, then "data" is
+shown.
+
+If you invoked Xmcd when another copy of Xmcd is already
+running on the same CD drive, this process will not access
+the drive and will wait until the original process exits.
+The time display will show "cd busy" when this occur.

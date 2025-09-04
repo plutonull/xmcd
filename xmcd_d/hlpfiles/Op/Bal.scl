@@ -1,0 +1,52 @@
+#
+# @(#)Bal.scl	6.15 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Balance Control
+
+This slider controls the stereo channel balance.
+You can control balance by grabbing the "thumb" of the
+control with mouse button 1.  Alternatively, you
+can click to the right or to the left of the thumb and
+cause the balance to change in gradations.  Holding
+the Ctrl key and clicking to the left or right of the
+thumb will cause the balance to go to full left or right,
+respectively.
+
+You can also operate the balance control using the left
+and right arrow keys, the Ctrl-left arrow and Ctrl-right
+arrow key combinations, or the Home and End keys.
+
+To restore the balance to the center, a Center button
+is provided for convenience.
+
+In "Standard playback" mode, the balance control will
+work only on CD drives that support a software-controlled
+volume control with independent settings for the two
+channels.  On drives not so equipped, this control should
+be set to the center position.
+
+In "CDDA playback" mode, the balance control operates the
+computer's audio hardware (this is platform-dependent).
+
+This control does not have any effect on the output data
+for "CDDA save to file" or "CDDA pipe to program" modes.

@@ -1,0 +1,92 @@
+#
+# @(#)Kenwood	6.13 03/12/12
+#
+# xmcd CD-ROM vendor configuration file
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+# Install this file as LIBDIR/config/.tbl/Kenwood
+# LIBDIR is the XMcd.libdir resource (or XMCD_LIBDIR env variable).
+# Please send corrections/additions to "xmcd@amb.org".
+#
+# Do not remove the following lines.
+# tblver=6
+# tblalias=Kenwood
+#
+# File format (colon separated):
+# model:mode:vcode:pmsf:p12:p10:pti:ld:ej:mdbd:m10:vctl:vbase:vtaper:paus:\
+# strict:ppp:lk:cp:tur:chg:ndisc:sp:msel:dens:rdcmd:be
+#
+# where,
+#	model	Drive model number (text string)
+#	mode	SCSI version (1, 2, or 0 if not SCSI pass-through)
+#	vcode	Vendor/Method code number
+#		SCSI:     vendor codes are defined in scsipt.h
+#		non-SCSI: method codes are defined in libdi.h
+#	pmsf	"Play Audio MSF" command support
+#	p12	"Play Audio (12)" command support
+#	p10	"Play Audio (10)" command support
+#	pti	"Play Audio Track Index" command support
+#	ld	Disc load via "Start/Stop Unit" command
+#	ej	Disc eject via "Start/Stop Unit" command
+#	mdbd	DBD bit support in "Mode Sense" commands
+#	m10	Use 10-byte version of Mode Sense/Select commands
+#	vctl	Software controls support (0-7)
+#		0 = none
+#		1 = volume control supported
+#		2 = balance control supported
+#		3 = volume/balance controls supported
+#		4 = channel routing control supported
+#		5 = volume/channel routing controls supported
+#		6 = balance/channel routing controls supported
+#		7 = volume/balance/channel routing controls supported
+#	vbase	Volume base value (0-255)
+#	vtaper	Volume control taper characteristics (0-2)
+#		0 = linear taper
+#		1 = square taper
+#		2 = inverse square taper
+#	paus	"Pause/Resume" command support
+#	strict	Need strict pause/resume symmetry
+#	ppp	Need pause to issue new play command
+#	lk	"Prevent/Allow Medium Removal" command support
+#	cp	"Read Subchannel" command Data Format 1 support
+#	tur	Whether the drive returns failure to the Test Unit Ready
+#		command when playing audio.
+#	chg	Multi-disc changer method code number
+#		0 = not a multi-disc changer
+#		1 = SCSI LUN addressing method
+#		2 = SCSI medium changer method
+#		3 = OS ioctl method
+#	ndisc	Number of discs supported by drive
+#	sp	Spin-up interval in seconds
+#	msel	Whether to send "Mode Select" command to set CDDA mode
+#	dens	CDDA mode select density code (common values are 0 or 130)
+#	rdcmd	The CDDA SCSI read command to use
+#		0 = MMC "Read CD (12)"
+#		1 = SCSI "Read (10)"
+#		2 = NEC "Read CD-DA (10)"
+#		3 = Sony "Read CD-DA (12)"
+#	be	Whether the drive returns CDDA data in big-endian format
+#
+#	Except otherwise noted above, the legal value for all fields
+#	is 0 or 1.
+#
+UCR-415:2:0:1:1:1:1:1:1:1:0:7:0:0:1:0:0:1:1:0:0:1:3:0:0:3:0

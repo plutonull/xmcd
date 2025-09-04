@@ -1,0 +1,47 @@
+#
+# @(#)HbeatTo.txw	7.5 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Heartbeat Timeout (seconds)
+
+To detect a crash or hang error condition in the
+CDDA extraction and playback threads, these threads
+produce periodic "heartbeat" timestamps that are
+monitored by the main control thread.
+
+When the extraction or playback thread has not
+produced a heartbeat longer than the time interval
+defined by this parameter, the control thread will
+consider it an error and terminate the CDDA operation.
+
+This parameter may need to be increased when run on
+a very slow system, in order to avoid a false
+termination of the CDDA operation.
+
+The minimum heartbeat timeout value is 5 seconds
+and the default is 15 seconds.
+
+If you change the setting of the heartbeat timeout
+value, it will not affect a CDDA playback operation
+in progress.  It will take effect on the next CDDA
+play session.
+

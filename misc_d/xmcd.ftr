@@ -1,0 +1,15 @@
+TYPE XmcdExecutable
+    MATCH       glob("xmcd");
+    LEGEND      Motif CD player
+    SUPERTYPE   Executable
+    CMD OPEN    $LEADER
+    ICON        {
+                  if (opened) {
+                    include("../iconlib/generic.exec.open.fti");
+                    include("iconlib/xmcd.open.fti");
+                  }
+                  else {
+                    include("../iconlib/generic.exec.closed.fti");
+                    include("iconlib/xmcd.closed.fti");
+                  }
+                }

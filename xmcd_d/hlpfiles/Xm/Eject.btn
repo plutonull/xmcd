@@ -1,0 +1,50 @@
+#
+# @(#)Eject.btn	6.17 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Load / Eject Button
+
+Select this button to load or eject the disc, disc
+tray. or disc magazine.  If no disc is loaded,
+selecting this button will cause Xmcd to attempt to
+load the disc.  Otherwise, the disc will be ejected.
+
+If an eject operation is performed, Xmcd also starts
+a polling sequence to detect the manual insertion
+of another disc.
+
+This button may not be actually cause the disc to
+load or eject on some CD drives, notably those that
+do not have a motorized disc mechanism.  Many CD
+drives support motorized eject but not motorized
+load.  In that event, you must manually load the disc.
+
+If you eject the disc manually (i.e., not using the
+Load/Eject button on Xmcd, but on the drive itself),
+you may want to select this button after ejecting
+anyway, because this notifies Xmcd that the disc has
+been withdrawn so that it can update its internal states,
+and start polling for a new disc to be inserted.
+Otherwise, the next disc will not be automatically
+detected by Xmcd when it is loaded.  You must select
+the Stop button once for Xmcd to reinitialize itself.
+

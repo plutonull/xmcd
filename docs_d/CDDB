@@ -1,0 +1,209 @@
+@(#)CDDB	6.22 03/07/10
+
+Gracenote CDDB®
+---------------
+
+Xmcd and cda supports CDDB, the largest and fast growing database of
+CD information on the Internet.  The CDDB concept was originally
+pioneered by xmcd, and is now embraced as a standard by many other CD
+and music-related applications.
+
+With CDDB, you do not have to type in the artist, disc title, track
+titles and other disc information for the CDs in your collection.  Xmcd
+and cda automatically queries the CDDB server, and if the query is
+successful, the information is displayed.
+
+CDDB access is free of charge to end users, but you can use this feature
+only if your system has a working connection to the Internet, either via
+a dial-up link or a dedicated connection.
+
+On some platforms, this release of xmcd/cda supports the new CDDB²(R)
+service with many enhanced features.  On the other platforms, the
+CDDB "classic" service is used.  To determine which mode xmcd is running
+in, click the wwwWarp button (world symbol) and select "About xmcd...". 
+The pop-up information window will indicate whether the CDDB² or the
+CDDB "classic" service is being used.  Also, after a successful lookup,
+the xmcd front panel will indicate "CDDB²" or "CDDB" depending on the
+mode.
+
+As of this writing, xmcd and cda are CDDB²-enabled on the following
+platforms:
+
+	OS			Platform	Version
+	---------------------------------------------------------
+	FreeBSD			x86		3.x, 4.x
+	HP-UX			PA-RISC		9.x, 10.x, 11.x
+	Linux-libc5		x86		2.x
+	Linux-libc6		x86		2.x
+	Solaris			sparc		2.x, 7, 8, 9, 10
+	Solaris			x86		2.x, 7, 8, 9, 10
+	SunOS			sparc		4.1.x
+	UnixWare		x86		1.x, 2.x, 7.x
+	SCO/Caldera Open UNIX	x86		8.x
+
+Please refer to the xmcd official web site's download area for the
+latest list, as Gracenote may add CDDB² library support to more
+platforms over time.
+
+Using xmcd's wwwWarp feature, you may also access dynamic content
+provided by CDDB², or search the CDDB database.
+
+
+Using CDDB²
+-----------
+
+On selected platforms, xmcd uses the enhanced Gracenote CDDB² Music
+Recognition Service(sm) (MRS) to get the artist, title, track, credits,
+and other information about the CDs you play.  This service is free and
+automatic.  The first time you use the service, you must register with
+CDDB.  To register with CDDB, just play a CD with xmcd.  The CDDB User
+Registration window appears automatically.  Select a user handle and
+password.  The remaining information is optional, but does help CDDB
+provide better service.  Once you register, you do not have to
+re-register, unless you want to change your registration information or
+settings.  To change your CDDB² registration information, open the xmcd
+CD Information / Program Editor window (click on the button on the xmcd
+main window with the file cabinet symbol) and select the "Register..."
+button.
+
+The CDDB² service features richer content than the "classic" CDDB
+service, and provides international support via the use of the UTF-8
+Unicode character set.
+
+
+Using "classic" CDDB
+--------------------
+
+On those platforms that the Gracenote CDDB² interface library is not
+available, xmcd uses the "classic" CDDB service (same as what was used
+in xmcd version 2.x).  This service is also free, automatic, and does
+not require user registration.  However, "classic" CDDB provides less
+content than CDDB².
+
+The CDDB interface library automatically translates between "classic"
+CDDB music categories and equivalent CDDB² genres.  Thus, only those
+genres are available in the xmcd genre menus.
+
+The "classic" CDDB service provides support for ISO Latin-1 character sets
+only.  Also, it will not provide data for the following CDDB²-enhanced
+fields:
+
+    In Album Details:
+	- Sort title, "The"
+	- Year
+	- Record label
+	- Compilation
+	- Genre 2 (secondary genre/subgenre)
+	- Region
+	- Language
+	- Disc x of y
+    In Album Credits:
+	- Role
+	- Name
+	- Notes
+    In Album Segments:
+	- Name
+	- Start track/frame
+	- End track/frame
+	- Notes
+	In Segment Credits:
+	    - Role
+	    - Name
+	    - Notes
+    In Track Details:
+	- Sort title, "The"
+	- Artist
+	- Year
+	- Record label
+	- BPM
+	- Genre 2 (secondary genre/subgenre)
+    In Track Credits:
+	- Role
+	- Name
+	- Notes
+
+If you submit album data to CDDB while running in "classic" CDDB mode,
+these CDDB²-enhanced fields will not be submitted.  Finally, "classic"
+CDDB does not support the CDDB Music Browser, the Album-specific
+URL links, or the URL submission feature under xmcd's wwwWarp menu.
+
+	
+Submissions to CDDB
+--------------------
+
+Xmcd displays the album, track and credit information downloaded from
+CDDB.  If you see any omissions or error in the data, you are encouraged
+to correct it and use the Submit button to send it back to CDDB, so that
+others may share the corrections.
+
+In order for a submission to succeed, certain fields must be filled in.
+These fields are the album title, album artist name (if it's not a
+compilation CD) and track titles.  Moreover, the primary album genre
+("Genre 1") must not be "None".  Your computer must have an active
+Internet connection at the time of submission.
+
+To ensure high data quality, Gracenote employs a sophisticated scheme
+of submission processing.  It may use all, some, or none of the fields
+that you submit, based on certain heuristics, as well as whether a
+particular record already has a reliable data feed source.  Hence,
+it is not unusual to see the data come back not exactly as how you
+submitted it.
+
+
+Gracenote CDDB® Terms of Use
+----------------------------
+
+This application contains software from CDDB, Inc. of Berkeley,
+California d/b/a Gracenote (Gracenote).  The software from Gracenote
+(the Gracenote CDDB Client) enables this application to do online disc
+identification and obtain music-related information, including name,
+artist, track, and title information (Gracenote Data) from online
+servers (Gracenote CDDB Servers) and to perform other functions.  You
+may use Gracenote Data only by means of the intended End User functions
+of this application software.  You agree that you will use Gracenote
+Data, the Gracenote CDDB Client, and Gracenote CDDB Servers for your own
+personal non-commercial use only.  You agree not to assign, copy,
+transfer or transmit the Gracenote CDDB Client or any Gracenote Data to
+any third party.  YOU AGREE NOT TO USE OR EXPLOIT GRACENOTE DATA, THE
+GRACENOTE CDDB CLIENT, OR GRACENOTE CDDB SERVERS, EXCEPT AS EXPRESSLY
+PERMITTED HEREIN.  You agree that your non-exclusive license to use the
+Gracenote Data, the Gracenote CDDB Client, and Gracenote CDDB Servers
+will terminate if you violate these restrictions.  If your license
+terminates, you agree to cease any and all use of the Gracenote Data,
+the Gracenote CDDB Client, and Gracenote CDDB Servers.  Gracenote
+reserves all rights in Gracenote Data, the Gracenote CDDB Client, and
+the Gracenote CDDB Servers, including all ownership rights.  You agree
+that CDDB, Inc. may enforce its rights under this Agreement against you
+directly in its own name.  The Gracenote CDDB Client and each item of
+Gracenote Data are licensed to you AS IS.  Gracenote makes no
+representations or warranties, express or implied, regarding the
+accuracy of any Gracenote Data from in the Gracenote CDDB Servers.
+Gracenote reserves the right to delete data from the Gracenote CDDB
+Servers or to change data categories for any cause that Gracenote deems
+sufficient.  No warranty is made that the Gracenote CDDB Client or
+Gracenote CDDB Servers are error-free or that functioning of Gracenote
+CDDB Client or Gracenote CDDB Servers will be uninterrupted.  Gracenote
+is not obligated to provide you with any new enhanced or additional data
+types or categories that Gracenote may choose to provide in the future
+and is free to discontinue its online services at any time.  GRACENOTE
+DISCLAIMS ALL WARRANTIES EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED
+TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, TITLE, AND NON-INFRINGEMENT.  Gracenote does not warrant the
+results that will be obtained by your use of the Gracenote CDDB Client
+or any Gracenote CDDB Server.  IN NO CASE WILL GRACENOTE BE LIABLE FOR
+ANY CONSEQUENTIAL OR INCIDENTAL DAMAGES OR FOR ANY LOST PROFITS OR LOST
+REVENUES.
+
+
+Gracenote CDDB® Proprietary Legends
+-----------------------------------
+
+CDDB, Inc. d/b/a "Gracenote."  CD and music related data from Gracenote
+CDDB® Music Recognition Service(sm) © 2000, 2001 Gracenote.  Gracenote
+CDDB Client Software © 2000, 2001 Gracenote.  U.S. Patents Numbers
+#5,987,525;  #6,061,680;  #6,154,773, and other patents issued or
+pending.  CDDB is a registered trademark of Gracenote.  CDDB-Enabled,
+the Gracenote logo, the CDDB Logo, and the "Powered by Gracenote CDDB"
+logo are trademarks of Gracenote.  Music Recognition Service and MRS are
+service marks of Gracenote.
+

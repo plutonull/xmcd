@@ -1,0 +1,47 @@
+#
+# @(#)Prog.txw	7.10 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Program Path Text Field
+
+This text field allows you to specify the
+external program to invoke when xmcd is running
+in the CDDA pipe-to-program mode.
+
+The program must be capable of accepting audio
+data stream on its standard input, in one of
+the file formats that xmcd could generate
+(RAW, AU, WAV, AIFF, AIFF-C, MP3, Ogg Vorbis,
+FLAC, AAC or MP4).
+
+Examples of such programs are audio file player
+utilities, file format convertors, alternative
+CODECS, streaming network audio playback, etc.
+
+This indicator is active only when the "CDDA
+pipe-to-program" mode is active.
+
+If you change the program path while xmcd is
+already in the process of piping audio data to
+a program, the change will not take effect
+until the current session is completed.
+

@@ -1,0 +1,40 @@
+! XPM2  
+!width height ncolors chars_per_pixel
+32 32 3 1
+!colors
+   m white  c #0000AAAABEBE
+.  m white  c #FFFFFFFFFFFF
+X  m white  c #0000FFFFFFFF
+!pixels
+                                
+                                
+                                
+                                
+                          ...   
+                           ..   
+                          ..    
+   .. .... .. ..   ...  ....    
+    ...  .. .. .. . .. .. ..    
+    ..   .. .. ....   ..  .     
+    ... ..  .  . ..   .. ..     
+   . .. .. .. .. .. .... ..     
+  .. ..... .. ... ...  .. ..    
+                                
+                                
+          XXXXXXXXXXXX          
+      XXXXXXXXXXXXXXXXXXXX      
+    XXXXXXXXXXXXXXXXXXXXXXXX    
+  XXXXXXXXXXXXXXXXXXXXXXXXXXXX  
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+ XXXXXXXXXXXXXX   XXXXXXXXXXXXX 
+ XXXXXXXXXXXXXX   XXXXXXXXXXXXX 
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+  XXXXXXXXXXXXXXXXXXXXXXXXXXXX  
+    XXXXXXXXXXXXXXXXXXXXXXXX    
+      XXXXXXXXXXXXXXXXXXXX      
+          XXXXXXXXXXXX          
+                                
+                                
+                                
+                                
+                                

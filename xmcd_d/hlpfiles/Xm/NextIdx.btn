@@ -1,0 +1,46 @@
+#
+# @(#)NextIdx.btn	6.16 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Next Index Button
+
+Select this button to skip to the next index.
+This control is normally used only when there
+are indices within a track.  Most CDs do not
+contain such indices.  The behavior when you
+select this button on a track with no index is
+CD drive-dependent.
+
+You can use this button only when normal audio
+playback is in progress.  You cannot use this
+button during Shuffle or Program playback.
+
+If next index is selected during Segment Play
+mode, Segment Play mode will be disengaged.
+
+If the playback state is paused when you use
+this button, the state will remain paused when
+you change to a new index.
+
+This button may not be functional on some CD
+drives.  Also, it has no effect when playing in
+any CDDA modes.

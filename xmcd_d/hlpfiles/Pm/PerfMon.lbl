@@ -1,0 +1,74 @@
+#
+# @(#)PerfMon.lbl	7.11 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+CDDA Performance Monitor indicators
+
+The CDDA performance monitor indicators shows some
+statistics while playing in any of the CDDA modes.
+
+Speed factor:
+   This is an overall CDDA performance indicator,
+   averaged over the current playback session.
+   A "1.0" value indicates that CDDA data is being
+   transferred at standard speed.  This is what
+   the performance should settle on while playing
+   in "CDDA playback" mode.  If you get a value
+   less than 1.0, then there are performance
+   bottlenecks in the system, and you're likely to
+   hear glitches in the audio.  While in strict
+   "CDDA save to file" or "CDDA pipe to program"
+   modes, you may get much higher speed factors
+   than 1.0.
+
+Frames transferred:
+   This shows the number of audio frames that has
+   been transferred.  There are 75 frames in one
+   second of CD audio.  In addition, a percentage
+   of the total number of frames transferred is
+   also shown.
+
+Frames per second:
+   This is the number of frames transferred per
+   second, averaged over the current playback session.
+   It is the basis for computing the speed factor.
+
+Time to completion:
+   This is the estimated amount of time (in hours,
+   minutes and seconds) to complete the current CDDA
+   playback session.  It is calculated from the number
+   of remaining frames to play and the current average
+   frames per second performance.
+
+Factors that may influence the CDDA performance
+include the following:
+
+   - Performance of the CD drive
+   - Performance of the CPU and I/O system
+   - System load
+   - Whether jitter correction is enabled
+   - Setting of the cddaReadChunkBlocks parameter
+   - Whether realtime "CDDA playback" is enabled
+   - Whether saving to an uncompressed or compressed
+      file format (which requires on-the-fly encoding)
+   - MP3 or Ogg Vorbis encoding parameters
+

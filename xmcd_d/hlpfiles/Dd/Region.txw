@@ -1,0 +1,41 @@
+#
+# @(#)Region.txw	7.10 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Geographical Region Selector
+
+The text field displays the country/geographical
+region from which the CD was released.  Clicking
+on the "Change..." button will cause a Region Selector
+window to appear, and you may choose a new region
+from a list.
+
+When running with the CDDB² service, the list of
+regions is downloaded from the CDDB server.  Hence,
+if you do not have CDDB² service enabled, or if xmcd
+cannot establish a successful CD information download
+from CDDB², there may not be any regions available.
+In such an event, the "Change..." button will not be
+active.
+
+With the "classic" CDDB service, the list of regions
+is fixed locally in the CDDB library.

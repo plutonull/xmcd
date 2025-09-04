@@ -1,0 +1,37 @@
+#
+# @(#)Add.btn	7.6 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Add button
+
+After defining a new segment, you may select this
+button to add the segment to the list of segments.
+
+To define a segment, you must enter a segment name,
+select a start point and an end point, and optionally
+enter some notes.  You may enter the start and end
+points manually, or start audio playback and use the
+"Play-set" button to define them.
+
+The start and end points are denoted by the track
+number and an offset into the track in frames.  Every
+75 frames is equal to one second of audio playback.

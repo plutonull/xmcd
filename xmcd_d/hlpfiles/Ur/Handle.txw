@@ -1,0 +1,36 @@
+#
+# @(#)Handle.txw	7.6 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+CDDB User Handle (required)
+
+Enter your user handle in this field.  A user
+handle is a "login name" or "screen name" that
+would uniquely identify you.  It does not have
+to be the same as your UNIX login name.
+
+If you're registering with CDDB for the first
+time, you will be defining your user handle.
+If you had previously registered with CDDB and
+wish to update your information, you must use
+the same handle and password that you had
+previously registered.

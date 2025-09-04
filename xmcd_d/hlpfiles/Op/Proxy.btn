@@ -1,0 +1,40 @@
+#
+# @(#)Proxy.btn	7.4 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+HTTP Proxy Server
+
+This lets you configure xmcd to use a proxy server
+for connections to the CDDB service.
+
+If your site is connected to the internet via
+a HTTP proxy server, select the "Use proxy"
+button.  You should then enter the proxy server's
+host name and port number in the fields provided.
+
+If your site uses HTTP proxy authorization (i.e.,
+you need to enter a user name and password in
+order to access the internet), select the "Proxy
+authorization" button.  When xmcd attempts to
+perform a CDDB lookup, a dialog box will appear
+to let you enter your proxy user name and password.
+

@@ -1,0 +1,223 @@
+<!-- ident "@(#)discog.htm	6.38 04/01/05" -->
+<HTML>
+<HEAD>
+<TITLE>Xmcd Local Discography</TITLE>
+</HEAD>
+<BODY BACKGROUND="bkgnd.gif" BGCOLOR="#FFFFFF">
+
+<DIV ALIGN="center">
+<A HREF="$XMCD_URL"><IMG SRC="xmcdlogo.gif" ALT="xmcd" BORDER="0"></A><BR>
+<FONT FACE="times">by <A HREF="http://www.amb.org/ti/">Ti kan</A></FONT>
+<P>
+<FONT SIZE="+4" FACE="times">Local Discography (UNIX version)</FONT>
+<P>
+<DIV ALIGN="center"><A HREF="index.html"><BIG><B>Main Index</B></BIG></A></DIV>
+<P>
+</DIV>
+<H2>Introduction</H2>
+<DIR>
+<P>
+Welcome to xmcd <I>Local Discography</I>.  This is a storage area on
+your system that can be used to collect and organize files related to
+each CD you own.  The files can be text, HTML or other documents,
+image or animation files, sound clips, etc.  Examples are music reviews,
+artist interviews, photographs, fan information, MP3 sound files etc.
+You can download these from fan sites on the Internet, or create your own.
+You can make local web pages that contain links to Internet
+sites, or links to files associated with other CDs in Local Discography.
+<P>
+These files can be viewed, played and/or printed using the <I>wwwWarp</I>
+feature of xmcd.  Xmcd will drive an external web browser to access
+the files.
+<P>
+</DIR>
+<H2>Directory Organization</H2>
+<DIR>
+<P>
+The top-level Local Discography directory is <B>$DISCOGDIR</B>
+on your system.  This was created when xmcd was installed.
+Under this directory there are hierarchy of directories of music genres
+(i.e., <I>Rock, Classical, Jazz,</I> etc.).  These genres match those
+of the CDDB<SUP>2</SUP> service.  Xmcd automatically creates the genre and
+sub-genre directories, as well as the per-CD directories.
+When you select the &quot;Xmcd Local Discography&quot; entry in xmcd's
+<I>wwwWarp</I> menu, your web browser will go to a xmcd-generated web
+page about the CD that is currently loaded.
+<P>
+The Local Discography directory path pertaining to the CD is displayed
+on the web browser when you select &quot;Xmcd Local Discography&quot;.
+Scroll the browser to the bottom of the page.
+<P>
+</DIR>
+<H2>Setup Instructions</H2>
+<DIR>
+<P>
+No setup in xmcd is necessary to use <I>wwwWarp</I> and Local Discography.
+However, you must have a supported and functioning web browser installed
+on your system.
+<P>
+<H4>Web browser configuration</H4>
+<P>
+Your system must have the
+<A HREF="http://www.mozilla.org" TARGET="_blank">Mozilla</A>,
+<A HREF="http://home.netscape.com" TARGET="_blank">Netscape</A>,
+<A HREF="http://www.galeon.org" TARGET="_blank">Galeon</A> or
+<A HREF="http://www.opera.com" TARGET="_blank">Opera</A>
+web browser software installed in order to use xmcd's <I>wwwWarp</I>
+and Local Discography features.  Other web browsers will not work
+correctly with <I>wwwWarp</I>.
+<P>
+In order to reach Internet sites via <I>wwwWarp</I>, your system must
+be connected to the Internet.  However, the Local Discography feature
+does not require an Internet connection.
+<P>
+If your system is within a firewall, and requires the use of a proxy server
+to access the Internet, then your web browser must be appropriately
+configured.  See your local system administrator about configuring your
+web browser.  To test internet accessibility, start your web browser
+and enter <B>$XMCD_URL</B> in the location bar.  This should
+take you to the Xmcd official web site.
+<P>
+To test xmcd's <I>wwwWarp</I> capability, start xmcd and click on the
+<I>wwwWarp</I> button (the one with the world symbol).  Choose the
+&quot;<B>Xmcd official web site</B>&quot; entry in the menu.  This should
+cause your web browser to go to the Xmcd official web site.
+<P>
+Normally xmcd will search your system and automatically invoke a
+supported web browser on your system when you use <I>wwwWarp</I>
+and Local Discography.  However, if one of the following conditions occur:
+<P>
+<UL>
+<LI>Xmcd cannot locate a supported web browser on your system.
+<LI>You have multiple browsers installed, and xmcd is invoking an
+    undesired version.
+</UL>
+<P>
+The remedy is to define the full path to the browser executable
+in the BROWSER_PATH environment variable.  If you use Bourne Shell,
+Korn Shell or similar, add the following to your $HOME/.profile file:
+<P>
+<PRE>
+	BROWSER_PATH=/usr/local/bin/mozilla
+	export BROWSER_PATH
+</PRE>
+<P>
+If you use C-Shell or similar, add the following to your $HOME/.cshrc file:
+<P>
+<PRE>
+	setenv BROWSER_PATH /usr/local/bin/mozilla
+</PRE>
+<P>
+Substitute <I>/usr/local/bin/mozilla</I> above with the actual path to
+your desired browser executable.  Log out and log in again to have this
+take effect.
+<P>
+<H4>Local Discography directories</H4>
+<P>
+When xmcd is installed for the first time, the top level Local Discography
+directory as well as some basic music genre subdirectories are created
+for you.  When xmcd or cda gets a successful CDDB<SUP>2</SUP> query of
+CD information, it automatically creates the Local Discography directory
+for the loaded CD.
+<P>
+An HTML index file is also automatically installed by xmcd and cda
+in each CD's Local Discography directory.  This is the file that xmcd will
+point your web browser to, when you view a CD's Local Discography.
+<P>
+You can put other related files in each CD's Local Discography directory,
+such as images and sound clips.  These files will automatically appear
+in the CD's Local Discography when you use xmcd's wwwWarp system to
+view it.
+<P>
+Xmcd and cda will also automatically create the index files for browsing
+your Local Discography directories.  Once you start loading and playing
+your CDs in the drive, you will find that your Local Discography
+will grow, and you can go to the Main Index to browse your CD collection
+by the genres and subgenres.
+<P>
+You are now ready to use Local Discography!
+<P>
+</DIR>
+<H2>How to Use</H2>
+<DIR>
+<P>
+To use Local Discography, start xmcd and load a CD in the drive.
+Click on the <B>wwwWarp</B> button on xmcd's main window (this is
+the button with the world symbol).  A <I>wwwWarp</I> menu will pop up.
+Choose the "<B>Xmcd Local Discography</B>" entry, and your
+web browser will go to the appropriate entry.
+<P>
+The web browser will display the artist, disc title and track title
+information about the currently loaded CD, as well as other information
+from the CDDB<SUP>2</SUP> service.
+<P>
+Disc and track titles on the Local Discography page are usually clickable
+hyperlinks, that causes a search to be done on the CDDB search engine.
+<P>
+If there are other files in the directory, the browser will also
+display a listing of those files.  You can click on a file to view
+or play it.  Note that your web brower may need certain plug-ins in
+order to open or play some file formats.
+<P>
+The page will also display hyperlinks (URLs), if any are found in the
+Disc Notes or Track Notes portions of the CD information.
+<P>
+</DIR>
+<H2>Copyrights</H2>
+<DIR>
+<P>
+Please be aware of possible legal implications when sharing music-related
+files with others.  Some of the information, including album cover art,
+graphics and photos, lyrics and other data are likely to be protected by
+copyright.  Xmcd and its author are not liable for the users' actions.
+<P>
+</DIR>
+<H2>Related Links</H2>
+<P>
+<UL>
+<LI><A HREF="$XMCD_URL">Xmcd</A>
+    - Motif CD player by Ti Kan
+    </LI>
+<LI><A HREF="http://www.amb.org/xmmix/">Xmmix</A>
+    - Motif audio mixer by Ti Kan
+    </LI>
+<LI><A HREF="http://www.cddb.com/">CDDB</A>
+    - The #1 music info source
+    </LI>
+<LI><A HREF="http://www.hubbe.net/~hubbe/plugger.html">Plugger</A>
+    - Streaming multimedia plug-in for UNIX Mozilla and
+      Netscape by Fredrik H&uuml;binette 
+    </LI>
+<LI><A HREF="http://www.mp3dev.org/">LAME</A>
+    - High performance MP3 encoder, used by xmcd
+    </LI>
+<LI><A HREF="http://www.xiph.org/ogg/vorbis/">Ogg Vorbis</A>
+    - An open compressed audio format and encoder, used by xmcd
+    </LI>
+<LI><A HREF="http://flac.sourceforge.net/">Free Lossless Audio Codec</A>
+    - An open lossless audio compression format
+    </LI>
+<LI><A HREF="http://www.audiocoding.com/">Audiocoding.com</A>
+    - Home of the FAAC encoder and FAAD decoder software, for the
+      MPEG-2/MPEG-4 AAC audio formats
+    </LI>
+<LI><A HREF="http://www.spies.com/Sox/">Sox</A>
+    - Sound eXchange: sound file format conversion utility by Lance Norskog
+    </LI>
+<LI><A HREF="http://www.opensound.com/">Open Sound System</A>
+    - Sound driver for many UNIX platforms
+    </LI>
+<LI><A HREF="http://www.alsa-project.org/">Advanced Linux Sound Architecture</A>
+    - New audio support architecture for Linux
+    </LI>
+</UL>
+<P>
+<HR>
+<I>CDDB</I> and <I>CDDB<SUP>2</SUP></I> are trademarks of
+	<A HREF="http://www.gracenote.com/">Gracenote</A>.
+<BR>
+<SMALL>@(#)discog.htm	6.38 04/01/05</SMALL>
+
+</BODY>
+</HTML>
+

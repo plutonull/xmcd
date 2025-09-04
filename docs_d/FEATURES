@@ -1,0 +1,192 @@
+@(#)FEATURES	6.34 04/04/21
+
+SOFTWARE FEATURES
+-----------------
+
+This release of xmcd features the following:
+
+    - Standard functions
+      * Play/Pause
+      * Stop
+      * Next/Previous Disc
+      * Next/Previous Track
+      * Next/Previous Index
+      * Fast forward/rewind with audio scanning
+      * Load/Eject
+      * On/Off
+    - Multi-disc changer support
+      * Disc change
+      * Multi-disc playback
+      * Reverse multi-disc playback
+    - Direct access keypad
+      * Disc and track change
+      * track-warp slider controls
+    - Volume control
+      * Selectable volume taper characteristics
+        > Linear
+        > Square
+        > Inverse square
+    - Balance control
+      * left/right slider control and centering button
+    - Channel routing control
+      * Normal stereo
+      * Reversed stereo
+      * Mono-L
+      * Mono-R
+      * Mono-L+R
+    - Main display
+      * Disc number
+      * Track number
+      * Index number
+      * Time display modes
+        > Elapsed track time
+        > Elapsed segment time
+        > Elapsed disc time
+        > Remaining track time
+        > Remaining segment time
+        > Remaining disc time
+    - Status display
+      * Current play status
+      * A->B segment play mode or Program mode
+      * CD information indicator - "CDDB²", "CDDB", "CDtext", "local",
+        "err" or none
+    - Track programming
+      * Custom play list
+      * Click and choose from track list, or edit the sequence directly
+      * Save or clear
+    - Shuffle play function
+      * Play all tracks on the CD in random order
+    - Repeat function with iteration counter
+      * Repeat track
+      * Repeat program
+      * Repeat disc
+      * Repeat segment
+      * Repeat all discs (multi-disc changer)
+    - Sample function
+      * Play a few seconds of each track
+    - A->B segment play function
+      * User selectable start and end segment points that can span track
+        boundaries
+    - Eject inhibit option
+      * Prevent someone from ejecting the disc by pressing the button
+        on the drive
+    - Playback mode selection
+      * Standard playback
+      * CDDA real-time playback
+      * CDDA Save to file
+      * CDDA Pipe to external program
+      * CDDA jitter correction
+      * Audio file/stream output formats: RAW, AU, WAV, AIFF, AIFF-C,
+	FLAC, Ogg Vorbis, MP3, MP4, AAC (MPEG-2 and MPEG-4).
+      * Many adjustable parameters to suit every requirement for
+	compressed audio encoding speed, file size, and audio quality.
+      * Low-pass and high-pass digital filters for MP3 encoding, with
+        adjustable frequency and width.
+      * Auto-fill MP3 ID3 tag (both version 1 and 2 are supported), or
+        Ogg Vorbis, FLAC and MP4 metadata sections.
+      * CDDA Performance monitor
+      * CDDA Thread priority tuning
+      * CDDA playback output port selector
+      * CDDA level attenuator control
+      * CDDA level fade-in and fade-out controls
+    - Automation options
+      * On CD load
+        > Auto caddy lock
+        > Spin down
+        > Auto-play
+      * On play completion
+        > Auto-eject
+      * On CD eject
+        > Auto-exit
+      * On program exit
+        > Auto-stop
+        > Auto-eject
+    - Track Program function
+      * Play tracks in custom order
+      * Can be saved to file
+    - Gracenote CDDB® Music Recognition Service(sm) support
+      * Query and display CD information from Internet CDDB server
+        > Album artist and title
+        > Track titles
+        > Album genre and sub-genre
+        > Disc notes
+        > Track notes
+      * Support for firewall HTTP proxy servers and proxy authorization
+      * Local cachestore
+      * Edit and Submit information to CDDB
+      * Enhanced CDDB²® features on some platforms
+        > Artist full name
+        > Sort titles
+        > Record label
+        > Year
+        > Compilation flag
+        > Secondary genres and sub-genres
+        > Geographical region
+        > Album primary language
+        > Track beats per minute
+        > Disc number of set, total number in set
+        > Disc, track and segment credit lists
+        > Segment list
+        > Internationalization support
+        > CDDB Music Browser
+        > CDDB-provided dynamic content (web links)
+        > CDDB² user registration
+    - CD-TEXT support on capable drives and CDs made with CD-TEXT data
+    - Displays Media Catalog Number (UPC/barcode) and International
+      Standard Recording Code (ISRC) on capable drives and CDs recorded
+      with such data.
+    - Scan and show disc titles in each slot of a CD changer
+    - wwwWarp
+      * Web integration supporting the Netscape Navigator/Communicator,
+        Mozilla, Galeon and Opera web browsers.
+      * Direct access to the official Xmcd web site
+      * Search the web for information about the disc artist and
+        title that is currently loaded.
+      * Pre-configured list of popular web search engines for related
+        content.
+      * Local Discography for viewing/playing/printing documents,
+        images, digital sound files and other files related to each CD.
+        Moreover, .m3u and .pls format playlist files are auto-generated
+        in the presence of each supported digital audio file format.
+    - Display "Message of The Day" information from the xmcd MOTD
+      service as well as notify the user of new versions.
+    - Dual-mode main window
+      * Toggle between the full-feature main window, or a small-footprint
+        "basic" mode.
+    - Tool-tips
+      * Main window controls feature pop-up descriptions including
+        hotkey mnemonics.
+    - Command line control
+      * An xmcd operation can be invoked via the command line during
+        startup.
+      * Remote control: Send commands to another running xmcd session,
+        using the -remote option.
+    - On-line help
+      * Feature-specific help information available via a single mouse
+        click.
+      * Read xmcd documentation using the help system.
+    - Keyboard-friendly
+      * The complete application can be operated via the keyboard with
+        full support for keyboard traversal and hotkeys.
+    - Internationalization
+      * All labels and messages can be localized to non-English
+        languages via X resources.
+    - Attractive, intuitive-to-use
+      * Motif user interface with 3D appearance
+    - Theme and appearance customization
+      * Fonts, colors, background and other appearance items are
+        user-customizable using X resource settings.
+    - Device-specific configuration files
+      * Adaptable to most computer CD or DVD drives.
+
+Xmcd uses the Motif toolkit to achieve a pleasing appearance, such that
+it actually looks and feels like a real CD player for all basic
+functions, yet takes advantage of the GUI and window system to make
+programming and CD database functions easy. 
+
+Currently, the cda utility offers almost the same functionality as xmcd
+except the FF, REW, Sample, A->B and wwwWarp features are not available.
+Also, the CD information capability is read-only via cda (no updates).
+In addition, a visual mode is available that turns cda into a screen-
+oriented (curses-based) CD player.
+

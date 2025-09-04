@@ -1,0 +1,58 @@
+#
+# @(#)Trk.lsw	6.20 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Track List
+
+This list shows the tracks available on the currently
+loaded CD.  Each track entry consists of the track number,
+the time (see "Time Display Selector"), and the title of
+the track.
+
+If there is no track title information, then "??" will
+be shown in the title portion.
+
+If audio playback is currently in progress, the track
+entry in the list is shown in bold font.
+
+You can choose a track by clicking mouse button 1 on
+the desired track, causing the track entry to be shown
+in reverse-video.  Once chosen, you can add this track
+to the program play sequence ("Add" button), or open
+the Track Details window ("Track Details" button).
+The track title information of a chosen track is also
+used in the search string for the wwwWarp feature.
+
+If a chosen track has track notes information, or if
+the track has associated credits, an asterisk (*)
+character will be shown at the end of the track title.
+
+If you click mouse button 1 on an already chosen track,
+it is un-chosen.
+
+Double-clicking a track selection will cause Xmcd to
+play the selected track.
+
+You can also use the arrow keys to traverse the list.
+Pressing the space bar is equivalent to clicking the
+mouse button 1, and pressing the Enter or Return key is
+equivalent to double-clicking the mouse button 1.

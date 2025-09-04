@@ -1,0 +1,131 @@
+#
+#   @(#)Makefile.std	1.16 03/12/12
+#
+#   Makefile for libcddb and libcddbkey
+#
+#	libcddb, libcddbkey - CDDB interface library for xmcd/cda
+#
+#   NOTE: You should use this only if you don't have imake!
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+include ../make.inc
+
+LIBCDDB=libcddb.a
+LIBCDDBKEY=libcddbkey.a
+LIBCDDBKEY1=libcddbkey1.a
+LIBCDDBKEY2=libcddbkey2.a
+
+SRCS=	control.c \
+	credit.c \
+	disc.c \
+	discs.c \
+	fcddb.c \
+	fullname.c \
+	gen.c \
+	genre.c \
+	genrelist.c \
+	genretree.c \
+	options.c \
+	region.c \
+	regionlist.c \
+	language.c \
+	langlist.c \
+	role.c \
+	rolelist.c \
+	roletree.c \
+	segment.c \
+	track.c \
+	url.c \
+	urllist.c \
+	urlmanager.c \
+	userinfo.c \
+	cddbkey1.c
+
+OBJS=	control.o \
+	credit.o \
+	disc.o \
+	discs.o \
+	fcddb.o \
+	fullname.o \
+	gen.o \
+	genre.o \
+	genrelist.o \
+	genretree.o \
+	options.o \
+	region.o \
+	regionlist.o \
+	language.o \
+	langlist.o \
+	role.o \
+	rolelist.o \
+	roletree.o \
+	segment.o \
+	track.o \
+	url.o \
+	urllist.o \
+	urlmanager.o \
+	userinfo.o
+
+KOBJ=	cddbkey1.o
+
+
+all: $(LIBCDDB) $(LIBCDDBKEY1) $(LIBCDDBKEY)
+
+$(LIBCDDB): $(OBJS)
+	$(RM) $@
+	$(AR) $@ $(OBJS)
+	$(RANLIB) $@
+
+$(LIBCDDBKEY1): $(KOBJ)
+	$(RM) $@
+	$(AR) $@ $(KOBJ)
+	$(RANLIB) $@
+
+$(LIBCDDBKEY2): cddbkey2.o
+	$(RM) $@
+	$(AR) $@ cddbkey2.o
+	$(RANLIB) $@
+
+$(LIBCDDBKEY):
+	@$(RM) $@
+	@if [ -f $(LIBCDDBKEY2) ]; \
+	then $(LN) $(LIBCDDBKEY2) $@; \
+	else $(LN) $(LIBCDDBKEY1) $@; \
+	fi
+
+Makefile:
+	@echo "	cddb_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) *.o *.a core .emacs_* tags TAGS
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

@@ -1,0 +1,90 @@
+@(#)README	6.185 04/01/02
+
+README
+------
+
+Xmcd is a full-featured CD player and ripper utility package including
+xmcd, a CD Player/Ripper for the X window system using the Motif graphical
+user interface; and cda, a command-line driven, text mode CD Player/Ripper
+which also features a curses-based, screen-oriented mode.  Both utilities
+transform your computer's CD or DVD drive into a stereo CD player,
+allowing you to play audio CDs on your computer.  On many platforms
+with capable hardware, these utilities can also perform digital audio
+extraction (DAE) from audio CDs and play the CD digital audio (CDDA)
+stream real-time, save it to file in various compressed and uncompressed
+formats, as well as pipe it to an external program for other processing.
+More than one CDDA operation can even be be done simultaneously on systems
+and peripherals with sufficient performance.
+
+The following is a summary of xmcd/cda documentation files.  Please
+read these before installing and using the software.
+
+Many of these files refer to the XMCDLIB directory, which is the
+directory under which all the xmcd/cda support files are installed.
+This is configured when you install the xmcd package.
+
+The documentation files are located in the docs_d subdirectory in the
+xmcd source code distribution, and are copied to the XMCDLIB/docs
+directory during installation.
+
+README		This file
+INSTALL		Source code compilation and installation instructions (*)
+INSTALL.VMS	Special instructions for the OpenVMS platform (*)
+FEATURES	Software features
+RELNOTES	Important release notes
+PLATFORM	Supported platforms and platform-specific notes
+DRIVES		Supported CD drives and drive-specific notes
+CDDB		Information about the Gracenote CDDB(R) service and its use
+PRIVACY		Gracenote CDDB(R) service privacy statement
+WEB		Xmcd's wwwWarp and other web-related information
+FAQ		Frequently Asked Questions, and answers
+CHANGES		Revision log
+COPYING		GNU General Public License (for xmcd and cda in general) (*)
+PORTING		Porting xmcd to other platforms (*)
+ACKS		Acknowledgements
+
+You can view these files directly, or use the xmcd's help system.
+The files denoted with (*) are included only in the source code
+distribution of xmcd.
+
+After installation, you can use the man(1) or xman(1) command to read
+the on-line manual entry for xmcd(1) and cda(1).  Also, you may also
+view the xmcd man page using the xmcd wwwWarp system on your web browser.
+
+This software is OSI Certified Open Source Software.  OSI Certified is
+a certification mark of the Open Source Initiative.  For information
+about the Open Source Initiative, visit: http://www.opensource.org
+
+This distribution is released under the GNU General Public License.
+Please see the COPYING file for details.  The GNU GPL does not apply
+to the Gracenote CDDB² interface library, nor does it apply to the
+LabelHack widget from John L. Cwikla.
+
+Xmcd and cda uses the LAME encoder software for CD ripping to the MP3
+format.  Similarly, the FAAC encoder software is used for the MPEG-2,
+MPEG-4 AAC and MP4 formats.  Please note that due to patents pertaining
+to the MP3, MPEG-2 and MPEG-4 technologies, it may be illegal to
+download and use the LAME and FAAC encoder software without incurring
+licensing royalties in some countries.  MP3 is currently licensed by
+Thomson (http://www.mp3licensing.com), while MPEG-2 and MPEG-4 AAC are
+licensed by Via Licensing Corporation (http://www.vialicensing.com),
+a subsidiary of Dolby Laboratories.  It is for this reason that LAME
+and FAAC are not included in xmcd's source code or pre-compiled binary
+kits.  You must download and install them separately in order to enable
+the MP3, AAC and MP4 file formats in xmcd.
+
+Likewise, xmcd and cda uses the Ogg Vorbis and FLAC encoder libraries
+for these respective formats.  However, since these formats are fully
+open, patent-and-royalty-free; the pre-compiled xmcd binary kits from
+the official xmcd web site have the appropriate libraries statically
+linked.  You do not need to download and install these libraries when
+using the xmcd pre-compiled binary kits to get enable these formats.
+
+If you are compiling xmcd from the source code, you must download and
+install the Ogg Vorbis and FLAC library packages.  See the INSTALL file
+for details.
+
+Please refer to the official xmcd "Downloads" web site for links to sites
+that offer source code and pre-compiled binaries of LAME, Ogg Vorbis,
+FLAC and FAAC.
+

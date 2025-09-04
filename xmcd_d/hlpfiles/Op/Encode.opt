@@ -1,0 +1,130 @@
+#
+# @(#)Encode.opt	7.18 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Encoding Method selector
+
+In "CDDA save to file" and "CDDA pipe to program" modes,
+if the output is set to a compressed format, then this
+menu allows you to set some related parameters.
+
+In lossy formats such as MP3, Ogg Vorbis, AAC and MP4,
+audio information is selectively dropped, based on
+psycho-acoustical models such that very high compression
+can be achieved while the perceived sound quality is
+minimally affected.
+
+In lossless formats such as FLAC, no audio information
+is dropped, so the result is not as highly compressed
+as the lossy formats, but sound quality is fully
+preserved.  However, since the format is tailored for
+audio, it is more effective than generic data
+compression tools such as GNU zip.
+
+In either case, the process of compressing the CD audio
+is called "encoding".
+
+For lossy formats, you can specify the audio quality
+level desired.  The higher the quality, the less
+information is dropped and the larger the output data
+(file size or streaming bandwidth) would be.  The
+quality level is commonly expressed in terms of "bitrate"
+in kilobits per second (kb/s).
+
+The following describes the encoding concepts that the
+encoder operates in.
+
+CBR (constant bitrate)
+
+   In this mode, the encoding is done with a single,
+   unchanging bitrate.  This is supported by the MP3
+   format.  You can choose the bitrate using the "Bitrate"
+   menu.  The higher you set the bitrate, the more you
+   trade increased file size in favor of quality.
+   Virtually all MP3 players support CBR encoded files.
+
+VBR (variable bitrate)
+
+   In this mode, the encoding is done with adaptive,
+   constantly changing bitrates.  The encoder optimizes
+   the bitrate on-the-fly to maximize the quality of
+   the audio while keeping file size to a minimum.
+   Instead of specifying a bitrate to which the audio
+   data is to be encoded to, a "Quality factor" slider
+   is provided to alter the desired quality.  The
+   Ogg Vorbis, AAC and MP4 formats are always VBR.
+   You may also encode to MP3 format in VBR mode, and
+   this is supported by many players.
+
+   For MP3 and Ogg Vorbis, you can optionally specify a
+   lower and upper bitrate boundary to be applied by the
+   encoder using the "Min" and "Max" bitrate menus.
+
+ABR (average bitrate)
+
+   In this method, varying bitrates are used similar
+   to the VBR methods.  However, instead of specifying
+   a "Quality factor", you choose a bitrate to which
+   the encoder will use for an average value.
+
+   This is supported in MP3, Ogg Vorbis, AAC and MP4
+   formats.  For MP3 and Ogg Vorbis, you may also
+   optionally choose lower and upper bitrate limits just
+   like in the VBR mode.
+
+You can choose the encoding method using this menu.  The
+methods are format-specific, as described below:
+
+For MP3, the modes are as follows:
+   Mode 0		CBR
+   Mode 1		VBR, old algorithm
+   Mode 2		VBR, new algorithm (faster)
+   Mode 3		ABR
+
+For Ogg Vorbis and MP4, all modes are VBR, as follows:
+   Mode 0, 3	ABR
+   Mode 1, 2	Use a quality factor
+
+For FLAC, the modes are as follows:
+   Mode 0		None
+   Mode 1		Enable exhaustive LP quantization
+		coefficient search
+   Mode 2		Enable encoding verification
+   Mode 3		Enable both 1 and 2
+
+For AAC, all modes are VBR, as follows:
+   Mode 0		ABR, MPEG-2
+   Mode 1		Use a quality factor, MPEG-2
+   Mode 2		Use a quality factor, MPEG-4
+   Mode 3		ABR, MPEG-4
+
+   At the same bitrate or quality factor, there is no
+   sound quality difference between MPEG-2 and MPEG-4,
+   but some players support only one of these versions.
+
+For AAC and MP4, the bitrates selected in the bitrate
+menus are double the actual bitrate (e.g., if you
+select 128kbps, the actual bitrate used will be 64kbps).
+
+If you change the settings of these controls, they will
+take effect on the next "play" session.
+

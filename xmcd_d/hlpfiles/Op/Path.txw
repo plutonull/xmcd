@@ -1,0 +1,84 @@
+#
+# @(#)Path.txw	7.15 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Output File Path Template
+
+This text field allows you to set the file name
+template that the audio output file name(s) will
+be constructed from.  This is used with the
+"CDDA save-to-file" mode.
+
+The following special tokens in the output file
+path template will be recognized by xmcd and
+replaced with the appropriate strings:
+
+    %A	Album artist
+    %D	Album title
+    %R	Track artist
+    %T	Track title
+    %B	Album artist and title (similar to %A-%D)
+    %#	Track number
+    %X	Program name ("xmcd")
+    %V	Program version
+    %N	Your login name
+    %~	Your home directory
+    %H	The system's host name
+    %L	The xmcd library directory
+    %S	The xmcd local discography directory
+    %C	The primary music genre/subgenre
+    %I	The xmcd disc identifier code
+    %a	"Reduced" version of %A
+    %d	"Reduced" version of %D
+    %r	"Reduced" version of %R
+    %t	"Reduced" version of %T
+    %b	"Reduced" version of %B
+
+"Reduced" means all punctuations deleted, and any
+words in the excludeWords list are also excluded.
+
+Adding %R, %T, $# or their "reduced" counterparts
+will automatically enable File-per-track mode.
+Conversely, the File-per-track mode will be
+automatically disabled if none of these tokens are
+present in the template string.
+
+Changing the File-per-track setting (by clicking
+on the "File per track" button) will change the
+default template.
+
+If the file name you entered does not have the
+proper file type postfix (i.e., ".wav"), xmcd
+will automatically append it for you.  Also,
+if the "File-per-track" button is enabled, xmcd
+will write a separate file for each track.
+
+If the "Underscore subst" toggle button is enabled,
+space characters in the path will be replaced with
+underscores '_'.  This is to make the file names
+easier to manipulate when typed in a UNIX shell.
+
+When a "CDDA save-to-file" operation is in progress,
+you may click on the "Expand" button to view the
+actual "expanded" file path name that xmcd is writing
+to.
+

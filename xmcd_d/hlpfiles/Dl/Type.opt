@@ -1,0 +1,51 @@
+#
+# @(#)Type.opt	6.10 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Disc List Type Selector Menu
+
+This pop-up menu allows you to select the type of
+information to display in the disc list window.
+
+History:
+   A chronological history of the CD titles that you
+   used with xmcd.  The date and time that the disc
+   information was loaded, as well as the disc artist
+   and title information is displayed.  The most
+   recently used CD is at the top of the list.
+
+CD changer:
+   If you have a multi-disc changer, this would
+   display the disc artist/title information of the
+   CD in each "slot".  The information for a slot
+   is displayed only if that CD has been loaded once.
+   Also, on many changers the information for a
+   particular slot may become stale, if that CD
+   was removed without using xmcd's eject button.
+
+   You may use the "Re-scan" button to make xmcd
+   load every disc to update the information for all
+   slots.
+
+   On a single-disc player, only one entry will be
+   displayed in this mode.
+

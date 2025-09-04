@@ -1,0 +1,280 @@
+/*
+ * @(#)Imakefile	6.82 04/03/25
+ *
+ * Imakefile for cda
+ *
+ *	cda - Command-line CD Audio Player/Ripper
+ *
+ *   Copyright (C) 1993-1999  Ti Kan
+ *   E-mail: xmcd@amb.org
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+
+CFLAGS+=-ansi
+/**** Optional defines:  Change as you see fit. *****************************
+ *
+ * -DNO_STDLIB_H
+ *	The system does not support <stdlib.h>
+ *
+ * -DNO_UNISTD_H
+ *	The system does not support <unistd.h>
+ *
+ * -DHAS_ICONV_H (Linux only)
+ *	The system has <iconv.h> and the iconv(3) library call.
+ *
+ * -DHAS_NCURSES_H (BSD/OS only)
+ *	The system has <ncurses.h> and the ncurses library.
+ *
+ * -D_IRIX6
+ *	This is a SGI IRIX 6.x system.
+ *
+ * -D_SCO5
+ *	This is a SCO Open Server Release 5 system.
+ *
+ * All other platform-specific feature setup are in common_d/config.h
+ *
+ */
+#if defined(LinuxArchitecture)
+/* The following conditional is GNU-make specific */
+ifeq "$(wildcard /usr/include/iconv.h)" "/usr/include/iconv.h"
+DEFINES= -DHAS_ICONV_H
+endif
+#else
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+.if exists(/usr/include/ncurses.h)
+DEFINES= -DHAS_NCURSES_H
+.endif
+#else
+#if defined(SGIArchitecture) && OSMajorVersion >= 6
+DEFINES= -D_IRIX6
+#else
+#if (defined(SCOArchitecture) || defined(i386ScoArchitecture)) && \
+    (defined(i386Sco325Architecture) || OSMajorVersion >= 5)
+DEFINES= -D_SCO5
+#else	/* all others */
+DEFINES=
+#endif	/* SCO5 */
+#endif	/* IRIX6 */
+#endif	/* BSD/OS */
+#endif	/* Linux */
+
+
+/*
+ * POSIX threads stuff
+ */
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+THREADS_CFLAGS= -pthread
+THREADS_LDFLAGS= -pthread
+#endif
+
+#if defined(USLArchitecture) && defined(i386Architecture)
+/* UnixWare 7, Caldera Open UNIX 8 only.  UnixWare 2.x, UnixWare 1.x,
+ * SVR4.2/386 and SVR4.0/386 please comment out the following two lines.
+ */
+THREADS_CFLAGS= -Kpthread
+THREADS_LDFLAGS= -Kpthread
+#endif
+
+#if defined(SunArchitecture) && OSMajorVersion >= 5
+/* Solaris 2.5 and later */
+THREADS_DEFINES= -D_REENTRANT
+THREADS_LIBS= -lpthread
+#endif
+
+#if defined(SGIArchitecture) && HasPosixThreads
+/* IRIX 6.3 or later */
+THREADS_LIBS= -lpthread
+#endif
+
+#if defined(AIXArchitecture) && \
+    ((OSMajorVersion == 4 && OSMinorVersion >= 1) || OSMajorVersion > 4)
+/* AIX 4.1 and later */
+THREADS_DEFINES= -D_THREAD_SAFE=1
+THREADS_LIBS= -lpthreads
+#endif
+
+#if defined(HPArchitecture) && OSMajorVersion >= 11
+/* HP-UX 11.0 and later */
+THREADS_DEFINES= -D_POSIX_C_SOURCE=199506
+THREADS_LIBS= -lpthread
+#endif
+
+#if defined(LinuxArchitecture) && HasPosixThreads
+/* Linux with glibc 2.1 or later */
+THREADS_DEFINES= -D_REENTRANT
+THREADS_LIBS= -lpthread
+#endif
+
+#if defined(FreeBSDArchitecture) && HasPosixThreads
+/* FreeBSD 4.x and later */
+THREADS_CFLAGS= -pthread
+THREADS_LDFLAGS= -pthread
+#endif
+
+
+/*
+ * Add standard and local include paths
+ */
+#if (defined(SunArchitecture) && OSMajorVersion == 4)
+STD_INCLUDES=-I/usr/5include
+#else
+#if defined(LinuxArchitecture)
+STD_INCLUDES=-I/usr/include/ncurses
+#else	/* all others */
+STD_INCLUDES=
+#endif	/* LinuxArchitecture */
+#endif	/* SunArchitecture */
+
+INCLUDES=-I..
+
+
+/*
+ * Add needed libraries
+ */
+CDDBLIB= -L../cddb_d -lcddb
+LOCAL_LIBDIR= -L/usr/freeware/lib32 -L/usr/local/lib
+VORBLIB= -lvorbisenc -lvorbis -logg
+FLACLIB= -lFLAC
+ENCLIBS= $(LOCAL_LIBDIR) $(FLACLIB) $(VORBLIB)
+
+
+#if defined(LinuxArchitecture)
+/* On Linux the -lc is needed to prevent potential internal symbol
+ * name clashes between libc and libstdc++.
+ */
+SYS_LIBRARIES= -lc $(CDDBLIB) $(ENCLIBS) -lm
+
+/* The following conditional is GNU-make specific:
+ * Try to auto-detect ALSA headers and library.
+ */
+alsalib_incl=	$(wildcard /usr/include/alsa/asoundlib.h)
+alsalib_incl+=	$(wildcard /usr/local/include/alsa/asoundlib.h)
+ifneq "$(strip $(alsalib_incl))" ""
+SYS_LIBRARIES+= -lasound -ldl
+endif
+#else
+#if (defined(SunArchitecture) && OSMajorVersion >= 5)
+SYS_LIBRARIES= $(CDDBLIB) $(ENCLIBS) -lm -lposix4
+#else
+#if defined(OsfArchitecture) || defined(OSF1Architecture)
+SYS_LIBRARIES= $(CDDBLIB) $(ENCLIBS) -L/usr/ccs/lib -lmme -liconv -lrt -lm
+#else
+#if defined(AIXArchitecture)
+SYS_LIBRARIES= $(CDDBLIB) $(ENCLIBS) -liconv -lm
+#else
+#if defined(SGIArchitecture)
+SYS_LIBRARIES= $(CDDBLIB) $(ENCLIBS) -laudio -lmediad -lm
+#else
+SYS_LIBRARIES= $(CDDBLIB) $(ENCLIBS) -lm
+#endif	/* SGI Irix */
+#endif	/* AIX */
+#endif  /* OSF1 */
+#endif	/* Sun5 */
+#endif	/* Linux */
+
+#if (defined(SunArchitecture) && OSMajorVersion == 4)
+LOCAL_LIBRARIES=-L/usr/5lib -lcurses
+#else
+#if defined(LinuxArchitecture)
+LOCAL_LIBRARIES=-lncurses
+#else
+#if defined(FreeBSDArchitecture)
+LOCAL_LIBRARIES=-lncurses -lmytinfo
+.if exists(/usr/include/camlib.h)
+LOCAL_LIBRARIES+= -lcam
+.endif
+#else
+#if defined(NetBSDArchitecture)
+LOCAL_LIBRARIES=
+#else
+#if defined(BSDOSArchitecture) || defined(__bsdi__)
+.if exists(/usr/include/ncurses.h)
+LOCAL_LIBRARIES=-lncurses
+.else
+LOCAL_LIBRARIES=
+.endif
+#else
+#if defined(OpenBSDArchitecture)
+LOCAL_LIBRARIES=-lncurses -ltermlib
+#else
+#if defined(UltrixArchitecture)
+LOCAL_LIBRARIES=-lcursesX
+#else
+#if defined(SNIArchitecture) 
+LOCAL_LIBRARIES=/usr/ccs/lib/libcurses.a
+#else
+#if defined(__QNX__)
+LOCAL_LIBRARIES=-lncurses
+#else
+LOCAL_LIBRARIES=-lcurses
+#endif	/* __QNX__ */
+#endif	/* SINIX */
+#endif	/* ultrix */
+#endif	/* OpenBSDArchitecture */
+#endif	/* BSD/OS */
+#endif	/* NetBSDArchitecture */
+#endif	/* FreeBSDArchitecture */
+#endif	/* LinuxArchitecture OpenBSDArchitecture */
+#endif	/* SunArchitecture */
+
+
+/*
+ * C Source files
+ */
+SRCS=	cda.c \
+	userreg.c \
+	visual.c
+
+
+/*
+ * Objects to build cda
+ */
+#if defined(__QNX__)
+OBJS=	cda.o \
+	userreg.o \
+	visual.o \
+	../cdinfo_d/cdinfo3r.lib \
+	../cddb_d/cddbkey3r.lib \
+	../libdi_d/di3r.lib \
+	../cdda_d/cdda3r.lib \
+	../common_d/util3r.lib
+#else
+OBJS=	cda.o \
+	userreg.o \
+	visual.o \
+	../cdinfo_d/libcdinfo.a \
+	../cddb_d/libcddbkey.a \
+	../libdi_d/libdi.a \
+	../cdda_d/libcdda.a \
+	../common_d/libutil.a
+#endif
+
+
+/*
+ * Build rule for cda
+ */
+#ifdef InstallProgram
+#undef InstallProgram
+#define InstallProgram(program, dest)
+#endif
+#ifdef InstallManPage
+#undef InstallManPage
+#define InstallManPage(program, dir)
+#endif
+ComplexProgramTarget(cda)
+
+

@@ -1,0 +1,49 @@
+#
+# @(#)Time.btn	6.17 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Time Display Mode Button
+
+Use this button to select the mode of the track and
+time displays on the Xmcd main window indicator area.
+The available modes are as follows:
+
+- elapse	Elapsed time of the current track
+- e-seg	Elapsed time of the segment (only
+	during segment play "a->b" mode)
+- e-disc	Elapsed time of the disc
+- r-trac	Remaining time of the current track
+- r-seg	Remaining time of the segment (only
+	during segment play "a->b" mode)
+- r-disc	Remaining time of the disc
+
+In r-disc mode, the Track Number Indicator shows the
+number of tracks remaining instead of the current track
+number.
+
+During program playback, the e-disc mode will display
+the total elapsed time of the program, and the r-disc
+mode will display the remaining time of the program.
+
+Select this button to change the display mode.  The
+current selected mode is shown in the Time Mode
+Indicator.

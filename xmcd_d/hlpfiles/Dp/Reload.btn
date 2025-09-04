@@ -1,0 +1,45 @@
+#
+# @(#)Reload.btn	6.17 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Re-Load CD Information Button
+
+Selecting this button will cause Xmcd to re-load the
+CD information associated with the currently loaded
+CD.  This may cause xmcd to query the CDDB service,
+if enabled, or load from the local CD information
+datastore.
+
+Normally, it is not necessary to use this function,
+as Xmcd automatically loads the CD Database entry
+when the CD is loaded.  This button forces a re-load
+of the database entry, and is useful in the following
+example scenarios:
+
+  - The previous load was not successful
+
+  - You have edited the loaded version of the database
+    entry, have not submitted it to the CDDB, and
+    want to discard your changes.
+
+This function is not available if there are is no CD
+loaded.

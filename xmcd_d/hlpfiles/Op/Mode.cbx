@@ -1,0 +1,104 @@
+#
+# @(#)Mode.cbx	7.15 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Playback Mode selector
+
+Select the playback mode desired.  The modes are described
+below:
+
+- Standard playback
+
+   This selects the standard mode.  When playing an
+   audio CD, the audio output is the analog "line out"
+   connection on the back of your CD drive.  There
+   should be an audio cable connecting this output to
+   your computer audio hardware CD input (or to an
+   externally amplfied speaker or stereo system).  The
+   audio output is also available at the CD drive's front
+   panel headphone connection, if so equipped.
+
+- CDDA playback
+
+   When playing a CD in this mode, xmcd extracts the CD
+   digital audio off the CD drive over the data cable
+   (SCSI or ATAPI/IDE).  Then, it writes the data to the
+   DSP (digital signal processor) device in your computer's
+   audio hardware for playback.  No signal is produced at
+   the line-out or headphone connections of the CD drive.
+
+   To use this mode, your system must be equipped with
+   audio DSP hardware capable of playing a 16-bit 44.1 kHz
+   stereo PCM audio stream.  Some systems have this on
+   the motherboard whereas others require an optional
+   plug-in card.  Your system kernel must also be
+   configured with an appropriate device driver for the
+   audio hardware.
+
+- CDDA save-to-file
+
+   In this mode, xmcd extracts the CD digital audio off
+   the CD drive over the data cable (SCSI or ATAPI/IDE).
+   Then, it writes the data into a file of your choosing
+   (in several selectable output data formats).
+
+- CDDA pipe-to-program
+
+   In this mode, xmcd extracts the CD digital audio off
+   the CD drive over the data cable (SCSI or ATAPI/IDE).
+   Then, it pipes the data to an external program that you
+   specify.  The audio stream format is selected as in
+   the CDDA save-to-file mode.  This mode can be used
+   with an external audio player or an MP3 encoder.  The
+   external program must be capable of accepting audio
+   data on its standard input.
+
+More than one of the three CDDA modes can be selected at
+the same time.  For example, if both the CDDA playback
+and the CDDA save-to-file buttons are selected, the two
+functions will be performed simultaneously.  Note that on
+most systems, only one program can access the system's
+DSP at a time, therefore you will likely not be able to
+select CDDA playback and CDDA pipe-to-program at the same
+time, where the external program is itself an audio player.
+
+You can only change the playback mode while the CD is
+not currently playing.
+
+Note that the CDDA modes are only supported on CD drives
+that provides this capability, and only on some OS and
+hardware platforms.  See the xmcd release notes for
+details.
+
+The CDDA modes imposes much higher system CPU loads
+than the standard mode, and requires a high performance
+computer system not laden with other CPU-intensive tasks
+in order to play smoothly without audible glitches and
+drop-outs.  This is more so if CDDA playback mode is
+combined with another CDDA mode simultaneously, and even
+more important when a generating a compressed audio file
+format.
+
+The default xmcd start-up mode can be altered via the
+playMode parameter in the device-specific configuration
+files.
+

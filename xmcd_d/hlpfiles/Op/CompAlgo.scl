@@ -1,0 +1,50 @@
+#
+# @(#)CompAlgo.scl	7.12 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Compression algorithm tuning
+
+This slider bar lets you tune the encoder's performance.
+
+This slider has an effect only in "CDDA save to file"
+and "CDDA pipe to program" modes, as follows:
+
+For MP3, you may choose a tradeoff between audio quality
+and encoding speed.  At a setting of 10, maximum quality
+is achieved at the expense of encoding speed.  The fastest
+encoding speed is at a setting of 1 with a corresponding
+loss in quality.
+
+For FLAC, you may choose a tradeoff between compression
+and encoding speed.  At a setting of 10, maximum
+compression is achieved at the expense of encoding speed.
+The fastest encoding speed is at a setting of 1.  There
+is no audio quality difference between the settings.
+
+For AAC and MP4, a setting of 10 enables temporal noise
+shaping (TNS).  All other values turns off TNS.
+
+For all other formats, this parameter has no effect.
+
+If you change the setting of this slider, it will take
+effect on the next "play" session.
+

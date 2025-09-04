@@ -1,0 +1,67 @@
+#
+#   @(#)Makefile.std	7.14 04/04/21
+#
+#   Makefile for cdinfo
+#
+#	cdinfo  - CD Information Management Library
+#
+#   NOTE: You should use this only if you don't have imake!
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+include ../make.inc
+
+LIBCDINFO=libcdinfo.a
+
+SRCS=	cdinfo_i.c \
+	cdinfo_x.c \
+	hist.c \
+	motd.c
+
+OBJS=	cdinfo_i.o \
+	cdinfo_x.o \
+	hist.o \
+	motd.o
+
+all: $(LIBCDINFO)
+
+$(LIBCDINFO): $(OBJS)
+	$(RM) $@
+	$(AR) $@ $(OBJS)
+	$(RANLIB) $@
+
+Makefile:
+	@echo "	cdinfo_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) *.o *.a core .emacs_* tags TAGS
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

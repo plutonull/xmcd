@@ -1,0 +1,49 @@
+#
+# @(#)Genre.opt	7.9 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Music Genre Selector Menus
+
+This feature is useful for CDs that have different
+genres for each track.
+
+There are two sets of two menus that lets you
+define the music genre of this track.  "Genre 1"
+is the primary genre of the track, and "Genre 2"
+is the secondary genre.  Some music span more
+than a single genre and this provides a way to
+indicate that.
+
+Moreover, each of these has a "main genre" (left
+side of the arrow) and a "sub-genre" (right side
+of the arrow).  This allows you to select a general
+genre and a more specific sub-genre.
+
+When running with the CDDB² service, the list of
+genres is downloaded from the CDDB server.  Hence,
+if you do not have CDDB² service enabled, or if xmcd
+cannot establish a successful CD information download
+from CDDB², there may not be any regions available in
+the menu (except "None").
+
+With the "classic" CDDB service, the list of genres
+are fixed locally in the CDDB library.

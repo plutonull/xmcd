@@ -1,0 +1,117 @@
+#
+#   @(#)Makefile.std	6.29 04/03/05
+#
+#   Makefile for libdi
+#
+#	libdi - CD Audio Device Interface Library
+#
+#   NOTE: You should use this only if you don't have imake!
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+include ../make.inc
+
+LIBDI=	libdi.a
+
+SRCS=	libdi.c \
+	scsipt.c \
+	os_aix.c \
+	os_aux.c \
+	os_bsdi.c \
+	os_dec.c \
+	os_dgux.c \
+	os_fnbsd.c \
+	os_hpux.c \
+	os_irix.c \
+	os_linux.c \
+	os_news.c \
+	os_sco.c \
+	os_sinix.c \
+	os_sun.c \
+	os_svr4.c \
+	os_vms.c \
+	os_demo.c \
+	vu_chin.c \
+	vu_hita.c \
+	vu_nec.c \
+	vu_pana.c \
+	vu_pion.c \
+	vu_sony.c \
+	vu_tosh.c \
+	aixioc.c \
+	fbioc.c \
+	slioc.c \
+	cdsim.c
+
+OBJS=	libdi.o \
+	scsipt.o \
+	os_aix.o \
+	os_aux.o \
+	os_bsdi.o \
+	os_dec.o \
+	os_dgux.o \
+	os_fnbsd.o \
+	os_hpux.o \
+	os_irix.o \
+	os_linux.o \
+	os_news.o \
+	os_sco.o \
+	os_sinix.o \
+	os_sun.o \
+	os_svr4.o \
+	os_vms.o \
+	os_demo.o \
+	vu_chin.o \
+	vu_hita.o \
+	vu_nec.o \
+	vu_pana.o \
+	vu_pion.o \
+	vu_sony.o \
+	vu_tosh.o \
+	aixioc.o \
+	fbioc.o \
+	slioc.o \
+	cdsim.o
+
+all: $(LIBDI)
+
+$(LIBDI): $(OBJS)
+	$(RM) $@
+	$(AR) $@ $(OBJS)
+	$(RANLIB) $@
+
+Makefile:
+	@echo "	libdi_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) *.o *.a core .emacs_* tags TAGS
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

@@ -1,0 +1,55 @@
+#
+# @(#)PgmSeq.txw	6.16 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Program Sequence
+
+This text field displays the current program play
+track sequence.  You may use the "Add To Program"
+and "Clear Program" buttons to add and clear program
+tracks, or edit the sequence directly in this text
+field.
+
+To start playing the program sequence, select the
+Play/Pause button in the Xmcd main window.
+
+When editing the program sequence directly, only
+digits and the comma "," or space "" characters are
+allowed.  Any other key input will be rejected.
+The comma and space characters are used as separators
+between track numbers.  No other error checking is
+made to the program sequence when you edit.
+
+When you add a track program, shuffle and segment play
+modes are disengaged.
+
+If a program sequence exists in this text field when
+the "Save" button is selected, it will be saved to
+your user-specific program datastore, so that the
+next time you load this CD, the same program will
+automatically become active.  If you select the
+"Clear" button or erase all tracks from the program
+sequence field, the saved program will also be
+deleted.
+
+On a multi-disc changer, you can only define a
+program for the currently loaded disc.

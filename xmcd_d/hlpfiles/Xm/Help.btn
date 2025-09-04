@@ -1,0 +1,52 @@
+#
+# @(#)Help.btn	6.30 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Xmcd Help and Documentation
+
+Online Help:
+   On-line help is available for all Xmcd pushbuttons,
+   controls, indicators, text entry areas, and selection
+   lists.  To obtain help, position your mouse cursor
+   over any Xmcd feature, and click the mouse button 3.
+   This help window will appear, and descriptions pertaining
+   to that feature will be displayed.
+
+Xmcd Documentation:
+   You can also read Xmcd documentation files using the
+   help system.  You select the file to read using the
+   "Topic" menu located on the top of this Help window.
+   In particular, please read the "CDDB" file about the
+   Gracenote CDDB(tm) disc recognition service.
+
+Web Help:
+   You can use xmcd's wwwWarp feature to visit the Xmcd
+   official web site.  Or, you can manually point your
+   web browser at:
+
+      http://www.amb.org/xmcd/
+
+E-mail:
+   Electronic mail to the author of xmcd can be sent to:
+
+      xmcd@amb.org
+

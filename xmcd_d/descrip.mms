@@ -1,0 +1,246 @@
+#
+#   @(#)descrip.mms	1.11 04/04/20
+#
+#   OpenVMS MMS "Makefile" for xmcd
+#
+#	xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Contributing author: Hartmut Becker
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+cc= cc
+cflags= /stand=rel/extern=strict/include=("../")
+objects= CALLBACK,CDFUNC,COMMAND,DBPROG,GEOM,HELP,HOTKEY,MAIN,USERREG,-
+	WIDGET,WWWWARP
+
+xmcd.exe : xmcd.olb, -
+		[-.labelh_d]liblabelh.olb, -
+		[-.cdinfo_d]libcdinfo.olb, -
+		[-.cddb_d]libcddb.olb, -
+		[-.libdi_d]libdi.olb, -
+		[-.cdda_d]libcdda.olb, -
+		[-.common_d]libutil.olb,-
+		xmcd.opt
+	$ link/exe=$*/map=$*/cross/full/threads_enable=upcalls -
+		[]main.obj, -
+		[]xmcd.olb/lib,-
+		[-.labelh_d]liblabelh.olb/lib,-
+		[-.cdinfo_d]libcdinfo.olb/lib,-
+		[-.cddb_d]libcddb.olb/lib,-
+		[-.libdi_d]libdi.olb/lib,-
+		[-.cdda_d]libcdda.olb/lib,-
+		[-.common_d]libutil.olb/lib,-
+		[]xmcd/opt
+
+xmcd.opt :
+	$ open/write out $@
+	$ write out "! mmov (aka mme)
+	$ write out "sys$sysdevice:[sys0.syscommon.syslib]mmov.olb/lib
+	$ write out "sys$share:cma$open_rtl.exe/share
+	$ write out "! others
+	$ write out "sys$share:decw$xlibshr.exe/share
+	$ write out "sys$share:decw$xtlibshrr5.exe/share
+	$ write out "sys$share:decw$xmulibshrr5.exe/share
+	$ write out "sys$share:decw$xmlibshr12.exe/share
+	$ write out "sys$share:decw$bkrshr12.exe/share
+	$ write out "sys$share:decw$dxmlibshr12.exe/share
+	$ write out "sys$share:decw$mrmlibshr12.exe/share
+	$ write out "sys$share:ipc$share.exe/share
+	$ close out
+
+xmcd.olb : xmcd($(objects))
+	! done
+
+xmcd(CALLBACK) : CALLBACK.obj
+xmcd(CDFUNC) : CDFUNC.obj
+xmcd(COMMAND) : COMMAND.obj
+xmcd(DBPROG) : DBPROG.obj
+xmcd(GEOM) : GEOM.obj
+xmcd(HELP) : HELP.obj
+xmcd(HOTKEY) : HOTKEY.obj
+xmcd(MAIN) : MAIN.obj
+xmcd(USERREG) : USERREG.obj
+xmcd(WIDGET) : WIDGET.obj
+xmcd(WWWWARP) : WWWWARP.obj
+
+CALLBACK.OBJ :	CALLBACK.C
+CALLBACK.OBJ :	[-.COMMON_D]APPENV.H
+CALLBACK.OBJ :	XMCD.H
+CALLBACK.OBJ :	[-.LABELH_D]LABELH.H
+CALLBACK.OBJ :	WIDGET.H
+CALLBACK.OBJ :	CALLBACK.H
+CALLBACK.OBJ :	[-.LIBDI_D]LIBDI.H
+CALLBACK.OBJ :	[-.CDINFO_D]CDINFO.H
+CALLBACK.OBJ :	DBPROG.H
+CALLBACK.OBJ :	WWWWARP.H
+CALLBACK.OBJ :	USERREG.H
+CALLBACK.OBJ :	CDFUNC.H
+CALLBACK.OBJ :	HELP.H
+CALLBACK.OBJ :	HOTKEY.H
+CDFUNC.OBJ :	CDFUNC.C
+CDFUNC.OBJ :	[-.COMMON_D]APPENV.H
+CDFUNC.OBJ :	[-.COMMON_D]VERSION.H
+CDFUNC.OBJ :	[-.COMMON_D]UTIL.H
+CDFUNC.OBJ :	XMCD.H
+CDFUNC.OBJ :	[-.LABELH_D]LABELH.H
+CDFUNC.OBJ :	WIDGET.H
+CDFUNC.OBJ :	CALLBACK.H
+CDFUNC.OBJ :	[-.LIBDI_D]LIBDI.H
+CDFUNC.OBJ :	[-.CDINFO_D]CDINFO.H
+CDFUNC.OBJ :	DBPROG.H
+CDFUNC.OBJ :	WWWWARP.H
+CDFUNC.OBJ :	GEOM.H
+CDFUNC.OBJ :	HOTKEY.H
+CDFUNC.OBJ :	HELP.H
+CDFUNC.OBJ :	CDFUNC.H
+CDFUNC.OBJ :	[-.CDDA_D]CDDA.H
+COMMAND.OBJ :	COMMAND.C
+COMMAND.OBJ :	[-.COMMON_D]APPENV.H
+COMMAND.OBJ :	[-.COMMON_D]VERSION.H
+COMMAND.OBJ :	[-.COMMON_D]UTIL.H
+COMMAND.OBJ :	[-.LIBDI_D]LIBDI.H
+COMMAND.OBJ :	[-.CDDA_D]CDDA.H
+COMMAND.OBJ :	[-.CDINFO_D]CDINFO.H
+COMMAND.OBJ :	[-.CDINFO_D]MOTD.H
+COMMAND.OBJ :	XMCD.H
+COMMAND.OBJ :	[-.LABELH_D]LABELH.H
+COMMAND.OBJ :	WIDGET.H
+COMMAND.OBJ :	CDFUNC.H
+COMMAND.OBJ :	DBPROG.H
+COMMAND.OBJ :	COMMAND.H
+DBPROG.OBJ :	DBPROG.C
+DBPROG.OBJ :	[-.COMMON_D]APPENV.H
+DBPROG.OBJ :	[-.COMMON_D]UTIL.H
+DBPROG.OBJ :	XMCD.H
+DBPROG.OBJ :	[-.LABELH_D]LABELH.H
+DBPROG.OBJ :	WIDGET.H
+DBPROG.OBJ :	[-.LIBDI_D]LIBDI.H
+DBPROG.OBJ :	[-.CDINFO_D]CDINFO.H
+DBPROG.OBJ :	[-.CDINFO_D]MOTD.H
+DBPROG.OBJ :	CALLBACK.H
+DBPROG.OBJ :	CDFUNC.H
+DBPROG.OBJ :	WWWWARP.H
+DBPROG.OBJ :	USERREG.H
+DBPROG.OBJ :	DBPROG.H
+GEOM.OBJ :	GEOM.C
+GEOM.OBJ :	[-.COMMON_D]APPENV.H
+GEOM.OBJ :	[-.COMMON_D]UTIL.H
+GEOM.OBJ :	XMCD.H
+GEOM.OBJ :	[-.LABELH_D]LABELH.H
+GEOM.OBJ :	WIDGET.H
+GEOM.OBJ :	GEOM.H
+HELP.OBJ :	HELP.C
+HELP.OBJ :	[-.COMMON_D]APPENV.H
+HELP.OBJ :	[-.COMMON_D]UTIL.H
+HELP.OBJ :	[-.COMMON_D]VERSION.H
+HELP.OBJ :	XMCD.H
+HELP.OBJ :	[-.LABELH_D]LABELH.H
+HELP.OBJ :	WIDGET.H
+HELP.OBJ :	CALLBACK.H
+HELP.OBJ :	CDFUNC.H
+HELP.OBJ :	HELP.H
+HOTKEY.OBJ :	HOTKEY.C
+HOTKEY.OBJ :	[-.COMMON_D]APPENV.H
+HOTKEY.OBJ :	[-.COMMON_D]UTIL.H
+HOTKEY.OBJ :	XMCD.H
+HOTKEY.OBJ :	[-.LABELH_D]LABELH.H
+HOTKEY.OBJ :	WIDGET.H
+HOTKEY.OBJ :	CDFUNC.H
+HOTKEY.OBJ :	HOTKEY.H
+MAIN.OBJ :	MAIN.C
+MAIN.OBJ :	[-.COMMON_D]APPENV.H
+MAIN.OBJ :	[-.COMMON_D]UTIL.H
+MAIN.OBJ :	XMCD.H
+MAIN.OBJ :	[-.LABELH_D]LABELH.H
+MAIN.OBJ :	RESOURCE.H
+MAIN.OBJ :	WIDGET.H
+MAIN.OBJ :	CALLBACK.H
+MAIN.OBJ :	CDFUNC.H
+MAIN.OBJ :	COMMAND.H
+MAIN.OBJ :	[-.LIBDI_D]LIBDI.H
+MAIN.OBJ :	[-.CDDA_D]CDDA.H
+USERREG.OBJ :	USERREG.C
+USERREG.OBJ :	[-.COMMON_D]APPENV.H
+USERREG.OBJ :	[-.COMMON_D]UTIL.H
+USERREG.OBJ :	[-.LIBDI_D]LIBDI.H
+USERREG.OBJ :	[-.CDINFO_D]CDINFO.H
+USERREG.OBJ :	XMCD.H
+USERREG.OBJ :	[-.LABELH_D]LABELH.H
+USERREG.OBJ :	WIDGET.H
+USERREG.OBJ :	CDFUNC.H
+USERREG.OBJ :	DBPROG.H
+USERREG.OBJ :	HELP.H
+USERREG.OBJ :	USERREG.H
+WIDGET.OBJ :	WIDGET.C
+WIDGET.OBJ :	[-.COMMON_D]APPENV.H
+WIDGET.OBJ :	XMCD.H
+WIDGET.OBJ :	[-.LABELH_D]LABELH.H
+WIDGET.OBJ :	WIDGET.H
+WIDGET.OBJ :	CALLBACK.H
+WIDGET.OBJ :	[-.LIBDI_D]LIBDI.H
+WIDGET.OBJ :	[-.CDINFO_D]CDINFO.H
+WIDGET.OBJ :	DBPROG.H
+WIDGET.OBJ :	WWWWARP.H
+WIDGET.OBJ :	USERREG.H
+WIDGET.OBJ :	CDFUNC.H
+WIDGET.OBJ :	GEOM.H
+WIDGET.OBJ :	HELP.H
+WIDGET.OBJ :	HOTKEY.H
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]MODE.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]LOCK.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]REPEAT.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]SHUFFLE.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]EJECT.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]QUIT.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]DBPROG.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]WORLD.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]OPTIONS.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]TIME.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]AB.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]SAMPLE.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]KEYPAD.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]PLAYPAUS.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]STOP.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]PREVDISC.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]NEXTDISC.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]PREVTRK.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]NEXTTRK.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]PREVIDX.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]NEXTIDX.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]REW.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]FF.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]LOGO.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]XMCD.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]ABOUT.XBM
+WIDGET.OBJ :	[-.XMCD_D.BITMAPS]CDDBLOGO.XBM
+WWWWARP.OBJ :	WWWWARP.C
+WWWWARP.OBJ :	[-.COMMON_D]APPENV.H
+WWWWARP.OBJ :	[-.COMMON_D]UTIL.H
+WWWWARP.OBJ :	[-.LIBDI_D]LIBDI.H
+WWWWARP.OBJ :	XMCD.H
+WWWWARP.OBJ :	[-.LABELH_D]LABELH.H
+WWWWARP.OBJ :	WIDGET.H
+WWWWARP.OBJ :	[-.CDINFO_D]CDINFO.H
+WWWWARP.OBJ :	[-.CDINFO_D]MOTD.H
+WWWWARP.OBJ :	CALLBACK.H
+WWWWARP.OBJ :	CDFUNC.H
+WWWWARP.OBJ :	DBPROG.H
+WWWWARP.OBJ :	HOTKEY.H
+WWWWARP.OBJ :	GEOM.H
+WWWWARP.OBJ :	USERREG.H
+WWWWARP.OBJ :	WWWWARP.H

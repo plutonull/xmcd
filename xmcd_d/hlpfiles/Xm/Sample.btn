@@ -1,0 +1,39 @@
+#
+# @(#)Sample.btn	6.14 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Sample Mode Button
+
+Select this button to cause Xmcd to play only a few
+seconds of each track.  If audio playback is already
+in progress, the sample will start on the next track,
+except if the current track is the last track, then
+the sample will start from the first track.
+
+During sample playback mode, the Play Mode Indicator
+indicates the label "sample".
+
+To cancel sample playback, select this button a
+second time, or select the Play Pause button.
+
+You cannot use the Sample feature in Shuffle mode,
+Program mode, or when the playback is paused.

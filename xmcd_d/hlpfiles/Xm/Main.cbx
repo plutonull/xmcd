@@ -1,0 +1,92 @@
+#
+# @(#)Main.cbx	6.26 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Mode Selector
+
+There are three toggle buttons in the Mode Selector
+box, described as follows:
+
+- Tray Lock Selector
+
+   This button allows you to lock and unlock the CD tray
+   when a disc is loaded.  When locked, a disc cannot be
+   ejected by pressing the Eject button on the CD drive
+   itself.  This is useful to prevent someone from
+   inadvertently ejecting the disc.
+
+   The Eject button on the Xmcd main window will still
+   function normally even when the tray is locked.
+
+   This feature may not function on certain CD drives,
+   notably those that do not use a motorized eject
+   mechanism.
+
+- Repeat Mode Selector
+
+   This button allows you to enable or disable the
+   Repeat mode. When Repeat mode is enabled, Xmcd will
+   do the following:
+
+  * If normal playback is finished, Repeat mode will
+    cause the playback to commence again.  On a
+    multi-disc changer, if the "multi play" option is
+    active, all discs will be repeated.
+
+  * On a multi-disc changer, if repeat and shuffle modes
+    are both enabled, and the "multi play" option is
+    active, all discs will be repeated, with each disc
+    played in shuffle mode.
+
+  * If Shuffle playback is finished, Repeat mode will
+    cause a new shuffle sequence to be generated and
+    played.
+
+  * If Program playback is finished, Repeat mode will
+    play the program again.
+
+  * If Segment Play mode is active, Repeat mode will
+    cause the segment to be played repeatedly.
+
+   The repeat operation will continue indefinitely until
+   the Repeat mode is disabled by selecting this button.
+
+   To repeat a single track, enter it as the only track
+   in a play program and start program playback with
+   Repeat mode enabled.  Or simply enable Repeat mode
+   and double-click on the desired track in the CD
+   Information / Program Editor window's track list.
+
+- Shuffle Mode Selector
+
+   This button allows you to enable or disable the Shuffle
+   mode. When Shuffle mode is enabled, Xmcd will play all
+   the tracks on the CD in non-repeating random order.
+
+   Shuffle mode will auto-disengage if you enter Program
+   Play mode.
+
+   Shuffle is done only within the current CD.  You cannot
+   shuffle across multiple CDs on a multi-disc changer.
+   However, if the "multi play" option is active, all discs
+   will be played in order, with the tracks shuffled.
+

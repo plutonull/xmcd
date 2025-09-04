@@ -1,0 +1,1079 @@
+.\"
+.\" @(#)cda.man	7.116 04/04/21
+.\"
+.\"   cda - Command-line CD Audio Player/Ripper
+.\"
+.\"   Copyright (C) 1993-2004  Ti Kan
+.\"   E-mail: xmcd@amb.org
+.\"
+.\"   This program is free software; you can redistribute it and/or modify
+.\"   it under the terms of the GNU General Public License as published by
+.\"   the Free Software Foundation; either version 2 of the License, or
+.\"   (at your option) any later version.
+.\"
+.\"   This program is distributed in the hope that it will be useful,
+.\"   but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"   GNU General Public License for more details.
+.\"
+.\"   You should have received a copy of the GNU General Public License
+.\"   along with this program; if not, write to the Free Software
+.\"   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.TH CDA 1 "04/04/21" "v3.3.2"
+
+.SH "NAME"
+cda \- Compact disc digital audio player utility
+
+.SH "SYNOPSIS"
+.B cda
+.nh
+[-\fIdev\fP device] [-\fIbatch\fP] [-\fIdebug\fP level#]
+[-\fIonline\fP | -\fIoffline\fP] \fIcommand\fP
+
+.SH "DESCRIPTION"
+.I Cda
+is a program that allows the use of the CD-ROM, CD-R, CD-RW or DVD
+drive as a full-featured stereo compact-disc player and "ripper"
+from the shell command line.  It can be used interactively in line
+mode or visual (screen) mode, or as a script-driven utility.
+This is a companion utility to \fBxmcd\fR(1),
+a Motif-based CD audio player application
+for the X window system.
+.I Cda
+uses the same configuration and support files as
+.I xmcd.
+.PP
+Most of the features found on "real" CD players are available in
+.I cda,
+such as shuffle and repeat, and track programming functions.
+.PP
+CDDA (CD digital audio) data extraction, playback, save-to-file,
+and pipe-to-program are supported on many platforms.  For
+data extraction to file or pipe,
+.I cda
+can generate the data in MP3 (MPEG-1 layer 3), MPEG-2/MPEG-4 AAC, MP4
+Ogg Vorbis, FLAC, WAV, AU, AIFF, AIFF-C and raw headerless formats.
+Simultaneous extraction to file/pipe and real-time playback is
+possible on high performance computers.
+.PP
+Multi-disc changers are also supported.  You can switch to a
+soecified disc, select to play only a single disc or auto-play all
+discs in normal or reverse order.
+.PP
+The Gracenote CDDB(R) Music Recognition Service(sm) feature is supported by
+.I cda,
+which allows the CD artist/title and track titles, and other
+information associated with the loaded CD to be displayed.
+For CDDA extraction to MP3, MP4, Ogg Vorbis and FLAC formats,
+.I cda
+can auto-fill the CD information tags embedded in these files.
+.PP
+This release of
+.I cda
+supports the enhanced Gracenote CDDB2(R) service on a number of platforms,
+and offers much richer features and content than the "classic" CDDB.
+Moreover, CDDB2-supplied information is now in UTF-8
+data format, providing international language support.
+See "LOCALIZATION" below.
+.PP
+In addition to CDDB, this release of
+.I cda
+supports reading CD-TEXT data from the disc for the disc/track
+artist and title information.
+.PP
+No capability is provided to add, modify or submit CDDB entries in
+.I cda.
+You must use the X-based \fBxmcd\fR(1) utility (or another
+CDDB-enabled application with the appropriate features)
+for that purpose.
+.PP
+On systems with more than one CD drive, multiple
+invocations of
+.I cda
+can be used to operate each drive independently.
+.PP
+.I Cda
+is designed to be easy to use, with particular care taken
+to make all output easily parsable by other programs.
+.PP
+The internal architecture of
+.I cda
+is designed to be easily portable to many UNIX operating
+system variants, and adaptable to the myriad of CD drives
+available.
+
+.SH "OPTIONS"
+.I Cda
+supports the following options:
+.sp
+.TP
+\fI\-dev\ device\fR
+Specifies the path name to the raw CD device.  If this option is
+not used, the default device to be used is the first
+drive set up with the
+.I xmcd
+configuration program (See below).
+.TP
+\fI\-batch\fR
+Signifies that
+.I cda
+should run in batch mode.  This suppresses all interaction with the
+user (i.e., will not prompt the user to type anything).  Batch mode
+is not meaningful in visual mode.
+.TP
+\fI\-online\fR, \fI\-offline\fR
+Forces
+.I cda
+to enable or disable Internet access.  If this option is not specified,
+then the default is configured via the \fIinternetOffline\fP
+parameter in the \fBcommon.cfg\fR file.  In offline mode, CDDB lookup will
+only be done from the local cache.  Please note that the daemon
+as well as the client will both perform CDDB lookups.  If you want
+to disable Internet access in both, then the -offline option should be
+used when you start the daemon via the \fBcda on\fR command, as well as
+when you issue any
+.I cda
+client command.
+.TP
+\fI\-debug\ level#\fR
+Causes verbose debugging diagnostics to be displayed on \fIstderr\fR.
+Note that if you are running in visual mode, the stderr output should
+be redirected to a file, or the debug information will corrupt the
+screen.  The level specifies the type of debugging messages desired:
+.sp
+.nf
+1	General debugging
+2	Device I/O debugging
+4	CD information debugging
+32	Sound DSP and output file/pipe debugging
+64	Message of the day debugging
+.fi
+.sp
+You may add the values together to enable multiple debugging types
+(i.e., A value of 3 turns on both General and Device I/O debugging).
+
+.SH "COMMANDS"
+.I Cda
+supports the following commands:
+.sp
+.TP
+\fIon\fR
+Start the
+.I cda daemon.
+.TP
+\fIoff\fR
+Terminate the
+.I cda daemon.
+.TP
+\fIdisc <load | eject | prev | next | disc#>\fR
+Load or eject the CD, or change discs on a multi-disc changer.
+.TP
+\fIlock <on | off>\fR
+Enable/disable the CD disc lock.  When locked, the CD cannot be
+ejected using the CD drive front-panel eject button.  You can only
+change the lock state when a CD is loaded and is not playing.
+.TP
+\fIplay [track# [mm:ss]]\fR
+Start playback.  If the
+.I track#
+is used, the playback starts from the specified track.  The optional
+.I mm:ss
+argument specifies the minutes and seconds offset into
+the track from where to start playback.
+.TP
+\fIpause\fR
+Pauses the playback.  Use
+.I cda
+\fBplay\fR
+to resume playback.
+.TP
+\fIstop\fR
+Stop the plaback.
+.TP
+\fItrack <prev | next>\fR
+Proceed to the previous or the next track.  This command is only
+valid when playback is already in progress.
+.TP
+\fIindex <prev | next>\fR
+Proceed to the previous or the next index.  This command is only
+valid when playback is already in progress.
+.TP
+\fIprogram [clear | save | track# ...]\fR
+If no argument is specified, this command displays the current
+program play sequence, if any.  The \fBclear\fR argument will
+cause the current program to be cleared.  The \fBsave\fR argument
+will save the current program, so that a future load of the
+same CD will automatically get the program sequence.
+To define a new program, specify a list of track numbers separated
+by spaces.  To start program play, use the \fBplay\fR command.
+You cannot define a new program while shuffle mode is enabled.
+Entering a program will disengage shuffle mode.
+.TP
+\fIshuffle <on | off>\fR
+Enable/disable shuffle play mode.  When shuffle is enabled,
+.I cda
+will play the CD tracks in a random order.  You can use this
+command only when audio playback is not in progress.  Also,
+you must clear any program sequence before enabling shuffle.
+.TP
+\fIrepeat <on | off>\fR
+Enable/disable the repeat mode.
+.TP
+\fIvolume [value# | linear | square | invsqr ]\fR
+If no argument is specified, this command displays the current
+audio volume and taper setting.  If a
+.I value
+is used, then the audio volume level is set to the specified
+value.  The valid range is 0 to 100.  If one of \fBlinear\fR,
+\fBsquare\fR or \fBinvsqr\fR is specified, then the volume
+control taper is set to the specified curve.  This control
+operates the hardware volume control on the CD drive in \fIstandard\fR
+playback mode, or the computer's audio hardware in \fIcdda-play\fR mode.
+It has no effect on the data of the \fIcdda-save\fR or \fIcdda-pipe\fR
+outputs.
+.TP
+\fIbalance [value#]\fR
+If no argument is specified, this command displays the current
+balance control setting.  If a
+.I value
+is used, then the balance is set to the specified value.
+The valid range is 0 to 100, where 0 is full left, 50 is
+center and 100 is full right.  This control operates the hardware
+volume control on the CD drive in \fIstandard\fR playback mode,
+or the computer's audio hardware in \fIcdda-play\fR mode.  It has
+no effect on the data of the \fIcdda-save\fR or \fIcdda-pipe\fR
+outputs.
+.TP
+\fIroute [stereo | reverse | mono-l | mono-r | mono | value#]\fR
+If no argument is specified, this command displays the current
+channel routing setting.  Otherwise, to set the routing, 
+use one of the appropriate keywords
+or a
+.I value
+as follows:
+.sp
+.nf
+0	Normal stereo
+1	Reverse stereo
+2	Mono-L
+3	Mono-R
+4	Mono-L+R
+.fi
+.TP
+\fIoutport [speaker | headphone | line-out | value#]\fR
+CDDA playback output port selection.  The \fIspeaker\fR, \fIheadphone\fR
+and \fIline-out\fR keywords are toggles.  Alternatively, you may
+specify a numeric \fIvalue\fR, as follows:
+.sp
+.nf
+1	Speaker
+2	Headphone
+4	Line-out
+.fi
+.sp
+You may add the values together to enable multiple output ports
+(i.e., A value of 3 turns on both Speaker and Headphones).
+When the value is set to 0, the port setting is unmodified.
+If no argument is specified, this command displays the current output
+port setting.
+Note that this command may be meaningful only on some platforms,
+and only certain ports may be available on a particular architecture.
+See the PLATFORM file for details.
+.TP
+\fIcdda-att [value#]\fR
+If no argument is specified, this command displays the current
+CDDA attenuator setting.  If a
+.I value
+is used, then the CDDA attenuator level is set to the specified
+value.  The valid range is 0 to 100.  Note that in contrast to the
+\fIvolume\fR command, this setting does not operate any hardware.
+It works by scaling the CDDA audio samples, and thus has no effect
+in \fIstandard\fR playback mode, but affects all CDDA modes
+(\fIcdda-play\fR, \fIcdda-save\fR and \fIcdda-pipe\fR).
+.TP
+\fIstatus [cont [secs#]]\fR
+Display the current disc status, disc number, track number,
+index number, time, modes, and repeat count.  If the \fBcont\fR
+argument is specified, then the display will run continuously
+until the user types the interrupt character (typically \fIDelete\fR or
+\fICtrl-C\fR).  The optional \fBsecs\fR sub-argument is the
+display update time interval.  The default is 1 second.
+.TP
+\fItoc [offsets]\fR
+Display the CD Table of Contents.  The disc artist/title
+and track titles associated with the current disc, queried from
+CDDB, is also shown.  If the disc has associated notes or credits,
+an asterisk (*) is displayed after the genre description.  Similarly,
+if a track has associated notes or credits, an asterisk is
+displayed after the track title.
+.sp
+If the CDDB server cannot determine an exact match for your CD, but
+found a list of possible matches, then the user will
+be prompted to select from that list.  If batch mode is active
+(i.e., the -batch option is used), then no such prompt will
+occur.
+.sp
+If the \fBoffsets\fR argument is used,
+then the track times are the absolute offsets from the start
+of the CD.  Otherwise, the times shown are the track lengths.
+.TP
+\fIextinfo [track#]\fR
+Display extended information associated with
+the current CD, if available from CDDB.  If the
+CD is currently playing, then extended information
+associated with the playing track is also displayed.  If a
+track number is used in the argument, then the extended
+information of the specified track is shown instead.
+.TP
+\fInotes [track#]\fR
+Display disc notes information text associated with
+the current CD, if available from CDDB.  If the
+CD is currently playing, then the track notes information
+associated with the playing track is also displayed.  If a
+track number is used in the argument, then the track notes
+information text of the specified track is shown instead.
+.TP
+\fIon-load [none | spindown | autoplay | autolock | noautolock]\fR
+Display, enable or disable options when a CD is loaded.  The
+.I spindown
+option will cause the CD to stop after loading to conserve the laser
+and motor.  The
+.I autoplay
+option will cause the CD to automatically start playing after loading.  The
+.I autolock
+option causes the caddy or disc tray to be automatically locked.  The
+.I none,
+.I spindown
+and
+.I autoplay
+options are mutually-exclusive.  If no argument is used, then the
+current settings are displayed.
+.TP
+\fIon-exit [none | autostop | autoeject]\fR
+Display, enable or disable options when the
+.I cda daemon
+exits.  The
+.I autostop
+option will cause cda to stop playback,
+and the
+.I autoeject
+option will cause cda to eject the CD.  Use
+.I none
+to cancel these options.  If no argument is used, then
+te current settings are displayed.
+.TP
+\fIon-done [autoeject | noautoeject | autoexit | noautoexit]\fR
+Display, enable or disable options when
+.I cda
+is done with playback.  The
+.I autoeject
+option causes the
+.I cda daemon
+to eject the CD.  The
+.I autoexit
+option will cause the
+.I cda daemon
+to exit.  If no argument is used, then
+the current settings are displayed.
+.TP
+\fIon-eject [autoexit | noautoexit]\fR
+Display, enable or disable options when
+.I cda
+ejects a CD.  The
+.I autoexit
+option will cause the
+.I cda daemon
+to exit after ejecting the CD.  If no
+argument is used, then the current settings are displayed.
+.TP
+\fIchanger [multiplay | nomultiplay | reverse | noreverse]\fR
+Display, enable or disable multi-disc changer options.  The
+.I multiplay
+option specifies that
+.I cda
+plays all discs in sequence.  The
+.I nomultiplay
+option will cause cda to stop after the current disc is done.
+The
+.I reverse
+option implies
+.I multiplay,
+except that the disc order is reversed.  If no argument is used,
+then the current settings are displayed.
+.TP
+\fImode [standard | cdda-play | cdda-save | cdda-pipe]\fR
+Selects the playback mode.  If no argument is used, then the
+current setting is displayed.  See "PLAYBACK MODES" below for
+details about the modes.  Please note that the cdda modes are
+toggles.  If the current mode is cdda-play, specifying cdda-save
+will enable both cdda-play and cdda-save modes.  Specifying a
+cdda mode twice will disable that mode.  If no cdda mode is
+active, then the mode will revert to standard.  Specifying standard
+mode will disable all cdda modes.
+.TP
+\fIjittercorr [on | off]\fR
+Enables or disables CDDA jitter correction.  If no argument is used,
+then the current setting is displayed.
+.TP
+\fItrackfile [on | off]\fR
+For \fICDDA-save\fR mode, specifies whether a separate file should be
+created for each CD track.  If no argument is used, then the current
+setting is displayed.
+.TP
+\fIsubst [on | off]\fR
+For \fICDDA-save\fR mode, specifies whether space and tab characters
+in the output file path name should be substituted with underscores ('_').
+This makes the files easier to manipulate while using the UNIX command shell. 
+If no argument is used, then the current setting is displayed.
+.TP
+\fIfilefmt format
+Specifies the output audio file format if running in \fIcdda-save\fR or
+\fIcdda-pipe\fR modes.  The \fIformat\fR is one of the following:
+raw, au, wav, aiff, aiff-c, mp3, ogg, flac, aac or mp4.
+.TP
+\fIoutfile ["template"]\fR
+Specifies the output audio file path name if running in \fIcdda-save\fR
+mode.  If no argument is used, then the currently
+defined template is displayed.  See the
+.I xmcd
+help file on the output file path template for information about the
+special tokens that could be used in the template.
+.TP
+\fIpipeprog ["path [arg ...]"]\fR
+Specifies the external program to which the audio stream will be piped to
+when running in \fIcdda-pipe\fR mode.  If no argument is used, then the
+currently defined program is displayed.
+.TP
+\fIcompress [<0 | 3> [bitrate#] | <1 | 2> [qual#]]\fR
+Selects the compression mode for compressed file formats, as follows:
+.sp
+For MP3, the modes are as follows:
+.nf
+0	Constant bitrate (CBR)
+1	Variable bitrate (VBR, old algorithm)
+2	Variable bitrate (VBR, new algorithm, faster)
+3	Average bit rate (ABR)
+.fi
+.sp
+For Ogg Vorbis and MP4, all modes are VBR, as follows:
+.nf
+0, 3	Use an average bit rate
+1, 2	Use a quality factor
+.fi
+.sp
+For FLAC, the modes are as follows:
+.nf
+0	None
+1	Enable exhaustive LP coefficient quant. search
+2	Enable encoding correctness verification
+3	Enable both
+.fi
+.sp
+For AAC, all modes are VBR, as follows:
+.nf
+0	Use an average bit rate, MPEG-2
+1	Use a quality factor, MPEG-2
+2	Use a quality factor, MPEG-4
+3	Use an average bit rate, MPEG-4
+.fi
+.sp
+For modes \fI0\fR and \fI3\fR, an optional bitrate (in kb/s)
+sub-argument can be specified.  The supported bitrates are a discrete
+set of numbers from 32 to 320.  A value of 0 can also be used to indicate
+the use of an internal default.  For modes \fI1\fR and \fI2\fR, an optional
+quality factor (from 1 to 10) sub-argument can be used.
+Lower bitrates and quality factor values yield smaller
+files whereas higher numbers produce higher audio quality.
+For AAC and MP4 formats, the bitrate you specify will be double the
+actual bitrate (e.g., if you specify 128kbps, the actual bitrate used
+will be 64kbps).  The bitrate or quality values, if specified, are
+ignored for the FLAC format.  If no argument is used, then the current
+settings are displayed.
+.TP
+\fImin-brate [bitrate#]\fR
+In average bitrate and variable bitrate modes, this commands lets you
+specify a low bitrate limit.  The encoder will not drop below this limit
+while dynamically changing the bitrate.  A value of 0 can be specified
+to indicate the use of an internal default.
+If no argument is used, then the current setting is displayed.
+This parameter has no effect on the FLAC, AAC or MP4 format.
+.TP
+\fImax-brate [bitrate#]\fR
+In average bitrate and variable bitrate modes, this commands lets you
+specify a high bitrate limit.  The encoder will not go above this limit
+while dynamically changing the bitrate.  A value of 0 can be specified
+to indicate the use of an internal default.
+If no argument is used, then the current setting is displayed.
+This parameter has no effect on the FLAC, AAC or MP4 format.
+.TP
+\fIcoding [stereo | j-stereo | force-ms | mono | algo#>]fR
+This command selects the stereo mode and encoding
+noise-shaping/psychoacoustics algorithm.
+If no argument is used, then the current settings are displayed.
+.sp
+For MP3, the algorithm is a number from 1 to 10.  Lower numbers gives
+faster encoding whereas higher numbers produce higher audio quality.
+.sp
+For AAC and MP4, \fIstereo\fR disables the mid/side coding,
+\fIj-stereo\fR and \fIforce-ms\fR are synonymous, and \fImono\fR
+is not supported.  An algorithm value of 10 enables
+temporal noise shaping (TNS).
+.sp
+For FLAC, the stereo modes have no effect, but the algorithm value
+selects between faster encoding versus slightly better compression.
+.sp
+For Ogg Vorbis, this parameter has no effect.
+.TP
+\fIlowpass [off | auto | freq# [width#]]\fR
+This allows a lowpass filter to be added.
+The \fIoff\fR setting means no filter, the \fIauto\fR setting causes the
+encoder to determine whether a filter should be added and its parameters.
+Specifying a frequency (and optionally, a width) will enable the filter
+in manual mode.  The frequency and width are both in Hz.
+The valid frequency range is from 16 to 50000 Hz.
+For MP3, the filter functions fully as described.
+For AAC and MP4, the \fIfreq\fR can be used to limit the bandwidth,
+but the \fIwidth\fR is ignored.
+For Ogg Vorbis and FLAC, these parameters have no effect.
+If no argument is used, then the current settings are displayed.
+.TP
+\fIhighpass [off | auto | freq# [width#]]\fR
+For encoding to MP3 files, this allows a highpass filter to be added.
+The \fIoff\fR setting means no filter, the \fIauto\fR setting causes the
+encoder to determine whether a filter should be added and its parameters.
+Specifying a frequency (and optionally, a width) will enable the filter
+in manual mode.  The frequency and width are both in Hz.
+The valid frequency range is from 500 to 50000 Hz.  The lower limit
+is imposed by the polyphase filter implementation in the MP3 encoder.
+For non-MP3 formats, these parameters have no effect.
+If no argument is used, then the current settings are displayed.
+.TP
+\fIflags [C|c][O|o][N|n][E|e][I|i]\fR
+This allows you to specify some MP3 header and frame flags.
+The letter \fIc\fR denotes the "copyright" flag, the letter \fIo\fR
+denotes the "original" flag, the letter \fIn\fR denotes the "no res"
+(no bit reservoir) flag, the letter \fIe\fR denotes the addition of a
+2-byte checksum to each frame for error correction, and the letter
+\fIi\fR indicates strict ISO compatibility.  The use of a upper-case
+letter turns on the flag, and lower-case turns off the flag.  Multiple
+flags may be specified together.  If no argument is used, then the current
+settings are displayed.
+.TP
+\fIlameopts [<disable | insert | append | replace> ["options"]]\fR
+This command allows you to query or set command line options to
+be passed directly to the LAME MP3 encoder, and control how those
+options will be passed.  This facilitates the use of advanced or
+experimental LAME features that cannot otherwise be invoked via the
+.I cda
+command line interface for setting encoding parameters.
+The following keywords control how the command line options
+are to be passed:
+.sp
+\fIdisable\fR: No additional command line options are to be passed.
+.br
+\fIinsert\fR: The specified options are to be inserted before
+the standard options.
+.br
+\fIappend\fR: The specified options are to be appended after
+the standard options.
+.br
+\fIreplace\fR: The specified options are to be used instead of
+the standard options.
+.sp
+Standard options refers to the LAME command line options that
+.I cda
+generates, based on the current settings (and can be altered by
+other encoding related cda commands above).
+If no argument is used, then the current settings are displayed.
+.TP
+\fItag [off | v1 | v2 | both]\fR
+This command specifies whether CD information (such as album and track
+artists and titles, genre type, etc.) should be added to the CDDA output
+file.  For MP3, the information is added to either the version 1, version 2
+or both versions of the ID3 tag areas.  For Ogg Vorbis, FLAC and MP4,
+the information is added to the metadata area.
+.br
+Note: An ID3v2 tag will not be added to the
+.I cdda-pipe
+MP3 stream regardless of the setting of this command.
+.TP
+\fIdevice\fR
+Displays the CD drive and device information.
+.TP
+\fIversion\fR
+Displays the
+.I cda
+version and copyright information.
+.TP
+\fIcddbreg\fR
+Invoke dialog to register with Gracenote in order to access the CDDB2 service.
+This command can be used to do the initial registration, as well as to
+change or update user registration information.  This function is not
+available with the "classic" CDDB service.
+.TP
+\fIcddbhint\fR
+Ask Gracenote to send the password hint via e-mail.  This is used in case you
+forget the CDDB user password.  The password and password hint are both
+initially set via the \fIcddbreg\fR command.  This function is not
+available with the "classic" CDDB service.
+.TP
+\fImotd\fR
+Retrieve and display messages from the xmcd MOTD server, if any.
+Note that messages are displayed by the
+.I cda
+daemon rather than the client process.  Thus, it will be displayed
+on the terminal where the daemon was started.
+.TP
+\fIdebug [level#]\fR
+Show, or set the debug level.  If set, verbose debugging
+diagnostics will be printed on \fIstderr\fR of the terminal
+that the
+.I cda daemon
+is started from.  If this is the same terminal that is running
+.I cda
+in visual mode, the debug information will corrupt the screen.
+See the description of the \fI-debug\fR option above for supported
+debug levels.
+.TP
+\fIvisual\fR
+Enter an interactive, screen-oriented visual mode.  Most
+other cda commands can also be invoked within this mode.
+
+.SH "DEVICE CONFIGURATION"
+See \fBxmcd\fR(1) for a description of the device configuration requirements.
+.PP
+.B WARNING:
+If
+.I cda
+is not correctly configured, you may cause
+.I cda
+to deliver commands that are not supported by your CD drive.
+Under some environments this may lead to system hang or crash.
+
+.SH "USING CDA"
+Start the
+.I cda daemon
+with the \fBcda on\fR command (or the F1 (o) function in visual mode).
+This reserves the CD device and initializes the program for
+further commands.  All other
+.I cda
+functions will not work unless the
+.I cda daemon
+is running.
+The other
+.I cda
+commands should be self explanatory.
+.PP
+The \fBoff\fR command (or the F1 (o) function in visual mode)
+can be used to terminate the
+.I cda daemon
+and release the CD drive for use by other software.
+
+.SH "VISUAL MODE"
+If the
+.I cda visual
+command is used, it enters a screen-oriented visual mode.
+In this mode, the status and other information available
+is continuously displayed and updated on the screen, and
+most functions are available via a single key stroke.
+.PP
+The minimum terminal screen size for the visual mode is 80 columns by
+9 rows.  If your terminal is made to be smaller than that (for example,
+an \fBxterm\fR(1) window that has been sized too small), the
+output will be garbled.  For best results, an 80x24 or larger terminal
+screen should be used.
+.PP
+Visual mode uses the curses screen library to control the screen.
+It is essential that the TERM environment variable reflect the current
+terminal type, which ideally should have 8 (or more) function keys.
+Since function key definitions in terminfo descriptions are often
+unreliable, alphabetic key alternatives are also available.
+.PP
+The screen is divided into two windows: an information window and a
+status window.  According to context, the information window displays
+a help screen, device and version information, disc information and
+table of contents, or extended information about the track.  This window is
+scrollable if it overflows its allotted screen area.
+The status window consists of the last few lines of the screen,
+enclosed in a box.  The first line contains the program list, or
+track number and offset together with volume, balance and stereo/mono
+information.  The remaining lines contain the function keys
+(with their alphabetic synonymns) and the functions they invoke.
+These functions are highlighted when they are on, making
+it easy to see the current state.
+.PP
+Screen annotation and online help make operation self explanatory,
+but for reference, a list of commands follows. Alphabetic key
+alternatives to function keys are given in parenthesis.
+.sp
+.TP
+\fI?\fR
+Display help screen. Dismiss this screen by pressing the space bar.
+.TP
+\fIF1 (o)\fR
+On/Off. Start or stop the
+.I cda daemon.
+.TP
+\fIF2 (j)\fR
+Load or eject the CD.
+.TP
+\fIF3 (p)\fR
+Play, pause or unpause.
+.TP
+\fIF4 (s)\fR
+Stop.
+.TP
+\fIF5 (k)\fR
+Enable/disable the CD caddy lock. When locked, the CD cannot be ejected
+using the CD drive front-panel eject button.
+.TP
+\fIF6 (u)\fR
+Shuffle/Program.  Pressing this key cycles through three states:
+normal, shuffle and program. In shuffle mode, the tracks of the CD
+will be played in random order.  On entering program mode,
+.I cda
+will prompt for a space or comma separated list of track numbers,
+representing a desired playing order. The list should be terminated by
+carriage return.  An empty list returns
+.I cda
+to normal mode.  Shuffle and program mode cannot be engaged
+unless a CD is loaded but not playing or paused.
+.TP
+\fIF7 (e)\fR
+Enable/disable repeat mode.
+.TP
+\fIF8 (q)\fR
+Terminate the visual mode.  If the
+.I cda daemon
+is running, a reminder of the fact is given and it is allowed to
+continue.  The CD drive will continue operating in the same state.
+.I Cda
+may be invoked again in either visual or line mode when required.
+.TP
+\fID/d\fR
+Change to the previous/next disc on multi-disc changes.
+.TP
+\fICursor left/right (C/c)\fR
+Previous/next track. This is only valid if playback is already in
+progress.
+.TP
+\fI</>\fR
+Proceed to the previous/next index mark. This is only valid if
+playback is already in progress.
+.TP
+\fICursor up/down (^/v)\fR
+Scroll the information portion of the screen up or down. It may be
+scrolled up only until the last line is on the top line of the screen,
+and may not be scrolled down beyond the initial position. The initial
+scroll position is restored when different information is displayed,
+(e.g., when switching to or from the help information).
+.TP
+\fI+/-\fR
+Increase or decrease volume by 5%.
+.TP
+\fIl/r\fR
+Move balance 5% to left or right.
+.TP
+\fITab\fR
+Successive depressions of this key change the mode from stereo to mono,
+mono right, mono left, reverse stereo, and back to normal stereo.
+.TP
+\fI<n> [mins secs]\fR
+Proceed to track
+.I n
+at
+.I mins
+minutes and
+.I secs
+seconds from the start. If
+.I "mins secs"
+is not given, start at the beginning of track
+.I n.
+.TP
+\fI^l/^r\fR
+Control-l or control-r repaints the screen.  This is useful if the
+screen content has been corrupted (e.g., by operator messages sent
+by the
+.I wall(1M)
+command).
+
+.SH "CD DATABASE"
+The Gracenote CDDB(R) Music Recognition Service(sm) feature is supported by
+.I cda,
+which allows you to display the disc artists/title,
+track titles, and other information about the CD
+or tracks via the \fBtoc\fR, \fBextinfo\fR and \fBnotes\fR commands of
+.I cda.
+In visual mode, this information is displayed automatically
+if available.  You cannot add, modify or submit CDDB information via
+.I cda.
+For more details about CDDB, see \fBxmcd\fR(1)
+and the CDDB file that comes with this release.
+.PP
+This release of
+.I cda
+also supports reading the CD-TEXT data from the disc for
+CD information.  Only some recent CDs are produced with CD-TEXT
+data and this data can only be read on CD drives with CD-TEXT
+capability.
+.PP
+The priority of the CD information schemes (CDDB, CD-TEXT or local CD
+database files) is controlled via the cdinfoPath parameter in the
+\fBcommon.cfg\fR file.
+
+.SH "PLAYBACK MODES"
+This release supports the following user-selectable playback modes
+(via the
+.I cda
+\fBmode\fR
+command):
+.sp
+.TP
+\fIstandard\fR
+.br
+When playing an audio CD, the audio output is the analog "line out"
+connection on the back of your CD drive.  There should be an audio
+cable connecting this output to your computer audio hardware CD
+input (or to an externally amplfied speaker or stereo system).  The
+audio output is also available at the CD drive's front panel
+headphone connection, if so equipped.  The
+.I cda
+\fBvolume\fR
+command affect the CD drive's built-in volume control, if the drive
+has such controls.  This is the mode that previous releases
+(\fIcda\fR version 1.x through 3.0) supported.
+.sp
+.TP
+\fIcdda-play\fR
+.br
+When playing a CD in this mode,
+.I cda
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it sends the data to the
+DSP (digital signal processor) device in your computer's audio hardware
+for real-time playback.  The audio is typically heard through the
+computer's built-in speakers.  No signal is produced at the line-out
+or headphone connections of the CD drive.  The
+.I cda
+\fBvolume\fR
+command affects the computer's DSP device.
+.sp
+.TP
+\fIcdda-save\fR
+.br
+When playing a CD in this mode,
+.I cda
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it writes the data
+into a file of your choosing.  The
+.I cda
+\fBvolume\fR
+command does not affect the data written to
+the output file.  The output file format can be selected to be one
+of the following:
+.sp
+.nf
+Format Ext   Description
+------ ----- ---------------------------------------
+RAW    .raw  Little-endian, 16 bit, 44.1 kHz, stereo
+AU     .au   Big-endian, 16 bit, 44.1 kHz, stereo
+WAV    .wav  Little-endian, 16 bit, 44.1 kHz, stereo
+AIFF   .aiff Big-endian, 16 bit, 44.1 kHz, stereo
+AIFF-C .aifc Big-endian, 16 bit, 44.1 kHz, stereo
+MP3    .mp3  MPEG 1.0 Layer III compressed
+OGG    .ogg  Ogg Vorbis compressed
+FLAC   .flac Free Lossless Audio CODEC compressed
+AAC    .aac  AAC (MPEG-2 or MPEG-4) compressed
+MP4    .mp4  MP4 (MPEG-4) compressed
+.fi
+.sp
+The file can be played later using an appropriate playback utility,
+or converted to another format.  This mode will typically run faster than
+real-time with the non-compressed formats.  With the compressed formats,
+it depends on the CPU performance of your system.
+.sp
+.TP
+\fIcdda-pipe\fR
+.br
+When playing a CD in this mode,
+.I cda
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it pipes the data
+stream to an external program that you specify.  The output
+format is selected as in the \fICDDA save to file\fR mode.
+This mode can be used with an external audio player, encoder, or
+other digital audio manipulation program.
+The external program must be capable of accepting audio data on its
+standard input, in one of the formats listed above.
+.PP
+More than one of the three CDDA modes can be selected at the same time.
+For example, if both the \fIcdda-play\fR and the
+\fIcdda-save\fR modes are enabled, the two functions
+will be performed simultaneously.  Note that on most systems, only one
+program can access the system's DSP at a time, therefore you will
+likely not be able to select \fIcdda-play\fR and
+\fIcdda-pipe\fR at the same time, where the external program
+is itself an audio player.
+.PP
+\fBNOTE\fR: The CDDA (CD digital audio) modes will function only on
+CD drives that provides this capability, and only on some OS and
+hardware platforms.  See the RELNOTES file for details about platform
+support and other CDDA related notes.
+
+.SH "LOCALIZATION"
+The "classic" CDDB service supplies data in the ISO Latin-1 format only,
+multi-byte characters are not supported.
+.PP
+The CDDB2 service supplies data in UTF-8 data format, which is
+identical to US-ASCII for single-byte characters.  Multi-byte UTF-8
+characters are also supported.
+By default, cda will translate the characters to ISO Latin-1
+(ISO 8859-1, for English and many European character sets).
+By changing the setting of the \fBcharsetConvMode\fR parameter in
+the \fBcommon.cfg\fR file, you can have
+.I cda
+display the UTF-8 data without conversion (good for US-ASCII
+or if you are using UTF-8 fonts),
+or attempt to convert UTF-8 strings to the default character set
+as specified by the \fBLANG\fR environment variable.  This conversion
+will occur only if the system's list of locales also support UTF-8.
+.PP
+If you desire to view CDDB data in languages other than English or the
+ISO Latin-1 European character set, you may need to configure
+your display terminal to display the appropriate fonts (if the
+terminal has such capabilities).  Terminal font configuration is
+device-dependent, OS-dependent and beyond the scope of this document.
+Please see your display terminal's documentation (or in the case of
+a computer graphics console, the operating system's console font
+related documentation for information.
+.PP
+Non-CDDB text (such as headings, labels and error messages) are not
+localized in
+.I cda.
+
+.SH "NOTES"
+Not all platforms and CD drives support all the features of
+.I cda.
+For example, some drives do not support a software-driven
+volume control.  On these drives the
+.I cda
+\fBvolume\fR and \fBbalance\fR commands may have no effect, or may
+simply change the volume between full mute and maximum.
+Similarly, the \fBlock\fR, \fBdisc\fR, \fBindex\fR,
+and \fBroute\fR commands of
+.I cda
+may not have any effect on drives that
+do not support the appropriate functionality.
+.PP
+The lame(1) MP3 encoder program must be installed on your system in
+order for
+.I cda
+to perform CD ripping to MP3 format files.  Similarly, the
+faac(1) encoder program must be installed on your system for
+the AAC and MP4 formats.
+.PP
+Your copy of the
+.I cda
+executable must be compiled and linked with the Ogg Vorbis and FLAC encoder
+libraries in order to perform CD ripping to these formats.  See the
+INSTALL file for details.
+
+.SH "ENVIRONMENT VARIABLES"
+The \fBLANG\fR environment variable sets the default character set.
+See "LOCALIZATION" above.
+.PP
+The \fBLAME_PATH\fR environment variable may be used to specify the
+path to the lame(1) MP3 encoder program.
+.PP
+The \fBFAAC_PATH\fR environment variable may be used to specify the
+path to the faac(1) AAC/MP4 encoder program.
+.PP
+The \fBAUDIODEV\fR environment variable may be used to specify an
+alternate audio device when running
+.I cda
+in the \fIcdda-play\fR mode.
+The default audio device is write method dependent as follows:
+.in +4
+.nf
+.sp
+AIX write method:	/dev/paud0/1	(PCI audio)
+AIX write method:	/dev/baud0/1	(MCA audio)
+ALSA write method:	plughw:0,0
+HP-UX write method:	/dev/audio
+Linux/OSS write method:	/dev/dsp
+OSF1 write method:	0
+Solaris write method:	/dev/audio
+.fi
+.PP
+In addition, with the OSS and ALSA write methods, the \fBMIXERDEV\fR
+environment variable may be used to specify the PCM mixer channel device.
+The default is \fI/dev/mixer\fR for OSS, and \fIdefault\fR for ALSA.
+.PP
+On FreeBSD with ATAPI CD drives, cda will automatically use either
+the CDIOCREADAUDIO ioctl or the pread(2) system call for CDDA reads,
+based on the running kernel version.  You may override the default
+by setting the environment variable \fBCDDA_USE_PREAD\fR to 0 or 1,
+respectively.  Normally this is not necessary.
+
+.SH "FILES"
+$HOME/.cddb2/\(**
+.br
+$HOME/.xmcdcfg/\(**
+.br
+XMCDLIB/cdinfo/\(**
+.br
+XMCDLIB/config/config.sh
+.br
+XMCDLIB/config/common.cfg
+.br
+XMCDLIB/config/device.cfg
+.br
+XMCDLIB/config/.tbl/\(**
+.br
+XMCDLIB/config/\(**
+.br
+XMCDLIB/help/\(**
+.br
+BINDIR/cda
+.br
+MANDIR/cda.1
+.br
+/tmp/.cdaudio/\(**
+
+.SH "RELATED WEB SITES"
+Xmcd/cda web site: \fIhttp://www.amb.org/xmcd/\fR
+.br
+Gracenote web site: \fIhttp://www.cddb.com/\fR
+.br
+Xmmix web site: \fIhttp://www.amb.org/xmmix/\fR
+.br
+LAME MP3 encoder: \fIhttp://www.mp3dev.org/\fR
+.br
+Ogg Vorbis: \fIhttp://www.xiph.org/ogg/vorbis/\fR
+.br
+FLAC (Free Lossless Audio CODEC): \fIhttp://flac.sourceforge.net/\fR
+.br
+FAAC (AAC/MP4 encoder): \fIhttp://www.audiocoding.com/\fR
+.br
+Hydrogen Audio (discussion forums): \fIhttp://www.hydrogenaudio.org/\fR
+.br
+Sox audio format conversion utility: \fIhttp://www.spies.com/Sox/\fR
+
+.SH "SEE ALSO"
+xmcd(1), xmmix(1), X(1), lame(1), faac(1), sox(1)
+.br
+Xmcd's README, PLATFORM, DRIVES, INSTALL and RELNOTES files
+
+.SH "AUTHOR"
+Ti Kan (\fIxmcd@amb.org\fR)
+.br
+AMB Laboratories, Sunnyvale, CA, U.S.A.
+.br
+.I Cda
+also contains code contributed by several dedicated individuals.
+See the ACKS file in the
+.I cda
+distribution for information.
+.br
+Comments, suggestions, and bug reports are always welcome.

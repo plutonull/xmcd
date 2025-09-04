@@ -1,0 +1,86 @@
+#
+#   @(#)Makefile.std	7.32 04/04/20
+#
+#   Makefile for xmcd
+#
+#	xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   NOTE: You should use this only if you don't have imake!
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+include ../make.inc
+
+PROG=	xmcd
+
+SRCS=	callback.c \
+	cdfunc.c \
+	command.c \
+	dbprog.c \
+	geom.c \
+	help.c \
+	hotkey.c \
+	main.c \
+	userreg.c \
+	widget.c \
+	wwwwarp.c
+
+OBJS=	callback.o \
+	cdfunc.o \
+	command.o \
+	dbprog.o \
+	geom.o \
+	help.o \
+	hotkey.o \
+	main.o \
+	userreg.o \
+	widget.o \
+	wwwwarp.o \
+	../labelh_d/libLabelH.a \
+	../cdinfo_d/libcdinfo.a \
+	../cddb_d/libcddbkey.a \
+	../libdi_d/libdi.a \
+	../cdda_d/libcdda.a \
+	../common_d/libutil.a
+
+all: $(PROG)
+
+$(PROG): $(OBJS)
+	$(CC) -o $@ $(OBJS) $(XLIBS) $(SOCKETLIB) $(CDDBLIB) \
+		$(ENCLIBS) $(AUDIOLIB) $(MATHLIB) $(PTHREADLIB)
+
+Makefile:
+	@echo "	xmcd_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) $(PROG) *.o *.a core .emacs_* tags TAGS
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

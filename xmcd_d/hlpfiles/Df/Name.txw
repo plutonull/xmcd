@@ -1,0 +1,104 @@
+#
+# @(#)Name.txw	7.12 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Full Name Wizard
+
+These fields are used to enter the "Display name" and
+full name information.
+
+The "Display name" is simply the name as it appears on
+the album cover.
+
+The full name is a break down of the name into the
+first name, last name and an optional "the" component.
+
+When the "Auto" button is enabled, the display name field
+is view-only, and is automatically-generated from the
+first name, last name and the components.  In virtually
+all cases it is sufficient to leave "Auto" enabled (see
+below).
+
+The purpose of having the full name fields is to allow
+the components to be used for sorting purposes, so that
+xmcd and CDDB can produce better sorted outputs (such as
+in the xmcd Local Discography index or when you do a
+search on the CDDB web site).
+
+Here are some guidelines for using the Full Name wizard:
+
+1. For regular names such as "Pat Metheny", put "Pat"
+   in the first name field, and "Metheny" in the last name
+   field.  If there is a middle name or initial, you may
+   also put that in the first name field.  For example,
+   "Jerry Lee" in the first name field, and "Lewis"
+   in the last name field.
+
+2. For complex names such as "Siouxsie and the Banshees",
+   put the whole text in the first name field and leave
+   the last name blank.
+
+3. For a name that does not really contain a real first or
+   last name, such as "Pink Floyd", put the whole text
+   in the first name field and leave the last name field
+   blank.
+
+4. For something like "The Commodores", click the "The"
+   button and put "Commodores" in the first name field.
+
+5. For a group name that contains a real name such as
+   "The Pat Metheny Group", click the "The" button, put
+   "Pat" in the first name field and "Metheny Group" in the
+   last name field.  This causes albums by the group to be
+   sorted just after solo albums by "Pat Metheny."
+
+6. For multiple names like "Pat Metheny and John Scofield",
+   put "Pat" in the first name and "Metheny and John Scofield"
+   in the last name. This may seem odd, but this is the
+   way a book by two authors would be sorted by a library or
+   bookstore (under the last name of the first author).
+
+Hopefully with these examples it is clear what to do with
+other variations of names.
+
+Note that the last name field must usually contain a "real"
+last name (with some additional words or names if appropriate).
+whereas the first name field can be used for a first name,
+or as a catch-all for all other cases.
+
+There should never be a case where the last name is filled
+in but the first name is empty.  Nor should there be a case
+where "The" is enabled but both last name and first name
+fields are empty.
+
+Note also that the "The" field can be changed to allow
+non-English articles, many of which are gender- or number-
+dependent.
+
+In all of the above cases the display name field should
+automatically generate the correct text.  In the rare
+event that you want the sorting to be altered, you may
+disable the "Auto" button, and type in the display name
+explicitly.  An possible example of this is for the
+display name of "10,000 Maniacs", you may want the sorting
+to be under 'T', so you would enter "Ten-thousand Maniacs"
+in the first name field.

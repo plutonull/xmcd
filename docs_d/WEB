@@ -1,0 +1,91 @@
+@(#)WEB	6.19 03/07/07
+
+WORLD WIDE WEB SITES 
+--------------------
+
+If your system has the Netscape, Mozilla, Galeon or Opera browser
+installed, you can access all of the below web sites directly via the
+wwwWarp feature of xmcd.  Just click the wwwWarp button on the xmcd
+main window.
+
+The xmcd/cda web site is at:
+
+    http://www.amb.org/xmcd/
+
+This site provides up-to-date information about the current release
+version, features list, Frequently Asked Questions (and answers),
+and late breaking announcement, if any.
+
+The source code bundle and pre-compiled binary releases of xmcd/cda
+for certain OS environments are also available from this site.
+
+The Gracenote CDDB(R) web page is at:
+
+    http://www.cddb.com/
+
+This site is the home of CDDB, the largest music information database.
+You may use the CDDB search engine to look for a CD, peruse CDDB's
+Top-Ten chart and other music news, and much more.  Note that Netscape
+browsers 4.x and earlier may not display the Gracenote pages properly.
+If you're running old Netscape browsers, please update to the latest
+version, or switch to using one of the other supported browsers.
+
+The xmcd wwwWarp feature also lets you perform searches on Internet
+search engine sites, so you can browse discographies, music reviews,
+lyrics, fan club and concert information, art and graphics, and many
+other sites related to the CD or track that you're listening to.  This
+enhances your CD playing experience and is as simple as a few mouse
+clicks.
+
+Xmcd comes pre-configured with a list of wwwWarp Internet search sites
+for your convenience.  However, this does not imply any affiliation of
+xmcd and its author with these sites, nor does it imply any endorsement
+or guarantee of their contents or services.
+
+A search site may change its CGI interface in the future.  If that
+occurs, the format of the search request that xmcd sends may no longer
+work on that particular site.  The search URLs are configured via the
+XMCDLIB/config/wwwwarp.cfg file (and you can override the file with
+your own $HOME/.xmcdcfg/wwwwarp.cfg file).
+
+In addition to Internet sites, wwwWarp comes pre-configured with a
+"Local Discography" selection which lets you use xmcd and the web
+browser to view, play and print local documents (text files, HTML,
+images, sound files, movies, etc.) that are related to the CD that is
+loaded in the drive.  You may deposit these files under the
+DISCOGRAPHY/%C/%I directory (where DISCOGRAPHY is typically
+XMCDLIB/discog, %C is the CDDB genre directory name and %I is the
+xmcd 8-digit disc ID).  For example:
+
+	/usr/lib/X11/xmcd/discog/Rock/General_Rock/ef107e0f
+
+This directory and an index.html file are created automatically by xmcd
+when you select Local Discography.  You can store additional files
+in it, and use wwwWarp to access them.  Your web browser may require
+special plug-ins to support viewing/playing certain file formats.
+See the Links section of the xmcd web site for pointers to a free
+UNIX Netscape streaming mutimedia plug-in package.
+
+Please be aware of possible legal implications when sharing
+music-related files with others.  Some of the information, including
+album cover art, graphics and photos, lyrics and other data are likely
+to be protected by copyright.  Xmcd and its author are not liable for
+the users' actions.
+
+By default, xmcd will search your system for a supported web browser
+and use the first one found.  If you have multiple web browsers installed,
+you may specify the browser to use by setting the BROWSER_PATH environment
+variable.  For example, if you wish to use the /usr/local/bin/galeon
+browser, do the following.
+
+For sh, ksh or bash users, add the following to your $HOME/.profile or
+$HOME/.bashrc file:
+
+	BROWSER_PATH=/usr/local/bin/galeon; export BROWSER_PATH
+
+For csh or tcsh users, add the following to your $HOME/.cshrc file:
+
+	setenv BROWSER_PATH /usr/local/bin/galeon
+
+Log in again to have this change take effect.
+

@@ -1,0 +1,51 @@
+#
+# @(#)Save.btn	6.17 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Save Options Button
+
+Selecting this button will cause the options settings
+to be saved to your personal configuration files.  If
+you restart Xmcd, it will use the saved values.
+
+The personal configuration files are as follows:
+
+$HOME/.xmcdcfg/common.cfg
+   This is a common configuration file for all CD
+   devices.
+
+$HOME/.xmcdcfg/DEVICE
+   Where DEVICE is the base name of the CD device
+   special file path.  For example, if your CD device
+   special file is /dev/rcdrom0, then DEVICE is
+   "rcdrom0".  A separate configuration file is used
+   per CD device.
+
+Parameters are saved in one of these files, depending
+on whether the item is drive-independent or drive-
+dependent.
+
+Note that the volume and balance control settings are
+not saved.  Xmcd queries the drive for the hardware
+setting when it starts up, if the device interface
+permits such an operation.
+

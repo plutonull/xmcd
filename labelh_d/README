@@ -1,0 +1,11 @@
+@(#)README	7.1 01/12/28
+
+This is a simple hack widget written by John L. Cwikla <cwikla@wolfram.com>
+to provide 3D labels for Motif Label and LabelGadget widgets while they are
+insensitive rather than the default "50_foreground" stippled label.
+
+If the depth is <= 4 it will just use the regular stuff since it
+won't look right.
+
+See the COPYRIGHT file for information about this widget.
+

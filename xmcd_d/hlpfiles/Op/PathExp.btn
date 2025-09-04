@@ -1,0 +1,39 @@
+#
+# @(#)PathExp.btn	7.4 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Output File Path Expand button
+
+During CDDA "save-to-file" operation, clicking this
+button will open a dialog box and display the
+"expanded" output file path name.  The expanded name
+is constructed from the "Output file path template"
+field, with all special tokens replaced with the
+the appropriate strings (see the help information
+for the "Output file path template").
+
+When CDDA "save-to-file" operation is not in progress,
+this button is disabled.  This is because many of
+the special tokens in the template can only be
+meaningfully translated into strings during such an
+operation.
+

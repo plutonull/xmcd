@@ -1,0 +1,49 @@
+#
+# @(#)Fields.txw	7.6 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Segment editor text fields
+
+Name:
+   The name of the segment.
+
+Start Track:
+   The track number of the segment start point.
+
+Start Frame:
+   The frame offset into the Start Track where
+   the start point is.
+
+End Track:
+   The track number of the segment end point.
+
+End Frame:
+   The frame offset into the End Track where
+   the end point is.
+
+All these fields are required to be filled in
+in order to add a segment to the segment list.
+
+Each 75 frames is equal to one second of audio
+playback.  You may enter the start and end point
+track/frame information manually, or use the
+"Play-set" button while playback is in progress.

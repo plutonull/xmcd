@@ -1,0 +1,44 @@
+#define xmcd_format 1
+#define xmcd_width 32
+#define xmcd_height 32
+#define xmcd_ncolors 3
+#define xmcd_chars_per_pixel 1
+static char * xmcd_colors[] = {
+" " , "#0000AAAABEBE",
+"." , "#FFFFFFFFFFFF"
+"X" , "#0000FFFFFFFF"
+} ;
+static char * xmcd_pixels[] = {
+"                                ",
+"                                ",
+"                                ",
+"                          ...   ",
+"                           ..   ",
+"                          ..    ",
+"   .. .... .. ..   ...  ....    ",
+"    ...  .. .. .. . .. .. ..    ",
+"    ..   .. .. ....   ..  .     ",
+"    ... ..  .  . ..   .. ..     ",
+"   . .. .. .. .. .. .... ..     ",
+"  .. ..... .. ... ...  .. ..    ",
+"                                ",
+"                                ",
+"          XXXXXXXXXXXX          ",
+"      XXXXXXXXXXXXXXXXXXXX      ",
+"    XXXXXXXXXXXXXXXXXXXXXXXX    ",
+"  XXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ",
+" XXXXXXXXXXXXXX   XXXXXXXXXXXXX ",
+" XXXXXXXXXXXXXX   XXXXXXXXXXXXX ",
+" XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ",
+"  XXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"    XXXXXXXXXXXXXXXXXXXXXXXX    ",
+"      XXXXXXXXXXXXXXXXXXXX      ",
+"          XXXXXXXXXXXX          ",
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"                                ",
+"                                "
+} ;

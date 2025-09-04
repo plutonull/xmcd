@@ -1,0 +1,55 @@
+#
+# @(#)Filters.txw	7.10 04/01/20
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Lowpass and Highpass Filters
+
+You can enable lowpass and/or highpass filters when
+xmcd is encoding an compressed file or stream.
+The filter selection menu provides the following
+choices:
+
+Off
+   The filter is disabled.
+
+Auto
+   The encoder will automatically determine whether
+   to enable a filter, as well as its frequency and
+   width.
+
+Manual
+   Enable the filter, and manually specify the
+   frequency and width in the corresponding text
+   fields.  The frequency and width are both in
+   cycles per second (Hz).  The valid range of
+   frequencies are 16Hz to 50000Hz.  Any width of
+   0Hz and up can be specified.
+
+For MP3, the filters operates as described above.
+For AAC and MP4, only the lowpass filter has an effect,
+and only the frequency setting is used, the width
+field is ignored.  For Ogg Vorbis and FLAC, the
+filters have no effect.
+
+If you change these settings, it will take effect on
+the next "play" session.
+

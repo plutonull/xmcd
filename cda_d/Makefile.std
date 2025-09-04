@@ -1,0 +1,69 @@
+#
+#   @(#)Makefile.std	6.39 04/03/05
+#
+#   Makefile for cda
+#
+#	cda - Command-line CD Audio Player/Ripper
+#
+#   NOTE: You should use this only if you don't have imake!
+#
+#   Copyright (C) 1993-1999  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+include ../make.inc
+
+PROG=	cda
+
+SRCS=	cda.c \
+	userreg.c \
+	visual.c
+
+OBJS=	cda.o \
+	userreg.o \
+	visual.o \
+	../cdinfo_d/libcdinfo.a \
+	../cddb_d/libcddbkey.a \
+	../libdi_d/libdi.a \
+	../cdda_d/libcdda.a \
+	../common_d/libutil.a
+
+all: $(PROG)
+
+$(PROG): $(OBJS)
+	$(CC) -o $@ $(OBJS) $(CURSESLIB) $(SOCKETLIB) $(CDDBLIB) \
+		$(ENCLIBS) $(AUDIOLIB) $(MATHLIB) $(PTHREADLIB)
+
+Makefile:
+	@echo "	cda_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) $(PROG) *.o *.a core .emacs_* tags TAGS
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

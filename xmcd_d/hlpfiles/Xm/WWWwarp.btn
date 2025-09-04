@@ -1,0 +1,39 @@
+#
+# @(#)WWWwarp.btn	6.11 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+wwwWarp Button
+
+Selecting this button will pop up the wwwWarp menu
+which provides options to a number of content and
+services, most of them via your web browser.
+
+You may bring up the xmcd help system, access the
+Xmcd web site, CDDB web site and search engine, the
+CDDB Music Browser, or search the Internet for
+information relevant to the currently loaded CD.  You
+may also access your Local Discographies archive
+which may contain documents, images, sound clips and
+other files related to the CD.
+
+Some of these selections are only available after a
+successful CDDB or CDDB² lookup of CD information.

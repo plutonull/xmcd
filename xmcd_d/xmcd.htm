@@ -1,0 +1,1441 @@
+<HTML><HEAD><TITLE>Manpage of XMCD</TITLE>
+</HEAD><BODY BACKGROUND="bkgnd.gif" BGCOLOR="#FFFFFF">
+<DIV ALIGN="center">
+<A HREF="http://www.amb.org/xmcd/"><IMG SRC="xmcdlogo.gif" ALT="xmcd" BORDER="0"></A>
+</DIV>
+<B>XMCD</B>(1)<BR>
+<HR>
+
+<P>
+<A NAME="NAME" id="NAME">&nbsp;</A><A NAME="lbAB" id="lbAB">&nbsp;</A>
+<H3>NAME</H3>
+<DIR>
+
+xmcd - CD digital audio player utility for X11/Motif
+<P>
+
+</DIR>
+<A NAME="SYNOPSIS" id="SYNOPSIS">&nbsp;</A><A NAME="lbAC" id="lbAC">&nbsp;</A>
+<H3>SYNOPSIS</H3>
+<DIR>
+
+<B>xmcd</B>
+
+
+[<I>toolkitoption ...</I>] [-<I>dev</I> device]
+[-<I>instcmap</I>] [-<I>remote</I>] [-<I>rmthost</I> hostname] [-<I>help</I>]
+[-<I>debug</I> level#] [-<I>c</I> device] [-<I>X</I>] [-<I>o</I>]
+[<I>command</I> [<I>arg</I> ...]]
+<P>
+
+</DIR>
+<A NAME="DESCRIPTION" id="DESCRIPTION">&nbsp;</A><A NAME="lbAD" id="lbAD">&nbsp;</A>
+<H3>DESCRIPTION</H3>
+<DIR>
+
+<I>Xmcd</I>
+
+is a program that allows the use of the CD-ROM, CD-R, CD-RW or DVD
+drive as a full-featured stereo compact-disc player and &quot;ripper&quot;
+for the X window system.  See <B><A HREF="cda.html">cda</A></B>(1) for the command-line
+CD player.
+<I>xmcd</I>
+
+and
+<I>cda</I>
+
+uses the same configuration and support files.
+<P>
+
+Most of the features found on &quot;real&quot; CD players are available in
+<I>xmcd,</I>
+
+such as shuffle and repeat, track programming functions,
+a numeric keypad and track warp slider for direct track access.
+Additional functions include sample play, A to B segment play,
+volume control, balance control, etc.  Several automation
+options are also available on CD load, eject, play completion
+and program exit.  A Channel Routing feature allow you to
+select from several stereo or mono routing options.  The
+volume control slider taper characteristics can also be
+altered.
+<P>
+
+CDDA (CD digital audio) data extraction, playback, save-to-file,
+and pipe-to-program are supported on many platforms.  For
+data extraction to file or pipe,
+<I>xmcd</I>
+
+can generate the data in MP3 (MPEG-1 layer 3), MPEG-2/MPEG-4 AAC, MP4,
+Ogg Vorbis, FLAC, WAV, AU, AIFF, AIFF-C and raw headerless formats.
+Simultaneous extraction to file/pipe and real-time playback is
+possible on high performance computers.
+<P>
+
+Multi-disc changers are also supported.  There are buttons
+to switch to the next or previous disc in the changer, as well
+as a way to switch to a specific disc via the keypad.  You can
+select to play only a single disc or auto-play all discs in
+normal or reverse order.
+<P>
+
+The Gracenote CDDB&reg; Music Recognition Service(sm) is supported by
+<I>xmcd,</I>
+
+which allows the CD artist/title and track titles, and other
+information associated with the loaded CD to be displayed.
+You may also add/modify and submit information to the CDDB service.
+For CDDA extraction to MP3, MP4, Ogg Vorbis and FLAC formats,
+<I>xmcd</I>
+
+can auto-fill the CD information tags embedded in these files.
+<P>
+
+This release of
+<I>xmcd</I>
+
+supports the enhanced Gracenote CDDB<SUP>2</SUP>&reg; service on a number of platforms,
+and offers much richer features and content than the &quot;classic&quot; CDDB service.
+Moreover, CDDB<SUP>2</SUP>-supplied information is now in UTF-8
+data format, providing international language support.
+See &quot;LOCALIZATION&quot; below.
+<P>
+
+<I>Xmcd</I>
+
+provides the ability to drive a web browser and search for web
+sites related to the currently playing CD artist or track.
+You may also access online music reviews and go to the official
+<I>xmcd</I>
+
+and
+<I>Gracenote</I>
+
+web sites, invoke the CDDB Music Browser<SUP><SMALL>TM</SMALL></SUP>,
+as well as CDDB-provided links to related content.
+Moreover, the browser integration gives
+users the ability to manage <I>Local Discography</I> information
+pertaining to their CD collections.
+<P>
+
+In addition to CDDB, this release of
+<I>xmcd</I>
+
+supports reading CD-TEXT data from the disc for the disc/track
+artist and title information.
+<P>
+
+Full feature-specific pop-up help is available for
+all controls, indicators, text input fields, and lists.
+<P>
+
+On systems with more than one CD drive, multiple
+invocations of
+<I>xmcd</I>
+
+can be used to operate each drive independently.
+<P>
+
+<I>Xmcd</I>
+
+is designed to be easy to use, as the main window is
+purposely made to resemble a real CD player front panel.
+All other pop-up windows are also designed to be as
+intuitive as possible.  Moreover, while the use of a mouse
+is natural with
+<I>xmcd,</I>
+
+all functionality can also be operated via the keyboard.
+This is in conformance to the guidelines published in the
+<I>OSF/Motif Style Guide</I>
+
+from the Open Software Foundation.
+<P>
+
+Many functions on a running
+<I>xmcd</I>
+
+session can be &quot;remote controlled&quot;
+from the command line via the -<I>remote</I> option.  See the &quot;OPTIONS&quot;
+section below.
+<P>
+
+The internal architecture of
+<I>xmcd</I>
+
+is designed to be easily portable to many UNIX operating
+system variants, and adaptable to the myriad of CD drives
+available.
+<P>
+
+</DIR>
+<A NAME="OPTIONS" id="OPTIONS">&nbsp;</A><A NAME="lbAE" id="lbAE">&nbsp;</A>
+<H3>OPTIONS</H3>
+<DIR>
+
+All standard <I>Xt Intrinsics</I> toolkit options are supported
+(such as -<I>display</I>, -<I>geometry</I>. -<I>iconic</I>, etc.).
+In addition,
+<I>xmcd</I>
+
+supports the following options:
+<P>
+<DL COMPACT>
+<DT><I>-dev&nbsp;device</I><DD>
+<BR>
+
+Specifies the path name to the raw CD device.  If this option is
+not used, the default device to be used is the first
+drive set up with the
+<I>xmcd</I>
+
+configuration program (See below).
+<DT><I>-help</I><DD>
+Causes command line usage information to be displayed on <I>stderr</I>.
+<DT><I>-debug&nbsp;level#</I><DD>
+Causes verbose debugging diagnostics to be displayed on <I>stderr</I>.
+The level specifies the type of debugging messages desired:
+<P>
+<PRE>
+1       General debugging
+2       Device I/O debugging
+4       CD information debugging
+8       User interface debugging
+16      Remote control debugging
+32      Sound DSP and output file/pipe debugging
+64      Message of the day debugging
+</PRE>
+
+<P>
+You may add the values together to enable multiple debugging types
+(i.e., A value of 3 turns on both General and Device I/O debugging).
+<DT><I>-instcmap</I><DD>
+Causes
+<I>xmcd</I>
+
+to install its own colormap.  This may be desirable if
+<I>xmcd</I>
+
+is to be used at the same time as other color-intensive
+applications, which would otherwise cause
+<I>xmcd</I>
+
+to be unable to
+allocate all its needed colors.  Note that when running on an X
+display that does not support many concurrent colormaps, this may
+cause other windows to change colors when
+<I>xmcd</I>
+
+has the input focus.
+<DT><I>-remote</I><DD>
+Causes a command to be sent to another running
+<I>xmcd</I>
+
+process.
+The command and appropriate arguments are specified at the
+invoking shell (or shell script) as command-line arguments,
+After the command is delivered, the &quot;sender&quot;
+<I>xmcd</I>
+
+process exits,
+and the &quot;receiver&quot; process responds by executing the command.
+In effect, the sender becomes a remote control for a running
+<I>xmcd</I>
+
+session.  See &quot;COMMANDS&quot; below for a list of supported
+commands.
+<P>
+The sender
+<I>xmcd</I>
+
+process can be invoked on the same host or on
+a different host than the receiver
+<I>xmcd</I>
+
+process.  By default,
+the sender will attempt to locate an
+<I>xmcd</I>
+
+process running on the
+same X display (determined by the DISPLAY environment variable
+or the -<I>display</I> option), and controlling the same
+default CD device.  You may specify the device via the -<I>dev</I>
+option to override the default.  Use of the -<I>dev</I> and
+-<I>rmthost</I> options on the sender's command line can resolve
+ambiguities when there are multiple
+<I>xmcd</I>
+
+clients displaying on the
+same X server.
+<DT><I>-rmthost&nbsp;hostname</I><DD>
+This may be used with the -<I>remote</I> option to specify the host
+on which the receiver
+<I>xmcd</I>
+
+client must be running.
+<DT><I>-c&nbsp;device (Solaris only)</I><DD>
+Same as the
+<I>-dev</I>
+
+option.
+<DT><I>-X (Solaris only)</I><DD>
+Causes the <B>exitOnEject</B> parameter to be set to True.
+<DT><I>-o (Solaris only)</I><DD>
+This option has no effect.
+</DL>
+<P>
+
+The
+<I>-c, -X</I>
+
+and
+<I>-o</I>
+
+options are provided only on the Solaris platform
+for compatibility with the
+<I>action_workman.so</I>
+
+auto-startup program, running under the Solaris Volume Manager (<I>vold</I>).
+See the PLATFORM file in the
+<I>xmcd</I>
+
+distribution about configuring
+<I>xmcd</I>
+
+for the Solaris Volume Manager.
+<P>
+
+</DIR>
+<A NAME="X_RESOURCES" id="X_RESOURCES">&nbsp;</A><A NAME="lbAF" id="lbAF">&nbsp;</A>
+<H3>X RESOURCES</H3>
+<DIR>
+
+<I>Xmcd</I>
+
+has many adjustable X resources to customize its look and feel, as well
+as its behavior.  Notably, the colors of virtually every feature on
+<I>xmcd</I>'s windows can be changed, as well as the text fonts.  All
+text labels can also be changed (for example, to another language).
+<P>
+
+There are too many resources to list here, but the resource names
+and their defaults (plus descriptive comments) can be found in the
+<B>XMCDLIB</B><I>/app-defaults/XMcd</I>
+file (where XMCDLIB is the xmcd library directory specified during
+installation, typically <I>/usr/lib/X11/xmcd</I>).
+It is not recommended
+that you change values in the <B>XMCDLIB</B><I>/app-defaults/XMcd</I> file,
+unless you want the changes to be forced upon all users of
+<I>xmcd</I>
+
+on the system.  Instead, make a copy of this file, change the copy as you
+see fit, then place it in your $HOME/.xmcdcfg directory.  Your custom
+resource settings will then override the defaults when
+<I>xmcd</I>
+
+is subsequently started.
+<P>
+
+</DIR>
+<A NAME="COMMANDS" id="COMMANDS">&nbsp;</A><A NAME="lbAG" id="lbAG">&nbsp;</A>
+<H3>COMMANDS</H3>
+<DIR>
+
+You may specify a command as an xmcd command line argument,
+to make xmcd execute the command after initial startup.
+For example, the following command starts
+<I>xmcd</I>
+
+and then begins playing at track 4:
+<P>
+
+<B>xmcd play 4 &amp;</B>
+
+<P>
+<P>
+
+If the -<I>remote</I> option is used, then the command is
+sent to another running xmcd process for execution (See &quot;OPTIONS&quot;
+above).
+<P>
+
+The supported commands are:
+<P>
+
+<DL COMPACT>
+<DT><I>stop</I><DD>
+Stop playback.
+<DT><I>play [track# | min:sec | track#:min:sec]</I><DD>
+Start playback.  You may also specify the starting track number,
+and/or the starting minute and second offset.
+<DT><I>pause</I><DD>
+Pause the playback.  You may resume the playback by using either
+the <I>pause</I> command again, or the <I>play</I> command.
+<DT><I>sample</I><DD>
+Start sample playback.  This will play the first 10 seconds of each
+track.
+<DT><I>disc &lt;load | eject | prev | next | disc#&gt;</I><DD>
+Perform a disc operation:  Load or eject the CD, or change to
+another disc on a multi-disc changer.
+<DT><I>track &lt;prev | next | track#&gt;</I><DD>
+Perform a track operation: Change to the previous or next track, or
+a specified track number.
+<DT><I>index &lt;prev | next&gt;</I><DD>
+Perform an index operation: Change to the previous or next index.
+<DT><I>lock &lt;on | off&gt;</I><DD>
+Enable or disable the caddy (or disc tray) lock.  When enabled,
+pressing the eject button on the drive will not eject the CD.
+You can only change the lock state when a CD is loaded and is not playing.
+<DT><I>shuffle &lt;on | off&gt;</I><DD>
+Enable or disable shuffle (random play) mode.  Shuffle can be
+enabled in this manner only when playback is not in progress.  When
+shuffle is enabled, any program sequence is cleared and segment
+play is canceled.
+<DT><I>repeat &lt;on | off&gt;</I><DD>
+Enable or disable repeat mode.
+<DT><I>program &lt;clear | save | track# ...&gt;</I><DD>
+Clear, save or set a track program sequence.  Track numbers may be space or
+comma-separated.  When a program is set in this manner, shuffle mode
+will be disengaged and segment play will be canceled.
+<DT><I>volume &lt;value# | linear | square | invsqr&gt;</I><DD>
+Volume control operation.  You can specify a numeric value to set
+the volume level (The range is 0 to 100), or change the volume control's
+taper characteristic: linear, square, or inverse-square.  This control
+operates the hardware volume control on the CD drive in <I>Standard
+playback</I> mode, or the computer's audio hardware in <I>CDDA playback</I>
+mode.  It has no effect on the data of the <I>CDDA save to file</I> or
+<I>CDDA pipe to program</I> outputs.
+<DT><I>balance value#</I><DD>
+Balance control.  The value should be between 0 and 100.   50 is center,
+0 is full-left, and 100 is full-right.  This control
+operates the hardware volume control on the CD drive in <I>Standard
+playback</I> mode, or the computer's audio hardware in <I>CDDA playback</I>
+mode.  It has no effect on the data of the <I>CDDA save to file</I> or
+<I>CDDA pipe to program</I> outputs.
+<DT><I>route &lt;stereo | reverse | mono-l | mono-r | mono | value#&gt;</I><DD>
+Channel routing control.  Use one of the appropriate keywords, or
+a value as follows:
+<P>
+<PRE>
+0       Normal stereo
+1       Reverse stereo
+2       Mono-L
+3       Mono-R
+4       Mono-L+R
+</PRE>
+
+<DT><I>outport &lt;speaker | headphone | line-out | value#&gt;</I><DD>
+CDDA playback output port selection.  The <I>speaker</I>, <I>headphone</I>
+and <I>line-out</I> keywords are toggles.  Alternatively, you may
+specify a numeric <I>value</I>, as follows:
+<P>
+<PRE>
+1       Speaker
+2       Headphone
+4       Line-out
+</PRE>
+
+<P>
+You may add the values together to enable multiple output ports
+(i.e., A value of 3 turns on both Speaker and Headphones).
+When the value is set to 0, the port setting is unmodified.
+Note that this command may be meaningful only on some platforms,
+and only certain ports may be available on a particular architecture.
+See the PLATFORM file for details.
+<DT><I>cdda-att &lt;value#&gt;</I><DD>
+CDDA attenuator level.  The valid range is 0 to 100.
+Note that in contrast to the <I>volume</I> command, this setting
+does not operate any hardware.  It works by scaling the CDDA
+audio samples, and thus has no effect in <I>Standard playback</I>
+mode, but affects all CDDA modes (<I>CDDA playback</I>,
+<I>CDDA save to file</I> and <I>CDDA pipe to program</I>).
+<DT><I>time &lt;elapse | e-seg | e-disc | r-trac | r-seg | r-disc&gt;</I><DD>
+Change the time display mode.  Select from elapsed track time,
+elapsed segment time, elapsed disc time, remaining track time,
+remaining segment time or remaining disc time.
+<DT><I>on-load &lt;none | spindown | autoplay | autolock | noautolock&gt;</I><DD>
+Enable or disable options when a CD is loaded.  The
+<I>spindown</I>
+
+option will cause the CD to stop after loading to conserve the laser
+and motor.  The
+<I>autoplay</I>
+
+option will cause the CD to automatically start playing after loading.  The
+<I>autolock</I>
+
+option causes the caddy or disc tray to be automatically locked.  The
+<I>none,</I>
+
+<I>spindown</I>
+
+and
+<I>autoplay</I>
+
+options are mutually-exclusive.
+<DT><I>on-exit &lt;none | autostop | autoeject&gt;</I><DD>
+Enable or disable options when
+<I>xmcd</I>
+
+exits.  The
+<I>autostop</I>
+
+option will cause xmcd to stop playback,
+and the
+<I>autoeject</I>
+
+option will cause xmcd to eject the CD.  Use
+<I>none</I>
+
+to cancel these options.
+<DT><I>on-done &lt;autoeject | noautoeject | autoexit | noautoexit&gt;</I><DD>
+Enable or disable options when
+<I>xmcd</I>
+
+is done with playback.  The
+<I>autoeject</I>
+
+option causes xmcd to eject the CD.  The
+<I>autoexit</I>
+
+option will cause xmcd to exit.
+<DT><I>on-eject &lt;autoexit | noautoexit&gt;</I><DD>
+Enable or disable options when
+<I>xmcd</I>
+
+ejects a CD.  The
+<I>autoexit</I>
+
+option will cause xmcd to exit after ejecting the CD.
+<DT><I>changer &lt;multiplay | nomultiplay | reverse | noreverse&gt;</I><DD>
+Enable or disable multi-disc changer options.  The
+<I>multiplay</I>
+
+option specifies that
+<I>xmcd</I>
+
+plays all discs in sequence.  The
+<I>nomultiplay</I>
+
+option will cause xmcd to stop after the current disc is done.
+The
+<I>reverse</I>
+
+option implies
+<I>multiplay,</I>
+
+except that the disc order is reversed.
+<DT><I>mode &lt;standard | cdda-play | cdda-save | cdda-pipe&gt;</I><DD>
+Selects the playback mode.  See &quot;PLAYBACK MODES&quot; below for details
+about the modes.
+<DT><I>jittercorr &lt;on | off&gt;</I><DD>
+Enable or disable CDDA jitter correction.
+<DT><I>trackfile &lt;on | off&gt;</I><DD>
+For <I>CDDA save to file</I> mode, specifies whether a separate
+file should be created for each CD track.
+<DT><I>subst &lt;on | off&gt;</I><DD>
+For <I>CDDA save to file</I> mode, specifies whether space and tab
+characters in the output file path name should be substituted with
+underscores ('_').  This makes the files easier to manipulate while
+using the UNIX command shell.
+<DT><I>filefmt &lt;format&gt;</I><DD>
+Specifies the output audio file format if running in
+<I>CDDA save to file</I> or <I>CDDA pipe to program</I> modes.
+The <I>format</I> is one of the following:
+raw, au, wav, aiff, aiff-c, mp3, ogg, flac, aac or mp4.
+<DT><I>outfile &lt;template&gt;</I><DD>
+Specifies the output audio file path name template if running in
+<I>CDDA save to file</I> mode.  See the help file for the CDDA output
+file path template text box for a description on the special tokens
+that could be used in the template.
+<DT><I>pipeprog &lt;path [arg ...]&gt;</I><DD>
+Specifies the external program to which the audio stream will be piped to
+when running in <I>CDDA pipe to program</I> mode.
+<DT><I>compress &lt;&lt;0 | 3&gt; [bitrate#] | &lt;1 | 2&gt; [qual#]&gt;</I><DD>
+Selects the compression mode for compressed file formats, as follows:
+<P>
+For MP3, the modes are as follows:
+<PRE>
+0       Constant bitrate (CBR)
+1       Variable bitrate (VBR, old algorithm)
+2       Variable bitrate (VBR, new algorithm, faster)
+3       Average bit rate (ABR)
+</PRE>
+
+<P>
+For Ogg Vorbis and MP4, all modes are VBR, as follows:
+<PRE>
+0, 3    Use an average bit rate
+1, 2    Use a quality factor
+</PRE>
+
+<P>
+For FLAC, the modes are as follows:
+<PRE>
+0       None
+1       Enable exhaustive LP coefficient quant. search
+2       Enable encoding correctness verification
+3       Enable both
+</PRE>
+
+<P>
+For AAC, all modes are VBR, as follows:
+<PRE>
+0       Use an average bit rate, MPEG-2
+1       Use a quality factor, MPEG-2
+2       Use a quality factor, MPEG-4
+3       Use an average bit rate, MPEG-4
+</PRE>
+
+<P>
+For modes <I>0</I> and <I>3</I>, an optional bitrate (in kb/s)
+sub-argument can be specified.  The supported bitrates are a discrete
+set of numbers from 32 to 320.  A value of 0 can also be used to indicate
+the use of an internal default.  For modes <I>1</I> and <I>2</I>, an optional
+quality factor (from 1 to 10) sub-argument can be used.
+Lower bitrates and quality factor values yield smaller
+files whereas higher numbers produce higher audio quality.
+For AAC and MP4 formats, the bitrate you specify will be double the
+actual bitrate (e.g., if you specify 128kbps, the actual bitrate used
+will be 64kbps).  The bitrate or quality values, if specified, are
+ignored for the FLAC format.
+<DT><I>min-brate &lt;bitrate#&gt;</I><DD>
+In average bitrate and variable bitrate modes, this commands lets you
+specify a low bitrate limit.  The encoder will not drop below this limit
+while dynamically changing the bitrate.  A value of 0 can be specified
+to indicate the use of an internal default.
+This parameter has no effect on the FLAC, AAC or MP4 format.
+<DT><I>max-brate &lt;bitrate#&gt;</I><DD>
+In average bitrate and variable bitrate modes, this commands lets you
+specify a high bitrate limit.  The encoder will not go above this limit
+while dynamically changing the bitrate.  A value of 0 can be specified
+to indicate the use of an internal default.
+This parameter has no effect on the FLAC, AAC or MP4 format.
+<DT><I>coding &lt;stereo | j-stereo | force-ms | mono | algo#&gt;</I><DD>
+This command selects the stereo mode and encoding
+noise-shaping/psychoacoustics algorithm.
+<P>
+For MP3, the algorithm is a number from 1 to 10.  Lower numbers gives
+faster encoding whereas higher numbers produce higher audio quality.
+<P>
+For AAC and MP4, <I>stereo</I> disables the mid/side coding,
+<I>j-stereo</I> and <I>force-ms</I> are synonymous, and <I>mono</I>
+is not supported.  An algorithm value of 10 enables
+temporal noise shaping (TNS).
+<P>
+For FLAC, the stereo modes have no effect, but the algorithm value
+selects between faster encoding versus slightly better compression.
+<P>
+For Ogg Vorbis, this parameter has no effect.
+<DT><I>lowpass &lt;off | auto | freq# [width#]&gt;</I><DD>
+This allows a lowpass filter to be added.
+The <I>off</I> setting means no filter, the <I>auto</I> setting causes the
+encoder to determine whether a filter should be added and its parameters.
+Specifying a frequency (and optionally, a width) will enable the filter
+in manual mode.  The frequency and width are both in Hz.  The valid
+frequency range is from 16 to 50000 Hz.
+For MP3, the filter functions fully as described.
+For AAC and MP4, the <I>freq</I> can be used to limit the bandwidth, but
+the <I>width</I> value is ignored.
+For Ogg Vorbis and FLAC, these parameters have no effect.
+<DT><I>highpass &lt;off | auto | freq# [width#]&gt;</I><DD>
+For encoding to MP3 files, this allows a highpass filter to be added.
+The <I>off</I> setting means no filter, the <I>auto</I> setting causes the
+encoder to determine whether a filter should be added and its parameters.
+Specifying a frequency (and optionally, a width) will enable the filter
+in manual mode.  The frequency and width are both in Hz.  The valid
+frequency range is from 500 to 50000 Hz.  The lower limit is imposed by
+the polyphase filter implementation in the MP3 encoder.
+For non-MP3 formats, these parameters have no effect.
+<DT><I>flags &lt;[C|c][O|o][P|p][E|e][I|i]&gt;</I><DD>
+This allows you to specify some MP3 header and frame flags.
+The letter <I>c</I> denotes the &quot;copyright&quot; flag, the letter <I>o</I>
+denotes the &quot;original&quot; flag, the letter <I>n</I> denotes the &quot;no res&quot;
+(disable bit reservoir) flag, the letter <I>e</I> denotes the addition
+of a 2-byte checksum to each frame for error correction, and the letter
+<I>i</I> indicates strict ISO compatibility.  The use of a upper-case
+letter turns on the flag, and lower-case turns off the flag.  Multiple
+flags may be specified together.
+<DT><I>tag &lt;off | v1 | v2 | both&gt;</I><DD>
+This command specifies whether CD information (such as album and track
+artists and titles, genre type, etc.) should be added to the CDDA output
+file.  For MP3, the information is added to either the version 1, version 2
+or both versions of the ID3 tag areas.  For Ogg Vorbis, FLAC and MP4,
+the information is added to the metadata area.
+to 
+<BR>
+
+Note: An ID3v2 tag will not be added to the <I>CDDA pipe to program</I>
+MP3 stream regardless of the setting of this command.
+<DT><I>lameopts &lt;&lt;disable | insert | append | replace&gt; [options]&gt;</I><DD>
+This command allows you to query or set command line options to
+be passed directly to the LAME MP3 encoder, and control how those
+options will be passed.  This facilitates the use of advanced or
+experimental LAME features that cannot otherwise be invoked via the
+<I>xmcd</I>
+
+graphical user interface for setting encoding parameters.
+The following keywords control how the command line options
+are to be passed:
+<P>
+<I>disable</I>: No additional command line options are to be passed.
+<BR>
+
+<I>insert</I>: The specified options are to be inserted before
+the standard options.
+<BR>
+
+<I>append</I>: The specified options are to be appended after
+the standard options.
+<BR>
+
+<I>replace</I>: The specified options are to be used instead of
+the standard options.
+<P>
+Standard options refers to the command line options that
+<I>xmcd</I>
+
+generates, based on the current settings of the controls in
+the &quot;Encoding Parameters&quot; options window.
+<DT><I>motd</I><DD>
+Retrieve and display messages from the xmcd MOTD server, if any.
+<DT><I>window &lt;modechg | iconify | deiconify | raise | lower&gt;</I><DD>
+<I>Xmcd</I>
+
+window control.  The
+<I>modechg</I>
+
+command causes the
+
+main window to toggle between the normal mode and basic mode.  In normal
+mode, all controls and indicators are available.  In basic mode,
+<I>xmcd</I>
+
+shrinks to a smaller size and only basic controls are shown.
+The
+<I>iconify,</I>
+
+<I>deiconify,</I>
+
+<I>raise</I>
+
+and
+<I>lower</I>
+
+commands cause the
+<I>xmcd</I>
+
+window to change as specified.
+<DT><I>quit</I><DD>
+Causes xmcd to exit.
+<DT><I>debug &lt;level#&gt;</I><DD>
+Set the debug level.  When debug level is non-zero,
+<I>xmcd</I>
+
+generates verbose debugging diagnostics to be displayed on <I>stderr</I>.
+See the description for the <I>-debug</I> option above for supported level
+values.
+</DL>
+<P>
+
+Some of these commands, when used in start-up mode, do not
+perform a meaningful function.  For example, the &quot;<I>track prev</I>&quot;
+command is not useful just after xmcd startup.  It is more appropriate
+to use this command in the remote control mode.
+<P>
+
+</DIR>
+<A NAME="DEVICE_CONFIGURATION" id="DEVICE_CONFIGURATION">&nbsp;</A><A NAME="lbAH" id="lbAH">&nbsp;</A>
+<H3>DEVICE CONFIGURATION</H3>
+<DIR>
+
+The X resources described in the previous section affect the
+general appearance and behavior of
+<I>xmcd.</I>
+
+There are two additional configuration files which are used
+to adapt
+<I>xmcd</I>
+
+to your site requirements.  The first of these contain
+common parameters, and the second contain
+configurable parameters that must vary on a
+per-drive basis.  For example, in some cases
+<I>xmcd</I>
+
+must operate the drive differently depending upon the brand
+and model of the drive.  Thus, there must be a separate
+configuration file for these parameters <I>per-device</I>.
+The common parameters file is <B>XMCDLIB</B><I>/config/common.cfg</I>
+and the device-specific parameters file is
+<B>XMCDLIB</B><I>/config/</I><B>DEVICE</B>
+(where XMCDLIB is typically <I>/usr/lib/X11/xmcd</I> and DEVICE is
+the base name of the raw device special file for the CD drive;
+e.g., <I>/usr/lib/X11/xmcd/config/rcd0</I>).
+A configuration program <B>XMCDLIB</B><I>/config/config.sh</I>
+is provided to make maintaining these configuration
+file easy (Note: on SCO UNIX/Open Desktop/Open Server systems the
+configuration program can also be invoked as &quot;<I>mkdev xmcd</I>&quot;).
+<P>
+
+You should always use the configuration program to set the
+configuration parameters when installing
+<I>xmcd</I>
+
+for the first time, or when the CD hardware configuration has
+changed.  If this is not done then
+<I>xmcd</I>
+
+will probably not operate correctly with your CD drive.
+<P>
+
+<B>WARNING:</B>
+
+If
+<I>xmcd</I>
+
+is not correctly configured, you may cause
+<I>xmcd</I>
+
+to deliver commands that are not supported by your CD drive.
+Under some environments this may lead to system hang or crash.
+<P>
+
+You can override some of the device-specific configuration parameters
+by adding your own configuration files.
+<I>Xmcd</I>
+
+will also look in the
+<B>$HOME</B><I>/.xmcdcfg/common.cfg</I> and
+<B>$HOME</B><I>/.xmcdcfg/</I><B>DEVICE</B> files for
+common and device-specific parameters (where $HOME is your home
+directory and DEVICE is as specified above).  Parameters found in
+this file will override the system defaults (except those
+parameters that cannot be overridden; see the comments in the
+<B>XMCDLIB</B><I>/config/device.cfg</I> for details).
+<P>
+
+</DIR>
+<A NAME="USING_XMCD" id="USING_XMCD">&nbsp;</A><A NAME="lbAI" id="lbAI">&nbsp;</A>
+<H3>USING XMCD</H3>
+<DIR>
+
+The basic functions of
+<I>xmcd</I>
+
+are designed to operate the same way as on a real stereo CD player.
+The pictorial symbols used on the main window buttons are intended
+to illustrate the function in a non-language-specific manner.  If
+enabled, a small &quot;tooltip&quot; will appear after a short delay, when
+you position the mouse cursor over any xmcd main window feature.
+The tooltip contains textual description of the feature.
+<P>
+
+The CD information and track programming functions are operated
+via the CD Information subwindow.  You open the subwindow by clicking the
+<B>CD Information</B>
+
+button (file cabinet symbol) on the main window (See &quot;CD DATABASE&quot; below).
+<P>
+
+There is not a per-item description of all the features here,
+because full on-line help is available (See &quot;ONLINE HELP&quot; below).
+<P>
+
+</DIR>
+<A NAME="ONLINE_HELP" id="ONLINE_HELP">&nbsp;</A><A NAME="lbAJ" id="lbAJ">&nbsp;</A>
+<H3>ONLINE HELP</H3>
+<DIR>
+
+For general information about
+<I>xmcd,</I>
+
+click the <B>wwwWarp</B> (world symbol) button on the
+<I>xmcd</I>
+
+main window and select '<I>Xmcd help...</I>' in the menu.  You can also
+get specific help information about each button, control,
+indicator, text entry area, selection list by positioning the
+mouse cursor over the desired item, then clicking the third mouse
+button.  A pop-up window will appear, containing the relevant
+help text.
+<P>
+
+</DIR>
+<A NAME="TRACK_PROGRAMMING" id="TRACK_PROGRAMMING">&nbsp;</A><A NAME="lbAK" id="lbAK">&nbsp;</A>
+<H3>TRACK PROGRAMMING</H3>
+<DIR>
+
+You can program
+<I>xmcd</I>
+
+to play only certain tracks, in a custom sequence.
+To do so, invoke the CD Information window (by clicking the
+<B>CD Information</B>
+
+button on the main window).  Select the desired track
+by clicking on the entry in the
+<B>Track list,</B>
+
+and click the
+<B>Add</B>
+
+button to add to the play sequence.  Notice that the track number
+appears in the
+<B>Program sequence</B>
+
+text field.  You can also type the track numbers, separated with
+commas or spaces, directly in the
+<B>Program sequence</B>
+
+field.  Repeat until all desired tracks have been entered,
+then click the
+<B>Play/Pause</B>
+
+button (on the main window) to start the program play.
+<P>
+
+When a program sequence is defined, the
+<B>prog</B>
+
+indicator in the main window display area &quot;illuminates&quot;.
+To erase the program sequence, click the
+<B>Clear</B>
+
+button on the CD Information window.  You may also
+<B>Save</B>
+
+a program sequence, so that the next time you load the same CD
+the program will automatically be applied.  The
+<I>Clear</I>
+
+button will also delete the saved program.
+<P>
+
+</DIR>
+<A NAME="CD_DATABASE" id="CD_DATABASE">&nbsp;</A><A NAME="lbAL" id="lbAL">&nbsp;</A>
+<H3>CD DATABASE</H3>
+<DIR>
+
+Unless explicitly disabled,
+<I>xmcd</I>
+
+will automatically query the Gracenote CDDB Music Recognition Service
+for information about the loaded CD.  This information includes the
+artist/title, track titles, genre, and much more, and is
+displayed on the CD Information window and several of its
+sub-windows.
+<P>
+You may also add, modify or enhance the displayed
+information, in the rare circumstance that CDDB does not have data
+pertaining to your CD, or if the CDDB-supplied data is incomplete or
+in error.  You can then submit the changes back to CDDB.
+<P>
+
+You should perform a &quot;submit&quot; operation (click the
+<B>Submit</B>
+
+button) after typing in the changed information before ejecting
+the CD or exiting, or the information will be lost.
+<P>
+
+The CD Information window should prove to be intuitive to use.
+You may use the on-line help system to obtain specific help
+information about the various buttons and items.
+<P>
+
+The CD information, once queried from CDDB, is stored in a local cache
+and managed by the CDDB library.  This reduces unnecessary Internet
+connections to the CDDB servers.
+<P>
+
+This release of
+<I>xmcd</I>
+
+also supports reading the CD-TEXT data from the disc
+for CD information.  Only some recent CDs are produced with
+CD-TEXT data and this data can only be read on CD drives with
+CD-TEXT capability.
+<P>
+
+For backward compatibility, this release of
+<I>xmcd</I>
+
+will also read the old-style local CD database files previously
+generated by xmcd versions 1.x and 2.x.  No capability is retained
+in this release to write/update the old-style CD database files.
+<P>
+
+The priority of the CD information schemes (CDDB, CD-TEXT or local CD
+database files) is controlled via the cdinfoPath parameter in the
+<B>common.cfg</B> file.
+<P>
+
+For more information about
+<I>Gracenote&nbsp;CDDB,</I>
+
+read the CDDB file included with this release, and visit the
+<I><A HREF="http://www.cddb.com">http://www.cddb.com</A></I>
+
+web site for details.
+<P>
+
+While
+<I>xmcd</I>
+
+is running, the file <B>/tmp/.cdaudio/curr.</B><I>nnnn</I> (where
+nnnn is the hexadecimal representation of the CD drive's
+device number) contains the device node path, the music genre,
+and disc identification information pertaining to the currently loaded CD.
+Other applications may read this file to identify the
+currently loaded disc.
+<P>
+
+</DIR>
+<A NAME="PLAYBACK_MODES" id="PLAYBACK_MODES">&nbsp;</A><A NAME="lbAM" id="lbAM">&nbsp;</A>
+<H3>PLAYBACK MODES</H3>
+<DIR>
+
+This release supports the following user-selectable playback modes
+(via the Options pop-up window):
+<P>
+<DL COMPACT>
+<DT><I>Standard playback</I><DD>
+<BR>
+
+When playing an audio CD, the audio output is the analog &quot;line out&quot;
+connection on the back of your CD drive.  There should be an audio
+cable connecting this output to your computer audio hardware CD
+input (or to an externally amplfied speaker or stereo system).  The
+audio output is also available at the CD drive's front panel
+headphone connection, if so equipped.  The volume control slider bar on
+<I>xmcd</I>
+
+affect the CD drive's built-in volume control, if the drive has such
+controls.  This is the mode that previous releases
+(<I>xmcd</I> version 1.x through 3.0) supported.
+<P>
+<DT><I>CDDA playback</I><DD>
+<BR>
+
+When playing a CD in this mode,
+<I>xmcd</I>
+
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it sends the data to the
+DSP (digital signal processor) device in your computer's audio hardware
+for real-time playback.  The audio is typically heard through the
+computer's built-in speakers.  No signal is produced at the line-out
+or headphone connections of the CD drive.  The
+<I>xmcd</I>
+
+volume control slider bar affects the computer's DSP device.
+<P>
+<DT><I>CDDA save to file</I><DD>
+<BR>
+
+When playing a CD in this mode,
+<I>xmcd</I>
+
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it writes the data
+into a file of your choosing.  The
+<I>xmcd</I>
+
+volume control slider does not affect the data written to
+the output file.  The output file format can be selected to be one
+of the following:
+<P>
+<PRE>
+Format Ext   Description
+------ ----- ---------------------------------------
+RAW    .raw  Little-endian, 16 bit, 44.1 kHz, stereo
+AU     .au   Big-endian, 16 bit, 44.1 kHz, stereo
+WAV    .wav  Little-endian, 16 bit, 44.1 kHz, stereo
+AIFF   .aiff Big-endian, 16 bit, 44.1 kHz, stereo
+AIFF-C .aifc Big-endian, 16 bit, 44.1 kHz, stereo
+MP3    .mp3  MPEG 1.0 Layer III compressed
+Ogg    .ogg  Ogg Vorbis compressed
+FLAC   .flac Free Lossless Audio CODEC compressed
+AAC    .aac  AAC (MPEG-2 or MPEG-4) compressed
+MP4    .mp4  MP4 (MPEG-4) compressed
+</PRE>
+
+<P>
+The file can be played later using an appropriate playback utility,
+or converted to another format.  This mode will typically run faster than
+real-time with the non-compressed formats.  With the compressed formats,
+it depends on the CPU performance of your system.
+<P>
+<DT><I>CDDA pipe to program</I><DD>
+<BR>
+
+When playing a CD in this mode,
+<I>xmcd</I>
+
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it pipes the data
+stream to an external program that you specify.  The output
+format is selected as in the <I>CDDA save to file</I> mode.
+This mode can be used with an external audio player, encoder, or
+other digital audio manipulation program.
+The external program must be capable of accepting audio data on its
+standard input, in one of the formats listed above.
+</DL>
+<P>
+
+More than one of the three CDDA modes can be selected at the same time.
+For example, if both the <I>CDDA playback</I> and the
+<I>CDDA save to file</I> buttons are selected, the two functions
+will be performed simultaneously.  Note that on most systems, only one
+program can access the system's DSP at a time, therefore you will
+likely not be able to select <I>CDDA playback</I> and
+<I>CDDA pipe to program</I> at the same time, where the external program
+is itself an audio player.
+<P>
+
+<B>NOTE</B>: The CDDA (CD digital audio) modes will function only on
+CD drives that provides this capability, and only on some OS and hardware
+platforms.  See the RELNOTES file for details about platform support and
+other CDDA related notes.
+<P>
+
+</DIR>
+<A NAME="LOCALIZATION" id="LOCALIZATION">&nbsp;</A><A NAME="lbAN" id="lbAN">&nbsp;</A>
+<H3>LOCALIZATION</H3>
+<DIR>
+
+There is full localization support in
+<I>xmcd</I>
+
+if it is compiled with X11R5 or later header files and libraries.
+<P>
+
+The &quot;classic&quot; CDDB service supplies data in the ISO Latin-1 format only, 
+multi-byte characters are not supported.
+<P>
+
+The CDDB<SUP>2</SUP> service supplies data in UTF-8 data format, which is
+identical to US-ASCII for single-byte characters.  Multi-byte UTF-8
+characters are also supported when xmcd is linked with X11R5 or later.
+By default, xmcd will translate the characters to ISO Latin-1
+(ISO 8859-1, for English and many European character sets).
+By changing the setting of the <B>charsetConvMode</B> parameter in
+the <B>common.cfg</B> file, you can have
+<I>xmcd</I>
+
+display the UTF-8 data without conversion (good for US-ASCII
+or if you are using UTF-8 fonts),
+or attempt to convert UTF-8 strings to the default character set
+as specified by the <B>LANG</B> environment variable.  This conversion
+will occur only if the system's list of locales also support UTF-8.
+As distributed,
+<I>xmcd</I>
+
+is configured to display in a generic family of X fonts denotes similar
+to the following:
+<P>
+
+-*-helvetica-bold-o-*--14-140-*
+
+<P>
+This will normally work correctly with English and any ISO Latin-1
+European character set, as long as your X display server supports all the
+required fonts.  To display in other languages, you must set your
+LANG environment accordingly, and change
+<I>xmcd</I>
+
+to use the appropriate fonts.  That can be accomplished by
+modifying the various XMcd*<I>classname</I>.fontList parameters in the
+XMCDLIB/app-defaults/XMcd file (system wide) or your $HOME/.xmcdcfg/XMcd
+file (per-user).  Be sure that the fonts you specify is actually supported
+by your X display server.  See <B>xlsfonts</B>(1) and your X window system
+documentation about font configuration.
+<P>
+
+Moreover, all titles and descriptions in xmcd are configurable in the
+XMcd X resource file.  US-English is distributed by default, but the file
+may be modified to use any other language as desired.  See &quot;X RESOURCES&quot;
+above.
+<P>
+
+</DIR>
+<A NAME="NOTES" id="NOTES">&nbsp;</A><A NAME="lbAO" id="lbAO">&nbsp;</A>
+<H3>NOTES</H3>
+<DIR>
+
+Not all platforms and CD drives support all the features of
+<I>xmcd.</I>
+
+For example, some drives do not support a software-driven
+volume control.  On these drives the
+<I>xmcd</I>
+
+volume control slider may have no effect, or in some cases it is
+made to function as a mute control (i.e., it will snap to the
+full-off or full-on positions only).  Similarly, the <B>caddy lock</B>,
+<B>eject</B> and <B>index search</B> buttons found on
+<I>xmcd</I>
+
+may not have any effect on drives that do not support the
+appropriate functionality.
+<P>
+
+The remote control feature (using the -<I>remote</I> option)
+is governed by the standard display server security mechanisms of the
+X window system.  In order for an
+<I>xmcd</I>
+
+sender client to communicate
+with a running
+<I>xmcd</I>
+
+receiver client, the sender must have the
+appropriate access permissions to the receiver client's X display.
+See <B>xhost</B>(1), <B>xauth</B>(1) and <B>Xsecurity</B>(1)
+for more information.  If logging is enabled, remote control activity
+is logged by the xmcd receiver client in the $HOME/.xmcdcfg/remote.log
+file for each xmcd user.
+<P>
+
+The lame(1) MP3 encoder program must be installed on your system in
+order for
+<I>xmcd</I>
+
+to perform CD ripping to MP3 format files.  Similarly, the
+faac(1) encoder program must be installed on your system for
+the AAC and MP4 formats.
+<P>
+
+Your copy of the
+<I>xmcd</I>
+
+executable must be compiled and linked with the Ogg Vorbis and FLAC encoder
+libraries in order to perform CD ripping to these formats.  See the
+INSTALL file for details.
+<P>
+
+</DIR>
+<A NAME="ENVIRONMENT_VARIABLES" id="ENVIRONMENT_VARIABLES">&nbsp;</A><A NAME="lbAP" id="lbAP">&nbsp;</A>
+<H3>ENVIRONMENT VARIABLES</H3>
+<DIR>
+
+The <B>LANG</B> environment variable sets the default character set.
+See &quot;LOCALIZATION&quot; above.
+<P>
+
+For the <B>wwwWarp</B> feature, xmcd invokes the Netscape, Mozilla, Galeon
+or Opera web browser to display the contents.  Xmcd searches a number of
+&quot;standard&quot; locations for the web browser executable.  If you have multiple
+browsers installed and would like to direct xmcd to use a
+particular executable, or if your browser executable is installed in
+a non-standard location, then you may set the <B>BROWSER_PATH</B> environment
+variable on the shell command line to the web browser executable you
+desire.
+<P>
+
+An example:
+
+<PRE>
+
+(For Bourne Shell and Korn Shell users):
+BROWSER_PATH=/usr/local/bin/mozilla; export BROWSER_PATH
+
+(For C Shell users):
+setenv BROWSER_PATH /usr/local/bin/mozilla
+</PRE>
+
+
+<P>
+
+you may put the above command in your $HOME/.profile (sh/ksh) or
+$HOME/.cshrc (csh) to set this automatically each time you log in.
+<P>
+
+The <B>LAME_PATH</B> environment variable may be used to specify the
+path to the lame(1) MP3 encoder program.
+<P>
+
+The <B>FAAC_PATH</B> environment variable may be used to specify the
+path to the faac(1) AAC and MP4 encoder program.
+<P>
+
+The <B>AUDIODEV</B> environment variable may be used to specify an
+alternate audio device when running xmcd in the <I>CDDA playback</I> mode.
+The default audio device is write method dependent as follows:
+
+<PRE>
+
+AIX write method:       /dev/paud0/1    (PCI audio)
+AIX write method:       /dev/baud0/1    (MCA audio)
+ALSA write method:      plughw:0,0
+HP-UX write method:     /dev/audio
+Linux/OSS write method: /dev/dsp
+OSF1 write method:      0
+Solaris write method:   /dev/audio
+</PRE>
+
+<P>
+
+In addition, with the OSS and ALSA write methods, the <B>MIXERDEV</B>
+environment variable may be used to specify the PCM mixer channel device.
+The default is <I>/dev/mixer</I> for OSS, and <I>default</I> for ALSA.
+<P>
+
+On FreeBSD with ATAPI CD drives, xmcd will automatically use either
+the CDIOCREADAUDIO ioctl or the pread(2) system call for CDDA reads,
+based on the running kernel version.  You may override the default
+by setting the environment variable <B>CDDA_USE_PREAD</B> to 0 or 1,
+respectively.  Normally this is not necessary.
+<P>
+
+</DIR>
+<A NAME="FILES" id="FILES">&nbsp;</A><A NAME="lbAQ" id="lbAQ">&nbsp;</A>
+<H3>FILES</H3>
+<DIR>
+
+$HOME/.cddb2/*
+<BR>
+
+$HOME/.xmcdcfg/*
+<BR>
+
+XMCDLIB/app-defaults/XMcd
+<BR>
+
+XMCDLIB/cdinfo/*
+<BR>
+
+XMCDLIB/discog/*
+<BR>
+
+XMCDLIB/doc/*
+<BR>
+
+XMCDLIB/config/config.sh
+<BR>
+
+XMCDLIB/config/common.cfg
+<BR>
+
+XMCDLIB/config/device.cfg
+<BR>
+
+XMCDLIB/config/.tbl/*
+<BR>
+
+XMCDLIB/config/*
+<BR>
+
+XMCDLIB/help/*
+<BR>
+
+BINDIR/xmcd
+<BR>
+
+MANDIR/xmcd.1
+<BR>
+
+/tmp/.cdaudio/*
+<P>
+
+</DIR>
+<A NAME="RELATED_WEB_SITES" id="RELATED_WEB_SITES">&nbsp;</A><A NAME="lbAR" id="lbAR">&nbsp;</A>
+<H3>RELATED WEB SITES</H3>
+<DIR>
+
+Xmcd/cda web site: <I><A HREF="http://www.amb.org/xmcd/">http://www.amb.org/xmcd/</A></I>
+<BR>
+
+Gracenote web site: <I><A HREF="http://www.cddb.com/">http://www.cddb.com/</A></I>
+<BR>
+
+Xmmix web site: <I><A HREF="http://www.amb.org/xmmix/">http://www.amb.org/xmmix/</A></I>
+<BR>
+
+LAME MP3 encoder: <I><A HREF="http://www.mp3dev.org/">http://www.mp3dev.org/</A></I>
+<BR>
+
+Ogg Vorbis: <I><A HREF="http://www.xiph.org/ogg/vorbis/">http://www.xiph.org/ogg/vorbis/</A></I>
+<BR>
+
+FLAC (Free Lossless Audio CODEC): <I><A HREF="http://flac.sourceforge.net/">http://flac.sourceforge.net/</A></I>
+<BR>
+
+FAAC (AAC/MP4 encoder): <I><A HREF="http://www.audiocoding.com/">http://www.audiocoding.com/</A></I>
+<BR>
+
+Hydrogen Audio (discussion forums): <I><A HREF="http://www.hydrogenaudio.org/">http://www.hydrogenaudio.org/</A></I>
+<BR>
+
+Sox audio format conversion utility: <I><A HREF="http://www.spies.com/Sox/">http://www.spies.com/Sox/</A></I>
+<P>
+
+</DIR>
+<A NAME="SEE_ALSO" id="SEE_ALSO">&nbsp;</A><A NAME="lbAS" id="lbAS">&nbsp;</A>
+<H3>SEE ALSO</H3>
+<DIR>
+
+<A HREF="cda.html">cda</A>(1), X(1), xhost(1), xauth(1), Xsecurity(1), xlsfonts(1),
+lame(1), faac(1), sox(1)
+<BR>
+
+Xmcd's README, PLATFORM, DRIVES, INSTALL and RELNOTES files
+<P>
+
+</DIR>
+<A NAME="AUTHOR" id="AUTHOR">&nbsp;</A><A NAME="lbAT" id="lbAT">&nbsp;</A>
+<H3>AUTHOR</H3>
+<DIR>
+
+Ti Kan (<I><A HREF="mailto:xmcd@amb.org">xmcd@amb.org</A></I>)
+<BR>
+
+AMB Laboratories, Sunnyvale, CA, U.S.A.
+<BR>
+
+<I>Xmcd</I>
+
+also contains code contributed by several dedicated individuals.
+See the ACKS file in the
+<I>xmcd</I>
+
+distribution for information.
+<BR>
+
+Comments, suggestions, and bug reports are always welcome.
+<P>
+</DIR>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Table of Contents</H2>
+<OL>
+<OL>
+<LI><A HREF="#lbAB">Name</A>
+<LI><A HREF="#lbAC">Synopsis</A>
+<LI><A HREF="#lbAD">Description</A>
+<LI><A HREF="#lbAE">Options</A>
+<LI><A HREF="#lbAF">X resources</A>
+<LI><A HREF="#lbAG">Commands</A>
+<LI><A HREF="#lbAH">Device configuration</A>
+<LI><A HREF="#lbAI">Using xmcd</A>
+<LI><A HREF="#lbAJ">Online help</A>
+<LI><A HREF="#lbAK">Track programming</A>
+<LI><A HREF="#lbAL">Cd database</A>
+<LI><A HREF="#lbAM">Playback modes</A>
+<LI><A HREF="#lbAN">Localization</A>
+<LI><A HREF="#lbAO">Notes</A>
+<LI><A HREF="#lbAP">Environment variables</A>
+<LI><A HREF="#lbAQ">Files</A>
+<LI><A HREF="#lbAR">Related web sites</A>
+<LI><A HREF="#lbAS">See also</A>
+<LI><A HREF="#lbAT">Author</A>
+</OL>
+</OL>
+<H3>Local Discography</H3>
+<UL>
+<LI><A HREF="index.html">Main Index</A>
+<LI><A HREF="discog.html">How to use Local Discography</A>
+</UL>
+</BODY>
+</HTML>

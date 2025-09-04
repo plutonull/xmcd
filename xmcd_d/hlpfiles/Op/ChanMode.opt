@@ -1,0 +1,74 @@
+#
+# @(#)ChanMode.opt	7.14 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Channel Mode selection
+
+This lets you select the channel mode for encoding.
+
+Stereo:
+   This maintains maximum stereo separation.  In this
+   mode, the MP3 encoder makes no use of potential
+   correlations between the two channels.  It can,
+   however, negotiate the bit demand between both
+   channels (i.e., Give one channel more bits if the
+   other contains silence or needs less bits because
+   of a lower complexity).
+
+J-stereo (Joint-stereo):
+   In this mode, the encoder will make use of a
+   correlation between both channels.  The signal
+   will be matrixed into a sum ("mid"), computed by
+   L+R, and difference ("side") signal, computed by
+   L-R, and more bits are allocated to the mid channel.
+   This effectively increases the bandwidth if the
+   signal does not have too much stereo separation,
+   thus giving a gain in encoding quality.  However,
+   using mid/side stereo inappropriately can result
+   in audible compression artifacts.  The encoder
+   uses a sophisticated algorithm to determine when
+   to switch between regular stereo and mid/side
+   stereo to minimize such anomalies.
+
+Forced Mid/Side:
+   This mode will force M/S joint-stereo on all
+   frames.  It is slightly faster than J-stereo,
+   but it should be used only if you are sure that
+   every frame of the input file has very little
+   stereo separation.
+
+Mono:
+   Forces a down-mix from stereo to mono (i.e., the
+   sum of L and R, attenuated by 6dB).
+
+This selection has an effect only in "CDDA save-to-
+file" and "CDDA pipe-to-program" modes, as follows:
+
+- For MP3, all modes are as described above. 
+- For AAC and MP4, setting to Stereo disables Mid/Side
+   coding.  J-stereo and Force M/S are identical,
+   and Mono is not supported.
+- For all other formats, these modes have no effect.
+
+If you change the setting of this item, it will take
+effect on the next "play" session.
+

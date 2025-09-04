@@ -1,0 +1,106 @@
+#
+#   @(#)Makefile.std	7.26 04/03/05
+#
+#   Makefile for cdda
+#
+#	cdda - CD Digital Audio support
+#
+#   NOTE: You should use this only if you don't have imake!
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+include ../make.inc
+
+LIBCDDA=libcdda.a
+
+SRCS=	cdda.c \
+	common.c \
+	sysvipc.c \
+	pthr.c \
+	rd_scsi.c \
+	rd_sol.c \
+	rd_linux.c \
+	rd_fbsd.c \
+	rd_aix.c \
+	wr_oss.c \
+	wr_sol.c \
+	wr_irix.c \
+	wr_hpux.c \
+	wr_aix.c \
+	wr_alsa.c \
+	wr_osf1.c \
+	wr_fp.c \
+	wr_gen.c \
+	if_lame.c \
+	if_vorb.c \
+	if_flac.c \
+	if_faac.c
+
+OBJS=	cdda.o \
+	common.o \
+	sysvipc.o \
+	pthr.o \
+	rd_scsi.o \
+	rd_sol.o \
+	rd_linux.o \
+	rd_fbsd.o \
+	rd_aix.o \
+	wr_oss.o \
+	wr_sol.o \
+	wr_irix.o \
+	wr_hpux.o \
+	wr_aix.o \
+	wr_alsa.o \
+	wr_osf1.o \
+	wr_fp.o \
+	wr_gen.o \
+	if_lame.o \
+	if_vorb.o \
+	if_flac.o \
+	if_faac.o
+
+all: $(LIBCDDA) has_alsa
+
+$(LIBCDDA): $(OBJS)
+	$(RM) $@
+	$(AR) $@ $(OBJS)
+	$(RANLIB) $@
+
+has_alsa: has_alsa.o
+	$(CC) -o $@ has_alsa.o
+
+Makefile:
+	@echo "	cdda_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) *.o *.a core .emacs_* tags TAGS has_alsa
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

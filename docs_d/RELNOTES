@@ -1,0 +1,440 @@
+@(#)RELNOTES	6.47 04/02/25
+
+XMCD/CDA RELEASE NOTES
+----------------------
+
+General Notes
+-------------
+
+Xmcd works best on an X display with a three-button mouse.  Most features
+are operated with the left mouse button, and feature-specific help can
+be invoked with the right mouse button.  In addition, xmcd supports
+copy-and-paste between its text fields as well as with other compliant
+X and Motif applications (such as xterm).  The left button is used for
+highlighting and copying, and the middle button is used for pasting.
+
+This distribution comes with several 32x32 pixmap files suitable
+for use as an xmcd desktop icon.  These are installed in
+XMCDLIB/pixmaps:
+
+    xmcd.icon     - for Novell/SCO UnixWare 2.x, 2 colors
+    xmcd_a.px     - for SCO Open Desktop (XPM2 format), 2 colors
+    xmcd_b.px     - for SCO Open Desktop (XPM2 C format), 2 colors
+    xmcd.xpm      - for other systems that use XPM format, 2 colors
+
+You can use the appropriate icon setup utilities under each of
+these environments to create an xmcd icon (with which you can use to
+launch xmcd).
+
+For SGI IRIX, the following files are used to implement a colorful
+SGI 4Dwm window manager icon for xmcd (these should be used only if
+xmcd is compiled with SGI desktop integration enabled):
+
+    XMcd_sgi.icon
+    xmcd.closed.fti
+    xmcd.open.fti
+    xmcd.ftr
+
+The XMcd_sgi.icon file should be renamed XMcd.icon and placed in the
+/usr/lib/images directory.
+
+Your xmcd/cda executable binary should only be run on the same OS
+platform group that it was compiled on.  For example, UNIX SVR4.0
+binaries must not be run on a UNIX SVR4.2 system.  Likewise, a binary
+compiled on a SunOS 4.x platform cannot be used on a Sun Solaris 2.x
+and later system.
+
+The XMCDLIB/app-defaults/XMcd file contains several long lines broken
+into separate lines using the "\" continuation marker (in particular,
+the "XMcd*someWidgetName.fontList" lines).  This has been known to cause
+error messages on some Motif implementations.  If you encounter such a
+problem, the remedy is to remove the "\" continuation markers and join
+the multiple lines back into a single line.
+
+The default xmcd *.fontList resources in the XMCDLIB/app-defaults/XMcd
+file are appropriate for 75dpi fonts.  If you are using 100dpi the
+*.fontList resource may need adjustments.  Use the xlsfonts(1) command
+to see the list of available fonts for your display.
+
+Do not use xmcd/cda if the CD drive contains a mounted filesystem
+data disc (ISO-9660, High Sierra or other formats).  Always use the
+"df" or "mount" command to check if such a filesystem is mounted
+before invoking the application.
+
+Certain OS platforms will print console error messages or record error
+messages in a log file if the CD device is accessed without a CD loaded
+in the drive.  If you encounter this situation, the workaround is to
+load a CD in the drive before starting xmcd or cda, and refrain from
+leaving xmcd in the "no disc" state for an extended period of time.
+
+Unless otherwise instructed by your OS or system hardware vendor,
+it is generally a bad idea to turn off the power of the CD drive
+while the operating system is running.  Cycling the power may
+glitch the data bus, which is not always gracefully handled by the
+I/O adapter or your system's device driver (i.e., possible system
+hang or crash).  Thus, it is best to turn on the CD drive before
+booting the OS, and do not turn it off until after OS shutdown.
+
+
+Security Notes
+--------------
+
+Xmcd and cda must be installed as a suid-root program on many platforms.
+This is because these utilities use the SCSI pass-through mechanism to
+control the CD drive, which requires root privilege on many systems.
+Security issues have been addressed, however, since they will refuse
+to send any more command to a device if the initial inquiry shows that
+the device is not a CD-ROM or WORM device.  Also, xmcd changes the uid
+and gid to that of the real user before reading/writing any files,
+accessing CDDB services or executing external programs.
+
+On systems that do not require super-user privilege for SCSI
+pass-through, it is actually more secure to turn off the user and group
+permissions of the SCSI device nodes, and make xmcd and cda suid-root.
+This prevents malicious users from writing other programs that send
+arbitrary commands to the devices.
+
+Xmcd and cda have also been developed, debugged, scrutinized and
+rigorously tested with security as a very high priority.  If, despite
+this, you feel uncomfortable about the suid aspect of xmcd/cda then
+please do not use these applications.
+
+Exceptions to the suid-root requirement:  If you configure xmcd
+and cda to operate the drive via the "SunOS/Solaris/Linux ioctl
+method" the "FreeBSD/NetBSD/OpenBSD ioctl method" or the "AIX IDE ioctl
+method" (see the NON-SCSI DRIVES section in the DRIVES file), suid-root
+privilege is not required.  Likewise, suid-root permissions is not
+required on Solaris systems.  Also, the suid requirement does not
+apply on the OpenVMS platform.  Lastly, suid-root privilege is
+required on QNX.
+
+If your platform does not require suid-root priviledge and you are
+installing xmcd and cda as a non-root user, then you must have read
+and write permissions to the specified BINDIR, XMCDLIB and MANDIR
+directories.
+
+If you run xmcd/cda without suid-root privilege, then you must make
+sure that the CD drive device node has the appropriate permissions
+for "other" users.  On most platforms it is sufficient to have read-only
+permission, others may also require write permission.
+
+
+CDDA (CD digital audio) Notes
+-----------------------------
+
+Please refer to the xmcd and cda man pages for a general description
+of the "standard" and "CDDA" playback modes.
+
+The default xmcd start-up mode can be altered via the playMode parameter
+in the device-specific configuration files.
+
+Platform support for the CDDA modes for this release of xmcd/cda is
+as follows:
+
+    AIX 4.x and later (*)
+    BSD/OS 3.x and later (*)
+    Digital UNIX 4.x, Tru64 UNIX 5.x (OSF1)
+    FreeBSD 3.x and later
+    HP-UX 9.x and later
+    IRIX 5.x and later
+    Linux 2.x and later
+    OpenVMS 7.1 and later
+    SCO UNIX 3.2v4.x, Open Desktop 2.x, Open Desktop 3.x, Open Server 5.x
+    Solaris 2.x and later
+    SunOS 4.1.x
+    UnixWare 2.1.x, 7.x, Caldera Open UNIX 8
+
+CDDA support for platforms denoted with (*) is implemented, but not well
+tested.
+
+The OSS (Open Sound System http://www.opensound.com) CDDA write method
+is supported on the above listed platforms, if OSS is available for it.
+
+The native AIX, HP-UX, IRIX, Linux, Solaris and Tru64 UNIX (OSF1) MMS
+audio drivers are also supported on each of these respective platforms.
+Linux systems running the ALSA sound driver (ALSA 0.9.x and later
+http://www.alsa-project.org) are supported either with the native ALSA
+write method or the OSS write method.  When the OSS write method is used
+with the ALSA sound driver, the OSS compatibility kernel module must be
+loaded.
+
+ALSA versions 0.5.x and earlier are not supported.
+
+Support for the native SunOS 4.1.x audio driver is not implemented at
+this time.  Thus, CDDA real-time playback is disabled on this platform;
+only CDDA save-to-file and pipe-to-program modes are enabled.
+
+The MP4 file format will work only if the faac(3) encoder software
+installed on your system was compiled with MP4 output capability (i.e.,
+supports the "-w" command line option).
+
+For OpenVMS, the only currently supported compressed file format is
+MP3, because LAME is the only encoder that has been ported to this
+platform.  Moreover, on OpenVMS, the "CDDA pipe-to-program" mode does
+not support any compressed data formats.
+
+Not all CD drives nor all hardware configurations support real-time
+CDDA playback.  On some of these systems only the CDDA "save-to-file"
+and "pipe-to-program" modes can be used with xmcd and cda.
+
+The CDDA modes impose a heavier system CPU load than the standard
+mode, and requires a high performance computer system not laden with
+other CPU-intensive tasks in order to play smoothly without audible
+glitches and drop-outs.  This is particularly true if jitter correction
+is enabled (which is needed with many CD drives).  CDDA performance is
+heavily dependent on the speed of the CD drive, the read chunk size,
+and the system's overall performance.  Note that many drives transfer
+CDDA much more slowly than CD-ROM data (e.g., Some drives advertised
+as "15x" can only transfer CDDA at 1x, and are not well suited for
+real-time CDDA playback).  In general, a minimum configuration for
+CDDA playback is as follows:
+
+    250MHz CPU or better
+    CD drive capable of sustained 4x CDDA transfer or better
+    CD drive connected via a bus-mastering controller
+
+Systems with a non bus-mastering controller for the CD drive may not
+perform well for real-time CDDA playback, because too many CPU cycles
+are consumed to simultaneously service the CD drive as well as the
+sound card DSP.  This could occur even on systems with a very fast CPU.
+The result is garbled/distorted audio quality or dropouts.  Linux systems
+with a recent ATAPI/IDE CD drive may gain improvements by tuning some
+parameters using the hdparm(8) command (DMA mode may not be enabled
+to the CD drive by default).  If this doesn't resolve the problem, the
+ultimate answer may be to go with a high-performance bus-mastering SCSI
+host adapter and CD drive (or alternatively, a USB or IEEE1394/Firewire
+setup if your platform supports it).
+
+The performance of the CPU and I/O subsystem becomes even more critical
+if you wish to simultaneously do CDDA playback and save-to-file or
+pipe-to-program operations, especially if the file format you choose
+requires on-the-fly encoding (compression).
+
+The "CDDA Performance Monitor" feature in xmcd can be used to determine
+the CDDA performance of your setup and the impact of various user-settable
+parameters.  To enable the Performance Monitor, click the "tools" symbol
+button on the xmcd main window to open the Options window, select the
+"Playback mode" category, and then click the "Perf monitor" button).
+
+It is advisable to run ATAPI/IDE drives under SCSI emulation (on Linux
+using the ide-scsi driver, or FreeBSD with ATAPI-CAM) and configure
+xmcd to run the drive as a generic SCSI drive.  This often yields better
+results.  See the appropriate documentation about configuring the kernel.
+
+The xmcd/cda drive configuration table has been expanded to add support
+for CDDA capabilities.  The author does not have samples of all the
+drives to personally test the settings, therefore it is likely that the
+xmcd configuration process may yield incorrect results for some drives.
+If you have a CDDA-capable drive running on one of the above supported
+platforms, and the CDDA feature does not work, try following the
+procedures outlined in the "Xmcd Configuration Guide" at
+http://www.amb.org/xmcd/ (Click on "Configuration Guide").  Kindly
+send any updated configuration information to xmcd@amb.org so that
+the configuration table may be corrected for future releases.
+
+Some CD drives lose their positional accuracy when performing CDDA
+transfers, often in conjunction with a high jitter error rate.
+When this occurs, the track and time indicator, as well as the
+CDDA save-to-file mode track file breaks can become shifted
+(e.g., part of the next track is contained at the end of the current
+track file).  Ripping the tracks in random order (with shuffle mode
+enabled), or defining a play program sequence of all tracks 1,2,3,...,n
+should alleviate this problem in most cases.
+
+When running in a CDDA mode, xmcd and cda runs in three separate
+threads.  The first thread is the "control", which in xmcd is the main
+graphical user interface, and in cda is the "cda daemon".  The second
+thread is the "reader", which is responsible for reading the CDDA data
+from the drive and filling a memory buffer.  The third thread is the
+"writer", which drains the audio data from the memory buffer and sends
+it to the system's sound DSP device, an output file, and/or to a pipe
+connected to an external program.  This design allows concurrent
+execution for maximum performance and smoothest audio playback, while
+keeping the user interface responsive.
+
+This multi-threading design is implemented in xmcd and cda using two
+distinct methods:
+
+ 1. System V IPC method
+
+    Each thread is a separate OS process, and the memory buffer between
+    the reader and writer processes uses the System V shared memory
+    mechanism.  The synchronization between the reader and writer
+    processes are done via the System V semaphores.  This method works
+    well and supports the widest selection of platforms.
+
+ 2. POSIX threads method
+
+    This method uses the multi-threading facilities specified by the
+    POSIX 1003.1c standard ("pthreads").  On some systems the threads
+    are separately scheduled execution units within a single OS process,
+    but on Linux each thread is a separate process.  All threads can
+    access the same data space within the program, so the audio memory
+    buffer is simply a dynamically-allocated chunk of heap memory.
+    Synchronization between the reader and writer threads are done using
+    pthreads mutex locking facilities.  This method is slightly more
+    efficient than the System V IPC method, but is not universally
+    available on all platforms.
+
+On some OS platforms, only the System V IPC method is available.
+Whereas on others, both are available.  On OpenVMS, only the POSIX
+threads method is possible because the OS does not supply the System V
+IPC services.  Old platforms that supports neither facilities cannot be
+used for CDDA operations with xmcd and cda.
+
+The following is a table of CDDA method platform support and the minimum
+OS version required (valid when the xmcd/cda executable is compiled and
+run on the same OS version):
+
+    Platform			System V IPC	POSIX threads
+    ------------------------	--------------	--------------
+    AIX				all		4.1
+    BSD/OS			all		4.1
+    Digital UNIX, Tru64 UNIX	all		4.0
+    FreeBSD			all		4.0
+    HP-UX			all		11.0
+    IRIX			all		6.3
+    Linux			all		glibc 2.1
+    OpenVMS			-		7.1
+    SCO UNIX, Open Server	all		-
+    Solaris			all		2.5
+    SunOS 4			all		-
+    UnixWare			all		7.0.1
+
+Currently, the default configuration for CDDA operation on all platforms
+except OpenVMS is the System V IPC method.  With xmcd and cda
+executables compiled and run on an OS platform that supports pthreads,
+you may change the setting of the cddaMethod parameter in the xmcd
+device-specific configuration file to use the POSIX threads method if
+you wish.
+
+If your xmcd/cda executable is compiled and run on a Linux system with
+glibc 2.0.x, the pthreads support code is included.  However, only the
+SysV IPC method is recommended.  This restriction does not apply to
+Linux with glibc 2.1 or later.
+
+In this release, the xmcd "Options"->"Encoding parameters" Encode option
+menu selections has changed from previous releases.  Rather than
+explicitly marked with CBR, VBR and ABR selections, the menu selections
+now indicate Mode 1 through Mode 4.  These modes are file format
+specific.  Please invoke the xmcd help window on this menu for details
+(click the right mouse button while the cursor is over the Encode menu
+button).  Similarly, the command line sub-arguments for the xmcd and
+cda "compress" command have changed as well.  Please refer to the xmcd(1)
+and cda(1) man page for details.
+
+
+Known Issues
+------------
+
+1. During xmcd's beta test phase a crash in the Ogg Vorbis library
+   was discovered on some versions of the following OS platforms:
+
+	HP-UX					(bug #216)
+	SCO UNIX, Open Desktop, Open Server	(patched)
+	SunOS 4.1.x				(bug #220)
+	Sun Solaris				(patched)
+
+   The symptom is a message from xmcd that says "CDDA writer thread
+   failure!".  A core dump may also be found in the current directory.
+   The cause for these crashes vary between the listed platforms.
+
+   These problems, as of this writing, has occurred with libvorbis
+   version 1.0 and 1.0.1.
+
+   The bug IDs shown are as entered on the Bugzilla system for the
+   Ogg Vorbis project (http://bugs.xiph.org).
+
+   Fixed versions of the Ogg Vorbis libraries are available for the
+   platforms marked "patched".  You may download them from the xmcd
+   web site (http://www.amb.org/xmcd).  This is only needed if you are
+   compiling xmcd from source code.  The official pre-compiled binaries
+   for these platforms already contain the fix.  Current versions of
+   the Ogg Vorbis code (directly from their web site) may or may not
+   contain fixes for these problems.
+
+   If you experience a crash while saving or piping CDDA in the Ogg
+   Vorbis format, you are encouraged to debug the problem and/or report
+   it to the Ogg Vorbis developers via their Bugzilla system.
+
+2. Due to a bug in some versions of Motif 2.1.x, some of xmcd's "Options"
+   window toggle buttons may refuse to be selected after you click on the
+   "Reset" button.  This occurs only with those toggle button groups
+   that have "radio" behavior (i.e., only one of the group can be selected
+   at a time).  These toggle buttons have either a diamond shape or a
+   round shape.
+
+   The workaround is to click on the currently selected button first,
+   and then click on the button you desire.
+
+   This problem does not occur when xmcd is linked with Motif 1.2.x or
+   earlier, or with Lesstif.
+
+3. Various versions of Lesstif may exhibit appearance anomalies in
+   xmcd, such as missing bottom borders in checkbox frames, incorrect
+   font sizes and line spacings, etc.  This is evident in Lesstif
+   version 0.93.36 and possibly other versions.  If you encounter
+   these problems try a more recent version of Lesstif.
+
+4. With cda only, if the CDDA save-to-file mode is enabled, and the
+   output file path template contains tokens that require CDDB data,
+   and if the CDDB lookup for the loaded CD produces multiple matches,
+   the first match will be automatically used to expand the path names.
+   This is because the output path names are expanded by the cda daemon,
+   which cannot invoke a dialog with the user to let the user choose an
+   alternate selection.  The xmcd program does not exhibit this behavior
+   because there is no daemon, and there is always an active graphical
+   user interface.
+
+
+Problem Reporting
+-----------------
+
+Although xmcd and cda should run reliably on the supported platforms
+and CD hardware as noted, if you encounter a problem, please send a
+report to "xmcd@amb.org" with detailed descriptions of the configuration
+and problem symptoms.  It would also be helpful to reproduce the
+problem while running either application with the -debug option (see the
+xmcd(1) and cda(1) man pages for the appropriate debug levels to use),
+and capture the diagnostic output.  Send the output to the author for
+examination.  Please also include detailed information about your
+software and hardware configuration.
+
+Better yet, send bug fixes!
+
+
+Porting Xmcd
+------------
+
+The modular design of xmcd and cda is such that support for other UNIX
+environments and CD drives can be readily added.  See the PORTING file
+for details if you are interested in contributing to the development
+effort.  Before you start a porting effort or add significant code,
+contact the author to ensure that this effort isn't being duplicated
+by others.
+
+
+Uninstalling Xmcd
+-----------------
+
+If you wish to remove the installed xmcd and cda executables and support
+files from your system, this is how to do it:
+
+    1. Log in as root
+    2. cd BINDIR
+       rm xmcd cda .xmcd_start
+    3. rm -r XMCDLIB
+
+BINDIR is the executable directory that you specified when installing
+xmcd.  XMCDLIB is the top level directory of the xmcd library directory
+hierarchy.
+
+In addition, each xmcd user will have a $HOME/.xmcdcfg directory that may
+be removed.
+
+You may also remove the CDDB library symbolic link, if it exists.
+These are usually named libcddb.so.1 and libcddb.so, installed in the
+/usr/lib or /usr/local/lib directory on your system (on HP-UX, the file
+is libcddb.sl).
+
+

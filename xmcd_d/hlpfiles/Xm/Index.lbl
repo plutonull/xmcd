@@ -1,0 +1,36 @@
+#
+# @(#)Index.lbl	6.15 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Index Number Indicator
+
+This indicator displays the currently playing index
+number.  Most CDs do not have indices within a track,
+thus the index number would be 1.  On CDs that do have
+indices, you can advance to the next index or skip to
+the previous index using the "Previous Index" and
+"Next Index" buttons.
+
+The indicator shows "--" when the audio playback is
+stopped or when there is no CD loaded.  On CD drives
+that do not report index information during playback,
+the display always shows "1".

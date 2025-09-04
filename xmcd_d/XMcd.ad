@@ -1,0 +1,1090 @@
+!
+! @(#)XMcd.ad	7.155 04/02/13
+!
+!   xmcd - Motif(R) CD Audio Player/Ripper
+!
+!   Copyright (C) 1993-2004  Ti Kan
+!   E-mail: xmcd@amb.org
+!
+!   This program is free software; you can redistribute it and/or modify
+!   it under the terms of the GNU General Public License as published by
+!   the Free Software Foundation; either version 2 of the License, or
+!   (at your option) any later version.
+!
+!   This program is distributed in the hope that it will be useful,
+!   but WITHOUT ANY WARRANTY; without even the implied warranty of
+!   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+!   GNU General Public License for more details.
+!
+!   You should have received a copy of the GNU General Public License
+!   along with this program; if not, write to the Free Software
+!   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+!
+!
+! These are general application resources for xmcd.  There are also
+! common configuration parameters in XMCDLIB/config/common.cfg, as well
+! as device-specific parameters in XMCDLIB/config/DEVNAME, where XMCDLIB
+! if the xmcd library directory specified during installation, and DEVNAME
+! is the basename of the device node path.
+!
+
+!*
+!* The xmcd program version that these resources pertain to.
+!* Note: Do not change this parameter.
+!*
+XMcd.version:				3.3
+
+!*
+!* Color resource defaults
+!*
+!* The following should be used only on a color or grey-scale display.
+!* You may wish to alter these color defaults.  I find them aesthetically
+!* pleasing as-is.
+!*
+
+XMcd*mainForm.foreground:		Black
+XMcd*mainForm.background:		CadetBlue4
+XMcd*discIndicator.foreground:		Orange
+XMcd*discIndicator.background:		Black
+XMcd*trackIndicator.foreground:		Orange
+XMcd*trackIndicator.background:		Black
+XMcd*indexIndicator.foreground:		Orange
+XMcd*indexIndicator.background:		Black
+XMcd*timeIndicator.foreground:		Orange
+XMcd*timeIndicator.background:		Black
+XMcd*repeatCountIndicator.foreground:	Orange
+XMcd*repeatCountIndicator.background:	Black
+XMcd*dbModeIndicator.foreground:	Cyan
+XMcd*dbModeIndicator.background:	Black
+XMcd*progModeIndicator.foreground:	Cyan
+XMcd*progModeIndicator.background:	Black
+XMcd*timeModeIndicator.foreground:	Cyan
+XMcd*timeModeIndicator.background:	Black
+XMcd*playModeIndicator.foreground:	Cyan
+XMcd*playModeIndicator.background:	Black
+XMcd*discTitleIndicator.foreground:	White
+XMcd*discTitleIndicator.background:	CadetBlue4
+XMcd*trackTitleIndicator.foreground:	White
+XMcd*trackTitleIndicator.background:	CadetBlue4
+
+XMcd*keypadIndicator.foreground:	Orange
+XMcd*keypadIndicator.background:	Black
+
+XMcd*speedFactorIndicator.foreground:	Orange
+XMcd*speedFactorIndicator.background:	Black
+
+XMcd*tooltipLabel.foreground:		Black
+XMcd*tooltipLabel.background:		Yellow
+
+XMcd*XmText.foreground:			Black
+XMcd*XmText.background:			Grey75
+XMcd*XmList.foreground:			Black
+XMcd*XmList.background:			Grey75
+XMcd*foreground:			Black
+XMcd*background:			Grey65
+
+XMcd*highlightColor:			DarkOrchid
+XMcd*selectColor:			Yellow
+
+!*
+!* Monochrome resource defaults
+!*
+!* These should be used only on a monochrome (1 bit plane) display.
+!*
+
+!XMcd*discIndicator.foreground:		White
+!XMcd*discIndicator.background:		Black
+!XMcd*trackIndicator.foreground:	White
+!XMcd*trackIndicator.background:	Black
+!XMcd*indexIndicator.foreground:	White
+!XMcd*indexIndicator.background:	Black
+!XMcd*timeIndicator.foreground:		White
+!XMcd*timeIndicator.background:		Black
+!XMcd*repeatCountIndicator.foreground:	White
+!XMcd*repeatCountIndicator.background:	Black
+!XMcd*dbModeIndicator.foreground:	White
+!XMcd*dbModeIndicator.background:	Black
+!XMcd*progModeIndicator.foreground:	White
+!XMcd*progModeIndicator.background:	Black
+!XMcd*timeModeIndicator.foreground:	White
+!XMcd*timeModeIndicator.background:	Black
+!XMcd*playModeIndicator.foreground:	White
+!XMcd*playModeIndicator.background:	Black
+!
+!XMcd*keypadIndicator.foreground:	White
+!XMcd*keypadIndicator.background:	Black
+!XMcd*speedFactorIndicator.foreground:	White
+!XMcd*speedFactorIndicator.background:	Black
+!
+!XMcd*foreground:			Black
+!XMcd*background:			White
+
+
+!*
+!* Fonts and widget label resources
+!*
+!* These should not require any modification, except if the specified
+!* fonts are not available, or to change the text string defaults to
+!* a non ISO Latin-1 (ISO8859-1) character set.
+!*
+!* If you change the fonts, then you may need to adjust some window
+!* sizes (see below).
+!*
+XMcd*discIndicator.fontList:	-*-helvetica-bold-o-*--14-140-*
+XMcd*trackIndicator.fontList:	-*-helvetica-medium-o-*--24-240-*=chset1, \
+				-*-helvetica-bold-o-*--12-120-*=chset2
+XMcd*indexIndicator.fontList:	-*-helvetica-bold-o-*--14-140-*
+XMcd*timeIndicator.fontList:	-*-helvetica-medium-o-*--24-240-*=chset1, \
+				-*-helvetica-medium-o-*--18-180-*=chset2
+XMcd*repeatCountIndicator.fontList:	-*-helvetica-bold-o-*--12-120-*
+XMcd*dbModeIndicator.fontList:	-*-helvetica-bold-r-*--10-100-*-iso8859-1=chset1, \
+				-*-helvetica-bold-r-*--12-120-*-iso8859-1=chset2
+XMcd*progModeIndicator.fontList:	-*-helvetica-bold-r-*--12-120-*
+XMcd*timeModeIndicator.fontList:	-*-helvetica-bold-r-*--12-120-*
+XMcd*playModeIndicator.fontList:	-*-helvetica-bold-r-*--12-120-*
+
+XMcd*extDiscInfoLabel.fontList:	-*-helvetica-bold-r-*--12-120-*
+XMcd*extTrackInfoLabel.fontList: -*-helvetica-bold-r-*--12-120-*
+XMcd*creditsTitleLabel.fontList: -*-helvetica-bold-r-*--12-120-*
+XMcd*segmentsDiscLabel.fontList: -*-helvetica-bold-r-*--12-120-*
+
+XMcd*aboutPopup*fontList:	-*-helvetica-medium-r-*--10-100-*-iso8859-1=chset1, \
+				-*-helvetica-bold-r-*--12-120-*-iso8859-1=chset2, \
+				fixed
+
+XMcd*keypadForm*keypadIndicator.fontList: -*-helvetica-*-o-*--14-140-*
+
+XMcd*perfmonForm*speedFactorIndicator.fontList: -*-helvetica-*-o-*--14-140-*
+
+XMcd*XmList.fontList:		-*-helvetica-medium-r-*--10-100-*=chset1, \
+				-*-helvetica-bold-r-*--10-100-*=chset2, \
+				fixed
+XMcd*XmScale.fontList:		6x10
+XMcd*XmText.fontList:		-*-helvetica-medium-r-*--12-120-*
+XMcd*fontList:			-*-helvetica-medium-r-*--10-100-*
+
+! Text string defaults
+XMcd*modeButton.labelString:		Basic / Normal
+XMcd*checkBox*button_0.labelString:	Tray lock
+XMcd*checkBox*button_1.labelString:	Repeat
+XMcd*checkBox*button_2.labelString:	Shuffle
+XMcd*ejectButton.labelString:		Load / Eject
+XMcd*quitButton.labelString:		Quit
+XMcd*dbprogButton.labelString:		CD Information / Track program...
+XMcd*wwwWarpButton.labelString:		wwwWarp / Help...
+XMcd*optionsButton.labelString:		Options...
+XMcd*timeButton.labelString:		Time display
+XMcd*abButton.labelString:		Segment play (a->b)
+XMcd*sampleButton.labelString:		Track sample
+XMcd*keypadButton.labelString:		Keypad...
+XMcd*levelScale.titleString:		Volume level
+XMcd*playPauseButton.labelString:	Play / Pause
+XMcd*stopButton.labelString:		Stop
+XMcd*prevDiscButton.labelString:	Previous disc
+XMcd*nextDiscButton.labelString:	Next disc
+XMcd*prevTrackButton.labelString:	Previous track
+XMcd*nextTrackButton.labelString:	Next track
+XMcd*prevIndexButton.labelString:	Previous index
+XMcd*nextIndexButton.labelString:	Next index
+XMcd*rewButton.labelString:		Rewind
+XMcd*ffButton.labelString:		Fast forward
+
+XMcd*keypadForm.dialogTitle:			Keypad
+XMcd*keypadLabel.labelString:			Direct access
+XMcd*keypadSelectBox*button_0.labelString:	disc
+XMcd*keypadSelectBox*button_1.labelString:	track
+XMcd*keypadNumButton0.labelString:		0
+XMcd*keypadNumButton1.labelString:		1
+XMcd*keypadNumButton2.labelString:		2
+XMcd*keypadNumButton3.labelString:		3
+XMcd*keypadNumButton4.labelString:		4
+XMcd*keypadNumButton5.labelString:		5
+XMcd*keypadNumButton6.labelString:		6
+XMcd*keypadNumButton7.labelString:		7
+XMcd*keypadNumButton8.labelString:		8
+XMcd*keypadNumButton9.labelString:		9
+XMcd*keypadEnterButton.labelString:		Enter
+XMcd*keypadClearButton.labelString:		Clear
+XMcd*trackWarpLabel.labelString:		Track warp
+XMcd*keypadCancelButton.labelString:		Cancel
+
+XMcd*optionsForm.dialogTitle:			Options
+XMcd*categoryLabel.labelString:			Category Selection
+XMcd*resetButton.labelString:			Reset
+XMcd*saveButton.labelString:			Save
+XMcd*okButton.labelString:			OK
+
+XMcd*modeLabel.labelString:			Playback mode
+XMcd*modeCheckBox*button_0.labelString:		Standard playback
+XMcd*modeCheckBox*button_1.labelString:		CDDA playback
+XMcd*modeCheckBox*button_2.labelString:		CDDA save to file
+XMcd*modeCheckBox*button_3.labelString:		CDDA pipe to program
+XMcd*jitterCorrectionButton.labelString:	Jitter corr
+XMcd*filePerTrackButton.labelString:		File-per-track
+XMcd*underscoreSubstitutionButton.labelString:	Underscore subst
+XMcd*modeFileFormatOptionMenu.labelString:	File format
+XMcd*modeFileFormatMenuLabel.labelString:	File format
+XMcd*performanceMonitorButton.labelString:	Perf monitor...
+XMcd*modeFilePathLabel.labelString:		Output file path template
+XMcd*modeFilePathExpandButton.labelString:	Expand...
+XMcd*modeProgramPathLabel.labelString:		Pipe to program path
+
+XMcd*encodeMethodOptionMenu.labelString:	Encode
+XMcd*encodeMethodMenuLabel.labelString:		Encode
+XMcd*mode0Button.labelString:			Mode 0
+XMcd*mode1Button.labelString:			Mode 1
+XMcd*mode2Button.labelString:			Mode 2
+XMcd*mode3Button.labelString:			Mode 3
+XMcd*qualityFactorLabel.labelString:		Quality factor
+XMcd*qualityFactorLabel1.labelString:		size
+XMcd*qualityFactorLabel2.labelString:		quality
+XMcd*bitrateOptionMenu.labelString:		Bitrate
+XMcd*bitrateMenuLabel.labelString:		kb/s
+XMcd*bitrateDefaultButton.labelString:		Def
+XMcd*minBitrateOptionMenu.labelString:		Min
+XMcd*minBitrateMenuLabel.labelString:		kb/s
+XMcd*minBitrateDefaultButton.labelString:	Def
+XMcd*maxBitrateOptionMenu.labelString:		Max
+XMcd*maxBitrateMenuLabel.labelString:		kb/s
+XMcd*maxBitrateDefaultButton.labelString:	Def
+XMcd*channelModeOptionMenu.labelString:		Mode
+XMcd*channelModeMenuLabel.labelString:		Mode
+XMcd*channelModeStereoButton.labelString:	Stereo
+XMcd*channelModeJointStereoButton.labelString:	J-stereo
+XMcd*channelModeForceMidSideButton.labelString:	Force M/S
+XMcd*channelModeMonoButton.labelString:		Mono
+XMcd*compressionAlgorithmLabel.labelString:		Algorithm tuning
+XMcd*compressionAlgorithmFastestLabel.labelString:	speed
+XMcd*compressionAlgorithmBestQualityLabel.labelString:	quality
+XMcd*filtersLabel.labelString:			Filters
+XMcd*frequencyLabel.labelString:		Freq Hz
+XMcd*widthLabel.labelString:			Width Hz
+XMcd*lowpassOptionMenu.labelString:		Low-pass
+XMcd*lowpassMenuLabel.labelString:		Filter
+XMcd*highpassOptionMenu.labelString:		High-pass
+XMcd*highpassMenuLabel.labelString:		Filter
+XMcd*lowpassAutoButton.labelString:		Auto
+XMcd*lowpassManualButton.labelString:		Manual
+XMcd*lowpassOffButton.labelString:		Off
+XMcd*highpassAutoButton.labelString:		Auto
+XMcd*highpassManualButton.labelString:		Manual
+XMcd*highpassOffButton.labelString:		Off
+XMcd*copyrightButton.labelString:		Copyright
+XMcd*originalButton.labelString:		Original
+XMcd*noReservoirButton.labelString:		No res
+XMcd*checksumButton.labelString:		Checksum
+XMcd*strictISOButton.labelString:		Strict ISO
+XMcd*addTagButton.labelString:			CD info tag
+XMcd*id3tagVersionOptionMenu.labelString:	ID3
+XMcd*id3tagVersionMenuLabel.labelString:	ID3 tag
+XMcd*id3tagVersion1Button.labelString:		v1 only
+XMcd*id3tagVersion2Button.labelString:		v2 only
+XMcd*id3tagBothVersionsButton.labelString:	v1 and v2
+
+XMcd*lameLabel.labelString:			LAME MP3 encoder options
+XMcd*lameModeLabel.labelString:			Options mode
+XMcd*lameRadioBox*button_0.labelString:		disable
+XMcd*lameRadioBox*button_1.labelString:		insert before standard options
+XMcd*lameRadioBox*button_2.labelString:		append after standard options
+XMcd*lameRadioBox*button_3.labelString:		replace standard options
+XMcd*lameOptionsLabel.labelString:		Options
+
+XMcd*schedLabel.labelString:			CDDA thread scheduling
+XMcd*schedReadLabel.labelString:		Read (extraction) thread
+XMcd*schedReadRadioBox*button_0.labelString:	normal priority
+XMcd*schedReadRadioBox*button_1.labelString:	high priority
+XMcd*schedWriteLabel.labelString:		Write (playback) thread
+XMcd*schedWriteRadioBox*button_0.labelString:	normal priority
+XMcd*schedWriteRadioBox*button_1.labelString:	high priority
+XMcd*cddaHeartbeatTimeoutLabel.labelString:	Heartbeat timeout (secs)
+
+XMcd*onLoadLabel.labelString:			On Load
+XMcd*onLoadCheckBox*button_0.labelString:	none
+XMcd*onLoadCheckBox*button_1.labelString:	spin down
+XMcd*onLoadCheckBox*button_2.labelString:	auto play
+XMcd*onLoadCheckBox*button_3.labelString:	auto lock
+XMcd*onEjectLabel.labelString:			On Eject
+XMcd*onEjectCheckBox*button_0.labelString:	auto exit
+XMcd*onDoneLabel.labelString:			On Done
+XMcd*onDoneCheckBox*button_0.labelString:	auto eject
+XMcd*onDoneCheckBox*button_1.labelString:	auto exit
+XMcd*onExitLabel.labelString:			On Exit
+XMcd*onExitRadioBox*button_0.labelString:	none
+XMcd*onExitRadioBox*button_1.labelString:	auto stop
+XMcd*onExitRadioBox*button_2.labelString:	auto eject
+
+XMcd*changerLabel.labelString:			CD changer
+XMcd*changerCheckBox*button_0.labelString:	multi play
+XMcd*changerCheckBox*button_1.labelString:	reverse
+
+XMcd*channelRouteLabel.labelString:		Channel routing
+XMcd*channelRouteRadioBox*button_0.labelString:	normal
+XMcd*channelRouteRadioBox*button_1.labelString:	reverse
+XMcd*channelRouteRadioBox*button_2.labelString:	mono L
+XMcd*channelRouteRadioBox*button_3.labelString:	mono R
+XMcd*channelRouteRadioBox*button_4.labelString:	mono L+R
+
+XMcd*outputPortLabel.labelString:		CDDA playback output port
+XMcd*outputPortCheckBox*button_0.labelString:	speaker
+XMcd*outputPortCheckBox*button_1.labelString:	headphones
+XMcd*outputPortCheckBox*button_2.labelString:	line output
+
+XMcd*volTaperLabel.labelString:			Volume control taper
+XMcd*volTaperRadioBox*button_0.labelString:	linear
+XMcd*volTaperRadioBox*button_1.labelString:	square
+XMcd*volTaperRadioBox*button_2.labelString:	inverse square
+XMcd*balanceLabel.labelString:			Balance control
+XMcd*balanceLeftLabel.labelString:		Left
+XMcd*balanceRightLabel.labelString:		Right
+XMcd*balanceCenterButton.labelString:		Center
+XMcd*cddaAttenuatorLabel.labelString:		CDDA level attenuator
+XMcd*cddaFadeOutButtonLabel.labelString:	Fade-out
+XMcd*cddaFadeInButtonLabel.labelString:		Fade-in
+
+XMcd*cddbOptionsLabel.labelString:		CDDB & CD-Text
+XMcd*musicBrowserLabel.labelString:		Music browser
+XMcd*musicBrowserRadioBox*button_0.labelString:	auto
+XMcd*musicBrowserRadioBox*button_1.labelString:	manual
+XMcd*lookupLabel.labelString:			Lookup priority
+XMcd*lookupRadioBox*button_0.labelString:	CDDB
+XMcd*lookupRadioBox*button_1.labelString:	CD-Text
+XMcd*cddbServiceTimeoutLabel.labelString:	Service timeout (secs)
+XMcd*cddbCacheTimeoutLabel.labelString:		Cache timeout (days)
+XMcd*cddbUseProxyButton.labelString:		Use proxy
+XMcd*cddbProxyServerLabel.labelString:		Proxy server
+XMcd*cddbProxyPortLabel.labelString:		Port
+XMcd*cddbProxyAuthButton.labelString:		Proxy authorization
+
+XMcd*perfmonForm.dialogTitle:			CDDA Performance Monitor
+XMcd*speedFactorLabel.labelString:		Speed factor
+XMcd*speedFactorIndicator.labelString:		-
+XMcd*framesXferLabel.labelString:		Frames transferred:
+XMcd*framesXferIndicator.labelString:		-
+XMcd*framesPerSecondLabel.labelString:		Frames per second:
+XMcd*framesPerSecondIndicator.labelString:	-
+XMcd*timeToCompletionLabel.labelString:		Time to completion:
+XMcd*timeToCompletionIndicator.labelString:	0hr --:--
+XMcd*perfmonCancelButton.labelString:		Cancel
+
+XMcd*dbprogForm.dialogTitle:		CD Information / Track Program Editor
+XMcd*internetOfflineButton.labelString:		Internet offline
+XMcd*discListButton.labelString:		Disc list...
+XMcd*discArtistLabel.labelString:		Album artist
+XMcd*discTitleLabel.labelString:		Album title
+XMcd*artistFullNameButton.labelString:		Change...
+XMcd*discLabel.labelString:			Album
+XMcd*extDiscInfoButton.labelString:		Details...
+XMcd*discCreditsButton.labelString:		Credits...
+XMcd*segmentsButton.labelString:		Segments...
+XMcd*trackListLabel.labelString:		Track / Time / Title
+XMcd*timeSelectLabel.labelString:		Time
+XMcd*timeSelectBox*button_0.labelString: 	total
+XMcd*timeSelectBox*button_1.labelString: 	track
+XMcd*trackTitleLabel.labelString:		Track title edit
+XMcd*trackTitleApplyButton.labelString:		Apply
+XMcd*trackLabel.labelString:			Track
+XMcd*extTrackInfoButton.labelString:		Details...
+XMcd*trackCreditsButton.labelString:		Credits...
+XMcd*programLabel.labelString:			Program
+XMcd*addProgramButton.labelString:		Add
+XMcd*clearProgramButton.labelString:		Clear
+XMcd*saveProgramButton.labelString:		Save
+XMcd*playProgramButton.labelString:		Play
+XMcd*programSequenceLabel.labelString:		Program sequence
+XMcd*userRegistrationButton.labelString:	Register...
+XMcd*submitButton.labelString:			Submit
+XMcd*flushButton.labelString:			Flush
+XMcd*reloadButton.labelString:			Reload
+XMcd*dbprogOkButton.labelString:		OK
+
+XMcd*discListForm.dialogTitle:			Disc List
+XMcd*discListTypeOptionMenu*labelString:	List type:
+XMcd*discListTypeLabel*labelString:		Select list type
+XMcd*discListHistoryButton*labelString:		History
+XMcd*discListChangerButton*labelString:		CD changer
+XMcd*discListLabel*labelString:			Disc description
+XMcd*discListShowButton*labelString:		Show...
+XMcd*discListChangeToButton*labelString:	Change to
+XMcd*discListDeleteButton*labelString:		Delete
+XMcd*discListDeleteAllButton*labelString:	Delete all
+XMcd*discListRescanButton*labelString:		Re-scan
+XMcd*discListCancelButton*labelString:		Cancel
+
+XMcd*authForm.dialogTitle:			Proxy Authorization
+XMcd*authLabel.labelString:	Enter your proxy user name and password:
+XMcd*nameLabel.labelString:			Name
+XMcd*passwordLabel.labelString:			Password
+XMcd*authOkButton.labelString:			OK
+XMcd*authCancelButton.labelString:		Cancel
+
+XMcd*fullNameForm.dialogTitle:			Full Name Wizard
+XMcd*fullNameDisplayNameLabel.labelString:	Display name
+XMcd*fullNameAutoGenButton.labelString:		Auto
+XMcd*fullNameFirstNameLabel.labelString:	First name
+XMcd*fullNameLastNameLabel.labelString:		Last name
+XMcd*fullNameTheButton.labelString:		"The"
+XMcd*fullNameOkButton.labelString:		OK
+
+XMcd*extDiscInfoForm.dialogTitle:		Album Information Detail
+XMcd*extDiscInfoSortTitleLabel.labelString:	Sort title
+XMcd*extDiscInfoTheButton.labelString:		"The"
+XMcd*extDiscInfoYearLabel.labelString:		Year
+XMcd*extDiscInfoLabelLabel.labelString:		Record label
+XMcd*extDiscInfoGenre0OptionMenu*labelString:	Genre 1
+XMcd*extDiscInfoGenre1OptionMenu*labelString:	Genre 2
+XMcd*extDiscInfoGenre0Label*labelString:	Primary genre
+XMcd*extDiscInfoGenre1Label*labelString:	Secondary genre
+XMcd*extDiscInfoGenre0NoneButton*labelString:	None
+XMcd*extDiscInfoGenre1NoneButton*labelString:	None
+XMcd*extDiscInfoSubgenre0OptionMenu*labelString: -->
+XMcd*extDiscInfoSubgenre1OptionMenu*labelString: -->
+XMcd*extDiscInfoSubgenre0Label.labelString:	Primary subgenre
+XMcd*extDiscInfoSubgenre1Label.labelString:	Secondary subgenre
+XMcd*extDiscInfoSubgenre0NoneButton*labelString:	None
+XMcd*extDiscInfoSubgenre1NoneButton*labelString:	None
+XMcd*extDiscInfoRegionLabel*labelString:	Region
+XMcd*extDiscInfoRegionChangeButton.labelString:	Change...
+XMcd*extDiscInfoLanguageLabel*labelString:	Language
+XMcd*extDiscInfoLanguageChangeButton.labelString:	Change...
+XMcd*extDiscInfoDiscNumberInSetLabel.labelString:	Disc
+XMcd*extDiscInfoOfLabel.labelString:		of
+XMcd*extDiscInfoCompilationButton.labelString:	Compilation
+XMcd*extDiscInfoNotesLabel.labelString:		Disc notes
+XMcd*extDiscInfoDiscIdLabel.labelString:	Xmcd disc ID:
+XMcd*extDiscInfoMcnLabel.labelString:		Media catalog number:
+XMcd*extDiscInfoRevisionLabel.labelString:	Revision:
+XMcd*extDiscInfoCertifierLabel.labelString:	Certifier:
+XMcd*extDiscInfoOkButton.labelString:		OK
+
+XMcd*extTrackInfoForm.dialogTitle:		Track Information Detail
+XMcd*extTrackAutoTrackButton.labelString:	Auto-track
+XMcd*extTrackInfoSortTitleLabel.labelString:	Sort title
+XMcd*extTrackInfoTheButton.labelString:		"The"
+XMcd*extTrackInfoArtistLabel.labelString:	Artist
+XMcd*extTrackInfoFullNameButton.labelString:	Change...
+XMcd*extTrackInfoYearLabel.labelString:		Year
+XMcd*extTrackInfoLabelLabel.labelString:	Record Label
+XMcd*extTrackInfoBPMLabel.labelString:		BPM
+XMcd*extTrackInfoGenre0OptionMenu*labelString:	Genre 1
+XMcd*extTrackInfoGenre1OptionMenu*labelString:	Genre 2
+XMcd*extTrackInfoGenre0Label*labelString:	Primary genre
+XMcd*extTrackInfoGenre1Label*labelString:	Secondary genre
+XMcd*extTrackInfoGenre0NoneButton*labelString:	None
+XMcd*extTrackInfoGenre1NoneButton*labelString:	None
+XMcd*extTrackInfoSubgenre0OptionMenu*labelString: -->
+XMcd*extTrackInfoSubgenre1OptionMenu*labelString: -->
+XMcd*extTrackInfoSubgenre0Label.labelString:	Primary subgenre
+XMcd*extTrackInfoSubgenre1Label.labelString:	Secondary subgenre
+XMcd*extTrackInfoSubgenre0NoneButton*labelString:	None
+XMcd*extTrackInfoSubgenre1NoneButton*labelString:	None
+XMcd*extTrackInfoNotesLabel.labelString:	Track Notes
+XMcd*extTrackInfoLyricsLabel.labelString:	Lyrics
+XMcd*extTrackInfoISRCLabel.labelString:		ISRC:
+XMcd*extTrackInfoOkButton.labelString:		OK
+
+XMcd*creditsForm.dialogTitle:			Credits
+XMcd*creditsAutoTrackButton.labelString:	Auto-track
+XMcd*creditsListLabel.labelString:		Credits list
+XMcd*creditsEditorLabel.labelString:		Credit details / editor
+XMcd*creditsPrimaryRoleMenuLabel*labelString:	Category
+XMcd*creditsSubRoleMenuLabel*labelString:	Role
+XMcd*creditsPrimaryRoleOptionMenu*labelString: 	Role
+XMcd*creditsPrimaryRoleNoneButton*labelString:	None
+XMcd*creditsSubRoleOptionMenu*labelString: 	-->
+XMcd*creditsSubRoleNoneButton*labelString:	None
+XMcd*creditsNameLabel.labelString:		Name
+XMcd*creditsFullNameButton.labelString:		Change...
+XMcd*creditsNotesLabel.labelString:		Credit notes
+XMcd*creditsAddButton.labelString:		Add
+XMcd*creditsModifyButton.labelString:		Modify
+XMcd*creditsDeleteButton.labelString:		Delete
+XMcd*creditsOkButton.labelString:		OK
+
+XMcd*segmentsForm.dialogTitle:			Segments
+XMcd*segmentsListLabel.labelString:		Segment list
+XMcd*segmentsEditorLabel.labelString:		Segment details / editor
+XMcd*segmentsNameLabel.labelString:		Name
+XMcd*segmentsTrackLabel.labelString:		Track #
+XMcd*segmentsFrameLabel.labelString:		Frame #
+XMcd*segmentsStartLabel.labelString:		Start
+XMcd*segmentsEndLabel.labelString:		End
+XMcd*segmentsStartPointerLabel.labelString:	<--
+XMcd*segmentsEndPointerLabel.labelString:	<--
+XMcd*segmentsSetButton.labelString:		Set
+XMcd*segmentsPlaySetLabel.labelString:		Play-set
+XMcd*segmentsNotesLabel.labelString:		Segment notes
+XMcd*segmentsSegmentLabel.labelString:		Segment
+XMcd*segmentsCreditsButton.labelString:		Credits...
+XMcd*segmentsAddButton.labelString:		Add
+XMcd*segmentsModifyButton.labelString:		Modify
+XMcd*segmentsDeleteButton.labelString:		Delete
+XMcd*segmentsOkButton.labelString:		OK
+
+XMcd*submitURLForm.dialogTitle:			Submit URL to CDDB
+XMcd*submitURLHeadingLabel.labelString:		\
+You may use this form to submit a URL to CDDB\n\
+that is related to this album or artist.\n\
+Click the 3rd mouse button on each field for a\n\
+description on what should be entered.
+XMcd*submitURLCategoryLabel.labelString:	Category
+XMcd*submitURLNameLabel.labelString:		Name
+XMcd*submitURLLabel.labelString:		URL
+XMcd*submitURLDescrLabel.labelString:		Description
+XMcd*submitURLSubmitButton.labelString:		Submit
+XMcd*submitURLOkButton.labelString:		OK
+
+XMcd*regionSelectForm.dialogTitle:		Geographic Region Selector
+XMcd*regionSelectLabel.labelString:		Please select a region
+XMcd*regionSelectOkButton.labelString:		OK
+
+XMcd*languageSelectForm.dialogTitle:		Primary Language Selector
+XMcd*languageSelectLabel.labelString:		Please select a language
+XMcd*languageSelectOkButton.labelString:	OK
+
+XMcd*matchSelectForm.dialogTitle:		CD Match Selector
+XMcd*matchSelectLabel.labelString:		\
+CDDB has found the following potential matches\n\
+for the album that you have.  Please choose an\n\
+appropriate entry.
+XMcd*matchSelectOkButton.labelString:		OK
+
+XMcd*userRegForm.dialogTitle:			CDDB User Registration
+XMcd*userRegCaptionLabel.labelString:		\
+You must register in order to access the CDDB² service.\n\
+The user handle and password are required, all other\n\
+fields are optional, and will help CDDB provide more\n\
+personalized service.  Select the "Privacy info" button\n\
+below for CDDB's user information privacy statement.\n\n\
+If you have already registered with CDDB, you may use\n\
+this form to update your information.
+XMcd*userRegHandleLabel.labelString:		User handle
+XMcd*userRegPasswdLabel.labelString:		Password
+XMcd*userRegVerifyPasswdLabel.labelString:	Re-type password
+XMcd*userRegPasswdHintLabel.labelString:	Password hint
+XMcd*userRegGetHintButton.labelString:		E-mail to me
+XMcd*userRegEmailLabel.labelString:		E-mail address
+XMcd*userRegRegionLabel.labelString:		Region
+XMcd*userRegRegionChangeButton.labelString:	Change...
+XMcd*userRegPostalCodeLabel.labelString:	Postal code
+XMcd*userRegAgeLabel.labelString:		Age
+XMcd*userRegGenderLabel.labelString:		Gender
+XMcd*userRegGenderRadioBox*button_0.labelString:	Male
+XMcd*userRegGenderRadioBox*button_1.labelString:	Female
+XMcd*userRegGenderRadioBox*button_2.labelString:	Unspecified
+XMcd*userRegAllowMailButton.labelString:	\
+Allow CDDB to send you information and\n\
+promotions via e-mail.
+XMcd*userRegAllowStatsButton.labelString:	\
+Allow the use of your playback statistics to\n\
+customize the information delivered (such as URLs).
+XMcd*userRegOkButton.labelString:		OK
+XMcd*userRegPrivacyInfoButton.labelString:	Privacy info...
+XMcd*userRegCancelButton.labelString:		Cancel
+
+XMcd*helpForm.dialogTitle:			Xmcd Help
+XMcd*topicOptionMenu*labelString:		Topic
+XMcd*topicLabel*labelString:			Select a topic or document
+XMcd*onlineHelpButton*labelString:		Online Help
+XMcd*aboutButton.labelString:			About Xmcd...
+XMcd*helpCancelButton.labelString:		Cancel
+
+XMcd*questionPopup*okLabelString:		Yes
+XMcd*questionPopup*cancelLabelString:		No
+XMcd*workingPopup*cancelLabelString:		Stop
+
+XMcd*fileSelectionForm.dialogTitle:		File Selection
+
+
+!*
+!* Short cut key defaults
+!*
+!* These should not require any modifications.
+!* These are processed by xmcd and installed as translations.
+!* The modifier key specification must be one of Shift, Ctrl, Lock,
+!* Mod1, Mod2, Mod3, Mod4 or Mod5.
+!* If you make changes here, check for conflicts with those in wwwwarp.cfg.
+!*
+
+! Main window
+
+XMcd.mainHotkeys:	\
+<Key>b:			hotkey(modeButton,ArmAndActivate)\n\
+<Key>Return:		hotkey(modeButton,ArmAndActivate)\n\
+<Key>l:			hotkey(checkBoxFrame*button_0,ArmAndActivate)\n\
+<Key>e:			hotkey(checkBoxFrame*button_1,ArmAndActivate)\n\
+<Key>u:			hotkey(checkBoxFrame*button_2,ArmAndActivate)\n\
+<Key>j:			hotkey(ejectButton,ArmAndActivate)\n\
+<Key>q:			hotkey(quitButton,ArmAndActivate)\n\
+Mod1<Key>q:		hotkey(quitButton,ArmAndActivate)\n\
+<Key>n:			hotkey(dbprogButton,ArmAndActivate)\n\
+Alt<Key>w:		hotkey(wwwWarpButton)\n\
+<Key>o:			hotkey(optionsButton,ArmAndActivate)\n\
+<Key>t:			hotkey(timeButton,ArmAndActivate)\n\
+<Key>a:			hotkey(abButton,ArmAndActivate)\n\
+<Key>m:			hotkey(sampleButton,ArmAndActivate)\n\
+<Key>k:			hotkey(keypadButton,ArmAndActivate)\n\
+<Key>p:			hotkey(playPauseButton,ArmAndActivate)\n\
+<Key>s:			hotkey(stopButton,ArmAndActivate)\n\
+Shift<Key>i:		hotkey(prevDiscButton,ArmAndActivate)\n\
+<Key>Prior:		hotkey(prevDiscButton,ArmAndActivate)\n\
+Ctrl<Key>F9:		hotkey(prevDiscButton,ArmAndActivate)\n\
+<Key>i:			hotkey(nextDiscButton,ArmAndActivate)\n\
+<Key>Next:		hotkey(nextDiscButton,ArmAndActivate)\n\
+Ctrl<Key>F10:		hotkey(nextDiscButton,ArmAndActivate)\n\
+Shift<Key>c:		hotkey(prevTrackButton,ArmAndActivate)\n\
+<Key>bracketleft:	hotkey(prevTrackButton,ArmAndActivate)\n\
+Ctrl<Key>F1:		hotkey(prevTrackButton,ArmAndActivate)\n\
+<Key>c:			hotkey(nextTrackButton,ArmAndActivate)\n\
+<Key>bracketright:	hotkey(nextTrackButton,ArmAndActivate)\n\
+Ctrl<Key>F2:		hotkey(nextTrackButton,ArmAndActivate)\n\
+Shift<Key>x:		hotkey(prevIndexButton,ArmAndActivate)\n\
+Ctrl<Key>F3:		hotkey(prevIndexButton,ArmAndActivate)\n\
+<Key>x:			hotkey(nextIndexButton,ArmAndActivate)\n\
+Ctrl<Key>F4:		hotkey(nextIndexButton,ArmAndActivate)\n\
+Ctrl<Key>F5:		hotkey(rewButton,Arm)\n\
+Ctrl<Key>F6:		hotkey(rewButton,Activate,Disarm)\n\
+Ctrl<Key>F7:		hotkey(ffButton,Arm)\n\
+Ctrl<Key>F8:		hotkey(ffButton,Activate,Disarm)\n
+
+! Keypad window
+XMcd.keypadHotkeys:	\
+<Key>0:			hotkey(keypadNumButton0,ArmAndActivate)\n\
+<Key>1:			hotkey(keypadNumButton1,ArmAndActivate)\n\
+<Key>2:			hotkey(keypadNumButton2,ArmAndActivate)\n\
+<Key>3:			hotkey(keypadNumButton3,ArmAndActivate)\n\
+<Key>4:			hotkey(keypadNumButton4,ArmAndActivate)\n\
+<Key>5:			hotkey(keypadNumButton5,ArmAndActivate)\n\
+<Key>6:			hotkey(keypadNumButton6,ArmAndActivate)\n\
+<Key>7:			hotkey(keypadNumButton7,ArmAndActivate)\n\
+<Key>8:			hotkey(keypadNumButton8,ArmAndActivate)\n\
+<Key>9:			hotkey(keypadNumButton9,ArmAndActivate)\n\
+<Key>l:			hotkey(keypadClearButton,ArmAndActivate)\n\
+<Key>e:			hotkey(keypadEnterButton,ArmAndActivate)\n\
+<Key>Return:		hotkey(keypadEnterButton,ArmAndActivate)\n\
+<Key>c:			hotkey(keypadCancelButton,ArmAndActivate)\n\
+Mod1<Key>q:		hotkey(keypadCancelButton,ArmAndActivate)\n
+
+
+!*
+!* Application-specific message string resources
+!*
+!* These need only be changed for non-English languages
+!*
+XMcd.mainWindowTitle:		xmcd
+XMcd.localMsg:			local
+XMcd.cddbMsg:			CDDB
+XMcd.cdTextMsg:			CDtext
+XMcd.queryMsg:			query
+XMcd.progModeMsg:		prog
+XMcd.elapseMsg:			elapse
+XMcd.elapseSegmentMsg:		e-seg
+XMcd.elapseDiscMsg:		e-disc
+XMcd.remainTrackMsg:		r-trac
+XMcd.remainSegmentMsg:		r-seg
+XMcd.remainDiscMsg:		r-disc
+XMcd.playMsg:			play
+XMcd.pauseMsg:			pause
+XMcd.readyMsg:			ready
+XMcd.sampleMsg:			samp
+XMcd.usageMsg:			Usage:
+XMcd.badOptsMsg:		The following option is unrecognized
+XMcd.noDiscMsg:			no disc
+XMcd.devBusyMsg:		cd busy
+XMcd.unknownArtistMsg:		unknown artist
+XMcd.unknownDiscMsg:		unknown disc title
+XMcd.unknownTrackMsg:		unknown track title
+XMcd.dataMsg:			data
+XMcd.infoMsg:			Information
+XMcd.warningMsg:		Warning
+XMcd.fatalMsg:			Fatal Error
+XMcd.confirmMsg:		Confirm
+XMcd.workingMsg:		Working
+XMcd.aboutMsg:			About
+XMcd.quitMsg:			xmcd: Really Quit?
+XMcd.askProceedMsg:		Do you want to proceed?
+XMcd.clearProgramMsg:		The program sequence will be cleared.
+XMcd.cancelSegmentMsg:		Segment play will be canceled.
+XMcd.restartPlayMsg:		Playback will restart.
+XMcd.noMemMsg:			Out of virtual memory!
+XMcd.tmpdirErrMsg:		Cannot create or open directory %s!
+XMcd.libdirErrMsg:		The XMCD_LIBDIR environment is undefined!
+XMcd.longPathErrMsg:		Path or message too long.
+XMcd.noMethodErrMsg:		Unsupported deviceInterfaceMethod parameter!
+XMcd.noVuErrMsg:		Unsupported driveVendorCode parameter!
+XMcd.noHelpMsg:			The help file for this topic is not installed!
+XMcd.noCfgMsg: \
+Xmcd configuration error\n\
+Cannot open configuration file:\n\
+\"%s\"
+XMcd.noInfoMsg:			No information available.
+XMcd.notRomMsg:			Device %s is not a CD-ROM!
+XMcd.notScsi2Msg:		Device %s is not SCSI-2 compliant.
+XMcd.submitConfirmMsg:		Submit current CD information to CDDB?
+XMcd.submitOkMsg:		Submission to CDDB succeeded!
+XMcd.submitCorrectionMsg: \
+CDDB has found an inexact match.\n\
+If this is not the correct album,\n\
+please submit corrections.
+XMcd.submitErrMsg: \
+Submission to CDDB failed.  Some possible causes:\n\n\
+- Not all required fields are filled in\n\
+- Invalid data in fields\n\
+- Network or CDDB cache problem\n\n\
+Please invoke the "Submit" button help for details.
+XMcd.modeErrMsg: \
+Xmcd binary permissions error: It should be setuid root.  Please have\n\
+your system administrator correct this.
+XMcd.statErrMsg:		Cannot stat device %s.
+XMcd.nodeErrMsg:		%s is not the correct special device type!
+XMcd.seqFmtErrMsg:		Program sequence string format error.
+XMcd.invPgmTrkMsg:		Invalid track(s) deleted from program.
+XMcd.recovErrMsg:		Recovering from audio playback error...
+XMcd.maxErrMsg:			Too many errors.
+XMcd.savErrForkMsg:		File not saved:\nCannot fork. (errno %d)
+XMcd.savErrSuidMsg:		File not saved:\nCannot setuid %d or setgid %d.
+XMcd.savErrOpenMsg:		File not saved:\nCannot open file for writing.
+XMcd.savErrCloseMsg:		File not saved:\nCannot save changes.
+XMcd.savErrWriteMsg:		File save error!
+XMcd.savErrKilledMsg:		File not saved:\nChild killed. (signal %d)
+XMcd.lnkErrForkMsg:		File not linked:\nCannot fork. (errno %d)
+XMcd.lnkErrSuidMsg:		File not linked:\nCannot setuid to %d.
+XMcd.lnkErrLinkMsg:		File not linked:\nCannot link.
+XMcd.lnkErrKilledMsg:		File not linked:\nChild killed. (signal %d)
+XMcd.changeSaveMsg: \
+%s\n\
+%s\n\n\
+The on-screen CD information has changed.\n\
+Do you want to submit it to CDDB?
+XMcd.devlistUndefMsg:		The deviceList parameter is not defined.
+XMcd.devlistCountMsg: \
+The number of devices specified in the deviceList parameter is incorrect.
+XMcd.changerInitErrMsg: \
+Cannot initialize the medium changer device:\n\
+Running as a single disc player.
+XMcd.proxyAuthFailMsg: \
+Proxy authorization failed.\n\
+Do you want to re-enter your user name and password?
+XMcd.noClientMsg:		Not running on display
+XMcd.unsuppCmdMsg:		Unsupported command
+XMcd.badArgMsg:			The specified argument is invalid
+XMcd.invalidCmdMsg:		Invalid command for the current state
+XMcd.commandFailMsg:		Command failed
+XMcd.remoteNotEnabledMsg:	Remote control is not enabled
+XMcd.remoteNoCmdMsg:		Remote control: No command specified
+XMcd.appDefFileMsg: \
+The app-defaults/XMcd file cannot be located, or is the wrong\n\
+version.  A correct version of this file must be present in the\n\
+appropriate directory in order for xmcd to run.  Please check\n\
+your xmcd installation.
+XMcd.kpModeDisableMsg: \
+The %s mode is currently enabled.\n\
+Using the keypad will disable it.
+XMcd.deleteAllHistoryMsg: \
+This will delete all entries of your disc history.
+XMcd.changerScanningMsg:	Scanning CD changer slots...
+XMcd.fileMsg:			File
+XMcd.theMsg:			The
+XMcd.noneOfAboveMsg:		None of the above
+XMcd.errorMsg:			error
+XMcd.handleRequiredMsg:		You must enter a user handle.
+XMcd.handleErrorMsg: \
+Either you got your password wrong, or someone else\n\
+is already using this handle.\n\n\
+Please re-enter the user handle and/or password,\n\
+or click the \"E-mail to me\" button to have your\n\
+password hint sent to you via e-mail.
+XMcd.passwdRequiredMsg:		You must enter a password.
+XMcd.passwdMatchErrorMsg:	The passwords do not match.  Try again.
+XMcd.mailingHintMsg:		Your password hint is being e-mailed to you.
+XMcd.unknownHandleMsg: \
+CDDB does not have a record of this user handle.\n\
+Try again.
+XMcd.noHintMsg: \
+You did not specify a hint when you first registered.\n\
+There is nothing to e-mail to you.
+XMcd.noMailHintMsg: \
+You did not specify an e-mail address when you first registered.\n\
+CDDB cannot send your password hint to you.
+XMcd.hintErrorMsg:		Failed to get password hint.
+XMcd.userRegFailMsg:		User registration failed.
+XMcd.noWwwwarpMsg: \
+No wwwWarp menu was set up in the wwwwarp.cfg file.
+XMcd.cannotInvokeMsg:		Cannot invoke \"%s\"
+XMcd.stopLoadMsg:		Stop the CD information load?
+XMcd.reloadMsg:			Re-load the CD information?
+XMcd.needRoleMsg:		You must select a role.
+XMcd.needRoleNameMsg:		You must enter a name for the specified role.
+XMcd.dupCreditMsg:		This credit is already in the list.
+XMcd.dupTrackCreditMsg: \
+This credit is a duplicate of a track credit (Track %s).\n\
+Since an album credit applies to all tracks, it is\n\
+ambiguous to have a track credit to be the same as\n\
+the album credit.
+XMcd.dupDiscCreditMsg: \
+This credit is a duplicate of an album credit.\n\
+Since an album credit applies to all tracks, it is\n\
+ambiguous to have a track credit to be the same as\n\
+the album credit.
+XMcd.noFirstNameMsg: \
+The last name is filled in but the first name is not.
+XMcd.noFirstLastNameMsg: \
+\"The\" is enabled, but there is no text in the first name\n\
+field or the last name field.
+XMcd.albumArtistMsg:		Album artist
+XMcd.trackArtistMsg:		Track %d artist
+XMcd.creditMsg:			Credit
+XMcd.fullNameGuide: \
+Click mouse button 3 on any field for usage guidelines
+XMcd.noCategoryMsg:		You must enter category information.
+XMcd.noNameMsg:			You must enter a name for the site.
+XMcd.invalidUrlMsg:		The URL is not valid.
+XMcd.segmentPositionErrMsg: \
+The end position must be at least a number of\n\
+frames past the start position.
+XMcd.incompleteSegmentInfoMsg: \
+Incomplete segment information.\n\
+You must enter a segment name, and the start\n\
+and end point track and frame numbers.
+XMcd.invalidSegmentInfoMsg: \
+Invalid segment information.\n\
+Check the start and end point track and frame\n\
+numbers.
+XMcd.discardChangeMsg:		Do you want to discard your changes?
+XMcd.noAudioPathMsg:		No output audio file name specified.
+XMcd.audioPathExistsMsg:	Cannot write audio file: file exists.
+XMcd.playbackModeMsg:		Playback mode
+XMcd.encodeParametersMsg:	Encoding parameters
+XMcd.lameOptionsMsg:		LAME MP3 options
+XMcd.schedParametersMsg:	CDDA scheduling
+XMcd.autoFuncsMsg:		Automated functions
+XMcd.cdChangerMsg:		CD changer
+XMcd.channelRouteMsg:		Channel routing
+XMcd.volumeBalanceMsg:		Volume & Balance
+XMcd.cddbCdtextMsg:		CDDB & CD-Text
+XMcd.cddaInitFailMsg: \
+Cannot initialize CDDA.  Possible causes are:\n\n\
+- An error condition as described above, if displayed.\n\
+- The cddaMethod, cddaReadMethod or cddaWriteMethod\n\
+  parameters may be misconfigured.\n\
+- There is no CDDA support for your CD drive or\n\
+  OS platform in this version.\n\n\
+See your xmcd documentation for information.
+XMcd.fileNameRequiredMsg:	You must select or enter a file name.
+XMcd.notRegularFileMsg: \
+The file name you selected or entered\n\
+is not a regular file.
+XMcd.noProgramMsg:		CDDA pipe to program: No program specified.
+XMcd.overwriteMsg: \
+The file exists in the output directory.\n\
+Do you want to overwrite it?
+XMcd.cddaOutputDirectoryMsg: \
+CDDA save to file: Writing audio files in the following directory:
+XMcd.cddaExpandedPathMsg: \
+CDDA save to file: The expanded output file path name:
+XMcd.invalidBrMinMeanMsg: \
+Invalid minimum bitrate: It must be less than\n\
+or equal to the average bitrate.
+XMcd.invalidBrMinMaxMsg: \
+Invalid minimum bitrate: It must be less than\n\
+or equal to the maximum bitrate.
+XMcd.invalidBrMaxMeanMsg: \
+Invalid maximum bitrate: It must be greater than\n\
+or equal to the average bitrate.
+XMcd.invalidBrMaxMinMsg: \
+Invalid maximum bitrate: It must be greater than\n\
+or equal to the maximum bitrate.
+XMcd.invalidFreqLPMsg: \
+Invalid lowpass filter frequency.\n\
+The valid range is %d to %d Hz.
+XMcd.invalidFreqHPMsg: \
+Invalid highpass filter frequency.\n\
+The valid range is %d to %d Hz.
+XMcd.noMessagesMsg:		No messages.
+
+!*
+!* Other functionality and appearance items
+!*
+
+! The start-up main window mode.  The supported modes are:
+! 0	Normal (full feature) mode
+! 1	Basic (small footprint) mode
+XMcd.mainWindowMode:				0
+
+! When changing between main window modes, which part of the window
+! should remain in a fixed location.
+! 0	Upper left corner
+! 1	Top edge
+! 2	Upper right corner
+! 3	Right edge
+! 4	Lower right corner
+! 5	bottom edge
+! 6	Lower left corner
+! 7	Left edge
+! 8	Center of window
+XMcd.modeChangeGravity:				0
+
+! Whether main window controls change their foreground color in response
+! to keyboard focus change.
+XMcd.mainShowFocus:				True
+
+! When any indicator is set to blink mode, the blinking interval used (msec).
+! This is used for the time display during pause, A->B mode indicator, etc.
+XMcd.displayBlinkOnInterval:			850
+XMcd.displayBlinkOffInterval:			150
+
+! Whether xmcd should install its own colormap.  This may be desirable
+! if you are running other color-intensive applications and xmcd cannot
+! always allocate needed colormap entries.
+XMcd.installColormap:				False
+
+
+!*
+!* Window sizes
+!*
+!* You may need to adjust these if you change any fonts
+!*
+
+! Main window size (for both the normal and basic modes)
+XMcd.normalMainWidth:				360
+XMcd.normalMainHeight:				135
+XMcd.basicMainWidth:				195
+XMcd.basicMainHeight:				60
+
+! Keypad popup window size
+XMcd*keypadForm.width:				150
+XMcd*keypadForm.height:				275
+
+! Options popup window size
+XMcd*optionsForm.width:				430
+XMcd*optionsForm.height:			325
+
+! CDDA Performance Monitor popup window size
+XMcd*perfmonForm.width:				250
+XMcd*perfmonForm.height:			150
+
+! CD Information/Program popup window size
+XMcd*dbprogForm.width:				420
+XMcd*dbprogForm.height:				460
+
+! Disc List popup window size
+XMcd*discListForm.width:			380
+XMcd*discListForm.height:			280
+
+! Artist full name popup window size
+XMcd*fullNameForm.width:			310
+XMcd*fullNameForm.height:			225
+
+! Disc Extended Info popup window size
+XMcd*extDiscInfoForm.width:			430
+XMcd*extDiscInfoForm.height:			505
+
+! Track Extended Info popup window size
+XMcd*extTrackInfoForm.width:			430
+XMcd*extTrackInfoForm.height:			475
+
+! Credits popup window size
+XMcd*creditsForm.width:				395
+XMcd*creditsForm.height:			450
+
+! Segments popup window size
+XMcd*segmentsForm.width:			395
+XMcd*segmentsForm.height:			470
+
+! SubmitURL popup window size
+XMcd*submitURLForm.width:			350
+XMcd*submitURLForm.height:			375
+
+! Region Selector popup window size
+XMcd*regionSelectForm.width:			230
+XMcd*regionSelectForm.height:			335
+
+! Language Selector popup window size
+XMcd*languageSelectForm.width:			230
+XMcd*languageSelectForm.height:			335
+
+! CD Match Selector popup window size
+XMcd*matchSelectForm.width:			360
+XMcd*matchSelectForm.height:			260
+
+! User registration popup window size
+XMcd*userRegForm.width:				340
+XMcd*userRegForm.height:			585
+
+! Help popup window size
+XMcd*helpForm.width:				400
+XMcd*helpForm.height:				380
+
+! Authorization popup window size
+XMcd*authForm.width:				300
+XMcd*authForm.height:				160
+
+! File selection box window size
+XMcd*fileSelectionForm.width:			330
+XMcd*fileSelectionForm.height:			360
+
+
+!*
+!* General resources
+!*
+!* These should not require changes
+!*
+
+XMcd*mainForm.XmPushButton.highlightThickness:	0
+XMcd*mainForm.XmScale.highlightThickness:	0
+XMcd*XmLabel.highlightThickness:		0
+XMcd*XmPushButton.highlightThickness:		2
+XMcd*XmScale*highlightThickness:		2
+XMcd*XmList*highlightThickness:			1
+XMcd*XmText*highlightThickness:			2
+XMcd*XmRowColumn*highlightThickness:		1
+XMcd*XmArrowButton*highlightThickness:		1
+XMcd*XmToggleButton*highlightThickness:		1
+XMcd*highlightThickness:			0
+
+XMcd*modeFileFormatOptionMenu*shadowThickness:	2
+XMcd*encodeMethodOptionMenu*shadowThickness:	2
+XMcd*bitrateOptionMenu*shadowThickness:		2
+XMcd*minBitrateOptionMenu*shadowThickness:	2
+XMcd*maxBitrateOptionMenu*shadowThickness:	2
+XMcd*channelModeOptionMenu*shadowThickness:	2
+XMcd*lowpassOptionMenu*shadowThickness:		2
+XMcd*highpassOptionMenu*shadowThickness:	2
+XMcd*id3tagVersionOptionMenu*shadowThickness:	2
+XMcd*topicOptionMenu*shadowThickness:		2
+XMcd*discListTypeOptionMenu*shadowThickness:	2
+XMcd*extDiscInfoGenre0OptionMenu*shadowThickness:	2
+XMcd*extDiscInfoGenre1OptionMenu*shadowThickness:	2
+XMcd*extDiscInfoSubgenre0OptionMenu*shadowThickness:	2
+XMcd*extDiscInfoSubgenre1OptionMenu*shadowThickness:	2
+XMcd*extTrackInfoGenre0OptionMenu*shadowThickness:	2
+XMcd*extTrackInfoGenre1OptionMenu*shadowThickness:	2
+XMcd*extTrackInfoSubgenre0OptionMenu*shadowThickness:	2
+XMcd*extTrackInfoSubgenre1OptionMenu*shadowThickness:	2
+XMcd*creditsPrimaryRoleOptionMenu*shadowThickness:	2
+XMcd*creditsSubRoleOptionMenu*shadowThickness:		2
+XMcd*XmRowColumn*shadowThickness:		0
+XMcd*XmLabel.shadowThickness:			0
+XMcd*XmArrowButton.shadowThickness:		1
+XMcd*XmText*marginWidth:			4
+XMcd*XmText*marginHeight:			2
+XMcd*shadowThickness:				2
+XMcd*defaultButtonShadowThickness:		0
+
+XMcd*XmText*autoShowCursorPosition:		True
+XMcd*XmLabel.alignment:				ALIGNMENT_CENTER
+XMcd*XmSeparator*separatorType:			SHADOW_ETCHED_IN
+
+XMcd*levelScale*translations:			#override\n\
+	<FocusIn>: focuschg(levelScale)\n\
+	<FocusOut>: focuschg(levelScale)
+
+XMcd*XmScale.showArrows:			True
+XMcd*borderWidth:				0
+XMcd*defaultPosition:				True
+XMcd*recomputeSize:				True
+XMcd*indicatorSize:				12
+XMcd*labelType:					STRING
+XMcd*insensitive3D:				True
+XMcd*doubleClickInterval:			400
+XMcd*keyboardFocusPolicy:			EXPLICIT
+

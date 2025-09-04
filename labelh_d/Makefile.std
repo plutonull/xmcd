@@ -1,0 +1,44 @@
+#
+#   @(#)Makefile.std	7.3 01/12/28
+#
+#   Makefile for LabelH
+#
+#   Written by Ti Kan
+#   E-mail: xmcd@amb.org
+#
+#   See the COPYRIGHT file for information about the LabelH widget.
+#
+
+include ../make.inc
+
+LIBLABELH=libLabelH.a
+
+SRCS=	LabelH.c
+OBJS=	LabelH.o
+
+all: $(LIBLABELH)
+
+$(LIBLABELH): $(OBJS)
+	$(RM) $@
+	$(AR) $@ $(OBJS)
+	$(RANLIB) $@
+
+Makefile:
+	@echo "	labelh_d/Makefile"
+	@$(RM) Makefile
+	@cp Makefile.std Makefile
+
+Makefiles: Makefile
+
+install:
+
+clean:
+	$(RM) *.o *.a core .emacs_* tags TAGS
+
+depend:
+	$(DEPEND) $(DEPENDFLAGS) -- $(DEFINES) $(INCDIRS) $(ARCH) -- $(SRCS)
+
+tags:
+	$(TAGS) -w *.[ch]
+	$(TAGS) -xw *.[ch] > TAGS
+

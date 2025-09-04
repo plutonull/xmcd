@@ -1,0 +1,48 @@
+#
+# @(#)Submit.btn	6.20 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+CDDB Submit Button
+
+This button allows you to submit the CD information
+of the currently loaded CD to the CDDB server.
+
+In the rare event that you have a album that is not
+already in the CDDB database, you are encouraged to
+type in the information and submit it for others to share.
+Also, you are also encouraged to fill in missing data
+or make corrections to any errors and re-submit to CDDB.
+
+In order for the submission to succeed, certain fields
+must be filled in.  These fields are the album title,
+album artist name (if it's not a compilation CD) and
+track titles.  Moreover, the primary album genre ("Genre 1")
+must not be "None".
+
+The CDDB server performs sanity checks on the submitted
+data and may reject the submission if it doesn't meet
+the necessary requirements.  If the submission passes
+CDDB's checks, it should become available within 24 hours.
+
+The submit feature is available only if the CDDB feature
+is enabled.  You should use submit only if your system
+has Internet connectivity.

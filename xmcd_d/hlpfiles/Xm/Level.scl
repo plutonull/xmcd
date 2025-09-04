@@ -1,0 +1,62 @@
+#
+# @(#)Level.scl	6.18 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Volume Control
+
+This is the volume control slider.  You can control the
+playback volume by grabbing the "thumb" of the control
+with mouse button 1.  Alternatively, you can click to
+the right or to the left of the thumb and cause the
+volume to change in gradations.  Holding the Ctrl key
+and clicking to the right or left of the thumb will
+cause the volume to go to maximum or minimum,
+respectively.
+
+You can also operate the volume control using the left
+and right arrow keys, the Ctrl-left arrow and Ctrl-right
+arrow key combinations, or the Home and End keys.
+
+The software volume control may not be supported on
+some CD drives.  Also, on some CD drives this slider
+serves as a mute control, and can only be set to full-off
+or full-on positions.
+
+Note that in "Standard playback" mode, this control
+operates the internal hardware volume control of your
+CD drive, if it is equipped.  It does not operate the
+volume control(s) present in your computer's audio
+hardware.  You should use separate software for that
+purpose.
+
+In "CDDA playback" mode, this control operates the volume
+control in your computer's audio hardware.  The specific
+channel it affects is platform dependent.
+
+This control has no effect on the "CDDA save to file"
+or "CDDA pipe to program" data outputs.
+
+See the "CDDA level attenuator" control in the "Volume
+& balance" section of the Options subwindow for an
+alternative that scales the CDDA audio samples, and thus
+affects all CDDA outputs.
+

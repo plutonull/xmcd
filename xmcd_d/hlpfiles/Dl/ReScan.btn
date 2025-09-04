@@ -1,0 +1,40 @@
+#
+# @(#)ReScan.btn	6.11 04/02/02
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Re-scan button
+
+If you select this button, xmcd will refresh the
+disc list.
+
+In "history" mode, xmcd will re-read your history
+file and update the list.  This is useful if you
+are running multiple copies of xmcd on different
+CD drives, and want to synchronize the history from
+each instance.
+
+In "CD changer" mode, xmcd will force the CD in each
+slot of the changer to be loaded in order to load
+the CD artist and title information from the CD
+database.  This may take some time in a CD changer
+with many discs.
+

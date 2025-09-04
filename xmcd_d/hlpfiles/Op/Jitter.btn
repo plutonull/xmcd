@@ -1,0 +1,46 @@
+#
+# @(#)Jitter.btn	7.8 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+CDDA Jitter Correction Button
+
+Selecting this button enables CDDA jitter correction.
+
+Jitter correction causes a portion of each CD audio
+data chunk to be read twice in an "overlapped" manner.
+It is used to eliminate clicks and pops in the sound.
+Many CD drives require jitter correction to provide
+glitch-free playback.
+
+If you have very fast hardware or an error-free
+drive, you can gain performance in CDDA save-to-file
+mode by disabling jitter correction.  Also, some slow
+drives (notably those that can only transfer CDDA at
+1x speed) require that jitter correction be turned off
+to avoid a gross data underrun condition during
+playback (which causes the sound to skip and drop
+out).
+
+If you change the jitter correction setting during
+CDDA playback, you will hear a temporary silence while
+Xmcd reinitializes.
+

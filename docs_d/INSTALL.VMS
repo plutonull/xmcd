@@ -1,0 +1,780 @@
+@(#)INSTALL.VMS	6.37 04/04/02
+
+INSTRUCTIONS FOR OPENVMS
+------------------------
+
+Please read through the following notes before attempting to install 
+xmcd on the Digital/Compaq/HP OpenVMS platform.
+
+Please note that only the xmcd (X11/Motif-based) CD player is supported
+under OpenVMS.  The command-line based cda utility is not supported.
+
+
+OS MINIMUM VERSIONS
+--------------------
+
+The required minimum OpenVMS version is 6.2, recommended is 7.2 or above.
+
+- On Alpha machines equipped with an IDE/ATAPI CD drive, the minimum
+  OpenVMS version is 7.1-2.  From version 7.1-2 to 7.2x with an IDE/ATAPI 
+  CD drive a new SYS$DQDRIVER.EXE needs to be installed, at least the 
+  following or a later release:
+ 
+	image name: "SYS$DQDRIVER"
+	image file identification: "X-21"
+	image file build identification: "X6N6-SSB-0000"
+	link date/time: 17-APR-2000 12:32:19.68
+	linker identification: "A11-39"
+
+  The above driver can be found on the OpenVMS Freeware CD v5.0.
+  On OpenVMS version 7.3 and later NO new SYS$DQDRIVER is needed.
+
+- On OpenVMS versions prior to 7.1-2, the wwwWarp feature of xmcd
+  will work with the old Netscape and Mosaic versions, but may not
+  display certain sites optimally.  For Alpha systems, the HP SWB
+  (Hewlett Packard Secure Web Browser) is recommended, and can be 
+  found at the following URL:
+
+	http://h71000.www7.hp.com/openvms/products/ips/cswb/cswb.html
+
+
+COMPILER MINIMUM VERSIONS
+--------------------------
+
+- Prerequisite for compiling xmcd from source is that the Motif programming 
+  support option has been enabled when installing DECwindows Motif.
+
+- If you are going to compile xmcd from source code, your system must have
+  the C compiler installed.  This release was tested with Compaq C v6.2-007
+  and v6.4.  The use of compilers older than that *may* work, but it is
+  known that the DEC C v5.6 does not work.  If you have just installed
+  or upgraded the C compiler you may need to reboot the system before the
+  compiler would work.  
+
+- If you are compiling on a OpenVMS 6.x system, you will need to set
+  the logical names DECC$CRTLMAP and LNK$LIBRARY to point to the C 
+  library area.
+
+- If you are compiling xmcd from source, and want to do it manually without
+  having INSTALLVMS.COM (or MAKEVMS.COM) doing it on your behalf, you also 
+  may use MMS. This product can be found on the Software Products Library CDs.
+  Licenses of MMS are available. Users who are a member of DECUS/Encompass, 
+  the user society for DEC computers, can get a hobbyist license for MMS. 
+  Check the following site for details:
+
+	http://www.montagar.com/hobbyist/show_license.html
+
+  See below for more information on using MMS to build xmcd.
+
+
+CDDA CAPABILITY
+---------------
+
+If you want CDDA capability, these are the recommended minimum OpenVMS
+version requirements:
+
+	Alpha:	OpenVMS version 7.2
+	VAX:	OpenVMS version 7.3
+
+Furthermore, if you have a sound card on your system and wish to use
+the "CDDA playback" feature of xmcd, you must have the MMOV (Multi-Media
+services for OpenVMS) layered product installed.  MMOV is available
+only for the Alpha platform, and only for OpenVMS version 7.1-2 or later.
+
+The product page for MMOV is at:
+
+	http://h71000.www7.hp.com/openvms/products/mmov
+
+Run-time and development licenses of MMOV are available. Users who are a 
+member of DECUS/Encompass, the user society for DEC computers, can get a 
+hobbyist license for MMOV. Check the following site for details:
+
+	http://www.montagar.com/hobbyist/show_license.html
+
+If you are compiling xmcd from source, and you wish to have CDDA
+playback capability via your system's sound card, then you need the MMOV
+development license (MMOV-DV).  Also, during the installation of MMOV,
+answer 'no' to the question whether you want the defaults for all
+options, and then answer 'yes' to the question about whether to install 
+the kit to develop multimedia applications.
+
+If you have using a pre-compiled xmcd binary kit, then you only need the
+MMOV run-time (MMOV-RT) license, and the default installation should
+suffice.
+
+If you want to be able to encode and save CD tracks to MP3 format files, 
+you must install the LAME MP3 encoder software. OpenVMS ports of LAME 
+(source code) can be found at this URL:
+
+	http://membres.lycos.fr/pmoreau/decw/audio.html
+
+The xmcd official web site "Downloads" area also contains links to
+other sites that offer pre-compiled binaries of LAME:
+
+	http://www.amb.org/xmcd
+
+Please see the RELNOTES file for additional information about CDDA
+support in xmcd.
+
+
+BUILDING XMCD
+-------------
+
+To build xmcd for the OpenVMS operating system you need to first unpack
+the xmcd GZIPed file, then use VMSTAR to restore the directory tree for
+xmcd.  GUNZIP, and VMSTAR can be found at various locations on the
+Internet.  One such location is this site:
+
+	http://www.hp.com/go/openvms/freeware
+
+After unpacking the xmcd package you have to decide whether you want to
+execute the INSTALLVMS.COM procedure or if you want to install xmcd manually.
+
+Running INSTALLVMS.COM results in a fully functional installation.
+It sets up xmcd for your system and CD drive, and compiles xmcd using
+MAKEVMS.COM.  It also installs all needed xmcd support files to their
+proper locations.
+
+However, INSTALLVMS.COM neither includes advanced features like driving
+XV as an external image viewer nor does it include changing the
+configuration files as for xmcd's look. All of the latter is not necessary
+to run xmcd, but you might find that XV displays images with better quality
+than Mozilla (aka SWB, Secure Web Browser) or Netscape, and you might want 
+to enable your CD drive's balance control capability (if it has it) or 
+similar. The parameters describing the capabilities of your CD drive will 
+be changed by the installation procedure if your model can be found in the 
+xmcd configuration tables.
+
+For details on modifying xmcd's configuration files see the related
+manual installation instructions below.
+
+
+
+AUTOMATIC INSTALLATION BY INSTALLVMS.COM
+----------------------------------------
+
+  The INSTALLVMS.COM procedure residing in the xmcd top-level directory
+  will install xmcd on OpenVMS on your behalf.
+
+  The first phase deals with compiling and linking the image.  Before it
+  starts you will be prompted to answer the question whether your system
+  has TCP/IP and socket support.  This is for the Gracenote CDDB(R)
+  functionality. 
+  Furthermore, you may be prompted to answer some CDDA related questions 
+  in case relevant components were not found on your system.
+
+  In the second phase it will prompt you to answer a few simple
+  questions as for the CD drive you want to use with xmcd and whether
+  you previously have installed a xmcd 2.x or 3.x version.  Depending on 
+  your system's configuration it also may ask for the directories where
+  your web browser executables reside.
+
+  If you indicated to have a xmcd 2.x version previously installed, it
+  will move your local CD database files to the xmcd 3.3.x environment.
+  Therefore you will also be asked whether you are satisfied with the
+  backup of your disks.  Before the files are moved, you will be prompted
+  to specify the xmcd 2.x version's top-level directory.  If Local
+  Discography files are found, they also will be copied to your xmcd 3.3.x
+  environment and then converted to a new format.
+
+  If you indicated to have a xmcd 3.x version previously installed, it
+  will move existing local CD database files to the current xmcd
+  environment.  Therefore you will also be asked whether you are
+  satisfied with the backup of your disks.  Before the files are moved,
+  you will be prompted to specify the xmcd 3.x version's top-level
+  directory.  If Local Discography files are found, they also will be
+  copied to your current xmcd environment.
+
+  When the installation procedure is finished, you need to restart your
+  login session to have all the changes take effect.  After logging in
+  again you can use the foreign command XMCD to start the application
+  from the command line. 
+
+  It is strongly recommended to make use of INSTALLVMS.COM instead of
+  installing xmcd manually.  Advanced features like driving XV as an
+  external image viewer may be added manually afterwards.
+
+
+MANUAL INSTALLATION 
+-------------------
+
+  "To those who like it the hard way, we salute you".
+
+  You must first compile and link xmcd, then copy all the necessary
+  support files to their proper locations.
+
+
+  If you have MMOV (Multi-Media services for OpenVMS) installed on your
+  system, the xmcd source code compilation needs the logical name definition
+
+	$ DEFINE/SYSTEM/EXEC/NOLOG MME MMOV$INCLUDE
+
+  in order to find the MMOV development C header files. Make sure this
+  definition is present or add it to SYS$STARTUP:MMOV$STARTUP.COM and
+  restart the server (using the MMOV startup and shutdown procedures
+  in SYS$STARTUP:). 
+
+  During compilation, if you encounter a conflict between the standard
+  <time.h> header file and the one found in the MMOV$INCLUDE directory,
+  you can safely copy the one from the DEC C library area to the 
+  MMOV$INCLUDE directory.
+
+
+  There are two ways to compile xmcd (if you do not wish to have the
+  following done by INSTALLVMS.COM):
+
+  1. For systems with MMS ("make" for OpenVMS):
+
+     You may use MMS to compile xmcd. 
+
+     Just type "MMS" while in the top level directory of the xmcd source 
+     code, and it will use the DESCRIP.MMS files to build xmcd.  You may 
+     need to make some changes to some second-level DESCRIP.MMS files in 
+     order to get a successful compilation:
+
+     The supplied DESCRIP.MMS file in the [.CDDA_D] directory assumes
+     that your system has POSIX threads capability.  If you are
+     compiling on an OpenVMS version older than 7.1, please replace
+     the "has_pthreads" with  "no_pthreads" in the /def= line
+     in the [.CDDA_D]DESCRIP.MMS file.  Also, remove the
+     "/def=(_POSIX_C_SOURCE,use_pthread_delay_np)" definition from
+     the [.COMMON_D]DESCRIP.MMS file.  CDDA functionality will be
+     disabled with this setting.
+
+     If your system does not have the MMOV development kit installed,
+     you must disable CDDA playback soundcard support by removing the
+     "has_mme" from the /def= line in the [.CDDA_D]DESCRIP.MMS file.
+
+     If your system does not have TCP/IP and socket support, you should
+     disable the remote CDDB capability.  To do so, add "/def=noremote"
+     to the DESCRIP.MMS files under the [.CDDB_D] and [.XMCD_D]
+     directories.
+
+  2. For systems without MMS:
+
+     If your system does not have MMS, you may use the MAKEVMS.COM
+     command procedure instead.  Just execute this file, and the xmcd
+     build will be initiated.  The MAKEVMS.COM file was generated
+     from the DESCRIP.MMS files, with the command "MMS MAKEVMS".
+     You may need to make some changes to the MAKEVMS.COM file
+     in order to get a successful compilation:
+
+     The supplied top level MAKEVMS.COM file assumes that your system
+     has POSIX threads capability.  If you are compiling on an OpenVMS
+     version older than 7.1, please replace all occurrances of
+     "has_pthreads" with  "no_pthreads" in the /def= lines of this
+     file.  Also, remove all /def=(_POSIX_C_SOURCE,use_pthread_delay_np)
+     definitions in the same file.  CDDA functionality will be disabled
+     with this setting.
+
+     If your system does not have the MMOV development kit installed,
+     you must disable CDDA playback soundcard support by removing all
+     occurrances of "has_mme" from the /def= lines in the top level
+     MAKEVMS.COM file.
+
+     If your system does not have TCP/IP and socket support, you should
+     disable the remote CDDB capability.  To do so, edit the top level
+     MAKEVMS.COM file, and add "/def=(noremote)" to the lines (related
+     to source code files in the [.CDDB_D] and [.XMCD_D] directories).
+
+  The executable binary that results is XMCD.EXE and can found in the
+  [.XMCD_D] directory. XMCD.EXE needs to be copied to the xmcd library
+  area. Also, a foreign command to run the program needs to be set up 
+  manually. See below for further details.
+
+
+INSTALLING AND CONFIGURING XMCD
+-------------------------------
+
+    This section is for users who are using the "MANUAL INSTALLATION"
+    method described above.  If you use the "AUTOMATIC INSTALLATION
+    BY INSTALLVMS.COM" method, all the following is performed for you
+    automatically.
+
+    1. Create an XMCD Library:
+
+	You need to set up an xmcd library directory which contains
+	COMMON.CFG and DEVICE.CFG, the help and documentation files,
+	the CD database and Local Discography areas.
+
+	Example:
+
+	  $ CREATE/DIRECTORY SYS$SYSDEVICE:[XMCD]
+
+	You can use a different directory than SYS$SYSDEVICE:[XMCD]
+	if you wish.  Substitute all occurrences of SYS$SYSDEVICE:[XMCD]
+	in the examples below with the actual directory you use.  Be sure
+	this directory is world-readable and the files in there are
+	world-readable and executable.
+	Of course you also may use the directory created by VMSTAR as the
+	xmcd library directory.
+
+    2. Setting up the config file:
+
+	In the LIBDI_D area there are two configuration files COMMON.CFG,
+	and DEVICE.CFG.  The COMMON.CFG file contains general parameters,
+	whereas DEVICE.CFG defines device-specific parameters.
+
+	In the COMMON.CFG file there are a number of defaults, you must
+	change the line that specifies the name of the CD device you plan
+	to use.  The default looks like this:
+
+	    device:		/dev/rcd0
+
+	Change this to the name of the CD device you are going to use.
+	For example:
+
+	    device:		DKA500:
+
+	You may need to change some of the parameters in the DEVICE.CFG
+	file depending upon the specific model of CD-ROM you have.
+	In particular, if you wish to use the CDDA features, set the
+	cddaMethod:
+
+	    cddaMethod:		2
+	    cddaReadMethod:	1
+	    cddaWriteMethod:	7
+
+	Copy both the COMMON.CFG and DEVICE.CFG files (with the
+	change to the device name) to the xmcd library directory
+	(created in step 1 above).  
+
+	You may make use of SELDRIVE.COM which is provided in the
+	[.MISC_D] subdirectory, for modifying DEVICE.CFG 
+	Both of the files need to reside in your xmcd top level directory,
+        so copy SELDRIVE.COM over to the xmcd library directory
+        (created in step 1 above).
+
+	Making use of SELDRIVE.COM will result in all of your CD drive's
+	capabilities being enabled for use with xmcd.
+	You may run this procedure at any time you see a necessity for it
+	(f.i. when your drive was replaced with a different model).
+	
+	If xmcd is to be used on a cluster, a node-specific version of
+	these files may be created in the same place by adding -NODENAME
+	to the file names (e.g., COMMON.CFG-SNOOPY and DEVICE.CFG-SNOOPY).
+	These node-specific configuration files will take precedence over
+	the generic ones.
+
+	Each user on their stand-alone system can also customize the xmcd
+	default CD-ROM device and xmcd behavior by creating a subdirectory
+	named XMCDCFG.DIR off their top level user directory, and then
+	putting a copy of the COMMON.CFG and DEVICE.CFG files there.
+
+	Example:
+
+	  $ CREATE/DIRECTORY DISK1$:[RJONES.XMCDCFG]
+
+	If a user wishes to override any parameters in the COMMON.CFG and
+	DEVICE.CFG files then they can edit their local copy and make the
+	needed changes.  Note that some parameters are considered
+	"privileged" and will be ignored by xmcd in the local version of
+	these files.  See the comments in the files for details.
+
+    3. Setting up the help file area:
+
+	The help files need to be in a subdirectory of the xmcd library
+	called HELP.DIR.  The help files themselves come from the xmcd tar
+	file from the subdirectories under HLPFILES.DIR in the XMCD_D area.
+
+	Create the HELP area in the xmcd library:
+
+	  $ CREATE/DIRECTORY SYS$SYSDEVICE:[XMCD.HELP]
+
+	Then, move the helpfiles to the help area:
+
+	  $ RENAME SYS$SYSDEVICE:[XMCD.XMCD_D.HLPFILES]*.* -
+                   SYS$SYSDEVICE:[XMCD.HELP]
+
+	Help under xmcd is context sensitive.  Click the right mouse button
+	over any xmcd button, control, display, list or text field area,
+	and a help window will appear with related help information.
+
+    4. Setting up the documentation file area:
+
+	The documentation files need to be in a subdirectory of the xmcd
+	library called DOCS.DIR.  The documentation files themselves come
+	from the xmcd tar file from the directory under the DOCS_D area.
+
+	Move the xmcd documentation files from the source code area to the 
+        library area:
+
+	  $ RENAME SYS$SYSDEVICE:[XMCD]DOCS_D.DIR SYS$SYSDEVICE:[XMCD]DOCS.DIR
+
+	You can browse these documentation files using the xmcd help system.
+
+    5. Installing the xmcd X resource file:
+
+	There is a X resources file called XMCD.AD in the XMCD_D area.
+	This holds the definitions for window colors, fonts, messages,
+	labels, and other customizable items.  Xmcd must be able to find
+	this file in order to run.  To allow xmcd to use this file copy
+	the XMCD.AD file to DECW$SYSTEM_DEFAULTS:XMCD.DAT for system-wide
+	or cluster-wide use.
+
+	You need to make this file world-readable.
+
+	  $ SET FILE/PROT=W:RE DECW$SYSTEM_DEFAULTS:XMCD.DAT
+
+	You may also create a DECW$USER_DEFAULTS:XMCD.DAT file which may
+	contain personal settings which are different from those in
+	DECW$SYSTEM_DEFAULTS:XMCD.DAT.  For example,
+	define DECW$USER_DEFAULTS to point to your login directory:
+
+	  $ define DECW$USER_DEFAULTS SYS$LOGIN:
+
+	Then copy XMCD.AD to DECW$USER_DEFAULTS:XMCD.DAT and apply your
+	personal settings there.  You only need to put in there the
+	parameters that differ from the defaults in the
+	DECW$SYSTEM_DEFAULTS:XMCD.DAT file.  If you don't copy XMCD.DAT
+	to the DECW$SYSTEM_DEFAULTS: area then remember to define the
+	logical DECW$USER_DEFAULT in your LOGIN.COM file so that it gets
+	defined each time you log in.
+
+    6. Pointing to the xmcd library:
+
+	Your xmcd library directory should now be complete:
+
+	  $ DIR SYS$SYSDEVICE:[XMCD]
+
+	  Directory SYS$SYSDEVICE:[XMCD]
+
+	  COMMON.CFG;1
+	  DEVICE.CFG;1
+	  DOCS.DIR;1
+	  HELP.DIR;1
+
+	You need to set up xmcd such that it can find the library directory.
+	This is done via the XMCD_LIBDIR definition:
+
+	  $ DEFINE/SYSTEM XMCD_LIBDIR "SYS$SYSDEVICE:[XMCD"
+
+	Note that the right bracket is missing.  This is intentional.
+	The program will concatenate the directory names to form a path
+	name for library subdirectories.  You should put this in the
+	the system startup procedure (SYS$MANAGER:SYSTARTUP_VMS.COM).  If
+	that is not possible, you can put it (without the /SYSTEM qualifier)
+	in your personal LOGIN.COM so that it is done automatically each time
+	you log in. 
+
+    7. Set up CD information directory (optional):
+
+	If you have xmcd version 2.x previously installed on your system,
+	there is a CDDB.DIR directory under your xmcd library.  This has
+	been deprecated, but this release of xmcd will continue to read
+	files from that directory, if you rename it to be CDINFO.DIR.
+	CDINFO.DIR has to be resident in this release's top level directory.
+
+	If you have xmcd version 3.x previously installed on your system,
+        there may be a CDINFO.DIR directory tree in your xmcd 3.x library.
+        If there is, copy or rename the CDINFO.DIR directory tree to
+        your current xmcd 3.3.x library.
+
+    8. Set up xmcd to drive a web browser (optional):
+
+	Copy the INSTWEB.COM command file from the MISC_D area and the 
+	WWWWARP.CFG configuration file from the CDINFO_D area to the
+	xmcd library directory.  You may then execute INSTWEB.COM in that 
+	directory.  This will ask you a number of questions and then
+	install wwwWarp support for xmcd.
+
+	If you wish to add wwwWarp support manually (i.e., not using the
+	INSTWEB.COM command), follow the instructions below.
+
+	- Make sure you have 
+
+          either a copy of NETSCAPE.EXE and/or MOSAIC.EXE in 
+	         SYS$SYSTEM: (e.g., SYS$SYSDEVICE:[SYS0.SYSEXE])
+
+	  or     a working MOZILLA installation (usually found in
+                 SYS$COMMON:[MOZILLA], required is MOZILLA.COM)
+
+	  or     a working SWB (HP Secure Web Browser) installation, which
+                 usually is found in SYS$COMMON:[CSWB], required is also
+                 MOZILLA.COM
+
+	- Check whether you have the CMKRNL (Change Mode Kernel) privilege.
+	  This is essential, because GOBROWSER.COM needs to make use of
+	  ANALYZE/SYSTEM which requires this privilege.
+
+	- Edit the WWWWARP.CFG file and locate the "Xmcd man page" and
+	  "Xmcd Local Discography" entries.  Change them to look like
+	  the following:
+
+	    "Xmcd man page"			Alt-m	f.goto \
+		    "%L.DISCOG]XMCD.HTML"
+	    "Xmcd Local Discography"		Shift-L	f.goto \
+		    "%L.DISCOG.%C.%I]INDEX.HTML"
+
+
+	- Copy the GOBROWSER.COM and GENIDX.COM command procedure files to
+	  xmcd's library directory.  These files are found in the MISC_D
+	  area.
+
+	- Modify your LOGIN.COM to add following lines:
+
+	    $ IF F$MODE() .NES. "OTHER" THEN DEFINE/GROUP XMCD_BROWSER MOZILLA
+	    $ GOBROWSER :== @disk:[dir]GOBROWSER.COM
+	    $ GENIDX    :== @disk:[dir]GENIDX.COM
+
+	    First line:  If you prefer MOZILLA or SWB as your default browser,
+                         just insert this line into your LOGIN.COM.
+			 If you prefer Netscape, exchange MOZILLA with
+			 NETSCAPE in this line.  If you prefer MOSAIC,
+			 exchange MOZILLA with MOSAIC in this line. Of
+			 course you need to have the Mosaic and/or
+			 Netscape executable and/or the MOZILLA (or SWB)
+			 installation (see below).
+
+	    Second line: 'disk:[dir]' is meant to be xmcd's library directory.
+	    Third line:  'disk:[dir]' is meant to be xmcd's library directory.
+
+	  Restart your login session, or execute the above commands manually
+	  so that they can take effect.
+
+
+	Now you are done and should be able to use xmcd's wwwWarp features.
+
+	One more hint if you have the GRPPRV privilege:
+	-----------------------------------------------
+
+	If you have Mozilla (or SWB) and/or Mosaic and/or Netscape 
+        handy, you can change the browser for xmcd on the fly:
+
+	- Go to a text window where you can enter DCL commands.
+	- Enter
+	  DEFINE/GROUP XMCD_BROWSER 'mybrowser'
+
+	  Where 'mybrowser' is MOZILLA or NETSCAPE or MOSAIC 
+
+	- Go to xmcd's wwwWarp window and select a site - now the designated
+	  browser will pop up.
+
+	This means you can use all browsers simultaneously or override the
+	default specified in your LOGIN.COM prior to starting xmcd.  You
+	can also go to a text window, change the browser as described above
+	and then start an alternate browser by simply clicking on some site
+	in xmcd's wwwWarp window.
+
+    9. Setting up the Local Discographies area (optional):
+
+	The Local Discographies area is for storing files pertaining to your
+	CD collection.  These files can be documents, images, sound files,
+	etc., that are associated with each CD.  You may deposit these files
+	under the SYS$SYSDEVICE:[XMCD.DISCOG.%C.%I] directory (where %C is
+	the CDDB genre/subgenre names and %I is the xmcd 8-digit disc ID),
+	and then use xmcd's wwwWarp feature to view or play these files.
+	A plug-in for the browser may be required for some file types.
+
+	This is used only if you enable wwwWarp support (see "Setting up
+	xmcd to drive a web browser" above).
+
+	To set this up, follow these steps:
+
+	- Create the main Local Discographies area and all the music category
+	  areas under it:
+
+	    $ CRE/DIR SYS$SYSDEVICE:[XMCD.DISCOG]
+	    $ GENIDX
+
+	- Copy the DISCOGVMS.HTM, BKGND.GIF and XMCDLOGO.GIF files in the
+	  MISC_D area to the SYS$SYSDEVICE:[XMCD.DISCOG] area.  Rename the
+	  DISCOGVMS.HTM to DISCOG.HTML at the destination location.  Also
+	  copy the XMCD.HTM file under XMCD_D to the
+	  SYS$SYSDEVICE:[XMCD.DISCOG] area and rename it to XMCD.HTML.
+
+	- If you already have a xmcd 2.x Local Discography area with
+	  CD-related INDEX.HTML files, you may back up these files to the
+	  structure created by GENIDX.  Please note the differences in
+	  subdirectory names between xmcd 2.x and 3.x.  Also be aware that
+	  the HTML links in these INDEX.HTML files partially won't work
+	  any longer.  The automatic installation done by INSTALLVMS.COM
+	  fixes this problem.
+
+	- If you already have a xmcd 3.x Local Discography area with
+	  CD-related INDEX.HTML files, you may back up these files to 
+	  reside in the same subdirectory structure in your new xmcd
+	  library.
+
+	- To enable browsing your local discography directories you need
+	  to define the logical $DISCOGDIR by adding the following line
+	  to your personal LOGIN.COM (in an appropriate place after the
+	  lines containing the XMCD_BROWSER definition):
+
+	    $ DEFINE/JOB $DISCOGDIR DKA0:[XMCD.DISCOG.] -
+	       /TRANSLATION_ATTRIBUTES=(TERMINAL,CONCEALED)
+
+	  Please consider that you will need to modify the device name
+	  and the top-level directory name of the above example to be 
+	  functional with your installation.
+
+	- If you prefer to only display images (e.g. CD covers) stored in
+	  your Local Discographies area you may add the following line
+	  to your personal LOGIN.COM (in an appropriate place next to the
+	  line containing the XMCD_BROWSER definition):
+
+	    $ IF F$MODE() .NES. "OTHER" THEN DEFINE/GROUP XMCD_VIEWER XV
+
+	  If you add this line to your LOGIN.COM, only local images as
+	  defined in STARTVIEWER.COM will be displayed by XV.
+	  If you do not add this line to your personal LOGIN.COM xmcd
+	  always will use the browser of your choice for displaying images
+	  (like it does anyway with other non-local URLs).
+
+	  One more hint if you have the GRPPRV privilege:
+	  -----------------------------------------------
+
+	  If you have Mosaic and/or Netscape and/or Mozilla/SWB and XV handy 
+          and if you make use of XV for only displaying images, you can 
+          change the viewer for xmcd on the fly:
+
+	  - Go to a text window where you can enter DCL commands.
+	  - Enter
+	    DEFINE/GROUP XMCD_VIEWER 'myviewer'
+
+	    Where 'myviewer' is either NETSCAPE or MOSAIC or MOZILLA/SWB or XV
+
+	  - Go to xmcd's wwwWarp window and select a site - now the
+	    designated browser will pop up.  If you select "Local Discograhy"
+	    the designated viewer will pop up.
+
+	  This means you can use all browsers/viewers simultaneously or
+	  override the defaults specified in your LOGIN.COM prior to
+	  starting xmcd.  You can also go to a text window, change the
+	  browser or viewer as described above and then start an alternate
+	  browser or viewer by simply clicking on some site or item in
+	  xmcd's wwwWarp menu.
+
+	  The possibility to have XV display GIFs or JPEGs was added because
+	  the viewing quality is better with XV than with the web browsers.
+	  Furthermore the picture's size is preselectable when using XV
+	  (see STARTVIEWER.COM) and it won't take half your screen to view
+	  an image (f.i. a scanned CD cover).
+
+
+RUNNING XMCD
+------------
+
+You need to have the DIAGNOSE, PHY_IO and SYSNAM privileges in order to
+run xmcd.
+
+	$ SET PROCESS/PRIVILEGES=(DIAGNOSE,PHY_IO,SYSNAM)
+
+You can just enter $ RUN XMCD or use the XMCD foreign command at the
+DCL prompt to start xmcd.
+
+Xmcd will work only with locally-attached CD drives.  It will not work
+on remote drives in a clustered environment.
+
+If you like to add xmcd to your Session Manager Application pull down
+menu do the following:
+
+1) Pull the Options Menu down in the Session Manager window, and
+   select the Menus... option.
+
+2) Select the Item Name text box.  The Item Name text box is just
+   above where it says "DCL Command" and just left of "Options Qualifiers".
+   Add the name that you want to give to this application.  For example
+   CDPlayer.
+
+3) Select the DCL Command text box, and add a suitable command according
+   to this example:
+
+	$SYS$SYSDEVICE:[XMCD]XMCD.EXE
+
+4) Select the Up arrow button (just to the right of "Options Qualifiers")
+
+   The application name is now in the Item Names Menu, and it should be 
+   highlighted.  
+
+5) To the left of the Item Names menu there is a left arrow button.
+   Select this button and the application will be displayed in the
+   Applications Menu.
+
+6) Choose the Apply button then the Cancel button.
+
+7) Then in the Options Menu in the Session Manager window choose
+   Save Session Manager.
+
+If CDDA playback is selected but MMOV isn't installed or the server isn't
+running, the application terminates with "Multimedia server not running".
+
+The server's quota are usually sufficient. Any sound problem experienced
+so far doesn't seem to be related to the sound server.  However, the
+sound server's resources (a.k.a. quotas) depend on OpenVMS parameters and
+may be different on your system. If a $ set verify is placed in front of
+the "run/detach" command in the script the used quota are displayed.
+Here's an example run:
+
+	$ run/detached/nodeb sys$system:mmov$server.exe -
+	     /ast_limit=152 -
+	     /input=_opa0: /output=sys$startup:mmov_server.log -
+	     /error=sys$manager:mmov_error.log -
+	     /io_buffered=32 -
+	     /io_direct=32 -
+	     /maximum_working_set=65536 -
+	     /privileges=all -
+	     /uic=[1,4] /trusted -
+	     /queue_limit=16 -
+	     /process_name="MMOV$SERVER"
+
+If MMOV is installed and the server is not running, you may try to start
+the server using the above command.  Do not issue this command if the
+server is already running.  Note that it is recommended to start or stop
+the MMOV server using the related procedures in SYS$STARTUP.
+
+For "CDDA write to file" operations, it is recommended to set a useful
+extension size and RMS buffers for the process.  For example:
+
+	$ SET RMS/EXTEND=1000/BUFFER=128/SEQ
+
+Otherwise it will be slow.
+
+If you want "CDDA write to file" to output in MP3 format, you must install
+the OpenVMS port of the LAME encoder software.  The LAME_PATH must be set
+as logical or DCL environment variable. For example:
+
+	$ LAME_PATH:="SYS$SYSDEVICE:[MYLOGINNAME.LAME_3_70]LAME.EXE"
+
+In case you run the INSTALLVMS.COM procedure, this is done automatically 
+if the procedure found the LAME encoder to be present on your system or if 
+you entered its location when the procedure prompted you for it.
+
+The performance of CDDA ripping to MP3 is very slow on the VAX
+architecture.  If you are running on VAX, you will most likely need
+to increase the CDDA heartbeat timeout interval.  To do this, open
+the xmcd options window by clicking on the tools symbol button, select
+the "CDDA scheduling" category, set the Heartbeat timeout value to a
+much larger value, then click "Save".  40 seconds should work even
+with the slowest models.
+
+For additional CDDA-related notes please refer to the RELNOTES file.
+
+As of this writing LAME versions 3.70 and 3.93.1 have been ported to
+OpenVMS.  When running with version 3.70, the VBR-1 and VBR-2 MP3 encoding
+methods are identical.  The ABR mode is not supported and falls back to
+CBR mode, and the "Algorithm tuning" control has no effect.
+
+
+SPECIAL IDE/ATAPI DRIVE NOTES
+-----------------------------
+
+If you encounter error messages while attempting to play a CD and
+the time display does not advance, change the setting of the curposFormat
+parameter in your DEVICE.CFG file.
+
+If you encounter errors while using xmcd's volume or balance sliders,
+or the channel routing control buttons, try changing the modeSenseUse10Bytes
+and/or the modeSenseSetDBD parameters in your DEVICE.CFG file.  If none
+of these resolves the problem, then the drive probably does not support
+these features.  Change the following parameters to False in your
+DEVICE.CFG file to disable the controls in xmcd:
+
+	volumeControlSupport
+	balanceControlSupport
+	channelRouteSupport
+
+If you made any changes to the DEVICE.CFG file as described above,
+restart xmcd to have them take effect.
+
+

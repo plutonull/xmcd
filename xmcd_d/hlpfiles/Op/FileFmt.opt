@@ -1,0 +1,87 @@
+#
+# @(#)FileFmt.opt	7.17 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Output File Format Selector
+
+This option menu allows you to select the output
+audio file format when running in "CDDA save-to-file"
+or "CDDA pipe-to-program" modes.  The choices are:
+
+.raw (RAW)
+    This is the raw digital audio data PCM format as
+    it is read from the CD drive.  It does not have
+    any file header information.
+
+.au (AU)
+    This is the audio file format commonly used on
+    Sun and Next computer systems.
+
+.wav (WAV)
+    This is a variant of the RIFF audio format
+    commonly used on Microsoft Windows and other
+    platforms.
+
+.aiff (AIFF)
+    This is the audio file format commonly used on
+    Apple and SGI systems.
+
+.aifc (AIFF-C)
+    This is a variant of the original .aiff format.
+
+.mp3 (MPEG-1 Layer-3)
+    This is a lossy compressed file format.  If your
+    system does not have the LAME MP3 encoder software
+    installed, this menu entry will appear "greyed-out".
+
+.ogg (Ogg Vorbis)
+    This is a lossy compressed file format.  If your
+    copy of xmcd is compiled without Ogg Vorbis format
+    support, this menu entry will appear "greyed-out".
+
+.flac (FLAC)
+    This is a lossless compressed file format.  If your
+    copy of xmcd is compiled without FLAC format
+    support, this menu entry will appear "greyed-out".
+
+.aac (MPEG-2 or MPEG-4 AAC)
+    This is a lossy compressed file format.  If your
+    system does not have the FAAC encoder software
+    installed, this menu entry will appear "greyed-out".
+
+.mp4 (MPEG-4 in MP4 container)
+    This is a lossy compressed file format.  If your
+    system does not have the FAAC encoder software
+    installed, this menu entry will appear "greyed-out".
+
+In all non-compressed or non-lossy formats the file
+will be full CD quality (44.1kHz sampling rate, two
+channel stereo, signed 16-bit linear PCM encoding).
+The RAW and WAV formats are in little endian byte
+order while the AU, AIFF and AIFF-C formats are in
+big endian.
+
+The compression vs. quality and encoding speed factors
+of the compressed formats, as well as other parameters
+can be selected in the "Encoding parameters" section
+of the Options window.
+

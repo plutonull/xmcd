@@ -1,0 +1,61 @@
+#
+# @(#)Flags.btn	7.9 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+MP3 flags
+
+You can enable some standard flags which will be
+embedded in the MP3 output file or stream.  The flags
+are as follows:
+
+Copyright
+   If selected, enables the "copyright" flag.
+
+Original
+   If selected, enables the "original" flag.
+
+No res
+   If selected, disables the bit reservoir.  Each
+   audio frame will be independent from previous one,
+   but the quality will be lower.
+
+Checksum
+   If selected, adds a 2-byte checksum to each audio
+   frame for error correction per frame.  This uses
+   bits that would otherwise be used for encoding,
+   which will slightly reduce the sound quality.
+
+Strict ISO
+   If selected, the 7680 bit limitation on total frame
+   size is enforced.  This results in wasted bits for
+   high bitrate encodings but will ensure strict ISO
+   compatibility.  This may be needed to make the file
+   playable on some hardware players.
+
+The flags have an effect only in "CDDA save to file"
+and "CDDA pipe to program" modes when the selected
+output file format is MP3.  It does not affect the
+Ogg Vorbis or other output formats.
+
+If you change these settings, it will take effect on
+the next "play" session.
+

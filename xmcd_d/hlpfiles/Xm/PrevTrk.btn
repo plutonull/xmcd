@@ -1,0 +1,49 @@
+#
+# @(#)PrevTrk.btn	6.14 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Previous Track Button
+
+Select this button to skip to the previous track.
+If the current position is near the beginning of
+the current track, then the "previous" track is the
+track with the next lower track number in normal
+playback mode, or the previous track in the play
+sequence in the Shuffle or Program modes.  Otherwise,
+this button will cause playback to start from the
+beginning of the current track.
+
+If previous track is selected during Segment Play
+mode, Segment Play mode will be disengaged.
+
+You may use this button during audio playback to
+effect the track change immediately, or, in normal
+playback mode only, change the track number while
+stopped, then select the Play/Pause button to start
+playback at the designated track.
+
+If you are already on the first track, selecting
+this button will have no effect.
+
+If the playback state is paused when you use this
+button, the state will remain paused when you change
+to a new track.

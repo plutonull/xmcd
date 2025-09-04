@@ -1,0 +1,705 @@
+@(#)INSTALL	6.107 04/03/24
+
+INSTALLATION INSTRUCTIONS
+-------------------------
+
+This file contains instructions relevant to you if you are going to
+build xmcd/cda from the source code.  If you have a pre-compiled binary
+bundle version of xmcd/cda, simply follow the installation instructions
+shown on the xmcd web site during your download.
+
+Please read through the following notes before attempting to compile and
+install xmcd and cda.  If you encounter a problem, read the FAQ file.
+
+OpenVMS users please see the INSTALL.VMS file for information.  Users
+of UNIX-like systems please use the instructions below.
+
+
+GENERAL COMPILE NOTES
+---------------------
+
+This release of xmcd and cda supports the enhanced Gracenote CDDB²(R)
+service.  However, if you compile the source code as is, the CDDB²
+capabilities are not enabled (instead, the "classic" CDDB(R) service is
+used).  To enable the CDDB² capability, you must download the CDDB²
+support package and build xmcd/cda with it.  The instructions are
+provided below.  The CDDB² support package is available for some of the
+platforms supported by xmcd and cda.  Due to Gracenote contract terms,
+the CDDB² libraries in the support package are distributed in binary
+form only.
+
+See the "CDDB" file provided in this release for information regarding
+the difference between "classic" CDDB and the enhanced CDDB².
+
+You must have an ANSI C compatible compilation environment.  All C
+source code in this package are written in ANSI C syntax.  Use of the
+GNU C compiler (gcc) is strongly recommended if you're compiling
+with the CDDB² support package.  If you're not using gcc with the CDDB²
+libraries, you may need to add -lgcc to the final link phase in your
+xmcd_d/Makefile and cda_d/Makefile.  This is because the CDDB² library
+was compiled with gcc and you may not be able to resolve all its needed
+symbols without also linking with the gcc runtime library (provided with
+the CDDB² support package).  You may even need to do this with gcc,
+if your gcc is a different version than what was used to build the
+CDDB² support package.
+
+You must have X11R4/Motif 1.1 or later to build xmcd.  Xmcd has been
+successfully built under X11R4 with Motif 1.1, and X11R5 or X11R6 with
+Motif 1.2, Motif 2.0 or Motif 2.1.  On some platforms, the X11 and
+Motif header files and libraries are contained in an optional X11 GUI
+development package that you need to install first.
+
+Motif is available from various third party vendors for those OS
+platforms that do not come standard with the libraries and headers.  If
+you cannot find a commercial Motif product for your platform you can
+also build the Motif library from the OSF sources (if you have the
+source license).  You may also use the free OpenMotif 2.x if you meet
+its licensing terms:
+
+	http://www.openmotif.org
+
+Xmcd can also be built with the LessTif (freely available Motif clone)
+package.  LessTif is an ideal choice for xmcd because it is under
+the GNU General Public license and embodies the same Open Source
+spirit as xmcd.  If you don't have "real" Motif, you may want to give
+LessTif a try.  Visit their web site at:
+
+	http://www.lesstif.org
+
+For best results, LessTif version 0.92.0 or later is strongly recommended.
+Since LessTif is still in development, certain versions may exhibit GUI-
+related problems with xmcd.  Try a different version of LessTif if you
+encounter such anomalies.
+
+In addition to Motif, xmcd requires the Xt Intrinsics and X11 libraries
+(libXt and libX11) to compile.  On systems that have multiple versions
+of X11 installed, be sure to use matching sets of X11 header files with
+the libraries.
+
+If you do not have X11 or Motif, you can still build cda.  Edit the top
+level Makefile.std and remove xmcd_d from the SUBDIRS definition, and
+follow the instructions below for systems that do not have imake.
+
+The cda utility requires named pipe (FIFO) support in your OS
+platform.  If your system does not support named pipes, you must edit
+the top level Imakefile or Makefile.std and remove the cda_d directory
+from the SUBDIRS definition.
+
+If your site runs the SOCKS-based security firewall and requires clients
+to be SOCKSified in order to access remote Internet hosts, see the
+comments in cddb_d/Imakefile.  SOCKS capability is only available with the
+CDDB "classic" service.  Also, you must edit the xmcd_d/Makefile
+and cda_d/Makefile to link with the socks library.  For further
+information please refer to the documentation in the SOCKS.CSTC package.
+
+This release of xmcd and cda supports CDDA save-to-file and CDDA pipe-
+to-program in MP3, Ogg Vorbis, FLAC, AAC and MP4 compressed formats.
+You must install the needed encoder software for each of these formats
+before building xmcd, as outlined below:
+
+- For MP3, you must first install the LAME encoder program.  LAME version
+  3.92 or later is recommended.
+- For Ogg Vorbis, you must install the Ogg Vorbis libraries (libogg,
+  libvorbis and libvorbisenc).  Version 1.0 or later of these libraries
+  is recommended.
+- For FLAC, you must install the FLAC library (libFLAC), Version 1.1.0
+  or later is recommended.
+- For AAC and MP4, you must install the FAAC encoder program.  FAAC
+  version 1.21.2 or later is recommended.  Also, the FAAC program must
+  be built to support MP4 output (i.e., has the '-w' command line option).
+  Otherwise the MP4 file format will not work.  As of this writing, the
+  FAAC source code from audiocoding.com has MP4 disabled on non-Win32
+  platforms.  To enable MP4, you need to add -DHAVE_LIBMP4V2=1 to the
+  frontend/Makefile.  You will also need to have installed the libmp4v2
+  library which is included in the FAAD2 decoder software package.
+  Alternatively, you may download a modified version of the FAAC software
+  that enables MP4 and includes libmp4v2 via the links on the xmcd web
+  site.
+
+For source code or pre-compiled binary kits of each of these encoders,
+please visit the xmcd web site's "Downloads" area for links to sites
+that offer them:
+
+	http://www.amb.org/xmcd/
+
+Please note that due to patents pertaining to the MP3, MPEG-2 and
+MPEG-4 AAC technologies, it may be illegal to download and use the
+LAME and FAAC encoder software without incurring licensing royalties
+in some countries.  MP3 is currently licensed by Thomson
+(http://www.mp3licensing.com), while MPEG-2 and MPEG-4 AAC are
+licensed by Via Licensing Corporation (http://www.vialicensing.com),
+a subsidiary of Dolby Laboratories.
+
+No such restriction exists for the Ogg Vorbis or FLAC formats.
+
+See the RELNOTES file for additional notes about CDDA, LAME, Ogg Vorbis,
+FLAC and FAAC.
+
+
+PLATFORM-SPECIFIC COMPILE NOTES
+-------------------------------
+
+ALL PLATFORMS:
+
+    IF YOU USE THE GNU C COMPILER (gcc), DO NOT USE THE -ansi OPTION.
+    The -ansi option may cause some of the system's header files to
+    exclude definitions that are needed to successfully compile xmcd
+    and cda.
+
+    This release of xmcd has code to support POSIX 1003.1c threads
+    ("pthreads") for CDDA operations if your OS platform has such
+    capability.  This is normally auto-detected while you build xmcd.
+    However, the default on all UNIX or UNIX-like platforms is to use
+    the System V IPC method.  This can be changed via the cddaMethod
+    parameter in xmcd's device configuration file before starting xmcd
+    or cda.  Please refer to the RELNOTES file for additional information.
+
+    Non-native implementations of the POSIX threads capability which
+    require wrapping of some system calls (such as GNU pth) will not
+    work with xmcd, because the Motif, Xt and X11 libraries are
+    not wrapped unless they are re-compiled with GNU pth header
+    files.
+
+Apple A/UX:
+
+    Use gcc to compile the xmcd distribution.  You may have to add
+    an explicit -DmacII to CFLAGS if your C pre-processor does not
+    already define this.
+
+    You are advised to make certain that xmkmf uses the X11R5 config
+    files (e.g., /usr/local/X11R5/lib/config).  The default config
+    files in Apple's distribution of X11R4 (/usr/lib/X11/config) will
+    require extensive hand-editing of the resulting Makefiles (to use
+    gcc instead of cc, shared-libs are not available, etc.).
+
+BSDI/WindRiver BSD/OS:
+
+    See the PLATFORM file for operating system version requirements.
+
+    You must ensure that _ANSI_SOURCE is _not_ defined.
+
+    The visual mode in cda is disabled by default for BSD/OS due to
+    the lack of a SYSV-compatible curses library.  If you have added
+    the ncurses package to your system then you should remove the
+    -DNOVISUAL from your cda_d/Makefile to enable visual mode
+    functionality.
+
+Data General DG/UX:
+
+    You should use the instructions below for systems without imake
+    to build this distribution, since DG/UX does not provide imake.
+
+Digital UNIX, Compaq/HP Tru64 UNIX (OSF1):
+
+    See the PLATFORM file for minimum operating system version
+    requirements.
+
+    On Digital UNIX 4.0 systems, the cc compiler imposes stricter
+    ANSI C conformance and the /usr/include/io/cam/scsi_all.h header
+    file on the system may not compile correctly.  If you encounter
+    a compilation error in this file, you can fix it by changing
+    all structure bitfields in this file from u_char type to u_int.
+    Log in as root and type the following commands to accomplish
+    this (please substitute all occurrences of \t in the sed script
+    below with actual tab characters):
+
+    cd /usr/include/io/cam
+    mv scsi_all.h scsi_all.h.orig
+    sed 's/u_char\(.*:[ \t]*[0-9]*[ \t]*[;,].*\)/u_int\1/' \
+        scsi_all.h.orig > scsi_all.h
+
+    Your system should have the Multimedia Run-Time and Development
+    subsets installed (/usr/shlib/libmme.so, /usr/lib/libmme.a and
+    /usr/include/mme/*.h).  Otherwise, you should disable the xmcd's
+    MME support code in order to compile successfully.  To do this,
+    remove the -DHAS_MME from the cdda_d/Imakefile before running imake.
+    Also, you must remove -lmme from the xmcd_d/Imakefile and
+    cda_d/Imakefile.  When MME audio support is disabled, there is no
+    CDDA playback functionality, but you can still save CDDA to files
+    or pipe to external programs.
+
+Digital Ultrix:
+
+    See the PLATFORM file for minimum operating system version
+    requirements.  Also, check the top level Makefile that's generated
+    by imake.  There should be a SHELL=/bin/sh5 line.  If there are
+    any other SHELL= lines they should be removed.
+
+Digital/Compaq/HP OpenVMS:
+
+    See the INSTALL.VMS file for information about the compilation,
+    installation and use of xmcd on the OpenVMS platform.
+
+    The CDDA support uses POSIX threads method only on OpenVMS.
+    The System V IPC method is not supported.
+
+FreeBSD:
+
+    See the PLATFORM file for minimum operating system version
+    requirements.
+
+Hewlett Packard HP-UX:
+
+    If you are using the HP cc compiler, you must enable ANSI C mode
+    (using the -Ae or -Aa options, depending on your compiler version).
+    You may also have to define -D_HPUX_SOURCE to successfully compile
+    xmcd.  See your cc(1) online manual entry for details.
+
+    The imake configuration in the /usr/lib/X11/config/hp.cf file on
+    some HP-UX 11.x systems erroneously identifies the system as
+    HP-UX 10.20.  If you're compiling on HP-UX 11.x and want to enable
+    POSIX threads support in xmcd/cda, you should first fix the
+    definition in the hp.cf file such that OSMajorVersion is defined
+    to 11 and OSMinorVersion to the appropriate number for your system.
+
+    On Series 700 systems, if you're compiling with the CDDB2 support
+    package installed, you must configure the xmcd and cda executables such
+    that it will look in the /usr/lib directory for the libcddb.sl shared
+    library.  To do that, the following command line options must be passed
+    to ld(1) when linking the executables:
+
+	+b/usr/lib +s
+
+    If you're using gcc to do the final linking, you can use the following
+    gcc option to accomplish this:
+
+	-Wl,+b/usr/lib,+s
+
+    Special notes for the m68k systems: Don't use the cc +O3 option, use
+    the +02 option instead.
+
+    Due to a bug in the HP-UX Bourne Shell (/bin/sh), the install.sh script
+    will fail on some platforms.  The Korn Shell (/bin/ksh) should
+    be used instead.  If you don't have imake, set the SHELL= line in your
+    make.inc file to SHELL=/bin/ksh before compiling and installing xmcd.
+
+IBM AIX:
+
+    If you are running AIX versions prior to 4.x, you must remove the
+    AIX_IDE definition in the common_d/config.h header file in order
+    to successfully compile xmcd.
+
+Linux:
+
+    On some Linux distributions, you must have the kernel source code
+    package installed in order to get some of the needed header files.
+
+    If you are running the IMD4Linux (SGI IRIX style desktop for Linux,
+    http://www.5dwm.org) environment, you may want to compile xmcd
+    with -DUSE_SGI_DESKTOP and use the XMcd_sgi.ad X resource defaults
+    file to allow xmcd to adapt to the desktop schemes.  See the
+    description for SGI IRIX below.
+
+NetBSD:
+
+    See the PLATFORM file for minimum operating system version
+    requirements.
+
+    The visual mode in cda is disabled by default for NetBSD due to
+    the lack of a SYSV-compatible curses library.  If you have added
+    the ncurses package to your system then you should remove the
+    -DNOVISUAL from your cda_d/Makefile to enable visual mode
+    functionality.
+
+    If you are running an older NetBSD version (prior to 1.2G or so),
+    you must define NETBSD_OLDIOC in the common_d/config.h header file
+    in order to successfully compile xmcd.  This is because old NetBSD
+    systems have an incompatible <sys/cdio.h> header file.
+
+OpenBSD:
+
+    See the PLATFORM file for minimum operating system version
+    requirements.
+
+QNX 4.2x:
+
+    Make certain __QNX__ is defined from the top level on down;
+    The Watcom C 9.5 and 10.6 compilers do this for you.  Depending on
+    your development environment, you may have to disable the visual mode
+    for cda, which relies on the ncurses library.  To do so, add
+    -DNOVISUAL to your cda_d/Makefile.
+
+SCO Open Server / SCO Open Desktop / SCO UNIX:
+
+    You may need to explicitly add -lintl and -lPW to your xmcd_d/Makefile
+    and util_d/Makefile in order to resolve the regcmp(), regex() and
+    alloca() routines.
+
+    SCO's X11 imake configuration doesn't allow an application to
+    differentiate between Open Server 5.x and earlier versions of
+    SCO UNIX.  To allow xmcd to take advantage of the enhanced
+    capabilities in Open Server 5.x, you should edit your SCO imake
+    configuration file /usr/lib/X11/config/sco.cf and add the following
+    to the top of the file:
+
+	#ifndef i386Sco325Architecture
+	#define i386Sco325Architecture YES
+	#endif
+
+SGI IRIX:
+
+    You can optionally add -DUSE_SGI_DESKTOP to the Imakefile under the
+    xmcd_d and util_d directories.  This enables SGI desktop integration.
+    When compiled in this manner, the user can change the SGI desktop
+    color schemes, and xmcd will automatically follow the changes.  When
+    you build xmcd this way, you should replace the xmcd_d/XMcd.ad file
+    with the xmcd_d/XMcd_sgi.ad file.  Also, if you use the special
+    SGI desktop icon files provided, xmcd will change its look when
+    minimized: the 4Dwm window manager will display the special color
+    icon file instead of the standard minimized icon.  See the RELNOTES
+    file for further information.
+
+    Use the instructions below (for systems with imake) to build xmcd,
+    except instead of using "xmkmf", you can use "mmkmf -a".  This will
+    correctly generate the Makefiles without further changes to the
+    Imakefiles.
+
+    If your imake configuration turns on the -fullwarn option to the
+    MIPSpro C compiler, you will see some compile warnings but these are
+    harmless.
+
+Sony NEWS-OS:
+
+    You should use the GNU C compiler (gcc) instead of the cc compiler.
+    This is because the standard C compiler (cc) under Sony NEWS-OS is
+    not ANSI compliant.  Also, you must add -Dsony_news to CFLAGS
+    if your C pre-processor does not already define it.
+
+    The visual mode in cda is disabled by default for NEWS-OS due to
+    the lack of a SYSV-compatible curses library.  You should compile
+    all files in cda_d with -DNOVISUAL.
+
+Stratus / Lucent FTX SVR4:
+
+    This release of xmcd/cda only supports the HP PA-RISC based
+    Stratus Continuum and Lucent DNCP systems.  Earlier Intel i860
+    and Motorola m68k based Stratus systems are not supported.  See
+    the special notes in the FAQ file about setuid programs and SVR4
+    dynamic libraries.
+
+SunOS 4.1.x / Solaris 1.x:
+
+    You must use the GNU C compiler (gcc) instead of the cc compiler.
+    This is because the standard C compiler (cc) under SunOS 4.1.x is
+    not ANSI compliant.
+
+    See the PLATFORM file for information about configuring xmcd/cda
+    to use DNS on the SunOS 4.1.x platform.  If this is not done
+    xmcd/cda will not be able to access the CDDB service.
+
+    You may encounter compiler warning messages when compiling the
+    cda utility.  These are due to redundant definition of several
+    symbols between SunOS's <sys/ioctl.h> and <sys/termios.h> files.
+    You can ignore the warnings, as they are innocuous.
+
+SunOS 5.x / Solaris 2.x and later:
+
+    Xmcd requires the C pre-processor defines -DSVR4 and -Dsun.
+    These should be defined by default.  Xmcd also requires -Di386
+    on Intel x86 platforms.
+
+    You may need to add -lsocket to xmcd_d/Makefile, cda_d/Makefile,
+    and util_d/Makefile in order to resolve some external symbols.
+    These include socket() and connect().
+
+    Likewise, you may need to add -lgen to xmcd_d/Makefile in order to
+    resolve some external symbols that Motif requires.  These include
+    regcmp() and regex().
+
+    If you are using the Sun cc compiler, you may need to edit all
+    the imake-generated xmcd Makefiles to remove the -Xc option from
+    the cc compiler command line.  Otherwise this will mask out
+    some needed definitions in various header files and cause compile
+    errors.
+
+    Be sure that /usr/ccs/bin is before /usr/ucb in your PATH
+    environment variable, to get the appropriate cc compiler.
+    This ensures that the proper SVR4 header files are used to compile
+    the distribution.
+
+    On Solaris 2.1 or earlier, you must remove the SOL2_RSENSE definition
+    in the common_d/config.h in order to successfully compile xmcd.
+
+    On Solaris 2.4 or earlier, you should remove the -lpthread
+    library from the xmcd_d/Makefile and cda_d/Makefile.
+
+    See the special notes in the FAQ file about setuid programs and
+    SVR4 dynamic libraries.
+
+UNIX SVR4 and SVR5 (including UnixWare, all versions):
+
+    You may need to add -lsocket to xmcd_d/Makefile, cda_d/Makefile
+    and util_d/Makefile in order to resolve some external symbols.
+    These include socket() and connect().
+
+    Likewise, you may need to add -lgen to xmcd_d/Makefile in order to
+    resolve some external symbols that Motif requires.  These include
+    regcmp() and regex().
+
+    Be sure that /usr/ccs/bin is before /usr/ucb in your PATH
+    environment variable, to get the appropriate cc compiler.
+    This ensures that the proper SVR4 header files are used to compile
+    the distribution.
+
+    When compiling on UNIX SVR4.0, SVR4.2 and all UnixWare versions
+    prior to 7.0.1, please remove the -Kpthread option from all
+    Makefiles.
+
+    See the special notes in the FAQ file about setuid programs and
+    SVR4 dynamic libraries.
+
+
+XMCD DEMO MODE
+--------------
+
+You must compile on one of the supported UNIX OS flavors (See the
+PLATFORM file for a list of the supported OS environments) to get a
+real functional xmcd.  You can compile on other platforms, but you
+will end up with a "demo" version of xmcd.
+
+You can also force the build of the demo version by specifying
+-DDEMO_ONLY when compiling in the libdi_d directory.  See the
+comments in libdi_d/Imakefile.
+
+It should be possible to build the demo-only xmcd on any platform
+that supports compiling a Motif application.  Minor porting work
+may be required on systems that aren't POSIX-compliant.
+
+The "demo" version does not actually control or respond to a real
+CD-ROM device.  Instead, a built-in CD-ROM simulater is used,
+which allows you to play with the look-and-feel of xmcd/cda and try
+the behavior of all the controls and functions.  The demo mode
+simulates an 8-disc changer with the same CD loaded in all slots.
+
+If you are running the demo version of xmcd/cda, the following message
+will be displayed on stderr when you start the program:
+
+    CD-ROM simulator version x.xx (pid=xxxxx) starting...
+
+
+ENABLING CDDB² SUPPORT
+----------------------
+
+The source code of this release of xmcd and cda comes with built-in
+support of the "classic" CDDB service (which was also used in xmcd
+version 2.x).
+
+To enable the enhanced CDDB² support, you must download and install the
+CDDB² support package before compiling xmcd and cda.  You may download
+this package along with the xmcd source code via the official xmcd web
+site:
+
+	http://www.amb.org/xmcd/
+
+See the "CDDB" file for a list of platforms for which the CDDB² support
+package is available.  Check the xmcd web site for the latest list.
+The CDDB² library is developed by Gracenote and more platforms may be
+added over time.
+
+The CDDB² support package contains the following files:
+
+	libcddb.so.1	(*)		(CDDB² support library)
+	libcddb.so	(+)
+	libcddbkey2.a			(CDDB² support library)
+	libgcc.a			(gcc runtime library)
+
+(*) On HP-UX, this file is named libcddb.sl, and on SunOS 4.1.x, it is
+    libcddb.so.1.0.
+(+) Link to libcddb.so.1; not present on HP-UX
+
+To enable CDDB² features in xmcd and cda, put these files in the cddb_d
+subdirectory of the xmcd source tree BEFORE you start compiling the
+software.  The makefiles will detect the presence of the libcddb and
+libcddbkey2 libraries and use them automatically.  See GENERAL COMPILE
+NOTES above for special notes about compiler usage and libgcc.a.
+
+
+DISABLING COMPRESSED FORMATS SUPPORT
+------------------------------------
+
+To disable CD ripping to MP3 format, simply do not install the LAME
+MP3 encoder software (in particular, the lame(1) encoder program).
+
+To disable CD ripping to AAC and MP4 formats, simply do not install
+the FAAC encoder software (in particular, the faac(1) encoder program).
+
+To disable CD ripping to Ogg Vorbis format, follow the following steps
+before you build xmcd.  This is necessary if you do not have the
+Ogg Vorbis encoder libraries and header files installed on your system.
+Otherwise the xmcd compile will fail.
+
+    1. Edit the cdda_d/Imakefile and delete the -DHAS_VORBIS
+       definition from the DEFINES= line pertaining to your OS
+       platform.
+    2. Edit the xmcd_d/Imakefile, and delete the VORBLIB= line.
+    3. Edit the cda_d/Imakefile, and delete the VORBLIB= line.
+
+To disable CD ripping to FLAC format, follow the following steps
+before you build xmcd.  This is necessary if you do not have the
+FLAC encoder libraries and header files installed on your system.
+Otherwise the xmcd compile will fail.
+
+    1. Edit the cdda_d/Imakefile and delete the -DHAS_FLAC
+       definition from the DEFINES= line pertaining to your OS
+       platform.
+    2. Edit the xmcd_d/Imakefile, and delete the FLACLIB= line.
+    3. Edit the cda_d/Imakefile, and delete the FLACLIB= line.
+
+
+BUILD INSTRUCTIONS
+------------------
+
+If your system has imake (most supported systems do), use these
+steps to build xmcd and cda:
+
+    1. Take a look at the Imakefiles in various directories, read
+       the comments, and make changes as appropriate.  Pay special
+       attention to the comments in xmcd_d/Imakefile pertaining to
+       the LOCAL_LIBRARIES=XmClientLibs line.  You may need to change
+       it in order to successfully compile xmcd.  Do the same in
+       util_d/Imakefile for the gobrowser utility.
+    2. Change to the xmcd top level source directory.
+    3. Type "xmkmf" (or "imake -DUseInstalled -I/usr/lib/X11/config")
+    4. Type "make Makefiles"
+    5. Type "make"
+
+If your system does not have imake (or if the imake configuration is
+broken), use these steps to build xmcd:
+
+    1. Change to the xmcd top level source directory.
+    2. Edit make.inc.  You will most certainly need to make some
+       changes in this file to make things compile on your OS
+       platform.
+    3. Type "make -f Makefile.std Makefiles"
+    4. Type "make"
+
+If you had installed the CDDB² support package and you encounter errors
+during the link phase of xmcd and cda, you may need to add -lgcc to the
+xmcd_d/Makefile and cda_d/Makefile and/or change to using the GNU C
+compiler (gcc), in order to resolve needed symbols.
+
+Note that a "make clean" will remove the cddb_d/libcddbkey2.a file.
+To retain CDDB² functionality, you must re-apply the CDDB² support
+package before you compile the source code again.
+
+For the latest compilation/installation related news, visit the
+"News & Features" area of the official xmcd web site:
+
+	http://www.amb.org/xmcd/
+
+
+INSTALL INSTRUCTIONS
+--------------------
+
+These are instructions on how to install the xmcd package after you
+compile it from source code.
+
+    1. Log in as the super-user and change to the xmcd source directory.
+       Super-user status is used to set the permissions of all files
+       and ensures that you have write privilege to all target
+       directories.  If any target directory is an NFS remote resource,
+       however, the super-user status may be insufficient and you will
+       need to manually install some files and set their permissions.
+    2. You may want to strip(1) the symbol table of the cda_d/cda and
+       xmcd_d/xmcd binaries to reduce their sizes.  On some platforms,
+       you can also use mcs(1) with the -d option to remove the binary
+       comment section.
+    3. Type "make install".  Answer all questions to configure xmcd and
+       cda.  This step is REQUIRED.  If you do not configure the
+       software using "make install" it will not run correctly.
+       Install errors, if any, are recorded in the /tmp/xmcd.err file.
+       You cannot just run the xmcd and cda executables from their
+       compile directories.
+    4. The install.sh script only places the man page raw files in the
+       designated directories.  Depending on your OS platform, you may
+       need to hand-format the files using nroff(1) with the -man option.
+    5. Please refer to the RELNOTES, PLATFORM and DRIVES files for
+       important additional notes.
+
+
+RUNNING XMCD
+------------
+
+See the xmcd(1) and cda(1) man pages for general information about
+using the software.  If you encounter run-time errors pertaining to
+drive configuration, see the up-to-date xmcd Configuration Guide at
+http://www.amb.org/xmcd/ for tips on tweaking the setup for optimum
+functionality with your hardware.
+
+With xmcd, you can position your mouse cursor over any button,
+display, menu, control or feature, and then click the third mouse
+button (usually the right button) to bring up a context-specific
+help window.  You are encouraged to read the help information,
+because they explain the details of the way xmcd works.
+
+If you linked xmcd with an early version of X11R5, and xmcd crashes
+immediately after starting (bus error, segmentation violation, or an
+X error), it may be due to an incompatibility with the LabelH widget
+used in xmcd.  Try the following solution:
+
+    - If your Makefiles were generated by imake:
+
+      * Add a line like the following to your labelh_d/Makefile:
+	DEFINES= -DNO_LABELH
+
+      * Locate the DEFINES= line in your xmcd_d/Makefile, and then
+        append -DNO_LABELH to the end of that line.
+
+    - If your Makefiles were created using Makefile.std:
+
+      * Add -DNO_LABELH to the MISC= line in your make.inc file.
+
+    Remove the labelh_d/LabelH.o and xmcd_d/widget.o files, type "make"
+    from the top-level directory, and then run "make install" again.
+
+
+TO MAKE A BINARY RELEASE
+------------------------
+
+Doing this allows you to compile on one host, and generate a binary
+bundle that can be used to install on other hosts (of the same OS and
+platform type).
+
+    1. Follow the Build Instructions as above.
+    2. Make sure the binary you build has the proper mix of static vs.
+       shared/dynamic library components for your target system. In
+       particular, if your target system does not have Motif installed,
+       then you will want to statically link libXm.a.  The same
+       consideration should be given to libXt, libXext, libX11, libnsl,
+       libsocket, libc, and others where applicable.  The more
+       libraries you link statically, the less platform-dependent the
+       binary is, but the larger it becomes.  In some cases, even a
+       fully static xmcd binary will still have problem running if the
+       target system has different kernel-to-library interfaces than
+       the compiling system.
+    2. Run the "misc_d/makerel.sh" script.  The script generates a file
+       "xmcdbin.tar.gz", which is a "gzip"ed tar format file containing
+       all files necessary for a xmcd binary distribution.  It also
+       creates a "xmcdbin.uue" file, which is a uuencoded version of
+       the xmcdbin.tar.gz file suitable for transmission via electronic
+       mail.  This script assumes the existence of the GNU zip (gzip)
+       and uuencode utilities.
+    3. On a target host (of the appropriate OS and platform), gunzip
+       and un-tar the xmcdbin.tar.gz file, change into the xmcdbin
+       subdirectory, and run the install.sh script to install xmcd/cda
+       on that system.
+    4. The makerel.sh script automatically includes a copy of the
+       CDDB² library in the xmcdbin.tar.gz bundle if it is found, and it
+       will be automatically installed on the target machine when the
+       install.sh script is run.
+    5. Consult the OSF/Motif licensing terms pertaining to your version
+       of Motif before distributing binaries containing Motif code to
+       others.
+
+
+ADDITIONAL NOTES
+----------------
+
+The "config.sh" shell script supplied with this distribution is not
+intended to be run directly in the libdi_d source directory.  You
+should use "make install" to install the package, which causes
+config.sh to be executed with the proper environment.  If you must
+reconfigure xmcd/cda, run the copy of "config.sh" as installed in
+XMCDLIB/config (where XMCDLIB is the directory under which the xmcd/cda
+support files are installed).
+

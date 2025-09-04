@@ -1,0 +1,39 @@
+#
+# @(#)SortTt.txw	7.6 03/12/12
+#
+#   xmcd - Motif(R) CD Audio Player/Ripper
+#
+#   Copyright (C) 1993-2004  Ti Kan
+#   E-mail: ti@amb.org
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+#
+Sort Title and "The" fields
+
+These fields are used to enter the "sort title"
+of the track title.  The sort title may sometimes
+differ from the track title for the purpose of
+sorting.  For example, The track title may
+be "The Long and Winding Road", whereas the sort
+title would be "Long and Winding Road, The".
+
+The "Long and Winding Road" portion should be
+entered in the sort title field, and the "The"
+portion in the "The" field.  Selecting the toggle
+button automatically fills the "The" field with
+the default string, but can be changed to allow
+non-English articles, many of which are gender-
+or number-dependent.

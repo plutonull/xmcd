@@ -1,0 +1,1285 @@
+<HTML><HEAD><TITLE>Manpage of CDA</TITLE>
+</HEAD><BODY BACKGROUND="bkgnd.gif" BGCOLOR="#FFFFFF">
+<DIV ALIGN="center">
+<A HREF="http://www.amb.org/xmcd/"><IMG SRC="xmcdlogo.gif" ALT="xmcd" BORDER="0"></A>
+</DIV>
+<B>CDA</B>(1)<BR>
+<HR>
+
+<P>
+<A NAME="NAME" id="NAME">&nbsp;</A><A NAME="lbAB" id="lbAB">&nbsp;</A>
+<H3>NAME</H3>
+<DIR>
+
+cda - Compact disc digital audio player utility
+<P>
+
+</DIR>
+<A NAME="SYNOPSIS" id="SYNOPSIS">&nbsp;</A><A NAME="lbAC" id="lbAC">&nbsp;</A>
+<H3>SYNOPSIS</H3>
+<DIR>
+
+<B>cda</B>
+
+
+[-<I>dev</I> device] [-<I>batch</I>] [-<I>debug</I> level#]
+[-<I>online</I> | -<I>offline</I>] <I>command</I>
+<P>
+
+</DIR>
+<A NAME="DESCRIPTION" id="DESCRIPTION">&nbsp;</A><A NAME="lbAD" id="lbAD">&nbsp;</A>
+<H3>DESCRIPTION</H3>
+<DIR>
+
+<I>Cda</I>
+
+is a program that allows the use of the CD-ROM, CD-R, CD-RW or DVD
+drive as a full-featured stereo compact-disc player and &quot;ripper&quot;
+from the shell command line.  It can be used interactively in line
+mode or visual (screen) mode, or as a script-driven utility.
+This is a companion utility to <B><A HREF="xmcd.html">xmcd</A></B>(1),
+a Motif-based CD audio player application
+for the X window system.
+<I>Cda</I>
+
+uses the same configuration and support files as
+<I>xmcd.</I>
+
+<P>
+
+Most of the features found on &quot;real&quot; CD players are available in
+<I>cda,</I>
+
+such as shuffle and repeat, and track programming functions.
+<P>
+
+CDDA (CD digital audio) data extraction, playback, save-to-file,
+and pipe-to-program are supported on many platforms.  For
+data extraction to file or pipe,
+<I>cda</I>
+
+can generate the data in MP3 (MPEG-1 layer 3), MPEG-2/MPEG-4 AAC, MP4
+Ogg Vorbis, FLAC, WAV, AU, AIFF, AIFF-C and raw headerless formats.
+Simultaneous extraction to file/pipe and real-time playback is
+possible on high performance computers.
+<P>
+
+Multi-disc changers are also supported.  You can switch to a
+soecified disc, select to play only a single disc or auto-play all
+discs in normal or reverse order.
+<P>
+
+The Gracenote CDDB&reg; Music Recognition Service(sm) feature is supported by
+<I>cda,</I>
+
+which allows the CD artist/title and track titles, and other
+information associated with the loaded CD to be displayed.
+For CDDA extraction to MP3, MP4, Ogg Vorbis and FLAC formats,
+<I>cda</I>
+
+can auto-fill the CD information tags embedded in these files.
+<P>
+
+This release of
+<I>cda</I>
+
+supports the enhanced Gracenote CDDB<SUP>2</SUP>&reg; service on a number of platforms,
+and offers much richer features and content than the &quot;classic&quot; CDDB.
+Moreover, CDDB<SUP>2</SUP>-supplied information is now in UTF-8
+data format, providing international language support.
+See &quot;LOCALIZATION&quot; below.
+<P>
+
+In addition to CDDB, this release of
+<I>cda</I>
+
+supports reading CD-TEXT data from the disc for the disc/track
+artist and title information.
+<P>
+
+No capability is provided to add, modify or submit CDDB entries in
+<I>cda.</I>
+
+You must use the X-based <B><A HREF="xmcd.html">xmcd</A></B>(1) utility (or another
+CDDB-enabled application with the appropriate features)
+for that purpose.
+<P>
+
+On systems with more than one CD drive, multiple
+invocations of
+<I>cda</I>
+
+can be used to operate each drive independently.
+<P>
+
+<I>Cda</I>
+
+is designed to be easy to use, with particular care taken
+to make all output easily parsable by other programs.
+<P>
+
+The internal architecture of
+<I>cda</I>
+
+is designed to be easily portable to many UNIX operating
+system variants, and adaptable to the myriad of CD drives
+available.
+<P>
+
+</DIR>
+<A NAME="OPTIONS" id="OPTIONS">&nbsp;</A><A NAME="lbAE" id="lbAE">&nbsp;</A>
+<H3>OPTIONS</H3>
+<DIR>
+
+<I>Cda</I>
+
+supports the following options:
+<P>
+<DL COMPACT>
+<DT><I>-dev&nbsp;device</I><DD>
+Specifies the path name to the raw CD device.  If this option is
+not used, the default device to be used is the first
+drive set up with the
+<I>xmcd</I>
+
+configuration program (See below).
+<DT><I>-batch</I><DD>
+Signifies that
+<I>cda</I>
+
+should run in batch mode.  This suppresses all interaction with the
+user (i.e., will not prompt the user to type anything).  Batch mode
+is not meaningful in visual mode.
+<DT><I>-online</I>, <I>-offline</I><DD>
+Forces
+<I>cda</I>
+
+to enable or disable Internet access.  If this option is not specified,
+then the default is configured via the <I>internetOffline</I>
+parameter in the <B>common.cfg</B> file.  In offline mode, CDDB lookup will
+only be done from the local cache.  Please note that the daemon
+as well as the client will both perform CDDB lookups.  If you want
+to disable Internet access in both, then the -offline option should be
+used when you start the daemon via the <B>cda on</B> command, as well as
+when you issue any
+<I>cda</I>
+
+client command.
+<DT><I>-debug&nbsp;level#</I><DD>
+Causes verbose debugging diagnostics to be displayed on <I>stderr</I>.
+Note that if you are running in visual mode, the stderr output should
+be redirected to a file, or the debug information will corrupt the
+screen.  The level specifies the type of debugging messages desired:
+<P>
+<PRE>
+1       General debugging
+2       Device I/O debugging
+4       CD information debugging
+32      Sound DSP and output file/pipe debugging
+64      Message of the day debugging
+</PRE>
+
+<P>
+You may add the values together to enable multiple debugging types
+(i.e., A value of 3 turns on both General and Device I/O debugging).
+<P>
+</DL>
+
+</DIR>
+<A NAME="COMMANDS" id="COMMANDS">&nbsp;</A><A NAME="lbAF" id="lbAF">&nbsp;</A>
+<H3>COMMANDS</H3>
+<DIR>
+
+<I>Cda</I>
+
+supports the following commands:
+<P>
+<DL COMPACT>
+<DT><I>on</I><DD>
+Start the
+<I>cda daemon.</I>
+
+<DT><I>off</I><DD>
+Terminate the
+<I>cda daemon.</I>
+
+<DT><I>disc &lt;load | eject | prev | next | disc#&gt;</I><DD>
+Load or eject the CD, or change discs on a multi-disc changer.
+<DT><I>lock &lt;on | off&gt;</I><DD>
+Enable/disable the CD disc lock.  When locked, the CD cannot be
+ejected using the CD drive front-panel eject button.  You can only
+change the lock state when a CD is loaded and is not playing.
+<DT><I>play [track# [mm:ss]]</I><DD>
+Start playback.  If the
+<I>track#</I>
+
+is used, the playback starts from the specified track.  The optional
+<I>mm:ss</I>
+
+argument specifies the minutes and seconds offset into
+the track from where to start playback.
+<DT><I>pause</I><DD>
+Pauses the playback.  Use
+<I>cda</I>
+
+<B>play</B>
+to resume playback.
+<DT><I>stop</I><DD>
+Stop the plaback.
+<DT><I>track &lt;prev | next&gt;</I><DD>
+Proceed to the previous or the next track.  This command is only
+valid when playback is already in progress.
+<DT><I>index &lt;prev | next&gt;</I><DD>
+Proceed to the previous or the next index.  This command is only
+valid when playback is already in progress.
+<DT><I>program [clear | save | track# ...]</I><DD>
+If no argument is specified, this command displays the current
+program play sequence, if any.  The <B>clear</B> argument will
+cause the current program to be cleared.  The <B>save</B> argument
+will save the current program, so that a future load of the
+same CD will automatically get the program sequence.
+To define a new program, specify a list of track numbers separated
+by spaces.  To start program play, use the <B>play</B> command.
+You cannot define a new program while shuffle mode is enabled.
+Entering a program will disengage shuffle mode.
+<DT><I>shuffle &lt;on | off&gt;</I><DD>
+Enable/disable shuffle play mode.  When shuffle is enabled,
+<I>cda</I>
+
+will play the CD tracks in a random order.  You can use this
+command only when audio playback is not in progress.  Also,
+you must clear any program sequence before enabling shuffle.
+<DT><I>repeat &lt;on | off&gt;</I><DD>
+Enable/disable the repeat mode.
+<DT><I>volume [value# | linear | square | invsqr ]</I><DD>
+If no argument is specified, this command displays the current
+audio volume and taper setting.  If a
+<I>value</I>
+
+is used, then the audio volume level is set to the specified
+value.  The valid range is 0 to 100.  If one of <B>linear</B>,
+<B>square</B> or <B>invsqr</B> is specified, then the volume
+control taper is set to the specified curve.  This control
+operates the hardware volume control on the CD drive in <I>standard</I>
+playback mode, or the computer's audio hardware in <I>cdda-play</I> mode.
+It has no effect on the data of the <I>cdda-save</I> or <I>cdda-pipe</I>
+outputs.
+<DT><I>balance [value#]</I><DD>
+If no argument is specified, this command displays the current
+balance control setting.  If a
+<I>value</I>
+
+is used, then the balance is set to the specified value.
+The valid range is 0 to 100, where 0 is full left, 50 is
+center and 100 is full right.  This control operates the hardware
+volume control on the CD drive in <I>standard</I> playback mode,
+or the computer's audio hardware in <I>cdda-play</I> mode.  It has
+no effect on the data of the <I>cdda-save</I> or <I>cdda-pipe</I>
+outputs.
+<DT><I>route [stereo | reverse | mono-l | mono-r | mono | value#]</I><DD>
+If no argument is specified, this command displays the current
+channel routing setting.  Otherwise, to set the routing, 
+use one of the appropriate keywords
+or a
+<I>value</I>
+
+as follows:
+<P>
+<PRE>
+0       Normal stereo
+1       Reverse stereo
+2       Mono-L
+3       Mono-R
+4       Mono-L+R
+</PRE>
+
+<DT><I>outport [speaker | headphone | line-out | value#]</I><DD>
+CDDA playback output port selection.  The <I>speaker</I>, <I>headphone</I>
+and <I>line-out</I> keywords are toggles.  Alternatively, you may
+specify a numeric <I>value</I>, as follows:
+<P>
+<PRE>
+1       Speaker
+2       Headphone
+4       Line-out
+</PRE>
+
+<P>
+You may add the values together to enable multiple output ports
+(i.e., A value of 3 turns on both Speaker and Headphones).
+When the value is set to 0, the port setting is unmodified.
+If no argument is specified, this command displays the current output
+port setting.
+Note that this command may be meaningful only on some platforms,
+and only certain ports may be available on a particular architecture.
+See the PLATFORM file for details.
+<DT><I>cdda-att [value#]</I><DD>
+If no argument is specified, this command displays the current
+CDDA attenuator setting.  If a
+<I>value</I>
+
+is used, then the CDDA attenuator level is set to the specified
+value.  The valid range is 0 to 100.  Note that in contrast to the
+<I>volume</I> command, this setting does not operate any hardware.
+It works by scaling the CDDA audio samples, and thus has no effect
+in <I>standard</I> playback mode, but affects all CDDA modes
+(<I>cdda-play</I>, <I>cdda-save</I> and <I>cdda-pipe</I>).
+<DT><I>status [cont [secs#]]</I><DD>
+Display the current disc status, disc number, track number,
+index number, time, modes, and repeat count.  If the <B>cont</B>
+argument is specified, then the display will run continuously
+until the user types the interrupt character (typically <I>Delete</I> or
+<I>Ctrl-C</I>).  The optional <B>secs</B> sub-argument is the
+display update time interval.  The default is 1 second.
+<DT><I>toc [offsets]</I><DD>
+Display the CD Table of Contents.  The disc artist/title
+and track titles associated with the current disc, queried from
+CDDB, is also shown.  If the disc has associated notes or credits,
+an asterisk (*) is displayed after the genre description.  Similarly,
+if a track has associated notes or credits, an asterisk is
+displayed after the track title.
+<P>
+If the CDDB server cannot determine an exact match for your CD, but
+found a list of possible matches, then the user will
+be prompted to select from that list.  If batch mode is active
+(i.e., the -batch option is used), then no such prompt will
+occur.
+<P>
+If the <B>offsets</B> argument is used,
+then the track times are the absolute offsets from the start
+of the CD.  Otherwise, the times shown are the track lengths.
+<DT><I>extinfo [track#]</I><DD>
+Display extended information associated with
+the current CD, if available from CDDB.  If the
+CD is currently playing, then extended information
+associated with the playing track is also displayed.  If a
+track number is used in the argument, then the extended
+information of the specified track is shown instead.
+<DT><I>notes [track#]</I><DD>
+Display disc notes information text associated with
+the current CD, if available from CDDB.  If the
+CD is currently playing, then the track notes information
+associated with the playing track is also displayed.  If a
+track number is used in the argument, then the track notes
+information text of the specified track is shown instead.
+<DT><I>on-load [none | spindown | autoplay | autolock | noautolock]</I><DD>
+Display, enable or disable options when a CD is loaded.  The
+<I>spindown</I>
+
+option will cause the CD to stop after loading to conserve the laser
+and motor.  The
+<I>autoplay</I>
+
+option will cause the CD to automatically start playing after loading.  The
+<I>autolock</I>
+
+option causes the caddy or disc tray to be automatically locked.  The
+<I>none,</I>
+
+<I>spindown</I>
+
+and
+<I>autoplay</I>
+
+options are mutually-exclusive.  If no argument is used, then the
+current settings are displayed.
+<DT><I>on-exit [none | autostop | autoeject]</I><DD>
+Display, enable or disable options when the
+<I>cda daemon</I>
+
+exits.  The
+<I>autostop</I>
+
+option will cause cda to stop playback,
+and the
+<I>autoeject</I>
+
+option will cause cda to eject the CD.  Use
+<I>none</I>
+
+to cancel these options.  If no argument is used, then
+te current settings are displayed.
+<DT><I>on-done [autoeject | noautoeject | autoexit | noautoexit]</I><DD>
+Display, enable or disable options when
+<I>cda</I>
+
+is done with playback.  The
+<I>autoeject</I>
+
+option causes the
+<I>cda daemon</I>
+
+to eject the CD.  The
+<I>autoexit</I>
+
+option will cause the
+<I>cda daemon</I>
+
+to exit.  If no argument is used, then
+the current settings are displayed.
+<DT><I>on-eject [autoexit | noautoexit]</I><DD>
+Display, enable or disable options when
+<I>cda</I>
+
+ejects a CD.  The
+<I>autoexit</I>
+
+option will cause the
+<I>cda daemon</I>
+
+to exit after ejecting the CD.  If no
+argument is used, then the current settings are displayed.
+<DT><I>changer [multiplay | nomultiplay | reverse | noreverse]</I><DD>
+Display, enable or disable multi-disc changer options.  The
+<I>multiplay</I>
+
+option specifies that
+<I>cda</I>
+
+plays all discs in sequence.  The
+<I>nomultiplay</I>
+
+option will cause cda to stop after the current disc is done.
+The
+<I>reverse</I>
+
+option implies
+<I>multiplay,</I>
+
+except that the disc order is reversed.  If no argument is used,
+then the current settings are displayed.
+<DT><I>mode [standard | cdda-play | cdda-save | cdda-pipe]</I><DD>
+Selects the playback mode.  If no argument is used, then the
+current setting is displayed.  See &quot;PLAYBACK MODES&quot; below for
+details about the modes.  Please note that the cdda modes are
+toggles.  If the current mode is cdda-play, specifying cdda-save
+will enable both cdda-play and cdda-save modes.  Specifying a
+cdda mode twice will disable that mode.  If no cdda mode is
+active, then the mode will revert to standard.  Specifying standard
+mode will disable all cdda modes.
+<DT><I>jittercorr [on | off]</I><DD>
+Enables or disables CDDA jitter correction.  If no argument is used,
+then the current setting is displayed.
+<DT><I>trackfile [on | off]</I><DD>
+For <I>CDDA-save</I> mode, specifies whether a separate file should be
+created for each CD track.  If no argument is used, then the current
+setting is displayed.
+<DT><I>subst [on | off]</I><DD>
+For <I>CDDA-save</I> mode, specifies whether space and tab characters
+in the output file path name should be substituted with underscores ('_').
+This makes the files easier to manipulate while using the UNIX command shell. 
+If no argument is used, then the current setting is displayed.
+<DT><I>filefmt format<DD>
+Specifies the output audio file format if running in cdda-save</I> or
+<I>cdda-pipe</I> modes.  The <I>format</I> is one of the following:
+raw, au, wav, aiff, aiff-c, mp3, ogg, flac, aac or mp4.
+<DT><I>outfile [&quot;template&quot;]</I><DD>
+Specifies the output audio file path name if running in <I>cdda-save</I>
+mode.  If no argument is used, then the currently
+defined template is displayed.  See the
+<I>xmcd</I>
+
+help file on the output file path template for information about the
+special tokens that could be used in the template.
+<DT><I>pipeprog [&quot;path [arg ...]&quot;]</I><DD>
+Specifies the external program to which the audio stream will be piped to
+when running in <I>cdda-pipe</I> mode.  If no argument is used, then the
+currently defined program is displayed.
+<DT><I>compress [&lt;0 | 3&gt; [bitrate#] | &lt;1 | 2&gt; [qual#]]</I><DD>
+Selects the compression mode for compressed file formats, as follows:
+<P>
+For MP3, the modes are as follows:
+<PRE>
+0       Constant bitrate (CBR)
+1       Variable bitrate (VBR, old algorithm)
+2       Variable bitrate (VBR, new algorithm, faster)
+3       Average bit rate (ABR)
+</PRE>
+
+<P>
+For Ogg Vorbis and MP4, all modes are VBR, as follows:
+<PRE>
+0, 3    Use an average bit rate
+1, 2    Use a quality factor
+</PRE>
+
+<P>
+For FLAC, the modes are as follows:
+<PRE>
+0       None
+1       Enable exhaustive LP coefficient quant. search
+2       Enable encoding correctness verification
+3       Enable both
+</PRE>
+
+<P>
+For AAC, all modes are VBR, as follows:
+<PRE>
+0       Use an average bit rate, MPEG-2
+1       Use a quality factor, MPEG-2
+2       Use a quality factor, MPEG-4
+3       Use an average bit rate, MPEG-4
+</PRE>
+
+<P>
+For modes <I>0</I> and <I>3</I>, an optional bitrate (in kb/s)
+sub-argument can be specified.  The supported bitrates are a discrete
+set of numbers from 32 to 320.  A value of 0 can also be used to indicate
+the use of an internal default.  For modes <I>1</I> and <I>2</I>, an optional
+quality factor (from 1 to 10) sub-argument can be used.
+Lower bitrates and quality factor values yield smaller
+files whereas higher numbers produce higher audio quality.
+For AAC and MP4 formats, the bitrate you specify will be double the
+actual bitrate (e.g., if you specify 128kbps, the actual bitrate used
+will be 64kbps).  The bitrate or quality values, if specified, are
+ignored for the FLAC format.  If no argument is used, then the current
+settings are displayed.
+<DT><I>min-brate [bitrate#]</I><DD>
+In average bitrate and variable bitrate modes, this commands lets you
+specify a low bitrate limit.  The encoder will not drop below this limit
+while dynamically changing the bitrate.  A value of 0 can be specified
+to indicate the use of an internal default.
+If no argument is used, then the current setting is displayed.
+This parameter has no effect on the FLAC, AAC or MP4 format.
+<DT><I>max-brate [bitrate#]</I><DD>
+In average bitrate and variable bitrate modes, this commands lets you
+specify a high bitrate limit.  The encoder will not go above this limit
+while dynamically changing the bitrate.  A value of 0 can be specified
+to indicate the use of an internal default.
+If no argument is used, then the current setting is displayed.
+This parameter has no effect on the FLAC, AAC or MP4 format.
+<DT><I>coding [stereo | j-stereo | force-ms | mono | algo#&gt;]fR<DD>
+This command selects the stereo mode and encoding
+noise-shaping/psychoacoustics algorithm.
+If no argument is used, then the current settings are displayed.
+<P>
+For MP3, the algorithm is a number from 1 to 10.  Lower numbers gives
+faster encoding whereas higher numbers produce higher audio quality.
+<P>
+For AAC and MP4, stereo</I> disables the mid/side coding,
+<I>j-stereo</I> and <I>force-ms</I> are synonymous, and <I>mono</I>
+is not supported.  An algorithm value of 10 enables
+temporal noise shaping (TNS).
+<P>
+For FLAC, the stereo modes have no effect, but the algorithm value
+selects between faster encoding versus slightly better compression.
+<P>
+For Ogg Vorbis, this parameter has no effect.
+<DT><I>lowpass [off | auto | freq# [width#]]</I><DD>
+This allows a lowpass filter to be added.
+The <I>off</I> setting means no filter, the <I>auto</I> setting causes the
+encoder to determine whether a filter should be added and its parameters.
+Specifying a frequency (and optionally, a width) will enable the filter
+in manual mode.  The frequency and width are both in Hz.
+The valid frequency range is from 16 to 50000 Hz.
+For MP3, the filter functions fully as described.
+For AAC and MP4, the <I>freq</I> can be used to limit the bandwidth,
+but the <I>width</I> is ignored.
+For Ogg Vorbis and FLAC, these parameters have no effect.
+If no argument is used, then the current settings are displayed.
+<DT><I>highpass [off | auto | freq# [width#]]</I><DD>
+For encoding to MP3 files, this allows a highpass filter to be added.
+The <I>off</I> setting means no filter, the <I>auto</I> setting causes the
+encoder to determine whether a filter should be added and its parameters.
+Specifying a frequency (and optionally, a width) will enable the filter
+in manual mode.  The frequency and width are both in Hz.
+The valid frequency range is from 500 to 50000 Hz.  The lower limit
+is imposed by the polyphase filter implementation in the MP3 encoder.
+For non-MP3 formats, these parameters have no effect.
+If no argument is used, then the current settings are displayed.
+<DT><I>flags [C|c][O|o][N|n][E|e][I|i]</I><DD>
+This allows you to specify some MP3 header and frame flags.
+The letter <I>c</I> denotes the &quot;copyright&quot; flag, the letter <I>o</I>
+denotes the &quot;original&quot; flag, the letter <I>n</I> denotes the &quot;no res&quot;
+(no bit reservoir) flag, the letter <I>e</I> denotes the addition of a
+2-byte checksum to each frame for error correction, and the letter
+<I>i</I> indicates strict ISO compatibility.  The use of a upper-case
+letter turns on the flag, and lower-case turns off the flag.  Multiple
+flags may be specified together.  If no argument is used, then the current
+settings are displayed.
+<DT><I>lameopts [&lt;disable | insert | append | replace&gt; [&quot;options&quot;]]</I><DD>
+This command allows you to query or set command line options to
+be passed directly to the LAME MP3 encoder, and control how those
+options will be passed.  This facilitates the use of advanced or
+experimental LAME features that cannot otherwise be invoked via the
+<I>cda</I>
+
+command line interface for setting encoding parameters.
+The following keywords control how the command line options
+are to be passed:
+<P>
+<I>disable</I>: No additional command line options are to be passed.
+<BR>
+
+<I>insert</I>: The specified options are to be inserted before
+the standard options.
+<BR>
+
+<I>append</I>: The specified options are to be appended after
+the standard options.
+<BR>
+
+<I>replace</I>: The specified options are to be used instead of
+the standard options.
+<P>
+Standard options refers to the LAME command line options that
+<I>cda</I>
+
+generates, based on the current settings (and can be altered by
+other encoding related cda commands above).
+If no argument is used, then the current settings are displayed.
+<DT><I>tag [off | v1 | v2 | both]</I><DD>
+This command specifies whether CD information (such as album and track
+artists and titles, genre type, etc.) should be added to the CDDA output
+file.  For MP3, the information is added to either the version 1, version 2
+or both versions of the ID3 tag areas.  For Ogg Vorbis, FLAC and MP4,
+the information is added to the metadata area.
+<BR>
+
+Note: An ID3v2 tag will not be added to the
+<I>cdda-pipe</I>
+
+MP3 stream regardless of the setting of this command.
+<DT><I>device</I><DD>
+Displays the CD drive and device information.
+<DT><I>version</I><DD>
+Displays the
+<I>cda</I>
+
+version and copyright information.
+<DT><I>cddbreg</I><DD>
+Invoke dialog to register with Gracenote in order to access the CDDB<SUP>2</SUP> service.
+This command can be used to do the initial registration, as well as to
+change or update user registration information.  This function is not
+available with the &quot;classic&quot; CDDB service.
+<DT><I>cddbhint</I><DD>
+Ask Gracenote to send the password hint via e-mail.  This is used in case you
+forget the CDDB user password.  The password and password hint are both
+initially set via the <I>cddbreg</I> command.  This function is not
+available with the &quot;classic&quot; CDDB service.
+<DT><I>motd</I><DD>
+Retrieve and display messages from the xmcd MOTD server, if any.
+Note that messages are displayed by the
+<I>cda</I>
+
+daemon rather than the client process.  Thus, it will be displayed
+on the terminal where the daemon was started.
+<DT><I>debug [level#]</I><DD>
+Show, or set the debug level.  If set, verbose debugging
+diagnostics will be printed on <I>stderr</I> of the terminal
+that the
+<I>cda daemon</I>
+
+is started from.  If this is the same terminal that is running
+<I>cda</I>
+
+in visual mode, the debug information will corrupt the screen.
+See the description of the <I>-debug</I> option above for supported
+debug levels.
+<DT><I>visual</I><DD>
+Enter an interactive, screen-oriented visual mode.  Most
+other cda commands can also be invoked within this mode.
+<P>
+</DL>
+
+</DIR>
+<A NAME="DEVICE_CONFIGURATION" id="DEVICE_CONFIGURATION">&nbsp;</A><A NAME="lbAG" id="lbAG">&nbsp;</A>
+<H3>DEVICE CONFIGURATION</H3>
+<DIR>
+
+See <B><A HREF="xmcd.html">xmcd</A></B>(1) for a description of the device configuration requirements.
+<P>
+
+<B>WARNING:</B>
+
+If
+<I>cda</I>
+
+is not correctly configured, you may cause
+<I>cda</I>
+
+to deliver commands that are not supported by your CD drive.
+Under some environments this may lead to system hang or crash.
+<P>
+
+</DIR>
+<A NAME="USING_CDA" id="USING_CDA">&nbsp;</A><A NAME="lbAH" id="lbAH">&nbsp;</A>
+<H3>USING CDA</H3>
+<DIR>
+
+Start the
+<I>cda daemon</I>
+
+with the <B>cda on</B> command (or the F1 (o) function in visual mode).
+This reserves the CD device and initializes the program for
+further commands.  All other
+<I>cda</I>
+
+functions will not work unless the
+<I>cda daemon</I>
+
+is running.
+The other
+<I>cda</I>
+
+commands should be self explanatory.
+<P>
+
+The <B>off</B> command (or the F1 (o) function in visual mode)
+can be used to terminate the
+<I>cda daemon</I>
+
+and release the CD drive for use by other software.
+<P>
+
+</DIR>
+<A NAME="VISUAL_MODE" id="VISUAL_MODE">&nbsp;</A><A NAME="lbAI" id="lbAI">&nbsp;</A>
+<H3>VISUAL MODE</H3>
+<DIR>
+
+If the
+<I>cda visual</I>
+
+command is used, it enters a screen-oriented visual mode.
+In this mode, the status and other information available
+is continuously displayed and updated on the screen, and
+most functions are available via a single key stroke.
+<P>
+
+The minimum terminal screen size for the visual mode is 80 columns by
+9 rows.  If your terminal is made to be smaller than that (for example,
+an <B>xterm</B>(1) window that has been sized too small), the
+output will be garbled.  For best results, an 80x24 or larger terminal
+screen should be used.
+<P>
+
+Visual mode uses the curses screen library to control the screen.
+It is essential that the TERM environment variable reflect the current
+terminal type, which ideally should have 8 (or more) function keys.
+Since function key definitions in terminfo descriptions are often
+unreliable, alphabetic key alternatives are also available.
+<P>
+
+The screen is divided into two windows: an information window and a
+status window.  According to context, the information window displays
+a help screen, device and version information, disc information and
+table of contents, or extended information about the track.  This window is
+scrollable if it overflows its allotted screen area.
+The status window consists of the last few lines of the screen,
+enclosed in a box.  The first line contains the program list, or
+track number and offset together with volume, balance and stereo/mono
+information.  The remaining lines contain the function keys
+(with their alphabetic synonymns) and the functions they invoke.
+These functions are highlighted when they are on, making
+it easy to see the current state.
+<P>
+
+Screen annotation and online help make operation self explanatory,
+but for reference, a list of commands follows. Alphabetic key
+alternatives to function keys are given in parenthesis.
+<P>
+<DL COMPACT>
+<DT><I>?</I><DD>
+Display help screen. Dismiss this screen by pressing the space bar.
+<DT><I>F1 (o)</I><DD>
+On/Off. Start or stop the
+<I>cda daemon.</I>
+
+<DT><I>F2 (j)</I><DD>
+Load or eject the CD.
+<DT><I>F3 (p)</I><DD>
+Play, pause or unpause.
+<DT><I>F4 (s)</I><DD>
+Stop.
+<DT><I>F5 (k)</I><DD>
+Enable/disable the CD caddy lock. When locked, the CD cannot be ejected
+using the CD drive front-panel eject button.
+<DT><I>F6 (u)</I><DD>
+Shuffle/Program.  Pressing this key cycles through three states:
+normal, shuffle and program. In shuffle mode, the tracks of the CD
+will be played in random order.  On entering program mode,
+<I>cda</I>
+
+will prompt for a space or comma separated list of track numbers,
+representing a desired playing order. The list should be terminated by
+carriage return.  An empty list returns
+<I>cda</I>
+
+to normal mode.  Shuffle and program mode cannot be engaged
+unless a CD is loaded but not playing or paused.
+<DT><I>F7 (e)</I><DD>
+Enable/disable repeat mode.
+<DT><I>F8 (q)</I><DD>
+Terminate the visual mode.  If the
+<I>cda daemon</I>
+
+is running, a reminder of the fact is given and it is allowed to
+continue.  The CD drive will continue operating in the same state.
+<I>Cda</I>
+
+may be invoked again in either visual or line mode when required.
+<DT><I>D/d</I><DD>
+Change to the previous/next disc on multi-disc changes.
+<DT><I>Cursor left/right (C/c)</I><DD>
+Previous/next track. This is only valid if playback is already in
+progress.
+<DT><I>&lt;/&gt;</I><DD>
+Proceed to the previous/next index mark. This is only valid if
+playback is already in progress.
+<DT><I>Cursor up/down (^/v)</I><DD>
+Scroll the information portion of the screen up or down. It may be
+scrolled up only until the last line is on the top line of the screen,
+and may not be scrolled down beyond the initial position. The initial
+scroll position is restored when different information is displayed,
+(e.g., when switching to or from the help information).
+<DT><I>+/-</I><DD>
+Increase or decrease volume by 5%.
+<DT><I>l/r</I><DD>
+Move balance 5% to left or right.
+<DT><I>Tab</I><DD>
+Successive depressions of this key change the mode from stereo to mono,
+mono right, mono left, reverse stereo, and back to normal stereo.
+<DT><I>&lt;n&gt; [mins secs]</I><DD>
+Proceed to track
+<I>n</I>
+
+at
+<I>mins</I>
+
+minutes and
+<I>secs</I>
+
+seconds from the start. If
+<I>mins secs</I>
+
+is not given, start at the beginning of track
+<I>n.</I>
+
+<DT><I>^l/^r</I><DD>
+Control-l or control-r repaints the screen.  This is useful if the
+screen content has been corrupted (e.g., by operator messages sent
+by the
+<I>wall(1M)</I>
+
+command).
+<P>
+</DL>
+
+</DIR>
+<A NAME="CD_DATABASE" id="CD_DATABASE">&nbsp;</A><A NAME="lbAJ" id="lbAJ">&nbsp;</A>
+<H3>CD DATABASE</H3>
+<DIR>
+
+The Gracenote CDDB&reg; Music Recognition Service(sm) feature is supported by
+<I>cda,</I>
+
+which allows you to display the disc artists/title,
+track titles, and other information about the CD
+or tracks via the <B>toc</B>, <B>extinfo</B> and <B>notes</B> commands of
+<I>cda.</I>
+
+In visual mode, this information is displayed automatically
+if available.  You cannot add, modify or submit CDDB information via
+<I>cda.</I>
+
+For more details about CDDB, see <B><A HREF="xmcd.html">xmcd</A></B>(1)
+and the CDDB file that comes with this release.
+<P>
+
+This release of
+<I>cda</I>
+
+also supports reading the CD-TEXT data from the disc for
+CD information.  Only some recent CDs are produced with CD-TEXT
+data and this data can only be read on CD drives with CD-TEXT
+capability.
+<P>
+
+The priority of the CD information schemes (CDDB, CD-TEXT or local CD
+database files) is controlled via the cdinfoPath parameter in the
+<B>common.cfg</B> file.
+<P>
+
+</DIR>
+<A NAME="PLAYBACK_MODES" id="PLAYBACK_MODES">&nbsp;</A><A NAME="lbAK" id="lbAK">&nbsp;</A>
+<H3>PLAYBACK MODES</H3>
+<DIR>
+
+This release supports the following user-selectable playback modes
+(via the
+<I>cda</I>
+
+<B>mode</B>
+command):
+<P>
+<DL COMPACT>
+<DT><I>standard</I><DD>
+<BR>
+
+When playing an audio CD, the audio output is the analog &quot;line out&quot;
+connection on the back of your CD drive.  There should be an audio
+cable connecting this output to your computer audio hardware CD
+input (or to an externally amplfied speaker or stereo system).  The
+audio output is also available at the CD drive's front panel
+headphone connection, if so equipped.  The
+<I>cda</I>
+
+<B>volume</B>
+command affect the CD drive's built-in volume control, if the drive
+has such controls.  This is the mode that previous releases
+(<I>cda</I> version 1.x through 3.0) supported.
+<P>
+<DT><I>cdda-play</I><DD>
+<BR>
+
+When playing a CD in this mode,
+<I>cda</I>
+
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it sends the data to the
+DSP (digital signal processor) device in your computer's audio hardware
+for real-time playback.  The audio is typically heard through the
+computer's built-in speakers.  No signal is produced at the line-out
+or headphone connections of the CD drive.  The
+<I>cda</I>
+
+<B>volume</B>
+command affects the computer's DSP device.
+<P>
+<DT><I>cdda-save</I><DD>
+<BR>
+
+When playing a CD in this mode,
+<I>cda</I>
+
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it writes the data
+into a file of your choosing.  The
+<I>cda</I>
+
+<B>volume</B>
+command does not affect the data written to
+the output file.  The output file format can be selected to be one
+of the following:
+<P>
+<PRE>
+Format Ext   Description
+------ ----- ---------------------------------------
+RAW    .raw  Little-endian, 16 bit, 44.1 kHz, stereo
+AU     .au   Big-endian, 16 bit, 44.1 kHz, stereo
+WAV    .wav  Little-endian, 16 bit, 44.1 kHz, stereo
+AIFF   .aiff Big-endian, 16 bit, 44.1 kHz, stereo
+AIFF-C .aifc Big-endian, 16 bit, 44.1 kHz, stereo
+MP3    .mp3  MPEG 1.0 Layer III compressed
+OGG    .ogg  Ogg Vorbis compressed
+FLAC   .flac Free Lossless Audio CODEC compressed
+AAC    .aac  AAC (MPEG-2 or MPEG-4) compressed
+MP4    .mp4  MP4 (MPEG-4) compressed
+</PRE>
+
+<P>
+The file can be played later using an appropriate playback utility,
+or converted to another format.  This mode will typically run faster than
+real-time with the non-compressed formats.  With the compressed formats,
+it depends on the CPU performance of your system.
+<P>
+<DT><I>cdda-pipe</I><DD>
+<BR>
+
+When playing a CD in this mode,
+<I>cda</I>
+
+extracts the CD digital audio data off the CD drive over the
+data cable (e.g., SCSI or ATAPI/IDE).  Then, it pipes the data
+stream to an external program that you specify.  The output
+format is selected as in the <I>CDDA save to file</I> mode.
+This mode can be used with an external audio player, encoder, or
+other digital audio manipulation program.
+The external program must be capable of accepting audio data on its
+standard input, in one of the formats listed above.
+</DL>
+<P>
+
+More than one of the three CDDA modes can be selected at the same time.
+For example, if both the <I>cdda-play</I> and the
+<I>cdda-save</I> modes are enabled, the two functions
+will be performed simultaneously.  Note that on most systems, only one
+program can access the system's DSP at a time, therefore you will
+likely not be able to select <I>cdda-play</I> and
+<I>cdda-pipe</I> at the same time, where the external program
+is itself an audio player.
+<P>
+
+<B>NOTE</B>: The CDDA (CD digital audio) modes will function only on
+CD drives that provides this capability, and only on some OS and
+hardware platforms.  See the RELNOTES file for details about platform
+support and other CDDA related notes.
+<P>
+
+</DIR>
+<A NAME="LOCALIZATION" id="LOCALIZATION">&nbsp;</A><A NAME="lbAL" id="lbAL">&nbsp;</A>
+<H3>LOCALIZATION</H3>
+<DIR>
+
+The &quot;classic&quot; CDDB service supplies data in the ISO Latin-1 format only,
+multi-byte characters are not supported.
+<P>
+
+The CDDB<SUP>2</SUP> service supplies data in UTF-8 data format, which is
+identical to US-ASCII for single-byte characters.  Multi-byte UTF-8
+characters are also supported.
+By default, cda will translate the characters to ISO Latin-1
+(ISO 8859-1, for English and many European character sets).
+By changing the setting of the <B>charsetConvMode</B> parameter in
+the <B>common.cfg</B> file, you can have
+<I>cda</I>
+
+display the UTF-8 data without conversion (good for US-ASCII
+or if you are using UTF-8 fonts),
+or attempt to convert UTF-8 strings to the default character set
+as specified by the <B>LANG</B> environment variable.  This conversion
+will occur only if the system's list of locales also support UTF-8.
+<P>
+
+If you desire to view CDDB data in languages other than English or the
+ISO Latin-1 European character set, you may need to configure
+your display terminal to display the appropriate fonts (if the
+terminal has such capabilities).  Terminal font configuration is
+device-dependent, OS-dependent and beyond the scope of this document.
+Please see your display terminal's documentation (or in the case of
+a computer graphics console, the operating system's console font
+related documentation for information.
+<P>
+
+Non-CDDB text (such as headings, labels and error messages) are not
+localized in
+<I>cda.</I>
+
+<P>
+
+</DIR>
+<A NAME="NOTES" id="NOTES">&nbsp;</A><A NAME="lbAM" id="lbAM">&nbsp;</A>
+<H3>NOTES</H3>
+<DIR>
+
+Not all platforms and CD drives support all the features of
+<I>cda.</I>
+
+For example, some drives do not support a software-driven
+volume control.  On these drives the
+<I>cda</I>
+
+<B>volume</B> and <B>balance</B> commands may have no effect, or may
+simply change the volume between full mute and maximum.
+Similarly, the <B>lock</B>, <B>disc</B>, <B>index</B>,
+and <B>route</B> commands of
+<I>cda</I>
+
+may not have any effect on drives that
+do not support the appropriate functionality.
+<P>
+
+The lame(1) MP3 encoder program must be installed on your system in
+order for
+<I>cda</I>
+
+to perform CD ripping to MP3 format files.  Similarly, the
+faac(1) encoder program must be installed on your system for
+the AAC and MP4 formats.
+<P>
+
+Your copy of the
+<I>cda</I>
+
+executable must be compiled and linked with the Ogg Vorbis and FLAC encoder
+libraries in order to perform CD ripping to these formats.  See the
+INSTALL file for details.
+<P>
+
+</DIR>
+<A NAME="ENVIRONMENT_VARIABLES" id="ENVIRONMENT_VARIABLES">&nbsp;</A><A NAME="lbAN" id="lbAN">&nbsp;</A>
+<H3>ENVIRONMENT VARIABLES</H3>
+<DIR>
+
+The <B>LANG</B> environment variable sets the default character set.
+See &quot;LOCALIZATION&quot; above.
+<P>
+
+The <B>LAME_PATH</B> environment variable may be used to specify the
+path to the lame(1) MP3 encoder program.
+<P>
+
+The <B>FAAC_PATH</B> environment variable may be used to specify the
+path to the faac(1) AAC/MP4 encoder program.
+<P>
+
+The <B>AUDIODEV</B> environment variable may be used to specify an
+alternate audio device when running
+<I>cda</I>
+
+in the <I>cdda-play</I> mode.
+The default audio device is write method dependent as follows:
+
+<PRE>
+
+AIX write method:       /dev/paud0/1    (PCI audio)
+AIX write method:       /dev/baud0/1    (MCA audio)
+ALSA write method:      plughw:0,0
+HP-UX write method:     /dev/audio
+Linux/OSS write method: /dev/dsp
+OSF1 write method:      0
+Solaris write method:   /dev/audio
+</PRE>
+
+<P>
+
+In addition, with the OSS and ALSA write methods, the <B>MIXERDEV</B>
+environment variable may be used to specify the PCM mixer channel device.
+The default is <I>/dev/mixer</I> for OSS, and <I>default</I> for ALSA.
+<P>
+
+On FreeBSD with ATAPI CD drives, cda will automatically use either
+the CDIOCREADAUDIO ioctl or the pread(2) system call for CDDA reads,
+based on the running kernel version.  You may override the default
+by setting the environment variable <B>CDDA_USE_PREAD</B> to 0 or 1,
+respectively.  Normally this is not necessary.
+<P>
+
+</DIR>
+<A NAME="FILES" id="FILES">&nbsp;</A><A NAME="lbAO" id="lbAO">&nbsp;</A>
+<H3>FILES</H3>
+<DIR>
+
+$HOME/.cddb2/*
+<BR>
+
+$HOME/.xmcdcfg/*
+<BR>
+
+XMCDLIB/cdinfo/*
+<BR>
+
+XMCDLIB/config/config.sh
+<BR>
+
+XMCDLIB/config/common.cfg
+<BR>
+
+XMCDLIB/config/device.cfg
+<BR>
+
+XMCDLIB/config/.tbl/*
+<BR>
+
+XMCDLIB/config/*
+<BR>
+
+XMCDLIB/help/*
+<BR>
+
+BINDIR/cda
+<BR>
+
+MANDIR/cda.1
+<BR>
+
+/tmp/.cdaudio/*
+<P>
+
+</DIR>
+<A NAME="RELATED_WEB_SITES" id="RELATED_WEB_SITES">&nbsp;</A><A NAME="lbAP" id="lbAP">&nbsp;</A>
+<H3>RELATED WEB SITES</H3>
+<DIR>
+
+Xmcd/cda web site: <I><A HREF="http://www.amb.org/xmcd/">http://www.amb.org/xmcd/</A></I>
+<BR>
+
+Gracenote web site: <I><A HREF="http://www.cddb.com/">http://www.cddb.com/</A></I>
+<BR>
+
+Xmmix web site: <I><A HREF="http://www.amb.org/xmmix/">http://www.amb.org/xmmix/</A></I>
+<BR>
+
+LAME MP3 encoder: <I><A HREF="http://www.mp3dev.org/">http://www.mp3dev.org/</A></I>
+<BR>
+
+Ogg Vorbis: <I><A HREF="http://www.xiph.org/ogg/vorbis/">http://www.xiph.org/ogg/vorbis/</A></I>
+<BR>
+
+FLAC (Free Lossless Audio CODEC): <I><A HREF="http://flac.sourceforge.net/">http://flac.sourceforge.net/</A></I>
+<BR>
+
+FAAC (AAC/MP4 encoder): <I><A HREF="http://www.audiocoding.com/">http://www.audiocoding.com/</A></I>
+<BR>
+
+Hydrogen Audio (discussion forums): <I><A HREF="http://www.hydrogenaudio.org/">http://www.hydrogenaudio.org/</A></I>
+<BR>
+
+Sox audio format conversion utility: <I><A HREF="http://www.spies.com/Sox/">http://www.spies.com/Sox/</A></I>
+<P>
+
+</DIR>
+<A NAME="SEE_ALSO" id="SEE_ALSO">&nbsp;</A><A NAME="lbAQ" id="lbAQ">&nbsp;</A>
+<H3>SEE ALSO</H3>
+<DIR>
+
+<A HREF="xmcd.html">xmcd</A>(1), xmmix(1), X(1), lame(1), faac(1), sox(1)
+<BR>
+
+Xmcd's README, PLATFORM, DRIVES, INSTALL and RELNOTES files
+<P>
+
+</DIR>
+<A NAME="AUTHOR" id="AUTHOR">&nbsp;</A><A NAME="lbAR" id="lbAR">&nbsp;</A>
+<H3>AUTHOR</H3>
+<DIR>
+
+Ti Kan (<I><A HREF="mailto:xmcd@amb.org">xmcd@amb.org</A></I>)
+<BR>
+
+AMB Laboratories, Sunnyvale, CA, U.S.A.
+<BR>
+
+<I>Cda</I>
+
+also contains code contributed by several dedicated individuals.
+See the ACKS file in the
+<I>cda</I>
+
+distribution for information.
+<BR>
+
+Comments, suggestions, and bug reports are always welcome.
+<P>
+</DIR>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Table of Contents</H2>
+<OL>
+<OL>
+<LI><A HREF="#lbAB">Name</A>
+<LI><A HREF="#lbAC">Synopsis</A>
+<LI><A HREF="#lbAD">Description</A>
+<LI><A HREF="#lbAE">Options</A>
+<LI><A HREF="#lbAF">Commands</A>
+<LI><A HREF="#lbAG">Device configuration</A>
+<LI><A HREF="#lbAH">Using cda</A>
+<LI><A HREF="#lbAI">Visual mode</A>
+<LI><A HREF="#lbAJ">Cd database</A>
+<LI><A HREF="#lbAK">Playback modes</A>
+<LI><A HREF="#lbAL">Localization</A>
+<LI><A HREF="#lbAM">Notes</A>
+<LI><A HREF="#lbAN">Environment variables</A>
+<LI><A HREF="#lbAO">Files</A>
+<LI><A HREF="#lbAP">Related web sites</A>
+<LI><A HREF="#lbAQ">See also</A>
+<LI><A HREF="#lbAR">Author</A>
+</OL>
+</OL>
+<H3>Local Discography</H3>
+<UL>
+<LI><A HREF="index.html">Main Index</A>
+<LI><A HREF="discog.html">How to use Local Discography</A>
+</UL>
+</BODY>
+</HTML>
