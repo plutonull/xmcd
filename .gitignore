@@ -1,2 +1,8 @@
 Makefile
 */Makefile
+*.o
+has_alsa
+*.a
+xmcd_d/xmcd
+util_d/gobrowser
+cda_d/cda
