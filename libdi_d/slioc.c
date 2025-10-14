@@ -121,6 +121,7 @@ STATIC iocname_t iname[] = {
 	{ CDROM_SELECT_DISC,	"CDROM_SELECT_DISC"	},
 	{ CDROM_DRIVE_STATUS,	"CDROM_DRIVE_STATUS"	},
 	{ CDROM_MEDIA_CHANGED,	"CDROM_MEDIA_CHANGED"	},
+	{ CDROM_LOCKDOOR,	"CDROM_LOCKDOOR"	},
 #endif
 	{ 0,			NULL			},
 };
@@ -1040,10 +1041,15 @@ slioc_start_stop(bool_t start, bool_t loej)
 			}
 		}
 
-		if (loej)
+		if (loej){
+			/* It seems Linux needs to unlock the door before ejecting */
+#ifdef _LINUX
+			slioc_send(DI_ROLE_MAIN, CDROM_LOCKDOOR, NULL, 0, TRUE, NULL);
+			SET_LOCK_BTN(FALSE);
+#endif /* _LINUX */
 			ret = slioc_send(DI_ROLE_MAIN, CDROMEJECT,
 					 NULL, 0, TRUE, NULL);
-		else
+		} else
 			ret = slioc_send(DI_ROLE_MAIN, CDROMSTOP,
 					 NULL, 0, TRUE, NULL);
 	}
@@ -3257,10 +3263,26 @@ slioc_lock(curstat_t *s, bool_t enable)
 	/* Caddy lock function currently not supported
 	 * under SunOS/Solaris/Linux ioctl method
 	 */
+	
 	if (enable) {
+#ifndef _LINUX
 		DO_BEEP();
 		SET_LOCK_BTN(FALSE);
+#else
+		int l=1;
+		slioc_send(DI_ROLE_MAIN,CDROM_LOCKDOOR,&l,sizeof(int),TRUE,NULL);
+		SET_LOCK_BTN(TRUE);
+#endif /* _LINUX */
 	}
+#ifdef _LINUX
+	else{
+		
+		slioc_send(DI_ROLE_MAIN,CDROM_LOCKDOOR,NULL,0,TRUE,NULL);
+		SET_LOCK_BTN(FALSE);
+
+	}
+#endif /* _LINUX */
+	
 }
 
 
