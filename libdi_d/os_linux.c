@@ -207,9 +207,9 @@ pthru_send(
 		time_t	t = time(NULL);
 
 		(void) sprintf(title,
-			       "%sSCSI CDB bytes (dev=%s SG=%d opcode=0x%x rw=%d to=%d role=%d)",
+			       "%sSCSI CDB bytes (dev=%s rw=%d to=%d role=%d)",
 			       asctime(localtime(&t)),
-			       devp->path, (devp->flags) & 0x1, cmdpt[0], rw, tmout, role);
+			       devp->path, rw, tmout, role);
 		util_dbgdump(title, cmdpt, cmdlen);
 	}
 
@@ -422,8 +422,8 @@ pthru_send(
 		if ((ret = write(devp->fd, req, reqsz)) < 0) {
 			DBGPRN(DBG_DEVIO)(errfp,
 				"%s: SCSI command error on %s:\n"
-				"SG: reqsz:%d ret:%d cmdlen:%d write failure: %s\n",
-				APPNAME, devp->path, reqsz,ret,cmdlen,strerror(errno));
+				"SG: request write failure: %s\n",
+				APPNAME, devp->path, strerror(errno));
 			MEM_FREE(req);
 			MEM_FREE(rep);
 			return FALSE;
