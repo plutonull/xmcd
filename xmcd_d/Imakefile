@@ -23,7 +23,7 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
  */
-CFLAGS+=-ansi
+CFLAGS+= -Wno-cpp -ansi
 /*
  * If your local X configuration supports Motif correctly, the
  * following LOCAL_LIBRARIES= declaration should work just fine.

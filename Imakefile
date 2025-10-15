@@ -78,4 +78,5 @@ MANSUFFIX=ManSuffix
 install::
 	@BINDIR=$(BINDIR) LIBDIR=$(LIBDIR) MANDIR=$(MANDIR) \
 		MANSUFFIX=$(MANSUFFIX) $(SHELL) ./install.sh -n
-
+fixMakefiles::
+	sed -i "s/ -lXp//" ./util_d/Makefile ./xmcd_d/Makefile

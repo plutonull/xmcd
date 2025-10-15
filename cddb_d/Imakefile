@@ -24,7 +24,7 @@
  *
  */
 
-CFLAGS+=-ansi
+CFLAGS+= -Wno-cpp -ansi
 /*
  * If your local X configuration is broken, you may need to muck with
  * the following RANLIB= lines.
