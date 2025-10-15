@@ -34,7 +34,6 @@ static char *_hotkey_c_ident_ = "@(#)hotkey.c	6.46 03/12/12";
 #define TOTAL_GRABLISTS	2
 #define MAIN_LIST	0
 #define KEYPAD_LIST	1
-#define TOTAL_MEDIA_GRABS 4
 
 #define MAX_MODSTR_LEN	24
 #define MAX_KEYSTR_LEN	24
@@ -51,13 +50,6 @@ typedef struct grablist {
 	char		*gr_acc;
 	struct grablist	*next;
 } grablist_t;
-
-typedef struct {
-	Widget		me_assoc_widget;
-	KeyCode		me_keycode;
-	KeySym		me_keysym;
-	char		*me_keystr;
-} media_grab_t;
 
 typedef struct {
 	char		*name;
@@ -84,11 +76,11 @@ STATIC modtab_t		modtab[] = {
 STATIC grablist_t	*grablists[TOTAL_GRABLISTS] = {
 	NULL, NULL
 };
-STATIC media_grab_t	media_grablist[TOTAL_MEDIA_GRABS] = {
-	{NULL, 0, 0, "XF86AudioStop"},
-	{NULL, 0, 0, "XF86AudioPlay"},
-	{NULL, 0, 0, "XF86AudioPrev"},
-	{NULL, 0, 0, "XF86AudioNext"}
+media_grab_t	media_grablist[TOTAL_MEDIA_GRABS] = {
+	{&widgets.main.stop_btn, 0, 0, "XF86AudioStop"},
+	{&widgets.main.playpause_btn, 0, 0, "XF86AudioPlay"},
+	{&widgets.main.prevtrk_btn, 0, 0, "XF86AudioPrev"},
+	{&widgets.main.nexttrk_btn, 0, 0, "XF86AudioNext"}
 };
 
 /***********************
@@ -503,11 +495,6 @@ hotkey_init(void)
 		p->me_keycode = XKeysymToKeycode(
 				dpy,
 				p->me_keysym);
-		/* There is probably a better way of assigning widgets to keys, but this is how I'm doing it */
-		if(strcmp(p->me_keystr,"XF86AudioStop")) p->me_assoc_widget = widgets.main.stop_btn;
-		else if(strcmp(p->me_keystr,"XF86AudioPlay")) p->me_assoc_widget = widgets.main.playpause_btn;
-		else if(strcmp(p->me_keystr,"XF86AudioNext")) p->me_assoc_widget = widgets.main.nexttrk_btn;
-		else if(strcmp(p->me_keystr,"XF86AudioPrev")) p->me_assoc_widget = widgets.main.prevtrk_btn;
 		XGrabKey(
 			dpy,
 			p->me_keycode,

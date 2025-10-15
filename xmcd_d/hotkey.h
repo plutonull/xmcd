@@ -26,6 +26,19 @@
 static char *_hotkey_h_ident_ = "@(#)hotkey.h	6.18 03/12/12";
 #endif
 
+#define TOTAL_MEDIA_GRABS 4
+
+/* Public types */
+typedef struct {
+	Widget		*me_assoc_widget;
+	KeyCode		me_keycode;
+	KeySym		me_keysym;
+	char		*me_keystr;
+} media_grab_t;
+
+extern media_grab_t media_grablist[TOTAL_MEDIA_GRABS];
+/* End public types */
+
 /* Public functions */
 extern void	hotkey_init(void);
 extern void	hotkey_grabkeys(Widget);

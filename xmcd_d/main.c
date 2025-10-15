@@ -34,7 +34,7 @@ static char *_main_c_ident_ = "@(#)main.c	7.36 04/03/17";
 #include "xmcd_d/command.h"
 #include "libdi_d/libdi.h"
 #include "cdda_d/cdda.h"
-
+#include "xmcd_d/hotkey.h"
 
 #define STARTUP_CMD_DELAY	1500	/* Delay interval before running
 					 * startup command
@@ -448,6 +448,8 @@ main(int argc, char **argv)
 {
 	int	i;
 	Display	*display;
+	media_grab_t *p;
+	XEvent *ev = (XEvent *)malloc(sizeof(XEvent));
 #ifdef HAS_EUID
 	uid_t	euid,
 		ruid;
@@ -664,9 +666,28 @@ main(int argc, char **argv)
 		);
 	}
 
+	XSelectInput(display, XDefaultRootWindow(display), KeyPressMask);
 	/* Main event processing loop */
-	XtAppMainLoop(app_context);
 
+	do{
+		XtAppNextEvent(app_context, ev);
+
+		/* If the current event is a KeyPress or KeyRelease,
+		 *  Walk the media key tree to find the corresponding entry,
+		 *  then activate its associated widget, Otherwise, pass the event along. */
+		if(ev->type == KeyPress){
+			XKeyEvent *kev = (XKeyEvent *)ev;
+			for(i=0; i<TOTAL_MEDIA_GRABS; i++){
+				p = &media_grablist[i];
+				if(kev->keycode == p->me_keycode){
+					XmProcessTraversal(*(p->me_assoc_widget), XmTRAVERSE_CURRENT);
+					XtCallActionProc(*(p->me_assoc_widget), "ArmAndActivate", ev, NULL, 0);
+					break;
+				}
+			}
+		} else XtDispatchEvent(ev);
+
+	} while(!XtAppGetExitFlag(app_context));
 	shutdown_gui();
 	exit(0);
 
