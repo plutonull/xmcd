@@ -5303,6 +5303,9 @@ cd_quit(curstat_t *s)
 		(XtPointer) &p
 	);
 
+	/* Ungrab media keys */
+	hotkey_media_ungrabkeys();
+
 	/* Let X events drain */
 	event_loop(0);
 

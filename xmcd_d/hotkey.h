@@ -29,9 +29,9 @@ static char *_hotkey_h_ident_ = "@(#)hotkey.h	6.18 03/12/12";
 /* Public functions */
 extern void	hotkey_init(void);
 extern void	hotkey_grabkeys(Widget);
+extern void	hotkey_media_ungrabkeys(void);
 extern void	hotkey_ungrabkeys(Widget);
 extern void	hotkey_tooltip_mnemonic(Widget);
 extern bool_t	hotkey_ckkey(char *, char *);
 extern void	hotkey(Widget, XEvent *, String *, Cardinal *);
-
 #endif	/* __HOTKEY_H__ */
