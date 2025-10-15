@@ -35,7 +35,7 @@
 RANLIB= /bin/true
 #endif
 
-
+CFLAGS+= -Wno-cpp
 /**** Optional defines:  Change as you see fit. *****************************
  *
  * -DNO_STDLIB_H

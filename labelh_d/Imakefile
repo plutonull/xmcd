@@ -9,7 +9,7 @@
  *   See the COPYRIGHT file for information about the LabelH widget.
  */
 
-
+CFLAGS+= -Wno-cpp
 /*
  * If your local X configuration is broken, you may need to muck with
  * the following RANLIB= lines.
