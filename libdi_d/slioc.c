@@ -1013,7 +1013,12 @@ slioc_start_stop(bool_t start, bool_t loej)
 		(void) slioc_pause_resume(TRUE);
 
 	if (start) {
-		if (loej)
+		if (loej){
+#ifdef _LINUX
+			slioc_send(DI_ROLE_MAIN, CDROM_LOCKDOOR, NULL, 0, TRUE, NULL);
+			SET_LOCK_BTN(FALSE);
+#endif /* _LINUX */
+
 #ifdef CDROMCLOSETRAY
 			ret = slioc_send(DI_ROLE_MAIN, CDROMCLOSETRAY,
 					 NULL, 0, TRUE, NULL);
@@ -1025,6 +1030,7 @@ slioc_start_stop(bool_t start, bool_t loej)
 			ret = FALSE;
 #endif	/* CDROMLOAD */
 #endif	/* CDROMCLOSETRAY */
+		}
 		else
 			ret = slioc_send(DI_ROLE_MAIN, CDROMSTART,
 					 NULL, 0, TRUE, NULL);
