@@ -1,0 +1,10 @@
+Here are some important notes:
+
+Compiling:
+	For some odd reason Debian's Imake trys to link agains the Xprint libraries, despite Debian not shipping those libraries. As xmcd does not need the Xprint extention, this can safely be removed, run make fixMakefiles in the top directory to do so.
+
+Installing:
+	The built-in disc drive configuration utility will run when installing xmcd, unless you have an actual SCSI drive, you should answer 'n' to the first two questions under DRIVE CONFIGURATION. If you are unsure, use the default options, as work well.
+
+Things that have not been tested:
+	I have not tested the Lock Drive Door command, as my laptop's CD drive cannot lock, I have also not tested the Load command, as my laptop's CD drive is loaded manually.
