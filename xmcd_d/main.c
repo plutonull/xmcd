@@ -685,7 +685,8 @@ main(int argc, char **argv)
 					break;
 				}
 			}
-		} else XtDispatchEvent(ev);
+		} 
+		XtDispatchEvent(ev);
 
 	} while(!XtAppGetExitFlag(app_context));
 	shutdown_gui();
