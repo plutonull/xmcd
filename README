@@ -1,5 +1,6 @@
 @(#)README	6.185 04/01/02
 
+Xmcd was originally written by Ti Kan (tikan.org/ti/), and with FLAC patches from the FreeBSD Ports collection.
 New Notes for compliling and installing can be found in README_TOO
 
 README
@@ -59,7 +60,7 @@ about the Open Source Initiative, visit: http://www.opensource.org
 
 This distribution is released under the GNU General Public License.
 Please see the COPYING file for details.  The GNU GPL does not apply
-to the Gracenote CDDB² interface library, nor does it apply to the
+to the Gracenote CDDBÂ² interface library, nor does it apply to the
 LabelHack widget from John L. Cwikla.
 
 Xmcd and cda uses the LAME encoder software for CD ripping to the MP3
