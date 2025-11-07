@@ -8791,12 +8791,14 @@ cdinfo_map_cdtext(curstat_t *s, di_cdtext_t *cdt)
 	cdt->disc.performer = NULL;
 	cdt->disc.title = NULL;
 
-	/* Media catalog number (UPC/MCN) */
-	(void) strncpy(s->mcn, cdt->disc.catno, sizeof(s->mcn) - 1);
-	s->mcn[sizeof(s->mcn) - 1] = '\0';
-	MEM_FREE(cdt->disc.catno);
-	cdt->disc.catno = NULL;
-
+	if(cdt->disc.catno != NULL){
+		/* Media catalog number (UPC/MCN) */
+		(void) strncpy(s->mcn, cdt->disc.catno, sizeof(s->mcn) - 1);
+		s->mcn[sizeof(s->mcn) - 1] = '\0';
+		MEM_FREE(cdt->disc.catno);
+		cdt->disc.catno = NULL;
+	} else s->mcn[0]='\0';
+	DBGPRN(DBG_CDI)(errfp, "Hello i am le swedish chef is this program segaulting here??\n");
 	/* Disc identification, songwriter, composer, composer and message:
 	 * put in the notes field
 	 */
