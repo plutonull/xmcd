@@ -1245,10 +1245,6 @@ cdinfo_load(curstat_t *s)
 		/* Close pipes */
 		(void) cdinfo_closepipe(rpp);
 		(void) cdinfo_closepipe(spp);
-		int tom=0;
-		while(tom < s->tot_trks) {
-			DBGPRN(DBG_CDI)(errfp, "Dump2: %s\n", cdinfo_dbp->cdtext.track[tom++].title);
-		}
 
 		/* Parent process: wait for child to exit */
 		ret = util_waitchild(cpid, app_data.srv_timeout + 5,
@@ -1309,11 +1305,7 @@ cdinfo_load(curstat_t *s)
 			DBGPRN(DBG_CDI)(errfp, "Trying CD-TEXT...\n");
 			cdt = &cdinfo_dbp->cdtext;
 			di_load_cdtext(s, cdt);
-			DBGPRN(DBG_CDI)(errfp, "Have Text?: %d\n", cdt->cdtext_valid);
-			int tom=0;
-			while(tom < s->tot_trks) {
-				DBGPRN(DBG_CDI)(errfp, "Dump: %s\n", cdt->track[tom++].title);
-			}
+
 			if (cdt->cdtext_valid) {
 				cdinfo_map_cdtext(s, cdt);
 				cdinfo_dbp->flags |=

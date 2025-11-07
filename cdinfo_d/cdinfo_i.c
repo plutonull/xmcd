@@ -8798,7 +8798,6 @@ cdinfo_map_cdtext(curstat_t *s, di_cdtext_t *cdt)
 		MEM_FREE(cdt->disc.catno);
 		cdt->disc.catno = NULL;
 	} else s->mcn[0]='\0';
-	DBGPRN(DBG_CDI)(errfp, "Hello i am le swedish chef is this program segaulting here??\n");
 	/* Disc identification, songwriter, composer, composer and message:
 	 * put in the notes field
 	 */
