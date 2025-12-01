@@ -118,6 +118,8 @@ char	*browser_names[] = {
 	"run-mozilla.sh",
 	"galeon",
 	"opera",
+	"firefox",
+	"chromium",
 	NULL
 };
 
@@ -150,6 +152,7 @@ char	*search_paths[] = {
 	"/opt/mozilla/bin",
 	"/opt/mozilla",
 	"/usr/local/src/mozilla",
+	"/usr/bin",
 	NULL
 };
 
