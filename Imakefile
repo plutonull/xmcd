@@ -71,12 +71,11 @@ DependSubdirs($(SUBDIRS))
 #ifdef ManSuffix
 MANSUFFIX=ManSuffix
 #endif
-
 /*
  * Custom install rule
  */
 install::
 	@BINDIR=$(BINDIR) LIBDIR=$(LIBDIR) MANDIR=$(MANDIR) \
 		MANSUFFIX=$(MANSUFFIX) $(SHELL) ./install.sh -n
-fixMakefiles::
+fixmake::
 	sed -i "s/ -lXp//" ./util_d/Makefile ./xmcd_d/Makefile
