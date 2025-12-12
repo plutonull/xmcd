@@ -83,6 +83,7 @@ media_grab_t	media_grablist[TOTAL_MEDIA_GRABS] = {
 	{&widgets.main.nexttrk_btn, 0, 0, "XF86AudioNext"}
 };
 
+char* hotkey_me_keystr=NULL;
 /***********************
  *  internal routines  *
  ***********************/
@@ -457,7 +458,7 @@ hotkey_init(void)
 	media_grab_t *p;
 	int i;
 	Display *dpy = XtDisplay(widgets.toplevel);
-
+	
 	/* Set up hot keys for main window */
 	if (app_data.main_hotkeys != NULL &&
 	    app_data.main_hotkeys[0] != '\0') {
@@ -495,6 +496,7 @@ hotkey_init(void)
 		p->me_keycode = XKeysymToKeycode(
 				dpy,
 				p->me_keysym);
+		hotkey_me_keystr = p->me_keystr;
 		XGrabKey(
 			dpy,
 			p->me_keycode,
@@ -505,7 +507,6 @@ hotkey_init(void)
 			GrabModeAsync
 		);
 	}
-
 	/* Set mnemonics on hotkey button faces */
 	hotkey_set_mnemonics();
 }

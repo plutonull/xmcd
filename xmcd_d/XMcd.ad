@@ -673,7 +673,7 @@ Mod1<Key>q:		hotkey(keypadCancelButton,ArmAndActivate)\n
 XMcd.mainWindowTitle:		xmcd
 XMcd.localMsg:			local
 XMcd.cddbMsg:			CDDB
-XMcd.cdTextMsg:			CDtext
+XMcd.cdTextMsg:			CD-TEXT
 XMcd.queryMsg:			query
 XMcd.progModeMsg:		prog
 XMcd.elapseMsg:			elapse

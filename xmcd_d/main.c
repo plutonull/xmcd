@@ -48,6 +48,7 @@ widgets_t		widgets;	/* Holder of all widgets */
 pixmaps_t		pixmaps;	/* Holder of all pixmaps */
 FILE			*errfp;		/* Error message stream */
 
+
 /* Data global to this module only */
 STATIC curstat_t	status;		/* Current CD player status */
 STATIC XtAppContext	app_context;	/* Application context */
@@ -306,6 +307,10 @@ x_error(Display *dpy, XErrorEvent *ev)
 		msg[ERR_BUF_SZ],
 		num[32];
 	char	*mtyp = "XlibMessage";
+	if(ev->error_code == BadAccess && ev->request_code == 33){
+		fprintf(stderr, "Unable to grab key %s,\n perhaps another program already has?\n", hotkey_me_keystr);
+		return 1;	
+	}
 
 	(void) fprintf(errfp, "x_error: X error on \"%s\"\n",
 		DisplayString(dpy)
@@ -602,10 +607,10 @@ main(int argc, char **argv)
 
 	/* Set X error handlers if user interface debugging is enabled */
 	if ((app_data.debug & DBG_UI) != 0) {
-		(void) XSetErrorHandler(x_error);
 		(void) XSetIOErrorHandler(x_ioerror);
 	}
-
+	(void) XSetErrorHandler(x_error);
+	
 	/* Remote control specified - handle that here */
 	if (app_data.remotemode) {
 		cmd_init(&status, display, TRUE);

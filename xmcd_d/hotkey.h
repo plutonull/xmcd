@@ -27,6 +27,9 @@ static char *_hotkey_h_ident_ = "@(#)hotkey.h	6.18 03/12/12";
 #endif
 
 #define TOTAL_MEDIA_GRABS 4
+/* Public variables*/
+extern char* hotkey_me_keystr;
+/* End public variables */
 
 /* Public types */
 typedef struct {
