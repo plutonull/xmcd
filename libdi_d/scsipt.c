@@ -2398,11 +2398,11 @@ scsipt_cfg_vol(int vol, curstat_t *s, bool_t query, bool_t user)
 	int			vol1,
 				vol2;
 	mode_sense_6_data_t	*ms_data6 = NULL;
-	mode_sense_10_data_t	*ms_data10 = NULL;
-	blk_desc_t		*bdesc;
-	audio_pg_t		*audiopg;
-	int			bdesclen;
-	byte_t			buf[SZ_MSENSE];
+	mode_sense_10_data_t	*ms_data10 = NULL, *ms_mask_data10 = NULL;
+	blk_desc_t		*bdesc, *mask_bdesc;
+	audio_pg_t		*audiopg, *mask_audiopg;
+	int			bdesclen, mask_blklen;
+	byte_t			buf[SZ_MSENSE], mask_buf[SZ_MSENSE];
 	bool_t			ret = FALSE;
 	static bool_t		muted = FALSE;
 
@@ -2469,6 +2469,15 @@ scsipt_cfg_vol(int vol, curstat_t *s, bool_t query, bool_t user)
 	}
 	audiopg = (audio_pg_t *)(void *) ((byte_t *) bdesc + bdesclen);
 
+	scsipt_modesense(devp, DI_ROLE_MAIN, mask_buf, 1, PG_AUDIOCTL, SZ_AUDIOCTL);
+		ms_mask_data10 = (mode_sense_10_data_t *)(void *) mask_buf;
+		mask_bdesc = (blk_desc_t *)(void *) ms_data10->data;
+		mask_blklen = (int)
+			util_bswap16((word16_t) ms_data10->bdescr_len);
+		ms_mask_data10->data_len = 0;
+		ms_mask_data10->medium = 0;
+	mask_audiopg = (audio_pg_t *)(void *) ((byte_t *) mask_bdesc + mask_blklen);
+
 	if (bdesclen > 0)
 		bdesc->num_blks = 0;
 
@@ -2512,6 +2521,8 @@ scsipt_cfg_vol(int vol, curstat_t *s, bool_t query, bool_t user)
 
 			audiopg->sotc = 0;
 			audiopg->immed = 1;
+			audiopg->p0_vol &= mask_audiopg->p0_vol;
+			audiopg->p1_vol &= mask_audiopg->p1_vol;
 
 			if (scsipt_modesel(devp, DI_ROLE_MAIN, buf,
 					   PG_AUDIOCTL, SZ_AUDIOCTL)) {

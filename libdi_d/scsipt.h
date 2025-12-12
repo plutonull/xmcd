@@ -115,7 +115,7 @@ static char *_scsipt_h_ident_ = "@(#)scsipt.h	6.78 04/01/14";
 #define SZ_CDTEXTINFO		512	/* CDTEXT scratch buffer size */
 #define SZ_TOCHDR		4	/* TOC header size */
 #define SZ_TOCENT		8	/* TOC per-track entry size */
-#define SZ_MSENSE		60	/* max mode sense/mode sel data size */
+#define SZ_MSENSE		32	/* max mode sense/mode sel data size */
 #define SZ_AUDIOCTL		16	/* audio control page size */
 #define SZ_DEVCAPAB		16	/* device capab page size */
 #define SZ_ELEMADDR		20	/* element addr page size */

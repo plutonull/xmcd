@@ -1021,11 +1021,7 @@ slioc_start_stop(bool_t start, bool_t loej)
 
 	if (start) {
 		if (loej){
-#ifdef _LINUX
-			slioc_send(DI_ROLE_MAIN, CDROM_LOCKDOOR, NULL, 0, TRUE, NULL);
 			SET_LOCK_BTN(FALSE);
-#endif /* _LINUX */
-
 #ifdef CDROMCLOSETRAY
 			ret = slioc_send(DI_ROLE_MAIN, CDROMCLOSETRAY,
 					 NULL, 0, TRUE, NULL);
@@ -2319,6 +2315,7 @@ slioc_disc_ready(curstat_t *s)
 
 	s->mode = MOD_STOP;
 	DPY_ALL(s);
+	/* It seems that getting the CD-TEXT data through the SCSI Pass through interface is the only way, (at least on linux, solaris seems to have some extra IOCTLS). seems to work fine though */
 #ifdef _LINUX
 	/* Load CD-TEXT information into cache, if so configured */
 	(void) memset(scsipt_cdtext_buf, 0, sizeof(scsipt_cdtext_buf));
@@ -2334,7 +2331,9 @@ slioc_disc_ready(curstat_t *s)
 		/* Get Media catalog number of CD, if available */
 		(void) slioc_getmcn(s);
 	}
-
+#ifdef _LINUX
+	slioc_lock(s,TRUE);
+#endif
 	if (app_data.load_play || slioc_mult_autoplay) {
 		slioc_mult_autoplay = FALSE;
 
@@ -3796,14 +3795,21 @@ slioc_lock(curstat_t *s, bool_t enable)
 	/* Caddy lock function currently not supported
 	 * under SunOS/Solaris/Linux ioctl method
 	 */
-	
+	if(s->mode == MOD_BUSY || s->mode == MOD_NODISC) {
+		SET_LOCK_BTN(FALSE);
+		return;
+	} else if (s->mode != MOD_STOP) {
+		DO_BEEP();
+		SET_LOCK_BTN(!enable);
+		return;
+	}
 	if (enable) {
 #ifndef _LINUX
 		DO_BEEP();
 		SET_LOCK_BTN(FALSE);
 #else
-		int l=1;
-		slioc_send(DI_ROLE_MAIN,CDROM_LOCKDOOR,&l,sizeof(int),TRUE,NULL);
+		int arg = 1;
+		slioc_send(DI_ROLE_MAIN,CDROM_LOCKDOOR,&arg,sizeof(int),TRUE,NULL);
 		SET_LOCK_BTN(TRUE);
 #endif /* _LINUX */
 	}
