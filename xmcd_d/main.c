@@ -308,7 +308,7 @@ x_error(Display *dpy, XErrorEvent *ev)
 		num[32];
 	char	*mtyp = "XlibMessage";
 	if(ev->error_code == BadAccess && ev->request_code == 33){
-		fprintf(stderr, "Unable to grab key %s,\n perhaps another program already has?\n", hotkey_me_keystr);
+		fprintf(stderr, "Unable to grab key %s, perhaps another program already has?\n", hotkey_me_keystr);
 		return 1;	
 	}
 
