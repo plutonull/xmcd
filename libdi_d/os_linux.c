@@ -381,7 +381,11 @@ pthru_send(
 		(void) memset(rep, 0, sizeof(sg_request_t));
 
 		req->header.pack_len = sizeof(struct sg_header);
-		req->header.reply_len = datalen + sizeof(struct sg_header);
+		if(rw == OP_DATAOUT){
+			req->header.reply_len = sizeof(struct sg_header);
+		} else {
+			req->header.reply_len = datalen + sizeof(struct sg_header);
+		}
 		req->header.pack_id = ++devp->val2;
 		req->header.twelve_byte = (int) (cmdlen == 12);
 
@@ -612,6 +616,9 @@ pthru_open(char *path)
 		       errno != EAGAIN)
 			;	/* Empty buffer */
 		(void) fcntl(devp->fd, F_SETFL, i & ~O_NONBLOCK);
+	} else {
+		ioctl(devp->fd, SG_SET_COMMAND_Q, 0);
+		ioctl(devp->fd, SG_SET_FORCE_PACK_ID, 1);
 	}
 
 	return (devp);
