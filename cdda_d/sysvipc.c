@@ -32,7 +32,6 @@ static char *_sysvipc_c_ident_ = "@(#)sysvipc.c	7.158 04/03/17";
 #include "cdda_d/cdda.h"
 #include "cdda_d/common.h"
 
-
 #ifdef CDDA_SYSVIPC
 
 #include "cdda_d/sysvipc.h"
@@ -948,7 +947,9 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 		cd->i->state = CDSTAT_COMPLETED;
 		return FALSE;
 	}
-
+#ifdef _LINUX
+	pthru_close(devp);
+#endif
 	/* Fork CDDA reader process */
 	switch (cpid = FORK()) {
 	case -1:
@@ -967,7 +968,9 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 
 	case 0:
 		/* Child */
-
+#ifdef _LINUX
+		devp = pthru_open(s->curdev);
+#endif
 		/* Close any unneeded file descriptors */
 		for (i = 3; i < 10; i++) {
 			if (i != devp->fd)
@@ -992,7 +995,9 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 
 		/* Call cleanup function */
 		(*rdone)((bool_t) !ret);
-
+#ifdef _LINUX
+		pthru_close(devp);
+#endif
 		_exit(ret ? 0 : 1);
 		/*NOTREACHED*/
 
@@ -1188,7 +1193,9 @@ cdda_sysvipc_stop(di_dev_t *devp, curstat_t *s)
 
 		cd->i->reader = (thid_t) 0;
 	}
-
+#ifdef _LINUX
+	devp = pthru_open(s->curdev);
+#endif
 	/* Reset states */
 	cdda_sysvipc_initshm(s);
 
