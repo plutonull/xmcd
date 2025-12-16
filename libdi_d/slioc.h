@@ -200,7 +200,7 @@ extern void	slioc_start(curstat_t *);
 extern void	slioc_icon(curstat_t *, bool_t);
 extern void	slioc_halt(curstat_t *);
 extern char	*slioc_methodstr(void);
-extern void	slioc_load_cdtext(curstat_t *, di_cdtext_t *);
+
 #else	/* DI_SLIOC DEMO_ONLY */
 
 #define slioc_init	NULL
