@@ -1772,6 +1772,7 @@ scsipt_do_playaudio(
 	}
 
 	if (PLAYMODE_IS_CDDA(app_data.play_mode)) {
+		scsipt_close(dp);
 		if (do_play12 || do_play10) {
 			if (scsipt_is_enabled(devp, DI_ROLE_MAIN))
 				scsipt_disable(dp, DI_ROLE_MAIN);

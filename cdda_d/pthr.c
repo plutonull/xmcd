@@ -574,7 +574,8 @@ cdda_pthr_writer(void *arg)
 STATIC void *
 cdda_pthr_reader(void *arg)
 {
-	di_dev_t	*devp = (di_dev_t *) arg;
+	curstat_t	*s = (curstat_t *) arg;
+	di_dev_t	*devp = NULL;
 	int		ret;
 	bool_t		status,
 			(*rfunc)(di_dev_t *);
@@ -606,6 +607,9 @@ cdda_pthr_reader(void *arg)
 	}
 #endif
 #endif	/* __VMS */
+	if(app_data.cdda_rdmethod == CDDA_RD_SCSIPT) {
+		devp = pthru_open(s->curdev);
+	}
 
 	rfunc = cdda_rd_calltbl[app_data.cdda_rdmethod].readfunc;
 	rdone = cdda_rd_calltbl[app_data.cdda_rdmethod].readdone;
@@ -625,6 +629,10 @@ cdda_pthr_reader(void *arg)
 
 	/* Call cleanup function */
 	(*rdone)((bool_t) !status);
+
+	if(app_data.cdda_rdmethod == CDDA_RD_SCSIPT) {
+		pthru_close(devp);
+	}
 
 	/* End of read thread */
 	pthread_exit((void *) (status ? 0 : 1));
@@ -906,7 +914,7 @@ cdda_pthr_play(di_dev_t *devp, curstat_t *s,
 
 	/* Start CDDA reader thread */
 	if ((ret = pthread_create(&tid, NULL,
-				  cdda_pthr_reader, (void *) devp)) != 0) {
+				  cdda_pthr_reader, (void *) s)) != 0) {
 		(void) sprintf(errbuf,
 			    "cdda_pthr_play: pthread_create failed "
 			    "(reader ret=%d)",

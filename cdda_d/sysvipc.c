@@ -947,9 +947,6 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 		cd->i->state = CDSTAT_COMPLETED;
 		return FALSE;
 	}
-#ifdef _LINUX
-	pthru_close(devp);
-#endif
 	/* Fork CDDA reader process */
 	switch (cpid = FORK()) {
 	case -1:
@@ -968,9 +965,11 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 
 	case 0:
 		/* Child */
-#ifdef _LINUX
-		devp = pthru_open(s->curdev);
-#endif
+
+		/* Re-open SCSI Generic device */
+		if(app_data.cdda_rdmethod == CDDA_RD_SCSIPT) {
+			devp = pthru_open(s->curdev);
+		}
 		/* Close any unneeded file descriptors */
 		for (i = 3; i < 10; i++) {
 			if (i != devp->fd)
@@ -995,9 +994,11 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 
 		/* Call cleanup function */
 		(*rdone)((bool_t) !ret);
-#ifdef _LINUX
-		pthru_close(devp);
-#endif
+
+		if(app_data.cdda_rdmethod == CDDA_RD_SCSIPT) {
+			pthru_close(devp);
+		}
+
 		_exit(ret ? 0 : 1);
 		/*NOTREACHED*/
 
@@ -1193,9 +1194,6 @@ cdda_sysvipc_stop(di_dev_t *devp, curstat_t *s)
 
 		cd->i->reader = (thid_t) 0;
 	}
-#ifdef _LINUX
-	devp = pthru_open(s->curdev);
-#endif
 	/* Reset states */
 	cdda_sysvipc_initshm(s);
 
