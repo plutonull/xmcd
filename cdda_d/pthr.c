@@ -36,6 +36,7 @@ static char *_pthr_c_ident_ = "@(#)pthr.c	7.54 04/03/17";
 #ifdef CDDA_PTHREADS
 
 #include "cdda_d/pthr.h"
+#include "libdi_d/scsipt.h"
 
 /*
  * Platform-specific configuration for thread scheduling control
@@ -566,7 +567,7 @@ cdda_pthr_writer(void *arg)
  *	Reader thread function
  *
  * Args:
- *	arg - Pointer to the di_dev_t structure.
+ *	arg - Pointer to the curstat_t structure.
  *
  * Return:
  *	Always returns NULL.
@@ -629,10 +630,6 @@ cdda_pthr_reader(void *arg)
 
 	/* Call cleanup function */
 	(*rdone)((bool_t) !status);
-
-	if(app_data.cdda_rdmethod == CDDA_RD_SCSIPT) {
-		pthru_close(devp);
-	}
 
 	/* End of read thread */
 	pthread_exit((void *) (status ? 0 : 1));

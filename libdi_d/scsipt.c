@@ -60,7 +60,7 @@ byte_t		cdb[MAX_CMDLEN];
 /* Device file descriptors */
 di_dev_t	*devp = NULL,			/* CD device descriptor */
 		*chgp = NULL;			/* Medium changer descriptor */
-
+STATIC bool_t	scsipt_fd_closed = FALSE;
 
 STATIC int	scsipt_stat_interval,		/* Status poll interval */
 		scsipt_ins_interval;		/* Insert poll interval */
@@ -1331,9 +1331,15 @@ scsipt_start_stop(
 
 	if (!start && PLAYMODE_IS_CDDA(app_data.play_mode)) {
 		(void) cdda_stop(dp, s);
-
-		if (!scsipt_is_enabled(devp, DI_ROLE_MAIN))
+		if(scsipt_fd_closed == TRUE){
+			DBGPRN(DBG_DEVIO)(errfp, "scsipt_start_stop: Re-opening device after CDDA playback");
+			dp = scsipt_open(s->curdev);
+			scsipt_fd_closed = FALSE;
+			devp=dp;
+		}
+		if (!scsipt_is_enabled(devp, DI_ROLE_MAIN)){
 			scsipt_enable(dp, DI_ROLE_MAIN);
+		}
 	}
 
 	if (start)
@@ -1371,7 +1377,6 @@ scsipt_start_stop(
 		else if (start && app_data.spinup_interval > 0)
 			util_delayms(app_data.spinup_interval * 1000);
 	}
-
 	return (ret);
 }
 
@@ -1772,11 +1777,12 @@ scsipt_do_playaudio(
 	}
 
 	if (PLAYMODE_IS_CDDA(app_data.play_mode)) {
-		scsipt_close(dp);
 		if (do_play12 || do_play10) {
 			if (scsipt_is_enabled(devp, DI_ROLE_MAIN))
 				scsipt_disable(dp, DI_ROLE_MAIN);
-
+			DBGPRN(DBG_DEVIO)(errfp, "scsipt_do_playaudio: Closing device for CDDA playback");
+			scsipt_close(dp);
+			scsipt_fd_closed=TRUE;
 			ret = cdda_play(dp, s, start_addr, end_addr);
 		}
 		else if (do_playmsf) {

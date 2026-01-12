@@ -35,6 +35,7 @@ static char *_sysvipc_c_ident_ = "@(#)sysvipc.c	7.158 04/03/17";
 #ifdef CDDA_SYSVIPC
 
 #include "cdda_d/sysvipc.h"
+#include "libdi_d/scsipt.h"
 
 /*
  * Platform-specific configuration for process scheduling control
@@ -994,10 +995,6 @@ cdda_sysvipc_play(di_dev_t *devp, curstat_t *s,
 
 		/* Call cleanup function */
 		(*rdone)((bool_t) !ret);
-
-		if(app_data.cdda_rdmethod == CDDA_RD_SCSIPT) {
-			pthru_close(devp);
-		}
 
 		_exit(ret ? 0 : 1);
 		/*NOTREACHED*/

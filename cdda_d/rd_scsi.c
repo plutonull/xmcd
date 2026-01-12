@@ -637,6 +637,7 @@ scsi_rdone(bool_t killwriter)
 	}
 
 	scsipt_disable(spt_rdp, DI_ROLE_READER);
+	pthru_close(spt_rdp);
 	spt_rdp = NULL;
 
 	cdda_yield();
