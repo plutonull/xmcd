@@ -395,13 +395,13 @@ CddbControl_GetSubmitDisc(
 	}
 
 	dp->discid = fcddb_discid(dp->tracks.count, trkframes);
-
+#if 0
 	if (mediaid != NULL && strcmp(dp->discid, mediaid) != 0) {
 		/* Sanity check */
 		*pval = NULL;
 		return Cddb_E_INVALIDARG;
 	}
-
+#endif
 	if (muiid != NULL)
 		dp->category = fcddb_strdup((char *) muiid);
 	else

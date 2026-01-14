@@ -316,6 +316,7 @@ typedef struct cddb_disc {
 	char			objtype[STR_BUF_SZ];	/* Object type */
 	char			*category;		/* CDDB1 category */
 	char			*discid;		/* Disc ID */
+	char			*gdiscid;		/* GnuDB/CDDB Disc ID */
 	CddbStr			toc;			/* TOC string */
 	CddbStr			title;			/* Title */
 	CddbStr			notes;			/* Notes */

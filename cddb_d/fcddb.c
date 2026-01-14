@@ -242,6 +242,14 @@ fcddb_utf8_to_iso8859(char *str)
 			*tmpbuf;
 	char		*retbuf;
 
+	if(str == NULL){
+		retbuf = (char *) MEM_ALLOC("iso8859_retbuf", 1);
+		if(retbuf == NULL)
+			return NULL;
+		*retbuf='\0';
+		return retbuf;
+	}
+
 	tmpbuf = (unsigned char *) MEM_ALLOC(
 		"iso8859_to_buf", strlen(str) + 1
 	);
@@ -2308,7 +2316,7 @@ fcddb_query_cddb(
 		(void) strcpy(category, categp);
 		fcddb_clear_discs(&cp->discs);
 		MEM_FREE(buf);
-
+		cp->disc = *dp;
 		FCDDBDBG(fcddb_errfp,
 			 "\nfcddb_query_cddb: Exact match in cache %s/%s\n",
 			 category, discid);
@@ -2530,7 +2538,8 @@ fcddb_query_cddb(
 				*s = '\0';
 
 				/* Disc ID */
-				dp->discid = fcddb_strdup(r);
+				dp->discid = fcddb_strdup(discid);
+				dp->gdiscid =fcddb_strdup(r);
 
 				*s = ' ';
 				r = s + 1;
@@ -4246,7 +4255,7 @@ fcddb_read_cddb(
 	(void) sprintf(filepath, "%s/%s/%s",
 		       cp->options.localcachepath, category, discid);
 #endif
-
+	fprintf(stderr, "Big disc is: %s and %s\n", discid, cp->discs.count == 0 ? cp->disc.gdiscid : cp->discs.discs[0].gdiscid);
 	t = time(NULL);
 
 	/*
@@ -4344,9 +4353,10 @@ fcddb_read_cddb(
 
 	(void) strcat(urlstr, CDDB_CGI_PATH);
 
+	/* Please ignore the maniacal hack to get the gdiscid */
 	(void) sprintf(buf,
 		       "GET %s?cmd=cddb+read+%s+%s&%s&proto=4 HTTP/1.0\r\n",
-		       urlstr, category, discid, fcddb_hellostr);
+		       urlstr, category, cp->discs.count == 0 ? cp->disc.gdiscid : cp->discs.discs[0].gdiscid, fcddb_hellostr);
 
 	if (isproxy && fcddb_auth_buf != NULL) {
 		(void) sprintf(buf, "%sProxy-Authorization: Basic %s\r\n", buf,
@@ -4600,6 +4610,7 @@ fcddb_submit_cddb(
 #ifdef NOREMOTE
 	return Cddb_OK;
 #else
+
 	if ((cp->options.localcacheflags & CACHE_SUBMIT_OFFLINE) != 0)
 		return Cddb_OK;
 
