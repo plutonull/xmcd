@@ -1650,6 +1650,8 @@ fcddb_parse_cddb_data(
 	FCDDBDBG(fcddb_errfp, "fcddb_parse_cddb_data: %s/%s\n",
 		 category, discid);
 
+	(void) sscanf(discid, "%x", (unsigned int *) &discid_val);
+
 	ret = Cddb_OK;
 	p = buf;
 	for (;;) {
@@ -1685,7 +1687,6 @@ fcddb_parse_cddb_data(
 				}
 				(void) sscanf(p, "%x",
 					      (unsigned int *) &ip->discid);
-				discid_val=ip->discid;	
 				ip->next = dp->idlist;
 				dp->idlist = ip;
 				p = r+1;
@@ -1702,10 +1703,8 @@ fcddb_parse_cddb_data(
 				break;
 			}
 			(void) sscanf(p, "%x", (unsigned int *) &ip->discid);
-			discid_val=ip->discid;
 			ip->next = dp->idlist;
 			dp->idlist = ip;
-			discid=p;
 		}
 		else if (strncmp(p, "DTITLE=", 7) == 0) {
 			/* Disc artist / title */
