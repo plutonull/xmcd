@@ -5554,15 +5554,15 @@ cdinfo_opencddb(curstat_t *s, bool_t query, int *retcode)
 		*retcode = INIT_ERR;
 		return NULL;
 	}
-
+	cacheflags = app_data.cdinfo_inetoffln ?
+		CACHE_DONT_CONNECT : CACHE_DEFAULT;
+	cacheflags |= app_data.cache_submit_local ? CACHE_SUBMIT_OFFLINE : 0;
 	i = 0;
 	for (;;) {
 		DBGPRN(DBG_CDI)(errfp, "CddbControl_Initialize: ");
 		ret = CddbControl_Initialize(
 			cp->ctrlp, 0,
-			app_data.cdinfo_inetoffln ?
-				CACHE_DONT_CONNECT : CACHE_DEFAULT
-		);
+			cacheflags);
 		DBGPRN(DBG_CDI)(errfp, "0x%lx\n", ret);
 
 		if (ret == Cddb_OK || ret == Cddb_FALSE)
@@ -5694,8 +5694,6 @@ cdinfo_opencddb(curstat_t *s, bool_t query, int *retcode)
 		}
 
 		/* Set local cache flags */
-		cacheflags = app_data.cdinfo_inetoffln ?
-			CACHE_DONT_CONNECT : CACHE_DEFAULT;
 		DBGPRN(DBG_CDI)(errfp, "CddbOptions_PutLocalCacheFlags: ");
 		ret = CddbOptions_PutLocalCacheFlags(optp, cacheflags);
 		DBGPRN(DBG_CDI)(errfp, "0x%lx flags=0x%lx\n", ret, cacheflags);

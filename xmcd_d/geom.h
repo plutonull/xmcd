@@ -705,6 +705,9 @@ static char *_geom_h_ident_ = "@(#)geom.h	7.93 04/02/13";
 #define RIGHT_CACHE_TOUT_TXT	93
 #define TOFF_CACHE_TOUT_TXT	1
 
+#define LEFT_CACHE_LOCAL_BTN	68
+#define TOFF_CACHE_LOCAL_BTN	10
+
 #define TOFF_CDDB_SEP2		14
 
 #define LEFT_PROXY_SRVR_LBL	52

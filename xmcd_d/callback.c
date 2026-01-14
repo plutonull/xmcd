@@ -382,6 +382,8 @@ register_options_callbacks(widgets_t *m, curstat_t *s)
 	register_activate_cb(m->options.cache_tout_txt, cd_set_timeouts, s);
 	register_losefocus_cb(m->options.cache_tout_txt, cd_set_timeouts, s);
 
+	register_valchg_cb(m->options.cache_local_btn, cd_cache_local, s);
+
 	register_modvfy_cb(m->options.cache_tout_txt, cd_txtline_vfy, s);
 	register_valchg_cb(m->options.cache_tout_txt, cd_set_servers, s);
 	register_activate_cb(m->options.proxy_srvr_txt, cd_set_servers, s);

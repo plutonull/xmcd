@@ -312,6 +312,7 @@ typedef struct {
 		Widget	serv_tout_txt;		/* Service timeout text */
 		Widget	cache_tout_lbl;		/* Cache timeout label */
 		Widget	cache_tout_txt;		/* Cache timeout text */
+		Widget  cache_local_btn;	/* Save cache locally button */
 		Widget	cddb_sep2;		/* Separator bar */
 		Widget	use_proxy_btn;		/* Use HTTP proxy server btn */
 		Widget	proxy_srvr_lbl;		/* Proxy server label */

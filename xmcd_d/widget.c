@@ -2827,6 +2827,20 @@ create_options_widgets(widgets_t *m)
 		i
 	);
 
+	/* Create toggle button for submitting to local cache */
+	i = 0;
+#ifndef USE_SGI_DESKTOP
+	XtSetArg(arg[i], XmNheight, 18); i++;
+	XtSetArg(arg[i], XmNshadowThickness, 0); i++;
+#endif
+	XtSetArg(arg[i], XmNalignment, XmALIGNMENT_BEGINNING); i++;
+	m->options.cache_local_btn = XmCreateToggleButton(
+		m->options.form,
+		"cddbCacheLocalButton",
+		arg,
+		i
+	);
+
 	/* Create separator bar widget */
 	m->options.cddb_sep2 = XmCreateSeparator(
 		m->options.form,

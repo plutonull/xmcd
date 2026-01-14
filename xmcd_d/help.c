@@ -155,6 +155,7 @@ STATIC wname_t		wname[] = {
     { &widgets.options.lookup_radbox,	"Op%cLookup.rbx",   HELP_XLAT_1	},
     { &widgets.options.serv_tout_txt,	"Op%cServTo.txw",   HELP_XLAT_1	},
     { &widgets.options.cache_tout_txt,	"Op%cCacheTo.txw",  HELP_XLAT_1	},
+    { &widgets.options.cache_local_btn,	"Op%cCacheTo.txw",  HELP_XLAT_1	},
     { &widgets.options.use_proxy_btn,	"Op%cProxy.btn",    HELP_XLAT_1	},
     { &widgets.options.proxy_srvr_txt,	"Op%cProxy.btn",    HELP_XLAT_1	},
     { &widgets.options.proxy_port_txt,	"Op%cProxy.btn",    HELP_XLAT_1	},

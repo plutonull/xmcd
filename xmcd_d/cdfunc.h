@@ -174,6 +174,7 @@ extern void	cd_options_reset(Widget, XtPointer, XtPointer);
 extern void	cd_options_save(Widget, XtPointer, XtPointer);
 extern void	cd_options(Widget, XtPointer, XtPointer);
 extern void	cd_options_categsel(Widget, XtPointer, XtPointer);
+extern void	cd_cache_local(Widget, XtPointer, XtPointer);
 extern void	cd_jitter_corr(Widget, XtPointer, XtPointer);
 extern void	cd_file_per_trk(Widget, XtPointer, XtPointer);
 extern void	cd_subst(Widget, XtPointer, XtPointer);

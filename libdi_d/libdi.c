@@ -196,6 +196,8 @@ di_prncfg(void)
 		       app_data.sample_blks);
 	(void) fprintf(errfp, "\tinternetOffline:\t\t%s\n",
 		       di_boolstr(app_data.cdinfo_inetoffln));
+	(void) fprintf(errfp, "\tcddbCacheSubmitLocal:\t\t%s\n",
+		       di_boolstr(app_data.cache_submit_local));
 	(void) fprintf(errfp, "\tcddbUseProxy:\t\t\t%s\n",
 		       di_boolstr(app_data.use_proxy));
 	(void) fprintf(errfp, "\tproxyAuthorization:\t\t%s\n",
@@ -1718,6 +1720,9 @@ di_common_parmload(char *path, bool_t priv, bool_t reload)
 			app_data.cache_timeout = atoi(parm);
 			continue;
 		}
+		if(sscanf(buf, "cddbCacheSubmitLocal: %s\n", parm) > 0){
+			app_data.cache_submit_local = util_stob(parm);
+		}
 		if (sscanf(buf, "serviceTimeout: %s\n", parm) > 0) {
 			app_data.srv_timeout = atoi(parm);
 			continue;
@@ -2914,6 +2919,8 @@ di_common_parmsave(char *path)
 	(void) fprintf(fp, "autoMusicBrowser:\t%s\n",
 		       app_data.auto_musicbrowser ? truestr : falsestr);
 	(void) fprintf(fp, "cddbCacheTimeout:\t%d\n", app_data.cache_timeout);
+	(void) fprintf(fp, "cddbCacheSubmitLocal:\t%s\n",
+			app_data.cache_submit_local? truestr : falsestr);
 	(void) fprintf(fp, "serviceTimeout:\t\t%d\n", app_data.srv_timeout);
 	(void) fprintf(fp, "autoMotdDisable:\t%s\n",
 		       app_data.automotd_dsbl ? truestr : falsestr);

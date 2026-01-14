@@ -2648,6 +2648,16 @@ geom_options_force(widgets_t *m)
 		NULL
 	);
 
+	XtVaSetValues(m->options.cache_local_btn,
+		XmNleftAttachment, XmATTACH_POSITION,
+		XmNrightAttachment, XmATTACH_NONE,
+		XmNtopAttachment, XmATTACH_WIDGET,
+		XmNbottomAttachment, XmATTACH_NONE,
+		XmNleftPosition, LEFT_CACHE_LOCAL_BTN,
+		XmNtopWidget, m->options.cache_tout_txt,
+		XmNtopOffset, TOFF_CACHE_LOCAL_BTN,
+		NULL
+	);
 	XtVaSetValues(m->options.cddb_sep2,
 		XmNleftAttachment, XmATTACH_WIDGET,
 		XmNrightAttachment, XmATTACH_FORM,

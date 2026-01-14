@@ -7568,6 +7568,12 @@ cd_options_reset(Widget w, XtPointer client_data, XtPointer call_data)
 	set_text_string(widgets.options.cache_tout_txt, str, FALSE);
 
 	XmToggleButtonSetState(
+		widgets.options.cache_local_btn,
+		(Boolean) app_data.cache_submit_local,
+		False
+	);
+
+	XmToggleButtonSetState(
 		widgets.options.use_proxy_btn,
 		(Boolean) app_data.use_proxy,
 		False
@@ -8488,6 +8494,21 @@ cd_options_categsel(Widget w, XtPointer client_data, XtPointer call_data)
 	prev = i;
 }
 
+void
+cd_cache_local(Widget w, XtPointer client_data, XtPointer call_data)
+{
+	XmToggleButtonCallbackStruct	*cb = (XmToggleButtonCallbackStruct *) call_data;
+	curstat_t	*s = (curstat_t *) client_data;
+
+	if(cb->reason != XmCR_VALUE_CHANGED)
+		return;
+	if((bool_t) cb->set == app_data.cache_submit_local)
+		return;
+	app_data.cache_submit_local = (bool_t) cb->set;
+
+	XtSetSensitive(widgets.options.reset_btn, True);
+	XtSetSensitive(widgets.options.save_btn, True);
+}
 
 /*
  * cd_jitter_corr

@@ -350,6 +350,7 @@ XMcd*lookupRadioBox*button_0.labelString:	CDDB
 XMcd*lookupRadioBox*button_1.labelString:	CD-Text
 XMcd*cddbServiceTimeoutLabel.labelString:	Service timeout (secs)
 XMcd*cddbCacheTimeoutLabel.labelString:		Cache timeout (days)
+XMcd*cddbCacheLocalButton.labelString:		Submit to local cache
 XMcd*cddbUseProxyButton.labelString:		Use proxy
 XMcd*cddbProxyServerLabel.labelString:		Proxy server
 XMcd*cddbProxyPortLabel.labelString:		Port

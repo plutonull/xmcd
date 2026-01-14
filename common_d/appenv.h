@@ -1104,6 +1104,7 @@ typedef struct {
 
 	bool_t		ins_disable;		/* Insert poll disable */
 	bool_t		cdinfo_inetoffln;	/* Internet offline */
+	bool_t		cache_submit_local;	/* Submit to local cache */
 	bool_t		use_proxy;		/* Using proxy server */
 	bool_t		proxy_auth;		/* Use proxy authorization */
 	bool_t		auto_musicbrowser;	/* Auto CDDB Music Browser */
