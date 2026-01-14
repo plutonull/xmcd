@@ -4255,7 +4255,7 @@ fcddb_read_cddb(
 	(void) sprintf(filepath, "%s/%s/%s",
 		       cp->options.localcachepath, category, discid);
 #endif
-	fprintf(stderr, "Big disc is: %s and %s\n", discid, cp->discs.count == 0 ? cp->disc.gdiscid : cp->discs.discs[0].gdiscid);
+
 	t = time(NULL);
 
 	/*
