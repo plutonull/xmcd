@@ -4,7 +4,11 @@ Compiling:
 	For some odd reason Debian's Imake tries to link agains the Xprint libraries, despite Debian not shipping those libraries. As xmcd does not need the Xprint extention, this can safely be removed, run make fixmake in the top directory to do so.
 
 Installing:
-	The built-in disc drive configuration utility will run when installing xmcd, unless you have an actual SCSI drive, you should answer 'n' to the first two questions under DRIVE CONFIGURATION. If you are unsure, use the default options, as they work well.
+	The built-in disc drive configuration utility will run when installing xmcd, under linux you may answer yes to the first question under DRIVE CONFIGURATION, as the SCSI Generic interface works well with ATAPI drives, make sure to select a SCSI-2 drive from the same manufacturer as your drive. you may also answer no, and then answer yes to "Are you using the SCSI Emulation (ide-scsi) interface?" if you cannot find an applicable entry in the SCSI drive list.
+	If you are unsure about how to configure, use the default options, as they work well, but lack some features. (such as CD-TEXT).
 
 Things that have not been tested:
 	I have not tested the Lock Drive Door command, as my laptop's CD drive cannot lock, I have also not tested the Load command, as my laptop's CD drive is loaded manually.
+
+Known problems:
+	Submission to CDDB online does not work, this is due to xmcd filling in the required e-mail field with <username>@<hostname> which could quickly be fixed.
