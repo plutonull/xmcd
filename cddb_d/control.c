@@ -373,7 +373,7 @@ CddbControl_GetSubmitDisc(
 {
 	cddb_control_t	*cp = (cddb_control_t *) ctrlp;
 	cddb_disc_t	*dp;
-
+	int n;
 	if (toc == NULL) {
 		*pval = NULL;
 		return Cddb_E_INVALIDARG;
@@ -409,6 +409,10 @@ CddbControl_GetSubmitDisc(
 
 	dp->toc = (CddbStr) fcddb_strdup((char *) toc);
 	dp->control = cp;
+
+	for(n=0; n< dp->tracks.count; n++){
+		dp->tracks.track[n].control = (void *)cp;
+	}
 
 	*pval = (CddbDiscPtr) dp;
 	return Cddb_OK;

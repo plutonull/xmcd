@@ -1906,7 +1906,10 @@ fcddb_parse_cddb_data(
 	dp->tracks.count = (long) (discid_val & 0xff);
 	dp->category = fcddb_strdup(category);
 	dp->genre = fcddb_genre_categ2gp(cp, category);
-
+	
+	for(n=0; n< (discid_val & 0xff); n++){
+		dp->tracks.track[n].control = (void *)cp;
+	}
 	if (wrcache) {
 #ifdef __VMS
 		(void) sprintf(filepath, "%s.%s]%s.",
